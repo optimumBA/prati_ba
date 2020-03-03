@@ -20,7 +20,7 @@ defmodule PratiBa.MixProject do
   def application do
     [
       mod: {PratiBa.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :timex]
     ]
   end
 
@@ -42,7 +42,11 @@ defmodule PratiBa.MixProject do
       {:phoenix_live_reload, "~> 1.2", only: :dev},
       {:gettext, "~> 0.11"},
       {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"}
+      {:plug_cowboy, "~> 2.0"},
+      {:mojito, "~> 0.6.1"},
+      {:bypass, "~> 1.0", only: :test},
+      {:fast_rss, "~> 0.3.0"},
+      {:timex, "~> 3.5"},
     ]
   end
 
