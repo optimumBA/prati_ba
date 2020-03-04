@@ -47,6 +47,7 @@ defmodule PratiBa.MixProject do
       {:bypass, "~> 1.0", only: :test},
       {:fast_rss, "~> 0.3.0"},
       {:timex, "~> 3.5"},
+      {:feeder_ex, "~> 1.1"},
     ]
   end
 

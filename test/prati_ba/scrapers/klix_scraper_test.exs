@@ -9,7 +9,7 @@ defmodule PratiBa.KlixScraperTest do
     {:ok, bypass: bypass}
   end
 
-  describe "articles/2" do
+  describe "articles/1" do
     test "fetches articles", %{bypass: bypass} do
       Bypass.expect bypass, fn conn ->
         Plug.Conn.resp(conn, 200, articles_payload())
