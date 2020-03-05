@@ -8,7 +8,8 @@
 use Mix.Config
 
 config :prati_ba,
-  ecto_repos: [PratiBa.Repo]
+  ecto_repos: [PratiBa.Repo],
+  generators: [binary_id: true]
 
 # Configures the endpoint
 config :prati_ba, PratiBaWeb.Endpoint,
@@ -28,6 +29,8 @@ config :phoenix, :json_library, Jason
 
 # Enable non-UTC timezones
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
+
+# {:ok, %PratiBa.Articles.Article{} = article} = PratiBa.Articles.create_article(%{title: "Article Title", url: "nesto", published_at: ~N[2020-03-05 17:46:00]})
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

@@ -49,6 +49,7 @@ defmodule PratiBa.MixProject do
       {:timex, "~> 3.5"},
       {:feeder_ex, "~> 1.1"},
       {:tzdata, "~> 1.0.3"},
+      {:ecto_fields, "~> 1.2.0"},
     ]
   end
 
