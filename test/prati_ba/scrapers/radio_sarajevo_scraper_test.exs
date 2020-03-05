@@ -23,9 +23,7 @@ defmodule PratiBa.RadioSarajevoScraperTest do
           title: "Djevojčica koja se smijala bombama sa porodicom prešla u Tursku",
           description: nil,
           category: "Vijesti",
-          published_at: %DateTime{year: 2020, month: 3, day: 4, zone_abbr: "+01",
-                                  hour: 11, minute: 0, second: 0, microsecond: {0, 0},
-                                  utc_offset: 3600, std_offset: 0, time_zone: "Etc/GMT-1"},
+          published_at: ~N[2020-03-04 10:00:00],
           author: "Radiosarajevo.ba",
           image: %{
             url: "https://storage.radiosarajevo.ba/article/369198/871x540/otac_kcerka_sirija_granatiranje_igra_smijeh_prtscr.jpg",
@@ -40,9 +38,7 @@ defmodule PratiBa.RadioSarajevoScraperTest do
           title: "Iskorijeniti korupciju, izliječiti zdravstvo",
           description: nil,
           category: "Vijesti",
-          published_at: %DateTime{year: 2020, month: 3, day: 4, zone_abbr: "+01",
-                                  hour: 9, minute: 48, second: 0, microsecond: {0, 0},
-                                  utc_offset: 3600, std_offset: 0, time_zone: "Etc/GMT-1"},
+          published_at: ~N[2020-03-04 08:48:00],
           author: "EU info centar",
           image: %{
             url: "https://storage.radiosarajevo.ba/article/369192/871x540/EUperiskop_1.jpg",
@@ -57,9 +53,7 @@ defmodule PratiBa.RadioSarajevoScraperTest do
           title: "BiH prvi put u Diviziji A, direktnog prijenosa izvlačenja grupa neće biti?",
           description: nil,
           category: "Sport",
-          published_at: %DateTime{year: 2020, month: 3, day: 3, zone_abbr: "+01",
-                                  hour: 10, minute: 15, second: 0, microsecond: {0, 0},
-                                  utc_offset: 3600, std_offset: 0, time_zone: "Etc/GMT-1"},
+          published_at: ~N[2020-03-03 09:15:00],
           author: "A. S.",
           image: %{
             url: "https://storage.radiosarajevo.ba/article/369087/871x540/Bosnia_liganacija_mart2020.jpg",

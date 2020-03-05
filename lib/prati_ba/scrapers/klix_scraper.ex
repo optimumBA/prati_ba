@@ -55,7 +55,10 @@ defmodule PratiBa.KlixScraper do
     |> Enum.fetch!(-1)
     |> String.to_integer()
 
-    {:ok, published_at} = Timex.parse(date, "{RFC1123}")
+    published_at = date
+    |> Timex.parse!("{RFC1123}")
+    |> DateTime.shift_zone!("Etc/UTC")
+    |> DateTime.to_naive()
 
     article = %{
       id: id,

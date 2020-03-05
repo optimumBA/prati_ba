@@ -48,6 +48,7 @@ defmodule PratiBa.MixProject do
       {:fast_rss, "~> 0.3.0"},
       {:timex, "~> 3.5"},
       {:feeder_ex, "~> 1.1"},
+      {:tzdata, "~> 1.0.3"},
     ]
   end
 

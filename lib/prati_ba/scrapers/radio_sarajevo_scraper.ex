@@ -37,7 +37,10 @@ defmodule PratiBa.RadioSarajevoScraper do
         nil
     end
 
-    {:ok, published_at} = Timex.parse(date, "{RFC3339}")
+    published_at = date
+    |> Timex.parse!("{RFC3339}")
+    |> DateTime.shift_zone!("Etc/UTC")
+    |> DateTime.to_naive()
 
     image = case Regex.named_captures(~r/src="(?<url>https:\/\/storage.radiosarajevo.ba\/article\/\d+\/(?<width>\d+)x(?<height>\d+)[^"]+)"/, summary) do
       %{"url" => image_url, "height" => image_height, "width" => image_width} ->

@@ -23,9 +23,7 @@ defmodule PratiBa.KlixScraperTest do
           title: "Ove države ukinule su monarhiju i bile nemilosrdne prema nekadašnjim vladarima",
           description: "Kraljevi i carevi nekada su vladali brojnim zemljama, a ovi historijski događaji kriju se iza činjenice da su mnoge od njih prekinule vladavinu kraljevskih obitelji.",
           category: "Lifestyle",
-          published_at: %DateTime{year: 2020, month: 3, day: 03, zone_abbr: "+01",
-                                  hour: 17, minute: 39, second: 0, microsecond: {0, 0},
-                                  utc_offset: 3600, std_offset: 0, time_zone: "Etc/GMT-1"},
+          published_at: ~N[2020-03-03 16:39:00],
           author: "DP",
           image: %{
             width: "850",
@@ -39,9 +37,7 @@ defmodule PratiBa.KlixScraperTest do
           title: "Žrijeb grupa Lige nacija od 18 sati: Zmajevi čekaju protivnike u evropskoj eliti",
           description: "Nogometna reprezentacija Bosne i Hercegovine će danas saznati protivnike u Ligi nacija za sezonu 2020/2021.",
           category: "Nogomet",
-          published_at: %DateTime{year: 2020, month: 3, day: 03, zone_abbr: "+01",
-                                  hour: 17, minute: 30, second: 0, microsecond: {0, 0},
-                                  utc_offset: 3600, std_offset: 0, time_zone: "Etc/GMT-1"},
+          published_at: ~N[2020-03-03 16:30:00],
           author: "E. B.",
           image: %{
             width: "850",
@@ -55,9 +51,7 @@ defmodule PratiBa.KlixScraperTest do
           title: "Asim Sarajlić: Izvinjavam se svima koje sam ugrozio, možda više neću biti ni delegat",
           description: "Glavni akter afere koja je zatresla SDA, ali i širu bh. javnost, Asim Sarajlić nakon današnje sjednice Kolegija SDA je kazao da se izvinjava svima koje je ugrozio svojim činjenjem ili ne činjenjem te dodao da život ide dalje. On je poručio da je njegova ostavka u stranci konačna te da možda više neće biti ni delegat u Domu naroda Parlamenta BiH.",
           category: "BiH",
-          published_at: %DateTime{year: 2020, month: 3, day: 03, zone_abbr: "+01",
-                                  hour: 17, minute: 29, second: 0, microsecond: {0, 0},
-                                  utc_offset: 3600, std_offset: 0, time_zone: "Etc/GMT-1"},
+          published_at: ~N[2020-03-03 16:29:00],
           author: "A. B.",
           image: %{
             width: "850",
