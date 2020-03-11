@@ -1,7 +1,7 @@
-defmodule PratiBa.KlixScraperTest do
+defmodule PratiBa.Scrapers.KlixScraperTest do
   use ExUnit.Case, async: true
 
-  alias PratiBa.KlixScraper
+  alias PratiBa.Scrapers.KlixScraper
 
   setup do
     bypass = Bypass.open()

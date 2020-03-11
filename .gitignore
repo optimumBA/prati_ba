@@ -35,3 +35,6 @@ npm-debug.log
 
 # VS Code artifacts
 /.elixir_ls
+
+# Waffle storage
+/uploads

@@ -1,7 +1,7 @@
-defmodule PratiBa.RadioSarajevoScraperTest do
+defmodule PratiBa.Scrapers.RadioSarajevoScraperTest do
   use ExUnit.Case, async: true
 
-  alias PratiBa.RadioSarajevoScraper
+  alias PratiBa.Scrapers.RadioSarajevoScraper
 
   setup do
     bypass = Bypass.open()

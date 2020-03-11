@@ -24,6 +24,7 @@ defmodule PratiBa.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import PratiBa.DataCase
+      import PratiBa.Factory
     end
   end
 

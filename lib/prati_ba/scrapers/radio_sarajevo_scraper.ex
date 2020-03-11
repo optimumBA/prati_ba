@@ -1,5 +1,8 @@
-defmodule PratiBa.RadioSarajevoScraper do
+defmodule PratiBa.Scrapers.RadioSarajevoScraper do
+  @behaviour PratiBa.Scrapers.Scraper
+
   @rss_url "https://radiosarajevo.ba/rss"
+  @source_name "radiosarajevo.ba"
 
   def articles(url \\ @rss_url) do
     response = Mojito.request(method: :get, url: url)
@@ -13,6 +16,8 @@ defmodule PratiBa.RadioSarajevoScraper do
         {:error, response}
     end
   end
+
+  def source_name(), do: @source_name
 
   defp parse_articles(items, articles \\ [])
   defp parse_articles([], articles), do: articles

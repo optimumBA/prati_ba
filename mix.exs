@@ -50,6 +50,11 @@ defmodule PratiBa.MixProject do
       {:feeder_ex, "~> 1.1"},
       {:tzdata, "~> 1.0.3"},
       {:ecto_fields, "~> 1.2.0"},
+      {:ex_machina, "~> 2.3", only: :test},
+      {:waffle, "~> 1.0.0"},
+      {:waffle_ecto, "~> 0.0.7"},
+      {:quantum, "~> 3.0-rc"},
+      {:mox, "~> 0.5", only: :test}
     ]
   end
 

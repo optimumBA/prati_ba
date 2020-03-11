@@ -1,5 +1,8 @@
-defmodule PratiBa.KlixScraper do
+defmodule PratiBa.Scrapers.KlixScraper do
+  @behaviour PratiBa.Scrapers.Scraper
+
   @rss_url "https://www.klix.ba/rss/svevijesti"
+  @source_name "Klix.ba"
 
   def articles(url \\ @rss_url) do
     response = Mojito.request(method: :get, url: url)
@@ -12,6 +15,8 @@ defmodule PratiBa.KlixScraper do
         {:error, response}
     end
   end
+
+  def source_name(), do: @source_name
 
   defp parse_articles(items, articles \\ [])
   defp parse_articles([], articles), do: articles

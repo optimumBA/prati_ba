@@ -9,3 +9,9 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias PratiBa.Repo
+alias PratiBa.Articles.Source
+
+Repo.insert!(%Source{name: "Klix.ba", url: "https://www.klix.ba"})
+Repo.insert!(%Source{name: "radiosarajevo.ba", url: "https://radiosarajevo.ba"})

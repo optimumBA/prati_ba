@@ -11,9 +11,10 @@ defmodule PratiBa.Application do
       # Start the Ecto repository
       PratiBa.Repo,
       # Start the endpoint when the application starts
-      PratiBaWeb.Endpoint
+      PratiBaWeb.Endpoint,
       # Starts a worker by calling: PratiBa.Worker.start_link(arg)
       # {PratiBa.Worker, arg},
+      PratiBa.Scheduler,
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
