@@ -14,8 +14,12 @@ defmodule PratiBa.Application do
       PratiBaWeb.Endpoint,
       # Starts a worker by calling: PratiBa.Worker.start_link(arg)
       # {PratiBa.Worker, arg},
-      PratiBa.Scheduler,
     ]
+
+    children = case Application.get_env(:prati_ba, :env) do
+      :prod -> children ++ [PratiBa.Scheduler]
+      _ -> children
+    end
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
