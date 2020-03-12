@@ -21,11 +21,7 @@ defmodule PratiBa.ScrapersTest do
       category: "Category",
       published_at: ~N[2020-03-11 18:49:00],
       author: "Author",
-      image: %{
-        width: nil,
-        url: nil,
-        credit: nil,
-      },
+      image: nil,
       url: "https://fakesour.ce/fake-title",
     }
 

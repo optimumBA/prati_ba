@@ -31,25 +31,7 @@ defmodule PratiBa.Scrapers.KlixScraper do
       "dublin_core_ext" => %{
         "creators" => [author],
       },
-      "extensions" => %{
-        "media" => %{
-          "content" => [
-            %{
-              "attrs" => %{
-                "url" => image_url,
-                "width" => image_width,
-              },
-              "children" => %{
-                "credit" => [
-                  %{
-                    "value" => image_credit,
-                  },
-                ],
-              },
-            },
-          ],
-        },
-      },
+      "extensions" => image_properties,
       "link" => url,
       "pub_date" => date,
       "title" => title,
@@ -65,6 +47,23 @@ defmodule PratiBa.Scrapers.KlixScraper do
     |> DateTime.shift_zone!("Etc/UTC")
     |> DateTime.to_naive()
 
+    image = case image_properties do
+      %{
+        "media" => %{
+          "content" => [
+            %{
+              "attrs" => %{
+                "url" => image_url,
+              },
+            },
+          ],
+        },
+      } ->
+        URI.encode(image_url)
+      _ ->
+        nil
+    end
+
     article = %{
       id: id,
       title: title,
@@ -72,12 +71,8 @@ defmodule PratiBa.Scrapers.KlixScraper do
       category: category,
       published_at: published_at,
       author: author,
-      image: %{
-        width: image_width,
-        url: image_url,
-        credit: image_credit,
-      },
-      url: url,
+      image: image,
+      url: URI.encode(url),
     }
 
     parse_articles(tail, articles ++ [article])

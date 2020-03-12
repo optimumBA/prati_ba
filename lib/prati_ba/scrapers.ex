@@ -29,9 +29,7 @@ defmodule PratiBa.Scrapers do
   defp save_new_articles([head|tail], source) do
     unless Articles.exists?(head) do
       %{
-        image: %{
-          url: image_url,
-        },
+        image: image_url,
         published_at: published_at,
         title: title,
         url: url,

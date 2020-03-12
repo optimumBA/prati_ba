@@ -25,12 +25,7 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraperTest do
           category: "Vijesti",
           published_at: ~N[2020-03-04 10:00:00],
           author: "Radiosarajevo.ba",
-          image: %{
-            url: "https://storage.radiosarajevo.ba/article/369198/871x540/otac_kcerka_sirija_granatiranje_igra_smijeh_prtscr.jpg",
-            width: "871",
-            height: "540",
-            credit: nil,
-          },
+          image: "https://storage.radiosarajevo.ba/article/369198/871x540/otac_kcerka_sirija_granatiranje_igra_smijeh_prtscr.jpg",
           url: "https://radiosarajevo.ba/vijesti/svijet/djevojcica-koja-se-smijala-bombama-sa-porodicom-presla-u-tursku/369198",
         },
         %{
@@ -40,12 +35,7 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraperTest do
           category: "Vijesti",
           published_at: ~N[2020-03-04 08:48:00],
           author: "EU info centar",
-          image: %{
-            url: "https://storage.radiosarajevo.ba/article/369192/871x540/EUperiskop_1.jpg",
-            width: "871",
-            height: "540",
-            credit: nil,
-          },
+          image: nil,
           url: "https://radiosarajevo.ba/vijesti/euphoria/iskorijeniti-korupciju-izlijeciti-zdravstvo/369192",
         },
         %{
@@ -55,12 +45,7 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraperTest do
           category: "Sport",
           published_at: ~N[2020-03-03 09:15:00],
           author: "A. S.",
-          image: %{
-            url: "https://storage.radiosarajevo.ba/article/369087/871x540/Bosnia_liganacija_mart2020.jpg",
-            width: "871",
-            height: "540",
-            credit: nil,
-          },
+          image: "https://storage.radiosarajevo.ba/article/369915/871x540/SDP%20BiH.JPG",
           url: "https://radiosarajevo.ba/sport/nogomet/sramotno-bih-prvi-put-u-diviziji-a-ali-nece-biti-direktnog-prijenosa-izvlacenja-grupa/369087",
         },
       ]} = response
@@ -97,7 +82,7 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraperTest do
           <title type="text"><![CDATA[Iskorijeniti korupciju, izliječiti zdravstvo]]></title>
           <link rel="alternate" type="text/html" href="https://radiosarajevo.ba/vijesti/euphoria/iskorijeniti-korupciju-izlijeciti-zdravstvo/369192"></link>
           <id>https://radiosarajevo.ba/vijesti/euphoria/iskorijeniti-korupciju-izlijeciti-zdravstvo/369192</id>
-          <summary type="html"><![CDATA[<img src="https://storage.radiosarajevo.ba/article/369192/871x540/EUperiskop_1.jpg" height="66" width="90" align="left" hspace="6" /> ]]></summary>
+          <summary type="html"><![CDATA[]]></summary>
           <content type="html"><![CDATA[]]></content>
           <updated>2020-03-04T09:48:00+01:00</updated>
         </entry>
@@ -108,7 +93,7 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraperTest do
           <title type="text"><![CDATA[BiH prvi put u Diviziji A, direktnog prijenosa izvlačenja grupa neće biti?]]></title>
           <link rel="alternate" type="text/html" href="https://radiosarajevo.ba/sport/nogomet/sramotno-bih-prvi-put-u-diviziji-a-ali-nece-biti-direktnog-prijenosa-izvlacenja-grupa/369087"></link>
           <id>https://radiosarajevo.ba/sport/nogomet/sramotno-bih-prvi-put-u-diviziji-a-ali-nece-biti-direktnog-prijenosa-izvlacenja-grupa/369087</id>
-          <summary type="html"><![CDATA[<img src="https://storage.radiosarajevo.ba/article/369087/871x540/Bosnia_liganacija_mart2020.jpg" height="66" width="90" align="left" hspace="6" /> ]]></summary>
+          <summary type="html"><![CDATA[<img src="https://storage.radiosarajevo.ba/article/369915/871x540/SDP BiH.JPG" height="66" width="90" align="left" hspace="6" /> ]]></summary>
           <content type="html"><![CDATA[]]></content>
           <updated>2020-03-03T10:15:00+01:00</updated>
         </entry>

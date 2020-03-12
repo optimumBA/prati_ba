@@ -47,15 +47,10 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
     |> DateTime.shift_zone!("Etc/UTC")
     |> DateTime.to_naive()
 
-    image = case Regex.named_captures(~r/src="(?<url>https:\/\/storage.radiosarajevo.ba\/article\/\d+\/(?<width>\d+)x(?<height>\d+)[^"]+)"/, summary) do
-      %{"url" => image_url, "height" => image_height, "width" => image_width} ->
-        %{
-          url: image_url,
-          width: image_width,
-          height: image_height,
-          credit: nil,
-        }
-      nil ->
+    image = case Regex.named_captures(~r/src="(?<url>[^"]+)"/, summary) do
+      %{"url" => image_url} ->
+        URI.encode(image_url)
+      _ ->
         nil
     end
 
@@ -67,7 +62,7 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
       published_at: published_at,
       author: author,
       image: image,
-      url: url,
+      url: URI.encode(url),
     }
 
     parse_articles(tail, articles ++ [article])

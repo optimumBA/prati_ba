@@ -25,11 +25,7 @@ defmodule PratiBa.Scrapers.KlixScraperTest do
           category: "Lifestyle",
           published_at: ~N[2020-03-03 16:39:00],
           author: "DP",
-          image: %{
-            width: "850",
-            url: "https://static.klix.ba/media/images/vijesti/b_200303186.jpg?v=2",
-            credit: "Foto:Printskrin/youtube/ Timeline - World History Documentaries",
-          },
+          image: nil,
           url: "https://www.klix.ba/lifestyle/ove-drzave-ukinule-su-monarhiju-i-bile-nemilosrdne-prema-nekadasnjim-vladarima/200303186",
         },
         %{
@@ -39,11 +35,7 @@ defmodule PratiBa.Scrapers.KlixScraperTest do
           category: "Nogomet",
           published_at: ~N[2020-03-03 16:30:00],
           author: "E. B.",
-          image: %{
-            width: "850",
-            url: "https://static.klix.ba/media/images/vijesti/b_200303183.jpg?v=1",
-            credit: "Foto: EPA-EFE",
-          },
+          image: "https://static.klix.ba/media/images/vijesti/b_200303183.jpg?v=1",
           url: "https://www.klix.ba/sport/nogomet/zrijeb-grupa-lige-nacija-od-18-sati-zmajevi-cekaju-protivnike-u-evropskoj-eliti/200303183",
         },
         %{
@@ -53,11 +45,7 @@ defmodule PratiBa.Scrapers.KlixScraperTest do
           category: "BiH",
           published_at: ~N[2020-03-03 16:29:00],
           author: "A. B.",
-          image: %{
-            width: "850",
-            url: "https://static.klix.ba/media/images/vijesti/b_200303191.jpg?v=1",
-            credit: "Foto: D. S./Klix.ba",
-          },
+          image: "https://static.klix.ba/media/images/vijesti/b_200303191.jpg?v=1",
           url: "https://www.klix.ba/vijesti/bih/asim-sarajlic-izvinjavam-se-svima-koje-sam-ugrozio-mozda-vise-necu-biti-ni-delegat/200303191",
         }
       ]} = response
@@ -89,9 +77,6 @@ defmodule PratiBa.Scrapers.KlixScraperTest do
             <category domain="https://www.klix.ba/lifestyle">Lifestyle</category>
             <pubDate>Tue, 03 Mar 2020 17:39:00 +0100</pubDate>
             <dc:creator>DP</dc:creator>
-            <media:content width="850" url="https://static.klix.ba/media/images/vijesti/b_200303186.jpg?v=2">
-              <media:credit scheme="urn:ebu">Foto:Printskrin/youtube/ Timeline - World History Documentaries</media:credit>
-            </media:content>
           </item>
           <item>
             <title>Žrijeb grupa Lige nacija od 18 sati: Zmajevi čekaju protivnike u evropskoj eliti</title>
