@@ -12,7 +12,7 @@ defmodule PratiBa.ScrapersTest do
 
   test "fetch_new_articles/0 gets new articles and saves them to DB" do
     source_name = "Fake source"
-    source = insert(:source, name: source_name)
+    insert(:source, name: source_name)
 
     article = %{
       id: 1234,
@@ -45,7 +45,7 @@ defmodule PratiBa.ScrapersTest do
 
   test "fetch_new_articles/0 doesn't crash when there are network issues" do
     source_name = "Fake source"
-    source = insert(:source, name: source_name)
+    insert(:source, name: source_name)
 
     ScraperMock
     |> expect(:articles, fn -> {:error, %Mojito.Error{}} end)
