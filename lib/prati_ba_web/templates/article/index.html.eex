@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Published</th>
+      <th>Source</th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for article <- @articles do %>
+    <tr>
+      <td><%= article.title %></td>
+      <td><%= DateTime.from_naive!(article.published_at, "Etc/UTC") %></td>
+      <td><%= article.source.name %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
