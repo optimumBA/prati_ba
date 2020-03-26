@@ -2,7 +2,6 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
   @behaviour PratiBa.Scrapers.Scraper
 
   @rss_url "https://radiosarajevo.ba/rss"
-  @source_name "radiosarajevo.ba"
 
   def articles(url \\ @rss_url) do
     response = Mojito.request(method: :get, url: url)
@@ -11,24 +10,24 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
       {:ok, %{status_code: 200, body: body}} ->
         body = String.trim(body)
         {:ok, feed, _} = FeederEx.parse(body)
-        {:ok, parse_articles(feed.entries)}
+
+        articles = feed.entries
+        |> Stream.map(&parse_article/1)
+
+        {:ok, articles}
       {_, response} ->
         {:error, response}
     end
   end
 
-  def source_name(), do: @source_name
-
-  defp parse_articles(items, articles \\ [])
-  defp parse_articles([], articles), do: articles
-  defp parse_articles([head|tail], articles) do
+  defp parse_article(article) do
     %FeederEx.Entry{
       author: author,
       link: url,
       summary: summary,
       title: title,
       updated: date,
-    } = head
+    } = article
 
     id = url
     |> String.split("/")
@@ -54,7 +53,7 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
         nil
     end
 
-    article = %{
+    %{
       id: id,
       title: title,
       description: nil,
@@ -64,7 +63,5 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
       image: image,
       url: URI.encode(url),
     }
-
-    parse_articles(tail, articles ++ [article])
   end
 end

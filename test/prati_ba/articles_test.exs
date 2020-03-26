@@ -53,9 +53,9 @@ defmodule PratiBa.ArticlesTest do
   end
 
   describe "sources" do
-    test "get_source!/1 returns the source with given name" do
-      source = insert(:source, name: "Trustworthy Source")
-      assert Articles.get_source!(source.name) == source
+    test "list_sources/0 returns all sources" do
+      source = insert(:source)
+      assert Articles.list_sources() == [source]
     end
   end
 end

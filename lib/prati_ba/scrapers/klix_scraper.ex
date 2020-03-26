@@ -2,7 +2,6 @@ defmodule PratiBa.Scrapers.KlixScraper do
   @behaviour PratiBa.Scrapers.Scraper
 
   @rss_url "https://www.klix.ba/rss/svevijesti"
-  @source_name "Klix.ba"
 
   def articles(url \\ @rss_url) do
     response = Mojito.request(method: :get, url: url)
@@ -10,17 +9,17 @@ defmodule PratiBa.Scrapers.KlixScraper do
     case response do
       {:ok, %{status_code: 200, body: body}} ->
         {:ok, rss} = FastRSS.parse(body)
-        {:ok, parse_articles(rss["items"])}
+
+        articles = rss["items"]
+        |> Stream.map(&parse_article/1)
+
+        {:ok, articles}
       {_, response} ->
         {:error, response}
     end
   end
 
-  def source_name(), do: @source_name
-
-  defp parse_articles(items, articles \\ [])
-  defp parse_articles([], articles), do: articles
-  defp parse_articles([head|tail], articles) do
+  defp parse_article(article) do
     %{
       "categories" => [
         %{
@@ -35,7 +34,7 @@ defmodule PratiBa.Scrapers.KlixScraper do
       "link" => url,
       "pub_date" => date,
       "title" => title,
-    } = head
+    } = article
 
     id = url
     |> String.split("/")
@@ -64,7 +63,7 @@ defmodule PratiBa.Scrapers.KlixScraper do
         nil
     end
 
-    article = %{
+    %{
       id: id,
       title: title,
       description: description,
@@ -74,7 +73,5 @@ defmodule PratiBa.Scrapers.KlixScraper do
       image: image,
       url: URI.encode(url),
     }
-
-    parse_articles(tail, articles ++ [article])
   end
 end

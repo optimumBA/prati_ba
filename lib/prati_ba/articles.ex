@@ -59,18 +59,13 @@ defmodule PratiBa.Articles do
   end
 
   @doc """
-  Gets a single source.
-
-  Raises `Ecto.NoResultsError` if the Source does not exist.
+  Returns the list of sources.
 
   ## Examples
 
-      iex> get_source!("Existing source")
-      %Source{}
-
-      iex> get_source!("Non-existent source")
-      ** (Ecto.NoResultsError)
+      iex> list_sources()
+      [%Source{}, ...]
 
   """
-  def get_source!(name), do: Repo.get_by!(Source, name: name)
+  def list_sources, do: Repo.all(Source)
 end

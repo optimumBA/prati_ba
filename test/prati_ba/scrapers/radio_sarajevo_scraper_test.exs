@@ -17,7 +17,8 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraperTest do
 
       response = RadioSarajevoScraper.articles("http://localhost:#{bypass.port}/")
 
-      assert {:ok, [
+      assert {:ok, articles} = response
+      assert [
         %{
           id: 369198,
           title: "Djevojčica koja se smijala bombama sa porodicom prešla u Tursku",
@@ -48,7 +49,7 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraperTest do
           image: "https://storage.radiosarajevo.ba/article/369915/871x540/SDP%20BiH.JPG",
           url: "https://radiosarajevo.ba/sport/nogomet/sramotno-bih-prvi-put-u-diviziji-a-ali-nece-biti-direktnog-prijenosa-izvlacenja-grupa/369087",
         },
-      ]} = response
+      ] = Enum.to_list(articles)
     end
   end
 

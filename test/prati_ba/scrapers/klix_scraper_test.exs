@@ -17,7 +17,8 @@ defmodule PratiBa.Scrapers.KlixScraperTest do
 
       response = KlixScraper.articles("http://localhost:#{bypass.port}/")
 
-      assert {:ok, [
+      assert {:ok, articles} = response
+      assert [
         %{
           id: 200303186,
           title: "Ove države ukinule su monarhiju i bile nemilosrdne prema nekadašnjim vladarima",
@@ -48,7 +49,7 @@ defmodule PratiBa.Scrapers.KlixScraperTest do
           image: "https://static.klix.ba/media/images/vijesti/b_200303191.jpg?v=1",
           url: "https://www.klix.ba/vijesti/bih/asim-sarajlic-izvinjavam-se-svima-koje-sam-ugrozio-mozda-vise-necu-biti-ni-delegat/200303191",
         }
-      ]} = response
+      ] = Enum.to_list(articles)
     end
   end
 

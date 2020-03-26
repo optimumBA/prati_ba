@@ -8,6 +8,7 @@ defmodule PratiBa.ScrapersTest do
   alias PratiBa.Scrapers
   alias PratiBa.Scrapers.ScraperMock
 
+  setup :set_mox_from_context
   setup :verify_on_exit!
 
   test "fetch_new_articles/0 gets new articles and saves them to DB" do
@@ -26,10 +27,9 @@ defmodule PratiBa.ScrapersTest do
     }
 
     ScraperMock
-    |> expect(:source_name, fn -> source_name end)
-    |> expect(:articles, fn -> {:ok, [article]} end)
+    |> expect(:articles, fn -> {:ok, Stream.map([article], fn article -> article end)} end)
 
-    Scrapers.fetch_new_articles([ScraperMock])
+    Scrapers.fetch_new_articles(%{source_name => ScraperMock})
 
     assert [article] = Articles.list_articles()
     assert article.image == nil
@@ -46,7 +46,7 @@ defmodule PratiBa.ScrapersTest do
     ScraperMock
     |> expect(:articles, fn -> {:error, %Mojito.Error{}} end)
 
-    Scrapers.fetch_new_articles([ScraperMock])
+    Scrapers.fetch_new_articles(%{source_name => ScraperMock})
 
     assert [] = Articles.list_articles()
   end

@@ -4,45 +4,40 @@ defmodule PratiBa.Scrapers do
   """
 
   alias PratiBa.Articles
+  alias PratiBa.Articles.Source
   alias PratiBa.Scrapers.{KlixScraper, RadioSarajevoScraper}
 
-  @scrapers [
-    KlixScraper,
-    RadioSarajevoScraper,
-  ]
+  @scrapers %{
+    "Klix.ba" => KlixScraper,
+    "radiosarajevo.ba" => RadioSarajevoScraper,
+  }
 
-  def fetch_new_articles(scrapers \\ @scrapers)
-  def fetch_new_articles([]), do: nil
-  def fetch_new_articles([scraper|tail]) do
-    case scraper.articles() do
-      {:ok, articles} ->
-        source = Articles.get_source!(scraper.source_name)
-        save_new_articles(articles, source)
-      {:error, _} ->
-        nil
-    end
+  @article_keys [:image, :published_at, :title, :url]
 
-    fetch_new_articles(tail)
+  def fetch_new_articles(scrapers \\ @scrapers) do
+    Articles.list_sources()
+    |> Stream.map(&get_scraper(&1, scrapers))
+    |> Enum.map(&scrape_articles/1)
+    |> Enum.each(&Task.await(&1, 15000))
   end
 
-  defp save_new_articles([], _), do: nil
-  defp save_new_articles([head|tail], source) do
-    unless Articles.exists?(head) do
-      %{
-        image: image_url,
-        published_at: published_at,
-        title: title,
-        url: url,
-      } = head
+  defp get_scraper(source = %Source{name: source_name}, scrapers) do
+    %{^source_name => scraper} = scrapers
 
-      Articles.create_article(source, %{
-        image: image_url,
-        published_at: published_at,
-        title: title,
-        url: url,
-      })
-    end
+    {source, scraper}
+  end
 
-    save_new_articles(tail, source)
+  defp scrape_articles({source, scraper}) do
+    Task.async(fn ->
+      case scraper.articles() do
+        {:ok, articles} ->
+          articles
+          |> Stream.reject(&Articles.exists?/1)
+          |> Stream.map(&Map.take(&1, @article_keys))
+          |> Enum.each(&Articles.create_article(source, &1))
+        {:error, _} ->
+          nil
+      end
+    end)
   end
 end
