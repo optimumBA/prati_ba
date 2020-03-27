@@ -14,6 +14,11 @@ defmodule PratiBa.ArticlesTest do
       assert Articles.list_articles() == [article]
     end
 
+    test "get_article!/1 returns the article with given ID" do
+      article = insert(:article)
+      assert Articles.get_article!(article.id) == article
+    end
+
     test "exists?/1 returns true when article with the same URL is already in the DB" do
       url = "https://sourcedomain.com/articles/new-article"
       insert(:article, url: url)

@@ -22,6 +22,26 @@ defmodule PratiBa.Articles do
   end
 
   @doc """
+  Gets a single article.
+
+  Raises `Ecto.NoResultsError` if the Article does not exist.
+
+  ## Examples
+
+      iex> get_article!("binary-id")
+      %Source{}
+
+      iex> get_article!("non-existent-article-id")
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_article!(id) do
+    Article
+    |> Repo.get!(id)
+    |> Repo.preload(:source)
+  end
+
+  @doc """
   Checks if the article already exists.
 
   ## Examples

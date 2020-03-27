@@ -7,4 +7,9 @@ defmodule PratiBaWeb.ArticleController do
     articles = Articles.list_articles()
     render(conn, "index.html", articles: articles)
   end
+
+  def show(conn, %{"id" => id}) do
+    article = Articles.get_article!(id)
+    redirect(conn, external: article.url)
+  end
 end

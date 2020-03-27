@@ -1,5 +1,5 @@
 defmodule PratiBaWeb.PageControllerTest do
-  use PratiBaWeb.ConnCase
+  use PratiBaWeb.ConnCase, async: true
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")

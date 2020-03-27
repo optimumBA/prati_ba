@@ -9,7 +9,7 @@
   <tbody>
 <%= for article <- @articles do %>
     <tr>
-      <td><%= article.title %></td>
+      <td><%= link article.title, to: Routes.article_path(@conn, :show, article), target: "_blank", rel: "noopener" %></td>
       <td><%= DateTime.from_naive!(article.published_at, "Etc/UTC") %></td>
       <td><%= article.source.name %></td>
     </tr>
