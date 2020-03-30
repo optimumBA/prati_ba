@@ -31,7 +31,8 @@ config :phoenix, :json_library, Jason
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 
 config :waffle,
-  storage: Waffle.Storage.Local
+  storage: Waffle.Storage.Local,
+  storage_dir_prefix: "priv/static"
 
 config :prati_ba, PratiBa.Scheduler,
   jobs: [

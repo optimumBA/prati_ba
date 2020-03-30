@@ -16,7 +16,7 @@ defmodule PratiBa.Articles do
 
   """
   def list_articles do
-    Article
+    Article.newest()
     |> Repo.all()
     |> Repo.preload(:source)
   end
@@ -76,6 +76,18 @@ defmodule PratiBa.Articles do
     |> Article.changeset(attrs)
     |> Ecto.Changeset.put_assoc(:source, source)
     |> Repo.insert()
+
+    # result = Ecto.Multi.new()
+    # |> Ecto.Multi.insert(:article, article)
+    # |> Ecto.Multi.update(:article_with_image, &Article.image_changeset(&1.article, attrs))
+    # |> Repo.transaction()
+
+    # case result do
+    #   {:ok, article_with_image: %{article: article}} ->
+    #     {:ok, article}
+    #   default ->
+    #     default
+    # end
   end
 
   @doc """

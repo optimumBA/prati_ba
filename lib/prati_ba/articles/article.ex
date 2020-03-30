@@ -20,7 +20,7 @@ defmodule PratiBa.Articles.Article do
   @doc false
   def changeset(article, attrs) do
     article
-    |> cast(attrs, [:image, :published_at, :title, :url])
+    |> cast(attrs, [:published_at, :title, :url])
     |> cast_attachments(attrs, [:image], allow_urls: true)
     |> validate_required([:published_at, :title, :url])
     |> unique_constraint(:url)
@@ -28,5 +28,11 @@ defmodule PratiBa.Articles.Article do
 
   def having_url(url) do
     from a in __MODULE__, where: a.url == ^url
+  end
+
+  def newest(query \\ __MODULE__) do
+    from a in query,
+      order_by: [desc_nulls_last: :published_at],
+      limit: 20
   end
 end

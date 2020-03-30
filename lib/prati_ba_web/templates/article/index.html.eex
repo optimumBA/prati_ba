@@ -1,18 +1,22 @@
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Published</th>
-      <th>Source</th>
-    </tr>
-  </thead>
-  <tbody>
+<section class="articles">
 <%= for article <- @articles do %>
-    <tr>
-      <td><%= link article.title, to: Routes.article_path(@conn, :show, article), target: "_blank", rel: "noopener" %></td>
-      <td><%= DateTime.from_naive!(article.published_at, "Etc/UTC") %></td>
-      <td><%= article.source.name %></td>
-    </tr>
+  <article>
+    <%= link to: Routes.article_path(@conn, :show, article), class: "article", target: "_blank", rel: "noopener" do %>
+      <div class="article-image">
+        <%= article_image_tag(article) %>
+      </div>
+
+      <div class="article-details">
+        <div class="article-title"><%= article.title %></div>
+
+        <div class="article-info">
+          <span class="article-source"><%= article.source.name %></span>
+          |
+          <%= published_date(article) %>
+          <time class="article-published" datetime="<%= DateTime.from_naive!(article.published_at, "Etc/UTC") %>"></time>
+        </div>
+      </div>
+    <% end %>
+  </article>
 <% end %>
-  </tbody>
-</table>
+</section>

@@ -38,3 +38,6 @@ npm-debug.log
 
 # Waffle storage
 /uploads
+
+# macOS temp files
+.DS_Store

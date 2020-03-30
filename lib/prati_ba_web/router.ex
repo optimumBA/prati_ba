@@ -16,8 +16,7 @@ defmodule PratiBaWeb.Router do
   scope "/", PratiBaWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
-    resources "/articles", ArticleController, only: [:index, :show]
+    resources "/", ArticleController, only: [:index, :show]
   end
 
   # Other scopes may use custom stacks.
