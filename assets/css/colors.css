@@ -1,0 +1,14 @@
+:root {
+  color-scheme: light dark;
+  --bg-color: #ffffff;
+  --nav-color: rgb(244, 245, 246);
+  --border-color: rgb(209, 209, 209);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: rgb(30, 30, 30);
+    --nav-color: rgb(37, 37, 38);
+    --border-color: rgb(52, 54, 57);
+  }
+}

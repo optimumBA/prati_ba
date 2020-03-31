@@ -1,6 +1,10 @@
+body {
+  background-color: var(--bg-color);
+}
+
 nav {
-  background: #f4f5f6;
-  border-bottom: .1rem solid #d1d1d1;
+  background: var(--nav-color);
+  border-bottom: .1rem solid var(--border-color);
   display: block;
   height: 5.2rem;
   left: 0;

@@ -2,6 +2,7 @@
 
 @import "../node_modules/milligram/dist/milligram.css";
 
+@import "./colors.css";
 @import "./layout.css";
 @import "./style.css";
 @import "./articles.css";
