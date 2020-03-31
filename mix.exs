@@ -46,7 +46,7 @@ defmodule PratiBa.MixProject do
       {:mojito, "~> 0.6.1"},
       {:bypass, "~> 1.0", only: :test},
       {:fast_rss, "~> 0.3.0"},
-      {:timex, github: "bitwalker/timex"},
+      {:timex, github: "almirsarajcic/timex", branch: "bosnian-translations"},
       {:feeder_ex, "~> 1.1"},
       {:tzdata, "~> 1.0.3"},
       {:ecto_fields, "~> 1.2.0"},

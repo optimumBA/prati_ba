@@ -17,7 +17,7 @@ defmodule PratiBaWeb.ArticleView do
     datetime = DateTime.from_naive!(published_at, "Etc/UTC")
 
     content_tag(:time, class: "article-published", datetime: datetime) do
-      case Timex.lformat(datetime, "{relative}", "sr_Latn", :relative) do
+      case Timex.format(datetime, "{relative}", :relative) do
         {:ok, relative_string} ->
           relative_string
         {:error, _} ->

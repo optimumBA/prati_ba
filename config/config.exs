@@ -30,6 +30,9 @@ config :phoenix, :json_library, Jason
 # Enable non-UTC timezones
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 
+# Set Timex locale to Bosnian (Latin)
+config :timex, default_locale: "bs_latin"
+
 config :waffle,
   storage: Waffle.Storage.Local,
   storage_dir_prefix: "priv/static"
