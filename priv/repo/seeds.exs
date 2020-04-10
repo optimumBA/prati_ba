@@ -13,5 +13,17 @@
 alias PratiBa.Repo
 alias PratiBa.Articles.Source
 
-Repo.insert!(%Source{name: "Klix.ba", url: "https://www.klix.ba"})
-Repo.insert!(%Source{name: "radiosarajevo.ba", url: "https://radiosarajevo.ba"})
+import Ecto.Query, only: [from: 2]
+
+sources = [
+  %Source{name: "Klix.ba", url: "https://www.klix.ba"},
+  %Source{name: "radiosarajevo.ba", url: "https://radiosarajevo.ba"},
+]
+
+for source <- sources do
+  query = from s in Source, where: s.name == ^source.name
+
+  unless Repo.exists?(query) do
+    Repo.insert!(source)
+  end
+end
