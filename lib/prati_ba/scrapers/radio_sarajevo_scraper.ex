@@ -8,8 +8,10 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
 
     case response do
       {:ok, %{status_code: 200, body: body}} ->
-        body = String.trim(body)
-        {:ok, feed, _} = FeederEx.parse(body)
+        {:ok, feed, _} = body
+          |> HtmlEntities.decode()
+          |> String.trim()
+          |> FeederEx.parse()
 
         articles = feed.entries
         |> Stream.map(&parse_article/1)

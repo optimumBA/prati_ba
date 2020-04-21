@@ -54,7 +54,8 @@ defmodule PratiBa.MixProject do
       {:waffle, "~> 1.0.0"},
       {:waffle_ecto, "~> 0.0.7"},
       {:quantum, "~> 3.0-rc"},
-      {:mox, "~> 0.5", only: :test}
+      {:mox, "~> 0.5", only: :test},
+      {:html_entities, "~> 0.5"},
     ]
   end
 
