@@ -3,22 +3,22 @@ defmodule PratiBa.Articles do
   The Articles context.
   """
 
-  alias PratiBa.Articles.{Article, Source}
+  alias PratiBa.Articles.{Article, Category, Source}
   alias PratiBa.Repo
 
   @doc """
-  Returns the list of articles.
+  Returns the list of articles grouped by categories.
 
   ## Examples
 
-      iex> list_articles()
-      [%Article{}, ...]
+      iex> list_categories_with_articles()
+      [%Category{articles: [%Article{}, ...]}, ...]
 
   """
-  def list_articles do
+  def list_categories_with_articles do
     Article.newest()
+    |> Category.with_articles()
     |> Repo.all()
-    |> Repo.preload(:source)
   end
 
   @doc """
@@ -38,6 +38,7 @@ defmodule PratiBa.Articles do
   def get_article!(id) do
     Article
     |> Repo.get!(id)
+    |> Repo.preload(:category)
     |> Repo.preload(:source)
   end
 
@@ -72,22 +73,13 @@ defmodule PratiBa.Articles do
 
   """
   def create_article(%Source{} = source, attrs \\ %{}) do
+    category = Repo.get_by!(Category, name: attrs.category)
+
     %Article{}
     |> Article.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:category, category)
     |> Ecto.Changeset.put_assoc(:source, source)
     |> Repo.insert()
-
-    # result = Ecto.Multi.new()
-    # |> Ecto.Multi.insert(:article, article)
-    # |> Ecto.Multi.update(:article_with_image, &Article.image_changeset(&1.article, attrs))
-    # |> Repo.transaction()
-
-    # case result do
-    #   {:ok, article_with_image: %{article: article}} ->
-    #     {:ok, article}
-    #   default ->
-    #     default
-    # end
   end
 
   @doc """

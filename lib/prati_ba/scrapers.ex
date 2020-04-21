@@ -12,7 +12,7 @@ defmodule PratiBa.Scrapers do
     "radiosarajevo.ba" => RadioSarajevoScraper,
   }
 
-  @article_keys [:image, :published_at, :title, :url]
+  @article_keys [:category, :image, :published_at, :title, :url]
 
   def fetch_new_articles(scrapers \\ @scrapers) do
     Articles.list_sources()
@@ -32,6 +32,7 @@ defmodule PratiBa.Scrapers do
       case scraper.articles() do
         {:ok, articles} ->
           articles
+          |> Stream.reject(&is_nil(&1.category))
           |> Stream.reject(&Articles.exists?/1)
           |> Stream.map(&Map.take(&1, @article_keys))
           |> Enum.each(&Articles.create_article(source, &1))

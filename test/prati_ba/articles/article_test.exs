@@ -11,10 +11,19 @@ defmodule PratiBa.Articles.ArticleTest do
   end
 
   test "cannot create duplicate article" do
-    article = Article.changeset(%Article{}, @valid_attrs)
-    assert {:ok, article } = Repo.insert(article)
+    category = insert(:category)
 
-    duplicate = Article.changeset(%Article{}, @valid_attrs)
+    article =
+      %Article{}
+      |> Article.changeset(@valid_attrs)
+      |> Ecto.Changeset.put_assoc(:category, category)
+
+    assert {:ok, article} = Repo.insert(article)
+
+    duplicate =
+      %Article{}
+      |> Article.changeset(@valid_attrs)
+      |> Ecto.Changeset.put_assoc(:category, category)
 
     assert {:error, changeset} = Repo.insert(duplicate)
     assert %{url: ["has already been taken"]} = errors_on(changeset)

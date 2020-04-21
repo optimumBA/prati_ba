@@ -36,13 +36,6 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
     |> Enum.fetch!(-1)
     |> String.to_integer()
 
-    category = case Regex.named_captures(~r/https:\/\/radiosarajevo.ba\/(?<category>[^\/]+)\//, url) do
-      %{"category" => category} ->
-        String.capitalize(category)
-      nil ->
-        nil
-    end
-
     published_at = date
     |> Timex.parse!("{RFC3339}")
     |> DateTime.shift_zone!("Etc/UTC")
@@ -59,11 +52,24 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
       id: id,
       title: title,
       description: nil,
-      category: category,
+      category: parse_category(url),
       published_at: published_at,
       author: author,
       image: image,
       url: URI.encode(url),
     }
   end
+
+  defp parse_category("https://radiosarajevo.ba/vijesti/bosna-i-hercegovina" <> _), do: "BiH"
+  defp parse_category("https://radiosarajevo.ba/vijesti/regija" <> _), do: "Regija"
+  defp parse_category("https://radiosarajevo.ba/vijesti/svijet" <> _), do: "Svijet"
+  defp parse_category("https://radiosarajevo.ba/biznis" <> _), do: "Ekonomija"
+  defp parse_category("https://radiosarajevo.ba/magazin/tech" <> _), do: "Nauka i tehnologija"
+  defp parse_category("https://radiosarajevo.ba/kolumne" <> _), do: "Kolumne"
+  defp parse_category("https://radiosarajevo.ba/sport" <> _), do: "Sport"
+  defp parse_category("https://radiosarajevo.ba/auto-moto" <> _), do: "Auto"
+  defp parse_category("https://radiosarajevo.ba/metromahala/zmajevi" <> _), do: "Humanost"
+  defp parse_category("https://radiosarajevo.ba/magazin" <> _), do: "Zabava"
+  defp parse_category("https://radiosarajevo.ba/metromahala" <> _), do: "Zabava"
+  defp parse_category(_), do: nil
 end

@@ -4,8 +4,8 @@ defmodule PratiBaWeb.ArticleController do
   alias PratiBa.Articles
 
   def index(conn, _params) do
-    articles = Articles.list_articles()
-    render(conn, "index.html", articles: articles)
+    categories = Articles.list_categories_with_articles()
+    render(conn, "index.html", categories: categories)
   end
 
   def show(conn, %{"id" => id}) do

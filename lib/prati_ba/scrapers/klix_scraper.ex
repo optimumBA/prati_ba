@@ -21,11 +21,6 @@ defmodule PratiBa.Scrapers.KlixScraper do
 
   defp parse_article(article) do
     %{
-      "categories" => [
-        %{
-          "name" => category,
-        },
-      ],
       "description" => description,
       "dublin_core_ext" => %{
         "creators" => [author],
@@ -67,11 +62,23 @@ defmodule PratiBa.Scrapers.KlixScraper do
       id: id,
       title: title,
       description: description,
-      category: category,
+      category: parse_category(url),
       published_at: published_at,
       author: author,
       image: image,
       url: URI.encode(url),
     }
   end
+
+  defp parse_category("https://www.klix.ba/vijesti/bih" <> _), do: "BiH"
+  defp parse_category("https://www.klix.ba/vijesti/regija" <> _), do: "Regija"
+  defp parse_category("https://www.klix.ba/vijesti/svijet" <> _), do: "Svijet"
+  defp parse_category("https://www.klix.ba/biznis" <> _), do: "Ekonomija"
+  defp parse_category("https://www.klix.ba/scitech" <> _), do: "Nauka i tehnologija"
+  defp parse_category("https://www.klix.ba/sport" <> _), do: "Sport"
+  defp parse_category("https://www.klix.ba/auto" <> _), do: "Auto"
+  defp parse_category("https://www.klix.ba/vijesti/humanitarne-akcije" <> _), do: "Humanost"
+  defp parse_category("https://www.klix.ba/magazin" <> _), do: "Zabava"
+  defp parse_category("https://www.klix.ba/lifestyle" <> _), do: "Zabava"
+  defp parse_category(_), do: nil
 end
