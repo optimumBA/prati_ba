@@ -8,7 +8,7 @@ defmodule PratiBa.Repo.Migrations.CreateArticles do
       add :title, :string, null: false
       add :image, :string
       add :published_at, :naive_datetime, null: false
-      add :source_id, references(:sources, on_delete: :delete_all, type: :binary_id)
+      add :source_id, references(:sources, on_delete: :delete_all, type: :binary_id), null: false
 
       timestamps()
     end
