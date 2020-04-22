@@ -7,6 +7,7 @@ defmodule PratiBaWeb.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug PratiBaWeb.Plugs.RequestTracker
   end
 
   pipeline :api do

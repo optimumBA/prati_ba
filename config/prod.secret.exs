@@ -30,6 +30,27 @@ config :prati_ba, PratiBaWeb.Endpoint,
   ],
   secret_key_base: secret_key_base
 
+maxmind_license_key =
+  System.get_env("MAXMIND_LICENSE_KEY") ||
+    raise """
+    environment variable MAXMIND_LICENSE_KEY is missing.
+    For example: 4FMnz1Pr2Cxnd6BR
+    """
+
+config :geolix,
+  databases: [
+    %{
+      id: :asn,
+      adapter: Geolix.Adapter.MMDB2,
+      source: "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=#{maxmind_license_key}&suffix=tar.gz",
+    },
+    %{
+      id: :city,
+      adapter: Geolix.Adapter.MMDB2,
+      source: "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=#{maxmind_license_key}&suffix=tar.gz",
+    },
+  ]
+
 # ## Using releases (Elixir v1.9+)
 #
 # If you are doing OTP releases, you need to instruct Phoenix

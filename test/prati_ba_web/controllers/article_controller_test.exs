@@ -1,5 +1,5 @@
 defmodule PratiBaWeb.ArticleControllerTest do
-  use PratiBaWeb.ConnCase
+  use PratiBaWeb.ConnCase, async: true
 
   describe "index" do
     test "lists all articles", %{conn: conn} do
