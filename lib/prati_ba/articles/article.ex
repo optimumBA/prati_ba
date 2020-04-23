@@ -39,6 +39,7 @@ defmodule PratiBa.Articles.Article do
     from a in __MODULE__,
       join: grouped in subquery(articles), on: [id: a.id],
       where: grouped.rank <= ^limit,
+      order_by: [desc_nulls_last: :published_at],
       preload: :source
   end
 end

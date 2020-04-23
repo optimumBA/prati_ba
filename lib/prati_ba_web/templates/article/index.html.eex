@@ -18,7 +18,6 @@
             <span class="article-source"><%= article.source.name %></span>
             |
             <%= published_date(article) %>
-            <time class="article-published" datetime="<%= DateTime.from_naive!(article.published_at, "Etc/UTC") %>"></time>
           </div>
         </div>
       <% end %>
