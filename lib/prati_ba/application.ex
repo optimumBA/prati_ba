@@ -6,14 +6,17 @@ defmodule PratiBa.Application do
   use Application
 
   def start(_type, _args) do
-    # List all child processes to be supervised
     children = [
       # Start the Ecto repository
       PratiBa.Repo,
-      # Start the endpoint when the application starts
-      PratiBaWeb.Endpoint,
-      # Starts a worker by calling: PratiBa.Worker.start_link(arg)
-      # {PratiBa.Worker, arg},
+      # Start the Telemetry supervisor
+      PratiBaWeb.Telemetry,
+      # Start the PubSub system
+      {Phoenix.PubSub, name: PratiBa.PubSub},
+      # Start the Endpoint (http/https)
+      PratiBaWeb.Endpoint
+      # Start a worker by calling: PratiBa.Worker.start_link(arg)
+      # {PratiBa.Worker, arg}
     ]
 
     children = case Application.get_env(:prati_ba, :env) do

@@ -15,8 +15,8 @@ config :prati_ba,
 config :prati_ba, PratiBaWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "aZRUiAe1BkB34wrqtnlMV1JX4LElfMz+FjNMMIRDosqueX3jPQftfFefnLvh9V6L",
-  render_errors: [view: PratiBaWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: PratiBa.PubSub, adapter: Phoenix.PubSub.PG2],
+  render_errors: [view: PratiBaWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: PratiBa.PubSub,
   live_view: [signing_salt: "dzeTtzQY"]
 
 # Configures Elixir's Logger

@@ -2,9 +2,7 @@
 
 To start your Phoenix server:
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.setup`
-  * Install Node.js dependencies with `cd assets && npm install`
+  * Setup the project with `mix setup`
   * Download UAInspector database with `mix ua_inspector.download`
   * Start Phoenix endpoint with `mix phx.server`
 
