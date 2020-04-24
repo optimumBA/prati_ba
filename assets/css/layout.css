@@ -18,15 +18,13 @@ nav {
 
 nav .title {
   color: rgb(0, 148, 255);
-  font-family: Gotham Rounded A,Gotham Rounded B,Helvetica Neue,Arial,sans-serif;
   position: relative;
   display: inline;
-  font-size: 1.6rem;
   line-height: 5.2rem;
   padding: 0;
   text-decoration: none;
 }
 
 main.container {
-  padding-top: 5rem;
+  padding-top: 8rem;
 }
