@@ -5,12 +5,13 @@ defmodule PratiBa.Factory do
 
   def article_factory do
     %Article{
-      url: sequence(:url, &"https://sourceurl.com/articles/#{&1}"),
-      title: sequence(:title, &"Article #{&1}"),
-      published_at: ~N[2020-03-11 07:44:00],
-      image: nil,
       category: build(:category),
+      image: nil,
+      original_id: sequence(:original_id, &Integer.to_string/1),
+      published_at: ~N[2020-03-11 07:44:00],
       source: build(:source),
+      title: sequence(:title, &"Article #{&1}"),
+      url: sequence(:url, &"https://sourceurl.com/articles/#{&1}"),
     }
   end
 

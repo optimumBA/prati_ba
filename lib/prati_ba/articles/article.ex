@@ -9,6 +9,7 @@ defmodule PratiBa.Articles.Article do
 
   schema "articles" do
     field :image, ArticleImage.Type
+    field :original_id, :string
     field :published_at, :naive_datetime
     field :title, :string
     field :url, EctoFields.URL
@@ -21,14 +22,14 @@ defmodule PratiBa.Articles.Article do
   @doc false
   def changeset(article, attrs) do
     article
-    |> cast(attrs, [:published_at, :title, :url])
+    |> cast(attrs, [:original_id, :published_at, :title, :url])
     |> cast_attachments(attrs, [:image], allow_urls: true)
-    |> validate_required([:published_at, :title, :url])
-    |> unique_constraint(:url)
+    |> validate_required([:original_id, :published_at, :title, :url])
+    |> unique_constraint([:original_id, :source_id])
   end
 
-  def having_url(url) do
-    from a in __MODULE__, where: a.url == ^url
+  def having_original_id(source_id, original_id) do
+    from a in __MODULE__, where: a.source_id == ^source_id and a.original_id == ^original_id
   end
 
   def newest(limit \\ 9) do

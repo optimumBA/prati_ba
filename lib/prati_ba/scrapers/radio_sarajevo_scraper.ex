@@ -31,10 +31,9 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
       updated: date,
     } = article
 
-    id = url
+    original_id = url
     |> String.split("/")
     |> Enum.fetch!(-1)
-    |> String.to_integer()
 
     published_at = date
     |> Timex.parse!("{RFC3339}")
@@ -49,7 +48,7 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
     end
 
     %{
-      id: id,
+      original_id: original_id,
       title: title,
       description: nil,
       category: parse_category(url),

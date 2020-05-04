@@ -18,7 +18,7 @@ defmodule PratiBa.ScrapersTest do
     insert(:category, name: "Category")
 
     articles = [%{
-      id: 1234,
+      original_id: "1234",
       title: "Fake title",
       description: "Description",
       category: "Category",
@@ -27,7 +27,7 @@ defmodule PratiBa.ScrapersTest do
       image: nil,
       url: "https://fakesour.ce/fake-title",
     }, %{
-      id: 15,
+      original_id: "15",
       title: "Article without category",
       description: "Description",
       category: nil,
@@ -46,6 +46,7 @@ defmodule PratiBa.ScrapersTest do
     assert category.name == "Category"
     assert [article] = category.articles
     assert article.image == nil
+    assert article.original_id == "1234"
     assert article.published_at == ~N[2020-03-11 18:49:00]
     assert article.title == "Fake title"
     assert article.url == "https://fakesour.ce/fake-title"

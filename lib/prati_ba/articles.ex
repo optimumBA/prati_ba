@@ -47,16 +47,15 @@ defmodule PratiBa.Articles do
 
   ## Examples
 
-      iex> exists?(%{url: existing})
+      iex> exists?(1, %{original_id: existing})
       true
 
-      iex> exists?(%{url: new})
+      iex> exists?(1, %{original_id: new})
       false
 
   """
-  def exists?(%{url: url}) do
-    url
-    |> Article.having_url()
+  def exists?(source_id, %{original_id: original_id}) do
+    Article.having_original_id(source_id, original_id)
     |> Repo.exists?()
   end
 

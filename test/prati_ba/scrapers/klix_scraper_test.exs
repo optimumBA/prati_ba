@@ -20,7 +20,7 @@ defmodule PratiBa.Scrapers.KlixScraperTest do
       assert {:ok, articles} = response
       assert [
         %{
-          id: 200303186,
+          original_id: "200303186",
           title: "Ove države ukinule su monarhiju i bile nemilosrdne prema nekadašnjim vladarima",
           description: "Kraljevi i carevi nekada su vladali brojnim zemljama, a ovi historijski događaji kriju se iza činjenice da su mnoge od njih prekinule vladavinu kraljevskih obitelji.",
           category: "Zabava",
@@ -30,7 +30,7 @@ defmodule PratiBa.Scrapers.KlixScraperTest do
           url: "https://www.klix.ba/lifestyle/ove-drzave-ukinule-su-monarhiju-i-bile-nemilosrdne-prema-nekadasnjim-vladarima/200303186",
         },
         %{
-          id: 200303183,
+          original_id: "200303183",
           title: "Žrijeb grupa Lige nacija od 18 sati: Zmajevi čekaju protivnike u evropskoj eliti",
           description: "Nogometna reprezentacija Bosne i Hercegovine će danas saznati protivnike u Ligi nacija za sezonu 2020/2021.",
           category: "Sport",
@@ -40,7 +40,7 @@ defmodule PratiBa.Scrapers.KlixScraperTest do
           url: "https://www.klix.ba/sport/nogomet/zrijeb-grupa-lige-nacija-od-18-sati-zmajevi-cekaju-protivnike-u-evropskoj-eliti/200303183",
         },
         %{
-          id: 200303191,
+          original_id: "200303191",
           title: "Asim Sarajlić: Izvinjavam se svima koje sam ugrozio, možda više neću biti ni delegat",
           description: "Glavni akter afere koja je zatresla SDA, ali i širu bh. javnost, Asim Sarajlić nakon današnje sjednice Kolegija SDA je kazao da se izvinjava svima koje je ugrozio svojim činjenjem ili ne činjenjem te dodao da život ide dalje. On je poručio da je njegova ostavka u stranci konačna te da možda više neće biti ni delegat u Domu naroda Parlamenta BiH.",
           category: "BiH",

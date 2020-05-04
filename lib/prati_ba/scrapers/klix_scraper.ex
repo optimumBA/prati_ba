@@ -31,10 +31,9 @@ defmodule PratiBa.Scrapers.KlixScraper do
       "title" => title,
     } = article
 
-    id = url
+    original_id = url
     |> String.split("/")
     |> Enum.fetch!(-1)
-    |> String.to_integer()
 
     published_at = date
     |> Timex.parse!("{RFC1123}")
@@ -59,7 +58,7 @@ defmodule PratiBa.Scrapers.KlixScraper do
     end
 
     %{
-      id: id,
+      original_id: original_id,
       title: title,
       description: description,
       category: parse_category(url),

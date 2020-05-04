@@ -20,7 +20,7 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraperTest do
       assert {:ok, articles} = response
       assert [
         %{
-          id: 369198,
+          original_id: "369198",
           title: "Djevojčica koja se smijala bombama sa porodicom prešla u Tursku",
           description: nil,
           category: "Svijet",
@@ -30,7 +30,7 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraperTest do
           url: "https://radiosarajevo.ba/vijesti/svijet/djevojcica-koja-se-smijala-bombama-sa-porodicom-presla-u-tursku/369198",
         },
         %{
-          id: 369192,
+          original_id: "369192",
           title: "Iskorijeniti korupciju, izliječiti zdravstvo",
           description: nil,
           category: nil,
@@ -40,7 +40,7 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraperTest do
           url: "https://radiosarajevo.ba/vijesti/euphoria/iskorijeniti-korupciju-izlijeciti-zdravstvo/369192",
         },
         %{
-          id: 369087,
+          original_id: "369087",
           title: "BiH prvi put u Diviziji A, direktnog prijenosa izvlačenja grupa neće biti?",
           description: nil,
           category: "Sport",
