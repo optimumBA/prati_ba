@@ -1,0 +1,14 @@
+_build/
+.elixir_ls/
+.git/
+assets/node_modules/
+deps/
+priv/static/
+test/
+.DS_Store
+.env.sample
+.formatter.exs
+.gitignore
+docker-compose.yml
+erl_crash.dump
+README.md

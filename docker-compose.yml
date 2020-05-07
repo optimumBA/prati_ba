@@ -1,0 +1,26 @@
+version: "3.6"
+services:
+  prati_ba:
+    build:
+      args:
+        - DATABASE_URL=1
+        - MAXMIND_LICENSE_KEY=1
+        - SECRET_KEY_BASE=1
+      context: .
+    env_file: .env
+    ports:
+      - 4000:4000
+    volumes:
+      - uploads:/app/priv/static/uploads
+  postgres:
+    env_file: .env
+    image: postgres
+    ports:
+      - 5432:5432
+    volumes:
+      - postgres:/var/lib/postgresql/data
+volumes:
+  postgres:
+    driver: local
+  uploads:
+    driver: local

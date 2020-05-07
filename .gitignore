@@ -41,3 +41,5 @@ npm-debug.log
 
 # macOS temp files
 .DS_Store
+
+.env
