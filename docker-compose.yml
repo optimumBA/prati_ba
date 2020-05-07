@@ -1,22 +1,24 @@
 version: "3.6"
 services:
+  postgres:
+    # Postgres with automated backups to S3
+    # https://github.com/tonda100/postgres-s3
+    build:
+      context: _deployment/postgres
+    env_file: _deployment/postgres/.env
+    ports:
+      - 5432:5432
+    restart: unless-stopped
+    volumes:
+      - postgres:/var/lib/postgresql/data
   prati_ba:
     build:
       context: .
-    env_file: .env
+      dockerfile: _deployment/prati_ba/Dockerfile
+    env_file: _deployment/prati_ba/.env
     ports:
       - 4000:4000
-    volumes:
-      - uploads:/app/priv/static/uploads
-  postgres:
-    env_file: .env
-    image: postgres
-    ports:
-      - 5432:5432
-    volumes:
-      - postgres:/var/lib/postgresql/data
+    restart: unless-stopped
 volumes:
   postgres:
-    driver: local
-  uploads:
     driver: local
