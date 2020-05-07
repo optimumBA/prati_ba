@@ -5,14 +5,10 @@ defmodule PratiBa.Uploaders.ArticleImage do
   @versions [:thumb]
 
   def filename(_version, {file, _article}) do
-    file_name = :sha
+    :sha
     |> :crypto.hash(file.file_name)
     |> Base.encode16
     |> String.downcase
-
-    extension = Path.extname(file.file_name)
-
-    "#{file_name}#{extension}"
   end
 
   def storage_dir(_version, {_file, _scope}), do: "uploads/articles"
