@@ -74,11 +74,24 @@ defmodule PratiBa.Articles do
   def create_article(%Source{} = source, attrs \\ %{}) do
     category = Repo.get_by!(Category, name: attrs.category)
 
-    %Article{}
-    |> Article.changeset(attrs)
-    |> Ecto.Changeset.put_assoc(:category, category)
-    |> Ecto.Changeset.put_assoc(:source, source)
-    |> Repo.insert()
+    article_changeset =
+      %Article{}
+      |> Article.changeset(attrs)
+      |> Ecto.Changeset.put_assoc(:category, category)
+      |> Ecto.Changeset.put_assoc(:source, source)
+
+    transaction = Ecto.Multi.new()
+    |> Ecto.Multi.insert(:article, article_changeset)
+    |> Ecto.Multi.update(:article_with_image, &Article.image_changeset(&1.article, attrs))
+    |> Repo.transaction()
+
+    case transaction do
+      {:ok, result} ->
+        {:ok, result.article_with_image}
+
+      {:error, _, changeset, _} ->
+        {:error, changeset}
+    end
   end
 
   @doc """

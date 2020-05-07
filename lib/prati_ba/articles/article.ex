@@ -23,9 +23,13 @@ defmodule PratiBa.Articles.Article do
   def changeset(article, attrs) do
     article
     |> cast(attrs, [:original_id, :published_at, :title, :url])
-    |> cast_attachments(attrs, [:image], allow_urls: true)
     |> validate_required([:original_id, :published_at, :title, :url])
     |> unique_constraint([:original_id, :source_id])
+  end
+
+  def image_changeset(article, attrs) do
+    article
+    |> cast_attachments(attrs, [:image], allow_urls: true)
   end
 
   def having_original_id(source_id, original_id) do

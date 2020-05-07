@@ -7,8 +7,8 @@ defmodule PratiBaWeb.ArticleView do
   alias PratiBa.Uploaders.ArticleImage
 
   def article_image_tag(%Article{image: nil}), do: nil
-  def article_image_tag(%Article{image: image}) do
-    image
+  def article_image_tag(%Article{image: image} = article) do
+    {image, article}
     |> ArticleImage.url()
     |> img_tag()
   end

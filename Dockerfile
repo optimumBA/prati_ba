@@ -22,11 +22,6 @@ ENV MIX_ENV=prod
 RUN mix local.hex --force && \
     mix local.rebar --force
 
-# Set temp build args
-ARG DATABASE_URL
-ARG MAXMIND_LICENSE_KEY
-ARG SECRET_KEY_BASE
-
 # Install mix dependencies
 COPY mix.exs mix.lock ./
 COPY config config

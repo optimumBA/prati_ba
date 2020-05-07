@@ -2,10 +2,6 @@ version: "3.6"
 services:
   prati_ba:
     build:
-      args:
-        - DATABASE_URL=1
-        - MAXMIND_LICENSE_KEY=1
-        - SECRET_KEY_BASE=1
       context: .
     env_file: .env
     ports:
