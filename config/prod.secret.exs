@@ -16,6 +16,20 @@ config :prati_ba, PratiBa.Repo,
   url: database_url,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
+host =
+  System.get_env("HOST")# ||
+    # raise """
+    # environment variable HOST is missing.
+    # For example: www.prati.ba
+    # """
+
+asset_host =
+  System.get_env("ASSET_HOST")# ||
+    # raise """
+    # environment variable ASSET_HOST is missing.
+    # For example: static.prati.ba
+    # """
+
 secret_key_base =
   System.get_env("SECRET_KEY_BASE")# ||
     # raise """
@@ -24,11 +38,22 @@ secret_key_base =
     # """
 
 config :prati_ba, PratiBaWeb.Endpoint,
+  force_ssl: [hsts: true],
   http: [
-    port: String.to_integer(System.get_env("PORT") || "4000"),
+    port: String.to_integer(System.get_env("PORT_HTTP") || "4000"),
     transport_options: [socket_opts: [:inet6]]
   ],
-  secret_key_base: secret_key_base
+  https: [
+    port: String.to_integer(System.get_env("PORT_HTTPS") || "4000"),
+    cipher_suite: :strong,
+    keyfile: "/etc/letsencrypt/live/#{host}/privkey.pem",
+    cacertfile: "/etc/letsencrypt/live/#{host}/chain.pem",
+    certfile: "/etc/letsencrypt/live/#{host}/cert.pem",
+    transport_options: [socket_opts: [:inet6]]
+  ],
+  secret_key_base: secret_key_base,
+  url: [scheme: "https", host: host, port: 443],
+  static_url: [scheme: "https", host: asset_host, port: 443]
 
 maxmind_license_key =
   System.get_env("MAXMIND_LICENSE_KEY")# ||
@@ -58,18 +83,11 @@ aws_s3_bucket =
     # For example: static.prati.ba
     # """
 
-asset_host =
-  System.get_env("ASSET_HOST")# ||
-    # raise """
-    # environment variable ASSET_HOST is missing.
-    # For example: https://static.prati.ba
-    # """
-
 config :waffle,
   storage: Waffle.Storage.S3,
   storage_dir_prefix: "",
   bucket: aws_s3_bucket,
-  asset_host: asset_host
+  asset_host: "https://#{asset_host}"
 
 aws_s3_id =
   System.get_env("AWS_S3_ID")# ||

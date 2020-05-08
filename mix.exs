@@ -20,7 +20,7 @@ defmodule PratiBa.MixProject do
   def application do
     [
       mod: {PratiBa.Application, []},
-      extra_applications: [:logger, :runtime_tools, :timex]
+      extra_applications: [:logger, :os_mon, :runtime_tools, :timex]
     ]
   end
 

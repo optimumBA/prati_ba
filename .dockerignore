@@ -1,5 +1,4 @@
 _build/
-_deployment/
 .elixir_ls/
 .git/
 assets/node_modules/
@@ -12,4 +11,5 @@ test/
 .gitignore
 docker-compose.yml
 erl_crash.dump
+Makefile
 README.md

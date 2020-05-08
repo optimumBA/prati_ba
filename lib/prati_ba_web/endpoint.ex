@@ -23,7 +23,7 @@ defmodule PratiBaWeb.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :prati_ba,
-    gzip: false,
+    gzip: true,
     only: ~w(css fonts images js uploads favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the

@@ -39,7 +39,7 @@ RUN mix phx.digest
 COPY lib lib
 RUN mix compile
 
-COPY docker-entrypoint.sh ./
+COPY _deployment/prati_ba/docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
 
 ENTRYPOINT ["bash", "docker-entrypoint.sh"]
