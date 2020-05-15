@@ -1,4 +1,15 @@
-FROM elixir:1.10.3
+# Setup build image
+FROM elixir:1.10.3-alpine AS builder
+
+# Install build dependencies
+RUN apk update && \
+    apk add --no-cache \
+    bash \
+    build-base \
+    curl \
+    git \
+    libgcc \
+    python3
 
 # Install rustup
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -8,12 +19,11 @@ ENV RUSTUP_HOME=/root/.rustup \
     PATH="/root/.cargo/bin:$PATH"
 
 # Install Node.js
-RUN curl -sL https://deb.nodesource.com/setup_13.x | bash - && \
-    apt-get install -y nodejs
+RUN apk add --update npm
 
 # Prepare app dir
-WORKDIR /app
-ENV HOME=/app
+WORKDIR /build
+ENV HOME=/build
 
 # Set app ENV
 ENV MIX_ENV=prod
@@ -39,8 +49,28 @@ RUN mix phx.digest
 COPY lib lib
 RUN mix compile
 
+# Release
+COPY rel rel
+RUN mix release
+
+
+# Setup app image
+FROM alpine AS app
+
+RUN apk update && \
+    apk add --no-cache \
+    bash \
+    imagemagick \
+    libgcc \
+    openssl-dev
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY --from=builder /build/_build/prod/rel/prati_ba ./
+
 COPY _deployment/prati_ba/docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
 
 ENTRYPOINT ["bash", "docker-entrypoint.sh"]
-CMD ["mix", "phx.server"]
+CMD ["bin/prati_ba", "start"]

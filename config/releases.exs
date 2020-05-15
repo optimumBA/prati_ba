@@ -1,15 +1,11 @@
-# In this file, we load production configuration and secrets
-# from environment variables. You can also hardcode secrets,
-# although such is generally not recommended and you have to
-# remember to add this file to your .gitignore.
-use Mix.Config
+import Config
 
 database_url =
-  System.get_env("DATABASE_URL")# ||
-    # raise """
-    # environment variable DATABASE_URL is missing.
-    # For example: ecto://USER:PASS@HOST/DATABASE
-    # """
+  System.get_env("DATABASE_URL") ||
+    raise """
+    environment variable DATABASE_URL is missing.
+    For example: ecto://USER:PASS@HOST/DATABASE
+    """
 
 config :prati_ba, PratiBa.Repo,
   # ssl: true,
@@ -17,28 +13,28 @@ config :prati_ba, PratiBa.Repo,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
 host =
-  System.get_env("HOST")# ||
-    # raise """
-    # environment variable HOST is missing.
-    # For example: www.prati.ba
-    # """
+  System.get_env("HOST") ||
+    raise """
+    environment variable HOST is missing.
+    For example: www.prati.ba
+    """
 
 asset_host =
-  System.get_env("ASSET_HOST")# ||
-    # raise """
-    # environment variable ASSET_HOST is missing.
-    # For example: static.prati.ba
-    # """
+  System.get_env("ASSET_HOST") ||
+    raise """
+    environment variable ASSET_HOST is missing.
+    For example: static.prati.ba
+    """
 
 secret_key_base =
-  System.get_env("SECRET_KEY_BASE")# ||
-    # raise """
-    # environment variable SECRET_KEY_BASE is missing.
-    # You can generate one by calling: mix phx.gen.secret
-    # """
+  System.get_env("SECRET_KEY_BASE") ||
+    raise """
+    environment variable SECRET_KEY_BASE is missing.
+    You can generate one by calling: mix phx.gen.secret
+    """
 
 config :prati_ba, PratiBaWeb.Endpoint,
-  force_ssl: [hsts: true],
+  server: true,
   http: [
     port: String.to_integer(System.get_env("PORT_HTTP") || "4000"),
     transport_options: [socket_opts: [:inet6]]
@@ -56,11 +52,11 @@ config :prati_ba, PratiBaWeb.Endpoint,
   static_url: [scheme: "https", host: asset_host, port: 443]
 
 maxmind_license_key =
-  System.get_env("MAXMIND_LICENSE_KEY")# ||
-    # raise """
-    # environment variable MAXMIND_LICENSE_KEY is missing.
-    # For example: 4FMnz1Pr2Cxnd6BR
-    # """
+  System.get_env("MAXMIND_LICENSE_KEY") ||
+    raise """
+    environment variable MAXMIND_LICENSE_KEY is missing.
+    For example: 4FMnz1Pr2Cxnd6BR
+    """
 
 config :geolix,
   databases: [
@@ -77,11 +73,11 @@ config :geolix,
   ]
 
 aws_s3_bucket =
-  System.get_env("AWS_S3_BUCKET")# ||
-    # raise """
-    # environment variable AWS_S3_BUCKET is missing.
-    # For example: static.prati.ba
-    # """
+  System.get_env("AWS_S3_BUCKET") ||
+    raise """
+    environment variable AWS_S3_BUCKET is missing.
+    For example: static.prati.ba
+    """
 
 config :waffle,
   storage: Waffle.Storage.S3,
@@ -90,18 +86,18 @@ config :waffle,
   asset_host: "https://#{asset_host}"
 
 aws_s3_id =
-  System.get_env("AWS_S3_ID")# ||
-    # raise """
-    # environment variable AWS_S3_ID is missing.
-    # For example: AKIB2GHLQBL82IVL1B4N
-    # """
+  System.get_env("AWS_S3_ID") ||
+    raise """
+    environment variable AWS_S3_ID is missing.
+    For example: AKIB2GHLQBL82IVL1B4N
+    """
 
 aws_s3_secret =
-  System.get_env("AWS_S3_SECRET")# ||
-    # raise """
-    # environment variable AWS_S3_SECRET is missing.
-    # For example: 1qyPY8F93ZW4B2gHy1eR/U9BL2zqb3c0LB3CV4hV
-    # """
+  System.get_env("AWS_S3_SECRET") ||
+    raise """
+    environment variable AWS_S3_SECRET is missing.
+    For example: 1qyPY8F93ZW4B2gHy1eR/U9BL2zqb3c0LB3CV4hV
+    """
 
 config :ex_aws,
   json_codec: Jason,

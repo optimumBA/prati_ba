@@ -10,7 +10,12 @@ defmodule PratiBa.MixProject do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      deps: deps(),
+      releases: [
+        prati_ba: [
+          include_executables_for: [:unix],
+        ]
+      ]
     ]
   end
 
@@ -20,7 +25,7 @@ defmodule PratiBa.MixProject do
   def application do
     [
       mod: {PratiBa.Application, []},
-      extra_applications: [:logger, :os_mon, :runtime_tools, :timex]
+      extra_applications: [:inets, :logger, :os_mon, :runtime_tools, :timex]
     ]
   end
 
