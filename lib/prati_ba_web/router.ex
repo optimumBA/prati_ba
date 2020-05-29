@@ -10,6 +10,9 @@ defmodule PratiBaWeb.Router do
     plug :put_root_layout, {PratiBaWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+  end
+
+  pipeline :tracking do
     plug PratiBaWeb.Plugs.RequestTracker
   end
 
@@ -21,16 +24,17 @@ defmodule PratiBaWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", PratiBaWeb do
-    pipe_through :browser
-
-    resources "/", ArticleController, only: [:index, :show]
-  end
-
-  scope "/admin" do
+  scope "/admin", PratiBaWeb do
     pipe_through [:browser, :admin]
 
-    live_dashboard "/dashboard", metrics: PratiBaWeb.Telemetry
+    resources "/", AdminController, only: [:index]
+    live_dashboard "/dashboard", metrics: Telemetry
+  end
+
+  scope "/", PratiBaWeb do
+    pipe_through [:browser, :tracking]
+
+    resources "/", ArticleController, only: [:index, :show]
   end
 
   # Other scopes may use custom stacks.
