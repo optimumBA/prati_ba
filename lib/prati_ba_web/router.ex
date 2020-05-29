@@ -24,6 +24,8 @@ defmodule PratiBaWeb.Router do
     plug :accepts, ["json"]
   end
 
+  resources "/health", PratiBaWeb.HealthController, only: [:index]
+
   scope "/admin", PratiBaWeb do
     pipe_through [:browser, :admin]
 

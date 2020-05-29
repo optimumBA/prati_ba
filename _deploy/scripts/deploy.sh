@@ -24,6 +24,7 @@ then
     --docker-username=AWS \
     --docker-password=$AWS_PASSWORD \
     --docker-email=almir@optimum.ba
+  kubectl -n $@ apply -f _deploy/pratiba-deployment-$@.yml
   export IMAGE_TAG=$(aws ecr list-images --repository=pratiba --max-items=1 --query='imageIds[0].imageTag' | cut -d \" -f2)
   kubectl -n $@ set image deployments/pratiba pratiba-$@=833583610700.dkr.ecr.eu-central-1.amazonaws.com/pratiba:$IMAGE_TAG
   echo "[✔️] Deployment complete!"
