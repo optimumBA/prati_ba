@@ -36,15 +36,7 @@ secret_key_base =
 config :prati_ba, PratiBaWeb.Endpoint,
   server: true,
   http: [
-    port: String.to_integer(System.get_env("PORT_HTTP") || "4000"),
-    transport_options: [socket_opts: [:inet6]]
-  ],
-  https: [
-    port: String.to_integer(System.get_env("PORT_HTTPS") || "4000"),
-    cipher_suite: :strong,
-    keyfile: "/etc/letsencrypt/live/#{host}/privkey.pem",
-    cacertfile: "/etc/letsencrypt/live/#{host}/chain.pem",
-    certfile: "/etc/letsencrypt/live/#{host}/cert.pem",
+    port: String.to_integer(System.get_env("PORT") || "4000"),
     transport_options: [socket_opts: [:inet6]]
   ],
   secret_key_base: secret_key_base,

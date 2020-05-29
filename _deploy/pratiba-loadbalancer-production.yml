@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    env: production
+  name: pratiba-loadbalancer
+  namespace: production
+spec:
+  ports:
+  - port: 80
+    targetPort: 4000
+  selector:
+    app: pratiba
+    env: production
+  type: LoadBalancer

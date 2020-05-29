@@ -9,7 +9,6 @@ test/
 .env.sample
 .formatter.exs
 .gitignore
-docker-compose.yml
 erl_crash.dump
 Makefile
 README.md

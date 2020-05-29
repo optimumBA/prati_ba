@@ -1,0 +1,84 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: pratiba
+    env: production
+  name: pratiba
+  namespace: production
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pratiba
+      env: production
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 0
+      maxSurge: 1
+  template:
+    metadata:
+      labels:
+        app: pratiba
+        env: production
+    spec:
+      containers:
+        - image: 833583610700.dkr.ecr.eu-central-1.amazonaws.com/pratiba
+          name: pratiba-production
+          env:
+            - name: ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: admin-password
+                  key: value
+            - name: AWS_S3_ID
+              valueFrom:
+                secretKeyRef:
+                  name: aws-s3-id
+                  key: value
+            - name: AWS_S3_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: aws-s3-secret
+                  key: value
+            - name: ASSET_HOST
+              value: static.prati.ba
+            - name: AWS_S3_BUCKET
+              value: static.prati.ba
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: database-url
+                  key: value
+            - name: HOST
+              value: prati.ba
+            - name: MAXMIND_LICENSE_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: maxmind-license-key
+                  key: value
+            - name: POOL_SIZE
+              value: "10"
+            - name: SECRET_KEY_BASE
+              valueFrom:
+                secretKeyRef:
+                  name: secret-key-base
+                  key: value
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 4000
+            initialDelaySeconds: 60
+            timeoutSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 4000
+            initialDelaySeconds: 60
+            timeoutSeconds: 15
+          ports:
+            - name: http
+              containerPort: 4000
+      imagePullSecrets:
+        - name: aws-ecr-credentials

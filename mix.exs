@@ -25,7 +25,7 @@ defmodule PratiBa.MixProject do
   def application do
     [
       mod: {PratiBa.Application, []},
-      extra_applications: [:inets, :logger, :os_mon, :runtime_tools, :timex]
+      extra_applications: [:inets, :logger, :os_mon, :runtime_tools, :timex, :xmerl]
     ]
   end
 
@@ -60,8 +60,8 @@ defmodule PratiBa.MixProject do
       {:tzdata, "~> 1.0.3"},
       {:ecto_fields, "~> 1.2.0"},
       {:ex_machina, "~> 2.3", only: :test},
-      {:waffle, "~> 1.0.0"},
-      {:waffle_ecto, "~> 0.0.7"},
+      {:waffle, "~> 1.1.0"},
+      {:waffle_ecto, "~> 0.0.9"},
       {:ex_aws, "~> 2.1"},
       {:ex_aws_s3, "~> 2.0"},
       {:hackney, "~> 1.9"},

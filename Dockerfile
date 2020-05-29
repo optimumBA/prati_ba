@@ -69,7 +69,7 @@ WORKDIR /app
 
 COPY --from=builder /build/_build/prod/rel/prati_ba ./
 
-COPY _deployment/prati_ba/docker-entrypoint.sh ./
+COPY docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
 
 ENTRYPOINT ["bash", "docker-entrypoint.sh"]
