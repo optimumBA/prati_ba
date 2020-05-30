@@ -102,6 +102,26 @@ config :ex_aws,
     region: "eu-central-1"
   ]
 
+namespace =
+  System.get_env("NAMESPACE") ||
+    raise """
+    environment variable NAMESPACE is missing.
+    For example: staging
+    """
+
+config :libcluster,
+  topologies: [
+    prati_ba_topology: [
+      strategy: Cluster.Strategy.Kubernetes,
+      config: [
+        mode: :dns,
+        kubernetes_selector: "app=pratiba,env=#{namespace}",
+        kubernetes_node_basename: "prati_ba",
+        kubernetes_namespace: namespace,
+      ]
+    ]
+  ]
+
 # ## Using releases (Elixir v1.9+)
 #
 # If you are doing OTP releases, you need to instruct Phoenix

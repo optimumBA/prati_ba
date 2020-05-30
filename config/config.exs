@@ -38,6 +38,7 @@ config :waffle,
   storage_dir_prefix: "priv/static"
 
 config :prati_ba, PratiBa.Scheduler,
+  global: true,
   jobs: [
     # Every minute
     {"* * * * *",      {PratiBa.Scrapers, :fetch_new_articles, []}},

@@ -20,8 +20,13 @@ defmodule PratiBa.Application do
     ]
 
     children = case Application.get_env(:prati_ba, :env) do
-      :prod -> children ++ [PratiBa.Scheduler]
-      _ -> children
+      :prod ->
+        children ++ [
+          {Cluster.Supervisor, [Application.get_env(:libcluster, :topologies), [name: PratiBa.ClusterSupervisor]]},
+          PratiBa.Scheduler,
+        ]
+      _ ->
+        children
     end
 
     # See https://hexdocs.pm/elixir/Supervisor.html

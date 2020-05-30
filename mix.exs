@@ -72,6 +72,7 @@ defmodule PratiBa.MixProject do
       {:geolix, "~> 1.0"},
       {:geolix_adapter_mmdb2, "~> 0.4.0"},
       {:ua_inspector, "~> 2.0"},
+      {:libcluster, "~> 3.2"},
     ]
   end
 

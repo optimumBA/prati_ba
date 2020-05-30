@@ -51,6 +51,11 @@ spec:
                 secretKeyRef:
                   name: database-url
                   key: value
+            - name: ERLANG_COOKIE
+              valueFrom:
+                secretKeyRef:
+                  name: erlang-cookie
+                  key: value
             - name: HOST
               # value: staging-2345.prati.ba
               value: local-staging.prati.ba
@@ -59,6 +64,14 @@ spec:
                 secretKeyRef:
                   name: maxmind-license-key
                   key: value
+            - name: NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+            - name: POD_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.podIP
             - name: POOL_SIZE
               value: "10"
             - name: SECRET_KEY_BASE
