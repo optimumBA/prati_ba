@@ -12,7 +12,7 @@ spec:
         env: staging
     spec:
       containers:
-        - image: 833583610700.dkr.ecr.eu-central-1.amazonaws.com/pratiba
+        - image: gcr.io/pratiba/pratiba
           name: pratiba-migrations
           command: ["sh", "-c", "bin/prati_ba eval 'PratiBa.Release.migrate' && bin/prati_ba eval 'PratiBa.Release.seed'"]
           env:
@@ -61,7 +61,7 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: POOL_SIZE
-              value: "10"
+              value: "2"
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
