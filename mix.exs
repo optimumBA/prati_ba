@@ -25,7 +25,7 @@ defmodule PratiBa.MixProject do
   def application do
     [
       mod: {PratiBa.Application, []},
-      extra_applications: [:inets, :logger, :os_mon, :runtime_tools, :timex, :xmerl]
+      extra_applications: [:inets, :logger, :os_mon, :runtime_tools, :timex, :ssl, :xmerl]
     ]
   end
 
@@ -40,6 +40,7 @@ defmodule PratiBa.MixProject do
     [
       {:phoenix, "~> 1.5.1"},
       {:phoenix_ecto, "~> 4.1"},
+      {:plug, github: "almirsarajcic/plug", branch: "exclude-tuple", override: true},
       {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_live_view, "~> 0.12.0"},

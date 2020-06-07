@@ -47,6 +47,10 @@ spec:
                   key: value
             - name: HOST
               value: staging-2345.prati.ba
+            - name: HOST_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
             - name: MAXMIND_LICENSE_KEY
               valueFrom:
                 secretKeyRef:

@@ -43,6 +43,9 @@ config :prati_ba, PratiBaWeb.Endpoint,
   url: [scheme: "https", host: host, port: 443],
   static_url: [scheme: "https", host: asset_host, port: 443]
 
+config :prati_ba,
+  ssl_excluded_hosts: ["localhost", System.get_env("HOST_IP"), System.get_env("POD_IP")]
+
 maxmind_license_key =
   System.get_env("MAXMIND_LICENSE_KEY") ||
     raise """

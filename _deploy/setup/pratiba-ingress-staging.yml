@@ -5,6 +5,7 @@ metadata:
   namespace: staging
   annotations:
     kubernetes.io/ingress.global-static-ip-name: pratiba-staging
+    networking.gke.io/managed-certificates: pratiba-staging
 spec:
   rules:
     - host: staging-2345.prati.ba
