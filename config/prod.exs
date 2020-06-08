@@ -12,7 +12,7 @@ use Mix.Config
 config :prati_ba, PratiBaWeb.Endpoint,
   force_ssl: [
     rewrite_on: [:x_forwarded_proto],
-    exclude: {Application, :get_env, [:prati_ba, :ssl_excluded_hosts]}
+    exclude: {PratiBaWeb, :excluded_host?, []},
   ],
   url: [host: "example.com", port: 80],
   cache_static_manifest: "priv/static/cache_manifest.json"
