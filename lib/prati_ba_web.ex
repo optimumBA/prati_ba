@@ -74,11 +74,6 @@ defmodule PratiBaWeb do
     end
   end
 
-  def excluded_host?(host) do
-    list = Application.get_env(:prati_ba, :ssl_excluded_hosts, ["localhost"])
-    :lists.member(host, list)
-  end
-
   defp view_helpers do
     quote do
       # Use all HTML functionality (forms, tags, etc)

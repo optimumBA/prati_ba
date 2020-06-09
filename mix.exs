@@ -74,6 +74,7 @@ defmodule PratiBa.MixProject do
       {:geolix_adapter_mmdb2, "~> 0.4.0"},
       {:ua_inspector, "~> 2.0"},
       {:libcluster, "~> 3.2"},
+      {:remote_ip, github: "almirsarajcic/remote_ip", branch: "runtime-env-variables"},
     ]
   end
 
