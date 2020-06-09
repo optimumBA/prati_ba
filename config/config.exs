@@ -47,7 +47,12 @@ config :prati_ba, PratiBa.Scheduler,
     {"45 16 * * 5",    {Geolix, :reload_databases, []}},
   ]
 
-config :prati_ba, :env, Mix.env()
+config :prati_ba,
+  env: Mix.env(),
+  admin_auth: [
+    username: "pratiba",
+    password: "pratiba"
+  ]
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

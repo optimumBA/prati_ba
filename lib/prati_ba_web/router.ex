@@ -1,6 +1,5 @@
 defmodule PratiBaWeb.Router do
   use PratiBaWeb, :router
-  import Plug.BasicAuth
   import Phoenix.LiveDashboard.Router
 
   pipeline :browser do
@@ -17,7 +16,7 @@ defmodule PratiBaWeb.Router do
   end
 
   pipeline :admin do
-    plug :basic_auth, username: "pratiba", password: System.get_env("ADMIN_PASSWORD") || "pratiba"
+    plug :admin_auth
   end
 
   pipeline :api do
@@ -43,4 +42,19 @@ defmodule PratiBaWeb.Router do
   # scope "/api", PratiBaWeb do
   #   pipe_through :api
   # end
+
+  defp admin_auth(conn, _opts) do
+    options = Application.get_env(:prati_ba, :admin_auth)
+    username = Keyword.fetch!(options, :username)
+    password = Keyword.fetch!(options, :password)
+
+    with {request_username, request_password} <- Plug.BasicAuth.parse_basic_auth(conn),
+         valid_username? = Plug.Crypto.secure_compare(username, request_username),
+         valid_password? = Plug.Crypto.secure_compare(password, request_password),
+         true <- valid_username? and valid_password? do
+      conn
+    else
+      _ -> conn |> Plug.BasicAuth.request_basic_auth() |> halt()
+    end
+  end
 end

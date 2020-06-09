@@ -43,7 +43,17 @@ config :prati_ba, PratiBaWeb.Endpoint,
   url: [scheme: "https", host: host, port: 443],
   static_url: [scheme: "https", host: asset_host, port: 443]
 
+admin_password =
+  System.get_env("ADMIN_PASSWORD") ||
+    raise """
+    environment variable ADMIN_PASSWORD is missing.
+    """
+
 config :prati_ba,
+  admin_auth: [
+    username: "pratiba",
+    password: admin_password
+  ],
   ssl_excluded_hosts: ["localhost", System.get_env("HOST_IP"), System.get_env("POD_IP")]
 
 maxmind_license_key =
