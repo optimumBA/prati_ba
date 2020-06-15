@@ -15,6 +15,8 @@ jobs:
       db:
         image: postgres:12
         ports: ['5432:5432']
+        env:
+          POSTGRES_PASSWORD: postgres
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -28,6 +30,12 @@ jobs:
         with:
           elixir-version: '1.10.3'
           otp-version: '22.2'
+      - name: Install rustup
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
       - name: Install Dependencies
         run: mix deps.get
       - name: Run Tests
