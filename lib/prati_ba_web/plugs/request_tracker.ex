@@ -20,9 +20,13 @@ defmodule PratiBaWeb.Plugs.RequestTracker do
         {conn, visitor_id}
     end
 
-    Task.async(fn ->
+    task = Task.async(fn ->
       Stats.track_request(request_id, visitor_id, conn)
     end)
+
+    if Application.get_env(:prati_ba, :env) == :test do
+      Task.await(task)
+    end
 
     conn
   end
