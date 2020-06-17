@@ -28,7 +28,7 @@ jobs:
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
       run: |
-        gcloud container clusters get-credentials pratiba --zone europe-west3-b
+        gcloud container clusters get-credentials pratiba --project pratiba --zone europe-west3-b
         make deploy ENVIRONMENT=staging
         kubectl -n staging rollout status deployment/pratiba
         kubectl get services -o wide
