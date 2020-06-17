@@ -1,8 +1,8 @@
 name: Build and Deploy to GKE
 
 on:
-  push:
-    branches: [ master ]
+  # push:
+  #   branches: [ master ]
 
 jobs:
   setup-build-publish-deploy:
@@ -23,7 +23,8 @@ jobs:
     - run: gcloud auth configure-docker
 
     # Build and publish the Docker image
-    - run: make build
+    - name: Build
+      run: make build
 
     # Deploy the Docker image to the GKE cluster
     - name: Deploy
