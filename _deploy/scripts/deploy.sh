@@ -23,6 +23,7 @@ then
   # Trigger rolling update
   kubectl -n $@ apply -f _deploy/pratiba-deployment-$@.yml
   kubectl -n $@ rollout restart deployment pratiba
+  kubectl -n $@ rollout status deployment/pratiba
 
   echo "[✔️] Deployment complete!"
 else

@@ -12,7 +12,7 @@ spec:
         env: production
     spec:
       containers:
-        - image: 833583610700.dkr.ecr.eu-central-1.amazonaws.com/pratiba
+        - image: gcr.io/pratiba/pratiba
           name: pratiba-migrations
           command: ["sh", "-c", "bin/prati_ba eval 'PratiBa.Release.migrate' && bin/prati_ba eval 'PratiBa.Release.seed'"]
           env:
@@ -47,6 +47,10 @@ spec:
                   key: value
             - name: HOST
               value: prati.ba
+            - name: HOST_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
             - name: MAXMIND_LICENSE_KEY
               valueFrom:
                 secretKeyRef:
@@ -61,12 +65,10 @@ spec:
                 fieldRef:
                   fieldPath: status.podIP
             - name: POOL_SIZE
-              value: "10"
+              value: "2"
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
                   name: secret-key-base
                   key: value
-      imagePullSecrets:
-        - name: aws-ecr-credentials
       restartPolicy: Never

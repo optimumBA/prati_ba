@@ -7,7 +7,7 @@ metadata:
   name: pratiba
   namespace: production
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: pratiba
@@ -15,7 +15,7 @@ spec:
   strategy:
     type: RollingUpdate
     rollingUpdate:
-      maxUnavailable: 0
+      maxUnavailable: 1
       maxSurge: 1
   template:
     metadata:
@@ -24,7 +24,7 @@ spec:
         env: production
     spec:
       containers:
-        - image: 833583610700.dkr.ecr.eu-central-1.amazonaws.com/pratiba
+        - image: gcr.io/pratiba/pratiba
           name: pratiba-production
           env:
             - name: ADMIN_PASSWORD
@@ -58,6 +58,10 @@ spec:
                   key: value
             - name: HOST
               value: prati.ba
+            - name: HOST_IP
+              valueFrom:
+                fieldRef:
+                  fieldPath: status.hostIP
             - name: MAXMIND_LICENSE_KEY
               valueFrom:
                 secretKeyRef:
@@ -73,6 +77,8 @@ spec:
                   fieldPath: status.podIP
             - name: POOL_SIZE
               value: "10"
+            - name: PROXY_CIDR
+              value: 34.120.135.65/32
             - name: SECRET_KEY_BASE
               valueFrom:
                 secretKeyRef:
@@ -80,18 +86,16 @@ spec:
                   key: value
           livenessProbe:
             httpGet:
-              path: /
+              path: /health
               port: 4000
             initialDelaySeconds: 60
             timeoutSeconds: 15
           readinessProbe:
             httpGet:
-              path: /
+              path: /health
               port: 4000
             initialDelaySeconds: 60
             timeoutSeconds: 15
           ports:
             - name: http
               containerPort: 4000
-      imagePullSecrets:
-        - name: aws-ecr-credentials

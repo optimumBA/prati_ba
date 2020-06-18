@@ -71,6 +71,4 @@ spec:
                 secretKeyRef:
                   name: secret-key-base
                   key: value
-      imagePullSecrets:
-        - name: aws-ecr-credentials
       restartPolicy: Never

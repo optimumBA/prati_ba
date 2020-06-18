@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: pratiba-nodeport-production
+  namespace: production
+spec:
+  selector:
+    app: pratiba
+    env: production
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 4000

@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: pratiba-production
+  namespace: production
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: pratiba-production
+    networking.gke.io/managed-certificates: pratiba-production
+spec:
+  rules:
+    - host: prati.ba
+      http:
+        paths:
+        - backend:
+            serviceName: pratiba-nodeport-production
+            servicePort: 80
