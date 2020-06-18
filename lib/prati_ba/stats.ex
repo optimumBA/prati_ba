@@ -100,9 +100,12 @@ defmodule PratiBa.Stats do
   defp parse_city(nil), do: nil
   defp parse_city(%{continent: continent, country: country, city: city}) do
     %{
-      continent: continent.name,
-      country: country.name,
-      city: city.name,
+      continent: get_name(continent),
+      country: get_name(country),
+      city: get_name(city),
     }
   end
+
+  defp get_name(nil), do: nil
+  defp get_name(%{name: name}), do: name
 end
