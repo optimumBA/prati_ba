@@ -3,6 +3,9 @@ kind: Service
 metadata:
   name: pratiba-nodeport-staging
   namespace: staging
+  labels:
+    app: pratiba
+    env: staging
 spec:
   selector:
     app: pratiba

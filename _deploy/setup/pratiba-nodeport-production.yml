@@ -3,6 +3,9 @@ kind: Service
 metadata:
   name: pratiba-nodeport-production
   namespace: production
+  labels:
+    app: pratiba
+    env: production
 spec:
   selector:
     app: pratiba
