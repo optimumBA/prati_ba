@@ -42,8 +42,10 @@ config :prati_ba, PratiBa.Scheduler,
   jobs: [
     # Every minute
     {"* * * * *",      {PratiBa.Scrapers, :fetch_new_articles, []}},
+    # Download user agent data
+    {"@reboot",        {UAInspector.Downloader, :download, []}},
     # Download Maxmind's GeoLite2 databases every week
-    # {"@reboot",        {Geolix, :reload_databases, []}},
+    {"@reboot",        {Geolix, :reload_databases, []}},
     {"45 16 * * 5",    {Geolix, :reload_databases, []}},
   ]
 

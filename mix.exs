@@ -40,7 +40,7 @@ defmodule PratiBa.MixProject do
     [
       {:phoenix, "~> 1.5.1"},
       {:phoenix_ecto, "~> 4.1"},
-      {:plug, github: "elixir-plug/plug", override: true},
+      {:plug, "~> 1.10"},
       {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
       {:phoenix_live_view, "~> 0.13.0"},

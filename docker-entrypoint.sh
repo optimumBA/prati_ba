@@ -2,7 +2,5 @@
 set -e
 
 export POD_A_RECORD=$(echo $POD_IP | sed 's/\./-/g')
-bin/prati_ba eval 'UAInspector.Downloader.download'
-bin/prati_ba eval 'Geolix.reload_databases'
 
 exec "$@"
