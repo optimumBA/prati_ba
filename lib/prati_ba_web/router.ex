@@ -29,7 +29,7 @@ defmodule PratiBaWeb.Router do
     pipe_through [:browser, :admin]
 
     resources "/", AdminController, only: [:index]
-    live_dashboard "/dashboard", metrics: Telemetry
+    live_dashboard "/dashboard", metrics: {PratiBaWeb.Telemetry, :metrics}
   end
 
   scope "/", PratiBaWeb do
