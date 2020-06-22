@@ -1,0 +1,24 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- deployment.yaml
+- ingress.yaml
+- migrations.yaml
+- networkpolicy.yaml
+- nodeport.yaml
+- rbac.yaml
+patchesJson6902:
+- path: env.yaml
+  target:
+    group: apps
+    kind: Deployment
+    name: pratiba
+    version: v1
+- path: env.yaml
+  target:
+    group: batch
+    kind: Job
+    name: pratiba-migrations
+    version: v1
+commonLabels:
+  app: pratiba

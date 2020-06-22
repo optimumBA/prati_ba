@@ -17,12 +17,15 @@ then
 
   echo "Deploying to $@..."
 
-  # Start migration
-  kubectl -n $@ create -f _deploy/pratiba-migrations-$@.yml
+  GIT_SHA=$(_k8s/scripts/git_sha.sh)
 
   # Trigger rolling update
-  kubectl -n $@ apply -f _deploy/pratiba-deployment-$@.yml
-  kubectl -n $@ rollout restart deployment pratiba
+  cd _k8s/$@
+  kubectl -n $@ wait --for=condition=complete job/pratiba-migrations
+  kubectl -n $@ delete job pratiba-migrations
+  kustomize edit set image gcr.io/pratiba/pratiba:${GIT_SHA}
+  kustomize build | kubectl apply -f -
+  kubectl -n $@ wait --for=condition=complete job/pratiba-migrations
   kubectl -n $@ rollout status deployment/pratiba
 
   echo "[✔️] Deployment complete!"

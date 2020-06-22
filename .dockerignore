@@ -1,4 +1,5 @@
 _build/
+_k8s/
 .elixir_ls/
 .git/
 assets/node_modules/

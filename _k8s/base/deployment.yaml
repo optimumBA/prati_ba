@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pratiba
+spec:
+  selector:
+  strategy:
+    type: RollingUpdate
+  template:
+    spec:
+      containers:
+        - name: pratiba
+          image: gcr.io/pratiba/pratiba
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 4000
+            initialDelaySeconds: 60
+            timeoutSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 4000
+            initialDelaySeconds: 60
+            timeoutSeconds: 15
+          ports:
+            - name: http
+              containerPort: 4000

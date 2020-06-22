@@ -1,0 +1,12 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: pratiba-migrations
+spec:
+  template:
+    spec:
+      containers:
+        - name: pratiba-migrations
+          image: gcr.io/pratiba/pratiba
+          command: ["sh", "-c", "bin/prati_ba eval 'PratiBa.Release.migrate' && bin/prati_ba eval 'PratiBa.Release.seed'"]
+      restartPolicy: Never

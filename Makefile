@@ -2,7 +2,7 @@
 .PHONY: build
 
 build:
-	@./_deploy/scripts/build.sh
+	@./_k8s/scripts/build.sh
 
 deploy:
-	@./_deploy/scripts/deploy.sh $(ENVIRONMENT)
+	@./_k8s/scripts/deploy.sh $(ENVIRONMENT)

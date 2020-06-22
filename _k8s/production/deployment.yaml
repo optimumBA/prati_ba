@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pratiba
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
+  template:
+    spec:
+      containers:
+        - name: pratiba
+          env:
+            - name: ASSET_HOST
+              value: static.prati.ba
+            - name: AWS_S3_BUCKET
+              value: static.prati.ba
+            - name: HOST
+              value: prati.ba
+            - name: POOL_SIZE
+              value: "10"
+            - name: PROXY_CIDR
+              value: 34.120.135.65/32
