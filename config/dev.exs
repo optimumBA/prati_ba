@@ -58,7 +58,7 @@ config :prati_ba, PratiBaWeb.Endpoint,
 config :prati_ba, PratiBaWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/[^(uploads)].*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/prati_ba_web/(live|views)/.*(ex)$",
       ~r"lib/prati_ba_web/templates/.*(eex)$"

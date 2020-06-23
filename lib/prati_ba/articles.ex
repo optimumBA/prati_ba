@@ -6,6 +6,20 @@ defmodule PratiBa.Articles do
   alias PratiBa.Articles.{Article, Category, Source}
   alias PratiBa.Repo
 
+  @topic inspect(__MODULE__)
+
+  @doc """
+  Subscribes to article events.
+
+  ## Examples
+
+    iex> subscribe
+    :ok
+  """
+  def subscribe do
+    Phoenix.PubSub.subscribe(PratiBa.PubSub, @topic)
+  end
+
   @doc """
   Returns the list of articles grouped by categories.
 
@@ -87,6 +101,11 @@ defmodule PratiBa.Articles do
 
     case transaction do
       {:ok, result} ->
+        Phoenix.PubSub.broadcast(PratiBa.PubSub, @topic, {
+          __MODULE__,
+          [:article, :created],
+          result.article_with_image
+        })
         {:ok, result.article_with_image}
 
       {:error, _, changeset, _} ->

@@ -1,12 +1,12 @@
 <%= for category <- @categories do %>
 <%= unless Enum.empty?(category.articles) do %>
-<section class="category">
+<section class="category" id="category-<%= category.id %>">
   <h4 class="category-name"><%= category.name %></h4>
 
   <section class="articles row row-responsive">
   <%= for article <- category.articles do %>
-    <article class="column">
-      <%= link to: Routes.article_path(@conn, :show, article), class: "article", target: "_blank", rel: "noopener" do %>
+    <article class="column" id="article-<%= article.id %>">
+      <%= link to: Routes.article_path(@socket, :show, article), class: "article", target: "_blank", rel: "noopener" do %>
         <div class="article-image">
           <%= article_image_tag(article) %>
         </div>
