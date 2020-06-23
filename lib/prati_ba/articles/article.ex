@@ -39,7 +39,7 @@ defmodule PratiBa.Articles.Article do
   def newest(limit \\ 9) do
     articles = from a in __MODULE__,
       select: %{id: a.id, rank: over(rank(), :category)},
-      windows: [category: [partition_by: a.category_id, order_by: [desc_nulls_last: :published_at]]]
+      windows: [category: [partition_by: a.category_id, order_by: [desc_nulls_last: :published_at, desc_nulls_last: :inserted_at]]]
 
     from a in __MODULE__,
       join: grouped in subquery(articles), on: [id: a.id],
