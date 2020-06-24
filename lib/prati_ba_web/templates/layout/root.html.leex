@@ -7,8 +7,8 @@
     <%= csrf_meta_tag() %>
     <%= live_title_tag assigns[:page_title] || "Prati.ba" %>
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-    <link phx-track-static rel="stylesheet" href="<%= Routes.static_path(@conn, "/css/app.css") %>"/>
-    <script defer phx-track-static type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+    <link phx-track-static rel="stylesheet" href="<%= Routes.static_url(@conn, "/css/app.css") %>"/>
+    <script defer phx-track-static type="text/javascript" src="<%= Routes.static_url(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
     <nav role="navigation">
