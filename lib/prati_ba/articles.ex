@@ -21,6 +21,20 @@ defmodule PratiBa.Articles do
   end
 
   @doc """
+  Returns the list of articles.
+
+  ## Examples
+
+      iex> list_articles()
+      [%Article{}, ...]
+
+  """
+  def list_articles do
+    Article.newest()
+    |> Repo.all()
+  end
+
+  @doc """
   Returns the list of articles grouped by categories.
 
   ## Examples
@@ -30,7 +44,7 @@ defmodule PratiBa.Articles do
 
   """
   def list_categories_with_articles do
-    Article.newest()
+    Article.newest_grouped()
     |> Category.with_articles()
     |> Repo.all()
   end

@@ -37,6 +37,13 @@ defmodule PratiBa.Articles.Article do
   end
 
   def newest(limit \\ 9) do
+    from a in __MODULE__,
+      order_by: [desc_nulls_last: :published_at, desc_nulls_last: :inserted_at],
+      limit: ^limit,
+      preload: :source
+  end
+
+  def newest_grouped(limit \\ 9) do
     articles = from a in __MODULE__,
       select: %{id: a.id, rank: over(rank(), :category)},
       windows: [category: [partition_by: a.category_id, order_by: [desc_nulls_last: :published_at, desc_nulls_last: :inserted_at]]]
@@ -44,7 +51,7 @@ defmodule PratiBa.Articles.Article do
     from a in __MODULE__,
       join: grouped in subquery(articles), on: [id: a.id],
       where: grouped.rank <= ^limit,
-      order_by: [desc_nulls_last: :published_at],
+      order_by: [desc_nulls_last: :published_at, desc_nulls_last: :inserted_at],
       preload: :source
   end
 end

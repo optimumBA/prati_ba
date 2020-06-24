@@ -9,6 +9,12 @@ defmodule PratiBa.ArticlesTest do
     @valid_attrs %{category: "Category", image: nil, original_id: "1234", published_at: ~N[2020-03-11 07:50:00], title: "Article Title", url: "https://sourcedomain.com/valid"}
     @invalid_attrs %{category: "Category", image: nil, original_id: nil, published_at: nil, title: nil, url: nil}
 
+    test "list_articles/0 returns newest articles" do
+      article = insert(:article)
+      article_id = article.id
+      assert [%Article{id: ^article_id}] = Articles.list_articles()
+    end
+
     test "list_categories_with_articles/0 returns all categories with articles preloaded" do
       article = insert(:article)
       assert [category] = Articles.list_categories_with_articles()

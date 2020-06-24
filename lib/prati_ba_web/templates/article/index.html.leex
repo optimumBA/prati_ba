@@ -1,29 +1,8 @@
-<%= for category <- @categories do %>
-<%= unless Enum.empty?(category.articles) do %>
-<section class="category" id="category-<%= category.id %>">
-  <h4 class="category-name"><%= category.name %></h4>
+<%= live_patch "Najnovije", to: Routes.article_index_path(@socket, :index, %{group: false}), class: "group-control button group " %></span>
+<%= live_patch "Po kategorijama", to: Routes.article_index_path(@socket, :index, %{group: true}), class: "group-control button group button-outline" %></span>
 
-  <section class="articles row row-responsive">
-  <%= for article <- category.articles do %>
-    <article class="column" id="article-<%= article.id %>">
-      <%= link to: Routes.article_path(@socket, :show, article), class: "article", target: "_blank", rel: "noopener" do %>
-        <div class="article-image">
-          <%= article_image_tag(article) %>
-        </div>
-
-        <div class="article-details">
-          <div class="article-title"><%= article.title %></div>
-
-          <div class="article-info">
-            <span class="article-source"><%= article.source.name %></span>
-            |
-            <%= published_date(article) %>
-          </div>
-        </div>
-      <% end %>
-    </article>
-  <% end %>
-  </section>
+<section class="articles row row-responsive">
+<%= for article <- @articles do %>
+  <%= render "_article.html", Map.put(assigns, :article, article) %>
+<% end %>
 </section>
-<% end %>
-<% end %>

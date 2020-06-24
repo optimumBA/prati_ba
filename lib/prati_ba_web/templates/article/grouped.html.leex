@@ -1,0 +1,16 @@
+<%= live_patch "Najnovije", to: Routes.article_index_path(@socket, :index, %{group: false}), class: "group-control button button-outline" %></span>
+<%= live_patch "Po kategorijama", to: Routes.article_index_path(@socket, :index, %{group: true}), class: "group-control button" %></span>
+
+<%= for category <- @categories do %>
+<%= unless Enum.empty?(category.articles) do %>
+<section class="category" id="category-<%= category.id %>">
+  <h4 class="category-name"><%= category.name %></h4>
+
+  <section class="articles row row-responsive">
+  <%= for article <- category.articles do %>
+    <%= render "_article.html", Map.put(assigns, :article, article) %>
+  <% end %>
+  </section>
+</section>
+<% end %>
+<% end %>
