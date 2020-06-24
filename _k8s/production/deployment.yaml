@@ -4,10 +4,6 @@ metadata:
   name: pratiba
 spec:
   replicas: 2
-  strategy:
-    rollingUpdate:
-      maxUnavailable: 1
-      maxSurge: 1
   template:
     spec:
       containers:
