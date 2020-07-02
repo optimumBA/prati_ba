@@ -51,24 +51,10 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
       original_id: original_id,
       title: title,
       description: nil,
-      category: parse_category(url),
       published_at: published_at,
       author: author,
       image: image,
       url: URI.encode(url),
     }
   end
-
-  defp parse_category("https://radiosarajevo.ba/vijesti/bosna-i-hercegovina" <> _), do: "BiH"
-  defp parse_category("https://radiosarajevo.ba/vijesti/regija" <> _), do: "Regija"
-  defp parse_category("https://radiosarajevo.ba/vijesti/svijet" <> _), do: "Svijet"
-  defp parse_category("https://radiosarajevo.ba/biznis" <> _), do: "Ekonomija"
-  defp parse_category("https://radiosarajevo.ba/magazin/tech" <> _), do: "Nauka i tehnologija"
-  defp parse_category("https://radiosarajevo.ba/kolumne" <> _), do: "Kolumne"
-  defp parse_category("https://radiosarajevo.ba/sport" <> _), do: "Sport"
-  defp parse_category("https://radiosarajevo.ba/auto-moto" <> _), do: "Auto"
-  defp parse_category("https://radiosarajevo.ba/metromahala/zmajevi" <> _), do: "Humanost"
-  defp parse_category("https://radiosarajevo.ba/magazin" <> _), do: "Zabava"
-  defp parse_category("https://radiosarajevo.ba/metromahala" <> _), do: "Zabava"
-  defp parse_category(_), do: nil
 end

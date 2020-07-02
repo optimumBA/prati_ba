@@ -15,13 +15,10 @@ defmodule PratiBa.ScrapersTest do
     source_name = "Fake source"
     insert(:source, name: source_name)
 
-    insert(:category, name: "Category")
-
     articles = [%{
       original_id: "1234",
       title: "Fake title",
       description: "Description",
-      category: "Category",
       published_at: ~N[2020-03-11 18:49:00],
       author: "Author",
       image: nil,
@@ -30,7 +27,6 @@ defmodule PratiBa.ScrapersTest do
       original_id: "15",
       title: "Article without category",
       description: "Description",
-      category: nil,
       published_at: ~N[2020-04-21 14:37:00],
       author: "Author",
       image: nil,
@@ -42,9 +38,7 @@ defmodule PratiBa.ScrapersTest do
 
     Scrapers.fetch_new_articles(%{source_name => ScraperMock})
 
-    assert [category] = Articles.list_categories_with_articles()
-    assert category.name == "Category"
-    assert [article] = category.articles
+    assert [_, article] = Articles.list_articles()
     assert article.image == nil
     assert article.original_id == "1234"
     assert article.published_at == ~N[2020-03-11 18:49:00]
@@ -62,6 +56,6 @@ defmodule PratiBa.ScrapersTest do
 
     Scrapers.fetch_new_articles(%{source_name => ScraperMock})
 
-    assert [] = Articles.list_categories_with_articles()
+    assert [] = Articles.list_articles()
   end
 end

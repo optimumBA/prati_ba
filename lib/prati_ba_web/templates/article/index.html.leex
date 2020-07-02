@@ -1,6 +1,3 @@
-<%= live_patch "Najnovije", to: Routes.article_index_path(@socket, :index, %{group: false}), class: "group-control button group " %></span>
-<%= live_patch "Po kategorijama", to: Routes.article_index_path(@socket, :index, %{group: true}), class: "group-control button group button-outline" %></span>
-
 <section class="articles row row-responsive">
 <%= for article <- @articles do %>
   <%= render "_article.html", Map.put(assigns, :article, article) %>

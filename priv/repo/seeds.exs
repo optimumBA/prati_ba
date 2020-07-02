@@ -11,7 +11,7 @@
 # and so on) as they will fail if something goes wrong.
 
 alias PratiBa.Repo
-alias PratiBa.Articles.{Category, Source}
+alias PratiBa.Articles.Source
 
 import Ecto.Query, only: [from: 2]
 
@@ -25,26 +25,5 @@ for source <- sources do
 
   unless Repo.exists?(query) do
     Repo.insert!(source)
-  end
-end
-
-categories = [
-  %Category{name: "BiH", order: 0},
-  %Category{name: "Regija", order: 1},
-  %Category{name: "Svijet", order: 2},
-  %Category{name: "Ekonomija", order: 3},
-  %Category{name: "Nauka i tehnologija", order: 4},
-  %Category{name: "Kolumne", order: 5},
-  %Category{name: "Sport", order: 6},
-  %Category{name: "Auto", order: 7},
-  %Category{name: "Humanost", order: 8},
-  %Category{name: "Zabava", order: 9},
-]
-
-for category <- categories do
-  query = from c in Category, where: c.name == ^category.name
-
-  unless Repo.exists?(query) do
-    Repo.insert!(category)
   end
 end

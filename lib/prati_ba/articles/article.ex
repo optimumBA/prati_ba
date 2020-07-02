@@ -4,7 +4,7 @@ defmodule PratiBa.Articles.Article do
   import Ecto.Changeset
   import Ecto.Query, only: [from: 2]
 
-  alias PratiBa.Articles.{Category, Source}
+  alias PratiBa.Articles.Source
   alias PratiBa.Uploaders.ArticleImage
 
   schema "articles" do
@@ -13,7 +13,6 @@ defmodule PratiBa.Articles.Article do
     field :published_at, :naive_datetime
     field :title, :string
     field :url, EctoFields.URL
-    belongs_to :category, Category
     belongs_to :source, Source
 
     timestamps()
@@ -36,22 +35,10 @@ defmodule PratiBa.Articles.Article do
     from a in __MODULE__, where: a.source_id == ^source_id and a.original_id == ^original_id
   end
 
-  def newest(limit \\ 9) do
+  def newest(limit \\ 15) do
     from a in __MODULE__,
       order_by: [desc_nulls_last: :published_at, desc_nulls_last: :inserted_at],
       limit: ^limit,
-      preload: :source
-  end
-
-  def newest_grouped(limit \\ 9) do
-    articles = from a in __MODULE__,
-      select: %{id: a.id, rank: over(rank(), :category)},
-      windows: [category: [partition_by: a.category_id, order_by: [desc_nulls_last: :published_at, desc_nulls_last: :inserted_at]]]
-
-    from a in __MODULE__,
-      join: grouped in subquery(articles), on: [id: a.id],
-      where: grouped.rank <= ^limit,
-      order_by: [desc_nulls_last: :published_at, desc_nulls_last: :inserted_at],
       preload: :source
   end
 end

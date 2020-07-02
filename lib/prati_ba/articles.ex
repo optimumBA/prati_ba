@@ -3,7 +3,7 @@ defmodule PratiBa.Articles do
   The Articles context.
   """
 
-  alias PratiBa.Articles.{Article, Category, Source}
+  alias PratiBa.Articles.{Article, Source}
   alias PratiBa.Repo
 
   @topic inspect(__MODULE__)
@@ -35,21 +35,6 @@ defmodule PratiBa.Articles do
   end
 
   @doc """
-  Returns the list of articles grouped by categories.
-
-  ## Examples
-
-      iex> list_categories_with_articles()
-      [%Category{articles: [%Article{}, ...]}, ...]
-
-  """
-  def list_categories_with_articles do
-    Article.newest_grouped()
-    |> Category.with_articles()
-    |> Repo.all()
-  end
-
-  @doc """
   Gets a single article.
 
   Raises `Ecto.NoResultsError` if the Article does not exist.
@@ -66,7 +51,6 @@ defmodule PratiBa.Articles do
   def get_article!(id) do
     Article
     |> Repo.get!(id)
-    |> Repo.preload(:category)
     |> Repo.preload(:source)
   end
 
@@ -100,12 +84,9 @@ defmodule PratiBa.Articles do
 
   """
   def create_article(%Source{} = source, attrs \\ %{}) do
-    category = Repo.get_by!(Category, name: attrs.category)
-
     article_changeset =
       %Article{}
       |> Article.changeset(attrs)
-      |> Ecto.Changeset.put_assoc(:category, category)
       |> Ecto.Changeset.put_assoc(:source, source)
 
     transaction = Ecto.Multi.new()
