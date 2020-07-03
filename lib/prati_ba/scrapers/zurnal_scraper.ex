@@ -1,0 +1,52 @@
+defmodule PratiBa.Scrapers.ZurnalScraper do
+  @behaviour PratiBa.Scrapers.Scraper
+
+  @rss_url "https://zurnal.info/rss"
+
+  def articles(url \\ @rss_url) do
+    response = Mojito.request(method: :get, url: url)
+
+    case response do
+      {:ok, %{status_code: 200, body: body}} ->
+        {:ok, rss} = FastRSS.parse(body)
+
+        articles = rss["items"]
+        |> Stream.map(&parse_article/1)
+
+        {:ok, articles}
+      {_, response} ->
+        {:error, response}
+    end
+  end
+
+  defp parse_article(article) do
+    %{
+      "description" => description,
+      "enclosure" => %{
+        "url" => image_url,
+      },
+      "link" => url,
+      "pub_date" => date,
+      "title" => title,
+    } = article
+
+    original_id = url
+    |> String.split("/")
+    |> Enum.fetch!(4)
+
+    published_at = date
+    |> Timex.parse!("{RFC1123}")
+    |> DateTime.shift_zone!("Etc/UTC")
+    |> DateTime.to_naive()
+
+    %{
+      original_id: original_id,
+      title: title,
+      description: description,
+      published_at: published_at,
+      author: nil,
+      image: image_url,
+      url: URI.encode(url),
+    }
+  end
+end

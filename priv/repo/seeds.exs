@@ -19,6 +19,7 @@ sources = [
   %Source{name: "Klix.ba", url: "https://www.klix.ba"},
   %Source{name: "radiosarajevo.ba", url: "https://radiosarajevo.ba"},
   %Source{name: "Raport.ba", url: "https://raport.ba"},
+  %Source{name: "Žurnal", url: "https://zurnal.info"},
 ]
 
 for source <- sources do
