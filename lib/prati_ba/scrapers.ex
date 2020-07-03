@@ -5,11 +5,12 @@ defmodule PratiBa.Scrapers do
 
   alias PratiBa.Articles
   alias PratiBa.Articles.Source
-  alias PratiBa.Scrapers.{KlixScraper, RadioSarajevoScraper}
+  alias PratiBa.Scrapers.{KlixScraper, RadioSarajevoScraper, RaportScraper}
 
   @scrapers %{
     "Klix.ba" => KlixScraper,
     "radiosarajevo.ba" => RadioSarajevoScraper,
+    "Raport.ba" => RaportScraper,
   }
 
   @article_keys [:image, :original_id, :published_at, :title, :url]

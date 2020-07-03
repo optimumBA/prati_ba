@@ -18,6 +18,7 @@ import Ecto.Query, only: [from: 2]
 sources = [
   %Source{name: "Klix.ba", url: "https://www.klix.ba"},
   %Source{name: "radiosarajevo.ba", url: "https://radiosarajevo.ba"},
+  %Source{name: "Raport.ba", url: "https://raport.ba"},
 ]
 
 for source <- sources do
