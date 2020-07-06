@@ -13,10 +13,12 @@ defmodule PratiBa.Scrapers.PrvaSmjenaScraper do
           |> HtmlEntities.decode()
           |> FastRSS.parse()
 
-        articles = rss["items"]
-        |> Stream.map(&parse_article/1)
+        articles =
+          rss["items"]
+          |> Stream.map(&parse_article/1)
 
         {:ok, articles}
+
       {_, response} ->
         {:error, response}
     end
@@ -48,13 +50,14 @@ defmodule PratiBa.Scrapers.PrvaSmjenaScraper do
         "value" => "http://prvasmjena.com/?p=" <> original_id
       },
       "pub_date" => date,
-      "title" => title,
+      "title" => title
     } = article
 
-    published_at = date
-    |> Timex.parse!("{RFC1123}")
-    |> DateTime.shift_zone!("Etc/UTC")
-    |> DateTime.to_naive()
+    published_at =
+      date
+      |> Timex.parse!("{RFC1123}")
+      |> DateTime.shift_zone!("Etc/UTC")
+      |> DateTime.to_naive()
 
     %{
       original_id: original_id,
@@ -63,7 +66,7 @@ defmodule PratiBa.Scrapers.PrvaSmjenaScraper do
       published_at: published_at,
       author: nil,
       image: nil,
-      url: URI.encode(url),
+      url: URI.encode(url)
     }
   end
 end

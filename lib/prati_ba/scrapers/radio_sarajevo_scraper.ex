@@ -8,15 +8,18 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
 
     case response do
       {:ok, %{status_code: 200, body: body}} ->
-        {:ok, feed, _} = body
+        {:ok, feed, _} =
+          body
           |> HtmlEntities.decode()
           |> String.trim()
           |> FeederEx.parse()
 
-        articles = feed.entries
-        |> Stream.map(&parse_article/1)
+        articles =
+          feed.entries
+          |> Stream.map(&parse_article/1)
 
         {:ok, articles}
+
       {_, response} ->
         {:error, response}
     end
@@ -30,24 +33,28 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
       link: url,
       summary: summary,
       title: title,
-      updated: date,
+      updated: date
     } = article
 
-    original_id = url
-    |> String.split("/")
-    |> Enum.fetch!(-1)
+    original_id =
+      url
+      |> String.split("/")
+      |> Enum.fetch!(-1)
 
-    published_at = date
-    |> Timex.parse!("{RFC3339}")
-    |> DateTime.shift_zone!("Etc/UTC")
-    |> DateTime.to_naive()
+    published_at =
+      date
+      |> Timex.parse!("{RFC3339}")
+      |> DateTime.shift_zone!("Etc/UTC")
+      |> DateTime.to_naive()
 
-    image = case Regex.named_captures(~r/src="(?<url>[^"]+)"/, summary) do
-      %{"url" => image_url} ->
-        URI.encode(image_url)
-      _ ->
-        nil
-    end
+    image =
+      case Regex.named_captures(~r/src="(?<url>[^"]+)"/, summary) do
+        %{"url" => image_url} ->
+          URI.encode(image_url)
+
+        _ ->
+          nil
+      end
 
     %{
       original_id: original_id,
@@ -56,7 +63,7 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
       published_at: published_at,
       author: author,
       image: image,
-      url: URI.encode(url),
+      url: URI.encode(url)
     }
   end
 end

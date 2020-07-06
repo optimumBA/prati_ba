@@ -11,33 +11,41 @@ defmodule PratiBa.Scrapers.N1ScraperTest do
 
   describe "articles/1" do
     test "fetches articles", %{bypass: bypass} do
-      Bypass.expect bypass, fn conn ->
+      Bypass.expect(bypass, fn conn ->
         Plug.Conn.resp(conn, 200, articles_payload())
-      end
+      end)
 
       response = N1Scraper.articles("http://localhost:#{bypass.port}/")
 
       assert {:ok, articles} = response
+
       assert [
-        %{
-          original_id: "a445641",
-          title: "Krišto o izmjenama budžeta BiH: Predsjedništvo je prekršilo Zakon o finansiranju",
-          description: "Zamjenica predsjedavajućeg Predstavničkog doma Parlamentarne skupštine BiH Borjana Krišto izjavila je da je u dnevni red sutrašnje sjednice Predstavničkog doma uvršteno razmatranje budžeta institucija BiH za ovu godinu, po hitnoj proceduri.",
-          published_at: ~N[2020-07-06 13:32:00],
-          author: nil,
-          image: "https://ba.n1info.com/Thumbnail/247936/jpeg/D9VfXfMX4AAZmGQ.jpg-large.jpg",
-          url: "http://ba.n1info.com/Vijesti/a445641/Kristo-o-izmjenama-budzeta-BiH-Predsjednistvo-je-prekrsilo-Zakon-o-finansiranju.html",
-        },
-        %{
-          original_id: "a445639",
-          title: "Kim Jong-un izdao naredbu o \"maksimalnoj pripravnosti\" protiv pandemije",
-          description: "Glavne novine Sjeverne Koreje, Rodon Sinmun, pozvale su u nedjelju na provođenje naredbe lidera Kim Jong-un da zemlja izvrši \"maksimalnu pripravnost\" protiv pandemije koronavirusa.",
-          published_at: ~N[2020-07-06 13:23:00],
-          author: nil,
-          image: "https://ba.n1info.com/Thumbnail/240994/jpeg/Kim-Jong-Un",
-          url: "http://ba.n1info.com/Svijet/a445639/Kim-Jong-un-izdao-naredbu-o-maksimalnoj-pripravnosti-protiv-pandemije.html",
-        }
-      ] = Enum.to_list(articles)
+               %{
+                 original_id: "a445641",
+                 title:
+                   "Krišto o izmjenama budžeta BiH: Predsjedništvo je prekršilo Zakon o finansiranju",
+                 description:
+                   "Zamjenica predsjedavajućeg Predstavničkog doma Parlamentarne skupštine BiH Borjana Krišto izjavila je da je u dnevni red sutrašnje sjednice Predstavničkog doma uvršteno razmatranje budžeta institucija BiH za ovu godinu, po hitnoj proceduri.",
+                 published_at: ~N[2020-07-06 13:32:00],
+                 author: nil,
+                 image:
+                   "https://ba.n1info.com/Thumbnail/247936/jpeg/D9VfXfMX4AAZmGQ.jpg-large.jpg",
+                 url:
+                   "http://ba.n1info.com/Vijesti/a445641/Kristo-o-izmjenama-budzeta-BiH-Predsjednistvo-je-prekrsilo-Zakon-o-finansiranju.html"
+               },
+               %{
+                 original_id: "a445639",
+                 title:
+                   "Kim Jong-un izdao naredbu o \"maksimalnoj pripravnosti\" protiv pandemije",
+                 description:
+                   "Glavne novine Sjeverne Koreje, Rodon Sinmun, pozvale su u nedjelju na provođenje naredbe lidera Kim Jong-un da zemlja izvrši \"maksimalnu pripravnost\" protiv pandemije koronavirusa.",
+                 published_at: ~N[2020-07-06 13:23:00],
+                 author: nil,
+                 image: "https://ba.n1info.com/Thumbnail/240994/jpeg/Kim-Jong-Un",
+                 url:
+                   "http://ba.n1info.com/Svijet/a445639/Kim-Jong-un-izdao-naredbu-o-maksimalnoj-pripravnosti-protiv-pandemije.html"
+               }
+             ] = Enum.to_list(articles)
     end
   end
 

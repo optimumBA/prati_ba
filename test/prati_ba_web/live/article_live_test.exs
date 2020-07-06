@@ -6,12 +6,15 @@ defmodule PratiBaWeb.ArticleLiveTest do
   alias PratiBa.Articles
 
   defp create_article(_) do
-    first_article = insert(:article, title: "First article", published_at: ~N[2020-04-23 19:12:00])
-    second_article = insert(:article, title: "Second article", published_at: ~N[2020-04-23 19:20:00])
+    first_article =
+      insert(:article, title: "First article", published_at: ~N[2020-04-23 19:12:00])
+
+    second_article =
+      insert(:article, title: "Second article", published_at: ~N[2020-04-23 19:20:00])
 
     %{
       first_article: first_article,
-      second_article: second_article,
+      second_article: second_article
     }
   end
 
@@ -25,7 +28,7 @@ defmodule PratiBaWeb.ArticleLiveTest do
     test "lists all articles", %{
       conn: conn,
       first_article: first_article,
-      second_article: second_article,
+      second_article: second_article
     } do
       {:ok, index_live, _html} = live(conn, Routes.article_index_path(conn, :index))
 

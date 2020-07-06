@@ -11,7 +11,7 @@ defmodule PratiBaWeb.HealthController do
       hostname: to_string(hostname),
       node: Node.self(),
       status: :ok,
-      timestamp: timestamp,
+      timestamp: timestamp
     })
   end
 end

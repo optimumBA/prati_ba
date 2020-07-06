@@ -15,23 +15,26 @@ defmodule PratiBa.ScrapersTest do
     source_name = "Fake source"
     insert(:source, name: source_name)
 
-    articles = [%{
-      original_id: "1234",
-      title: nil,
-      description: "Description",
-      published_at: ~N[2020-03-11 18:49:00],
-      author: "Author",
-      image: nil,
-      url: "https://fakesour.ce/fake-title",
-    }, %{
-      original_id: "15",
-      title: nil,
-      description: "Description",
-      published_at: ~N[2020-04-21 14:37:00],
-      author: "Author",
-      image: nil,
-      url: "https://fakesour.ce/another-article",
-    }]
+    articles = [
+      %{
+        original_id: "1234",
+        title: nil,
+        description: "Description",
+        published_at: ~N[2020-03-11 18:49:00],
+        author: "Author",
+        image: nil,
+        url: "https://fakesour.ce/fake-title"
+      },
+      %{
+        original_id: "15",
+        title: nil,
+        description: "Description",
+        published_at: ~N[2020-04-21 14:37:00],
+        author: "Author",
+        image: nil,
+        url: "https://fakesour.ce/another-article"
+      }
+    ]
 
     ScraperMock
     |> expect(:articles, fn -> {:ok, Stream.map(articles, fn article -> article end)} end)

@@ -12,7 +12,7 @@ defmodule PratiBa.Articles.SourceTest do
 
   test "cannot create duplicate source" do
     source = Source.changeset(%Source{}, @valid_attrs)
-    assert {:ok, source } = Repo.insert(source)
+    assert {:ok, source} = Repo.insert(source)
 
     duplicate = Source.changeset(%Source{}, @valid_attrs)
 

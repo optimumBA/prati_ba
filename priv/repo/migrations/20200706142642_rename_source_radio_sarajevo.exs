@@ -10,6 +10,7 @@ defmodule PratiBa.Repo.Migrations.RenameSourceRadioSarajevo do
         source
         |> Ecto.Changeset.change(name: "Radio Sarajevo")
         |> Repo.update!()
+
       _ ->
         nil
     end
@@ -21,6 +22,7 @@ defmodule PratiBa.Repo.Migrations.RenameSourceRadioSarajevo do
         source
         |> Ecto.Changeset.change(name: "radiosarajevo.ba")
         |> Repo.update!()
+
       _ ->
         nil
     end

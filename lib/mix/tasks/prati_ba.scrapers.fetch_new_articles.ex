@@ -4,7 +4,7 @@ defmodule Mix.Tasks.PratiBa.Scrapers.FetchNewArticles do
   @shortdoc "Fetches new articles"
 
   def run(_) do
-    Mix.Task.run "app.start"
+    Mix.Task.run("app.start")
 
     PratiBa.Scrapers.fetch_new_articles()
   end

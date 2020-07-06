@@ -3,7 +3,13 @@ defmodule PratiBa.Articles.ArticleTest do
 
   alias PratiBa.Articles.Article
 
-  @valid_attrs %{image: nil, original_id: "1234", published_at: ~N[2020-03-11 07:50:00], title: "Article Title", url: "https://sourcedomain.com/valid"}
+  @valid_attrs %{
+    image: nil,
+    original_id: "1234",
+    published_at: ~N[2020-03-11 07:50:00],
+    title: "Article Title",
+    url: "https://sourcedomain.com/valid"
+  }
 
   test "url must have valid format" do
     changeset = Article.changeset(%Article{}, %{url: "invalid_url"})

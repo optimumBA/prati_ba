@@ -89,10 +89,11 @@ defmodule PratiBa.Articles do
       |> Article.changeset(attrs)
       |> Ecto.Changeset.put_assoc(:source, source)
 
-    transaction = Ecto.Multi.new()
-    |> Ecto.Multi.insert(:article, article_changeset)
-    |> Ecto.Multi.update(:article_with_image, &Article.image_changeset(&1.article, attrs))
-    |> Repo.transaction()
+    transaction =
+      Ecto.Multi.new()
+      |> Ecto.Multi.insert(:article, article_changeset)
+      |> Ecto.Multi.update(:article_with_image, &Article.image_changeset(&1.article, attrs))
+      |> Repo.transaction()
 
     case transaction do
       {:ok, result} ->
@@ -101,6 +102,7 @@ defmodule PratiBa.Articles do
           [:article, :created],
           result.article_with_image
         })
+
         {:ok, result.article_with_image}
 
       {:error, _, changeset, _} ->

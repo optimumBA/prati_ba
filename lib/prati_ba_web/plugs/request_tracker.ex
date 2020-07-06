@@ -11,18 +11,21 @@ defmodule PratiBaWeb.Plugs.RequestTracker do
     request_id = Ecto.UUID.generate()
     conn = put_private(conn, :request_id, request_id)
 
-    {conn, visitor_id} = case get_session(conn, :visitor_id) do
-      nil ->
-        visitor_id = Ecto.UUID.generate()
-        conn = put_session(conn, :visitor_id, visitor_id)
-        {conn, visitor_id}
-      visitor_id ->
-        {conn, visitor_id}
-    end
+    {conn, visitor_id} =
+      case get_session(conn, :visitor_id) do
+        nil ->
+          visitor_id = Ecto.UUID.generate()
+          conn = put_session(conn, :visitor_id, visitor_id)
+          {conn, visitor_id}
 
-    task = Task.async(fn ->
-      Stats.track_request(request_id, visitor_id, conn)
-    end)
+        visitor_id ->
+          {conn, visitor_id}
+      end
+
+    task =
+      Task.async(fn ->
+        Stats.track_request(request_id, visitor_id, conn)
+      end)
 
     if Application.get_env(:prati_ba, :env) == :test do
       Task.await(task)

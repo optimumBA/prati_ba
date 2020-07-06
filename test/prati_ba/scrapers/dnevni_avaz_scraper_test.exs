@@ -11,33 +11,37 @@ defmodule PratiBa.Scrapers.DnevniAvazScraperTest do
 
   describe "articles/1" do
     test "fetches articles", %{bypass: bypass} do
-      Bypass.expect bypass, fn conn ->
+      Bypass.expect(bypass, fn conn ->
         Plug.Conn.resp(conn, 200, articles_payload())
-      end
+      end)
 
       response = DnevniAvazScraper.articles("http://localhost:#{bypass.port}/")
 
       assert {:ok, articles} = response
+
       assert [
-        %{
-          original_id: "579853",
-          title: "Parada i referendum koštali Rusiju više od pet milijardi dolara",
-          description: "Parada i referendum koštali Rusiju više od pet milijardi dolara - Ruska vlada proglasila je dva dodatna neradna perioda kako bi održala Paradu pobjede i omogućila glasanje na referendumu, što je rusku privredu koštalo više od pet milijardi dolara, navode analitičari za \"The Moscow Times\"",
-          published_at: ~N[2020-07-06 05:31:00],
-          author: nil,
-          image: "https://avaz.ba/media/2020/07/06/1286153/thumbs/873x400.jpg",
-          url: "https://avaz.ba/globus/svijet/579853/parada-i-referendum-kostali-rusiju-vise-od-pet-milijardi-dolara",
-        },
-        %{
-          original_id: "579852",
-          title: "Danas isplata penzija za juni",
-          description: "Danas isplata penzija za juni - Sukladno Zakonu o penzijskom i invalidskom osiguranju, penzije za mjesec juni bit će isplaćene danas preko Jedinstvenog računa trezora FBiH",
-          published_at: ~N[2020-07-06 05:18:00],
-          author: nil,
-          image: "https://avaz.ba/media/2020/07/06/1286149/thumbs/873x400.jpg",
-          url: "https://avaz.ba/vijesti/bih/579852/danas-isplata-penzija-za-juni",
-        }
-      ] = Enum.to_list(articles)
+               %{
+                 original_id: "579853",
+                 title: "Parada i referendum koštali Rusiju više od pet milijardi dolara",
+                 description:
+                   "Parada i referendum koštali Rusiju više od pet milijardi dolara - Ruska vlada proglasila je dva dodatna neradna perioda kako bi održala Paradu pobjede i omogućila glasanje na referendumu, što je rusku privredu koštalo više od pet milijardi dolara, navode analitičari za \"The Moscow Times\"",
+                 published_at: ~N[2020-07-06 05:31:00],
+                 author: nil,
+                 image: "https://avaz.ba/media/2020/07/06/1286153/thumbs/873x400.jpg",
+                 url:
+                   "https://avaz.ba/globus/svijet/579853/parada-i-referendum-kostali-rusiju-vise-od-pet-milijardi-dolara"
+               },
+               %{
+                 original_id: "579852",
+                 title: "Danas isplata penzija za juni",
+                 description:
+                   "Danas isplata penzija za juni - Sukladno Zakonu o penzijskom i invalidskom osiguranju, penzije za mjesec juni bit će isplaćene danas preko Jedinstvenog računa trezora FBiH",
+                 published_at: ~N[2020-07-06 05:18:00],
+                 author: nil,
+                 image: "https://avaz.ba/media/2020/07/06/1286149/thumbs/873x400.jpg",
+                 url: "https://avaz.ba/vijesti/bih/579852/danas-isplata-penzija-za-juni"
+               }
+             ] = Enum.to_list(articles)
     end
   end
 

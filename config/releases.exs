@@ -68,13 +68,19 @@ config :geolix,
     %{
       id: :asn,
       adapter: Geolix.Adapter.MMDB2,
-      source: "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=#{maxmind_license_key}&suffix=tar.gz",
+      source:
+        "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=#{
+          maxmind_license_key
+        }&suffix=tar.gz"
     },
     %{
       id: :city,
       adapter: Geolix.Adapter.MMDB2,
-      source: "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=#{maxmind_license_key}&suffix=tar.gz",
-    },
+      source:
+        "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=#{
+          maxmind_license_key
+        }&suffix=tar.gz"
+    }
   ]
 
 aws_s3_bucket =
@@ -130,7 +136,7 @@ config :libcluster,
         mode: :dns,
         kubernetes_selector: "app=pratiba,env=#{namespace}",
         kubernetes_node_basename: "prati_ba",
-        kubernetes_namespace: namespace,
+        kubernetes_namespace: namespace
       ]
     ]
   ]

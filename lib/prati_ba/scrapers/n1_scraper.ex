@@ -8,16 +8,19 @@ defmodule PratiBa.Scrapers.N1Scraper do
 
     case response do
       {:ok, %{status_code: 200, body: body}} ->
-        {:ok, feed, _} = body
+        {:ok, feed, _} =
+          body
           |> HtmlEntities.decode()
           |> String.trim()
           |> FeederEx.parse()
 
-        articles = feed.entries
+        articles =
+          feed.entries
           |> Stream.filter(&should_scrape/1)
           |> Stream.map(&parse_article/1)
 
         {:ok, articles}
+
       {_, response} ->
         {:error, response}
     end
@@ -34,14 +37,16 @@ defmodule PratiBa.Scrapers.N1Scraper do
       link: url,
       summary: description,
       title: title,
-      updated: date,
+      updated: date
     } = article
 
-    original_id = url
+    original_id =
+      url
       |> String.split("/")
       |> Enum.fetch!(4)
 
-    published_at = date
+    published_at =
+      date
       |> Timex.parse!("{RFC1123}")
       |> DateTime.shift_zone!("Etc/UTC")
       |> DateTime.to_naive()
@@ -53,7 +58,7 @@ defmodule PratiBa.Scrapers.N1Scraper do
       published_at: published_at,
       author: nil,
       image: URI.encode(image_url),
-      url: URI.encode(url),
+      url: URI.encode(url)
     }
   end
 end

@@ -11,66 +11,83 @@ defmodule PratiBa.Scrapers.PrvaSmjenaScraperTest do
 
   describe "articles/1" do
     test "fetches articles", %{bypass: bypass} do
-      Bypass.expect bypass, fn conn ->
+      Bypass.expect(bypass, fn conn ->
         Plug.Conn.resp(conn, 200, articles_payload())
-      end
+      end)
 
       response = PrvaSmjenaScraper.articles("http://localhost:#{bypass.port}/")
 
       assert {:ok, articles} = response
+
       assert [
-        %{
-          original_id: "1773",
-          title: "Milorad Dodik brani Fadila Novalića: Niko ne bi trebao odgovarati za nabavku u ekstremno teškim uvjetima",
-          description: "Komentirajući odgovor Bosne i Hercegovine na pandemiju korona virusa, Milorad Dodik je kazao za N1 kako BiH čini sve što i druge zemlje te naglasio kako taj period ne bi...",
-          published_at: ~N[2020-07-02 16:37:03],
-          author: nil,
-          image: nil,
-          url: "http://prvasmjena.com/milorad-dodik-brani-fadila-novalica-niko-ne-bi-trebao-odgovarati-za-nabavku-u-ekstremno-teskim-uvjetima/",
-        },
-        %{
-          original_id: "1771",
-          title: "Komšić odgovorio: Jedan čovjek ne može biti ministar u više kantona",
-          description: "Banjalučka ATV je danas objavila kako je Demokratska fronta kandidovala Čedomira Jovanovića za funkciju ministra u više kantolanih vlada. – Između ostalih i za ministra obrazovanja USК, objavila je ATV....",
-          published_at: ~N[2020-07-02 10:30:00],
-          author: nil,
-          image: nil,
-          url: "http://prvasmjena.com/komsic-odgovorio-jedan-covjek-ne-moze-biti-ministar-u-vise-kantona/",
-        }
-      ] = Enum.to_list(articles)
+               %{
+                 original_id: "1773",
+                 title:
+                   "Milorad Dodik brani Fadila Novalića: Niko ne bi trebao odgovarati za nabavku u ekstremno teškim uvjetima",
+                 description:
+                   "Komentirajući odgovor Bosne i Hercegovine na pandemiju korona virusa, Milorad Dodik je kazao za N1 kako BiH čini sve što i druge zemlje te naglasio kako taj period ne bi...",
+                 published_at: ~N[2020-07-02 16:37:03],
+                 author: nil,
+                 image: nil,
+                 url:
+                   "http://prvasmjena.com/milorad-dodik-brani-fadila-novalica-niko-ne-bi-trebao-odgovarati-za-nabavku-u-ekstremno-teskim-uvjetima/"
+               },
+               %{
+                 original_id: "1771",
+                 title: "Komšić odgovorio: Jedan čovjek ne može biti ministar u više kantona",
+                 description:
+                   "Banjalučka ATV je danas objavila kako je Demokratska fronta kandidovala Čedomira Jovanovića za funkciju ministra u više kantolanih vlada. – Između ostalih i za ministra obrazovanja USК, objavila je ATV....",
+                 published_at: ~N[2020-07-02 10:30:00],
+                 author: nil,
+                 image: nil,
+                 url:
+                   "http://prvasmjena.com/komsic-odgovorio-jedan-covjek-ne-moze-biti-ministar-u-vise-kantona/"
+               }
+             ] = Enum.to_list(articles)
     end
   end
 
   describe "article_details/1" do
     test "fetches article image", %{bypass: bypass} do
-      Bypass.expect bypass, "GET", "/milorad-dodik-brani-fadila-novalica-niko-ne-bi-trebao-odgovarati-za-nabavku-u-ekstremno-teskim-uvjetima/", fn conn ->
-        Plug.Conn.resp(conn, 200, article_payload())
-      end
+      Bypass.expect(
+        bypass,
+        "GET",
+        "/milorad-dodik-brani-fadila-novalica-niko-ne-bi-trebao-odgovarati-za-nabavku-u-ekstremno-teskim-uvjetima/",
+        fn conn ->
+          Plug.Conn.resp(conn, 200, article_payload())
+        end
+      )
 
-      article_url = "http://localhost:#{bypass.port}/milorad-dodik-brani-fadila-novalica-niko-ne-bi-trebao-odgovarati-za-nabavku-u-ekstremno-teskim-uvjetima/"
+      article_url =
+        "http://localhost:#{bypass.port}/milorad-dodik-brani-fadila-novalica-niko-ne-bi-trebao-odgovarati-za-nabavku-u-ekstremno-teskim-uvjetima/"
 
       article = %{
         original_id: "1773",
-        title: "Milorad Dodik brani Fadila Novalića: Niko ne bi trebao odgovarati za nabavku u ekstremno teškim uvjetima",
-        description: "Komentirajući odgovor Bosne i Hercegovine na pandemiju korona virusa, Milorad Dodik je kazao za N1 kako BiH čini sve što i druge zemlje te naglasio kako taj period ne bi...",
+        title:
+          "Milorad Dodik brani Fadila Novalića: Niko ne bi trebao odgovarati za nabavku u ekstremno teškim uvjetima",
+        description:
+          "Komentirajući odgovor Bosne i Hercegovine na pandemiju korona virusa, Milorad Dodik je kazao za N1 kako BiH čini sve što i druge zemlje te naglasio kako taj period ne bi...",
         published_at: ~N[2020-07-02 16:37:03],
         author: nil,
         image: nil,
-        url: article_url,
+        url: article_url
       }
 
       response = PrvaSmjenaScraper.article_details(article)
 
       assert {:ok, article} = response
+
       assert %{
-        original_id: "1773",
-        title: "Milorad Dodik brani Fadila Novalića: Niko ne bi trebao odgovarati za nabavku u ekstremno teškim uvjetima",
-        description: "Komentirajući odgovor Bosne i Hercegovine na pandemiju korona virusa, Milorad Dodik je kazao za N1 kako BiH čini sve što i druge zemlje te naglasio kako taj period ne bi...",
-        published_at: ~N[2020-07-02 16:37:03],
-        author: nil,
-        image: "http://prvasmjena.com/wp-content/uploads/2020/07/bake-dodo.jpg",
-        url: ^article_url,
-      } = article
+               original_id: "1773",
+               title:
+                 "Milorad Dodik brani Fadila Novalića: Niko ne bi trebao odgovarati za nabavku u ekstremno teškim uvjetima",
+               description:
+                 "Komentirajući odgovor Bosne i Hercegovine na pandemiju korona virusa, Milorad Dodik je kazao za N1 kako BiH čini sve što i druge zemlje te naglasio kako taj period ne bi...",
+               published_at: ~N[2020-07-02 16:37:03],
+               author: nil,
+               image: "http://prvasmjena.com/wp-content/uploads/2020/07/bake-dodo.jpg",
+               url: ^article_url
+             } = article
     end
   end
 

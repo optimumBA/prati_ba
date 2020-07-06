@@ -10,10 +10,12 @@ defmodule PratiBa.Scrapers.ZurnalScraper do
       {:ok, %{status_code: 200, body: body}} ->
         {:ok, rss} = FastRSS.parse(body)
 
-        articles = rss["items"]
-        |> Stream.map(&parse_article/1)
+        articles =
+          rss["items"]
+          |> Stream.map(&parse_article/1)
 
         {:ok, articles}
+
       {_, response} ->
         {:error, response}
     end
@@ -25,21 +27,23 @@ defmodule PratiBa.Scrapers.ZurnalScraper do
     %{
       "description" => description,
       "enclosure" => %{
-        "url" => image_url,
+        "url" => image_url
       },
       "link" => url,
       "pub_date" => date,
-      "title" => title,
+      "title" => title
     } = article
 
-    original_id = url
-    |> String.split("/")
-    |> Enum.fetch!(4)
+    original_id =
+      url
+      |> String.split("/")
+      |> Enum.fetch!(4)
 
-    published_at = date
-    |> Timex.parse!("{RFC1123}")
-    |> DateTime.shift_zone!("Etc/UTC")
-    |> DateTime.to_naive()
+    published_at =
+      date
+      |> Timex.parse!("{RFC1123}")
+      |> DateTime.shift_zone!("Etc/UTC")
+      |> DateTime.to_naive()
 
     %{
       original_id: original_id,
@@ -48,7 +52,7 @@ defmodule PratiBa.Scrapers.ZurnalScraper do
       published_at: published_at,
       author: nil,
       image: image_url,
-      url: URI.encode(url),
+      url: URI.encode(url)
     }
   end
 end

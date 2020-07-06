@@ -7,6 +7,7 @@ defmodule PratiBaWeb.ArticleView do
   alias PratiBa.Uploaders.ArticleImage
 
   def article_image_tag(%Article{image: nil}), do: nil
+
   def article_image_tag(%Article{image: image} = article) do
     {image, article}
     |> ArticleImage.url()
@@ -20,6 +21,7 @@ defmodule PratiBaWeb.ArticleView do
       case Timex.format(datetime, "{relative}", :relative) do
         {:ok, relative_string} ->
           relative_string
+
         {:error, _} ->
           nil
       end

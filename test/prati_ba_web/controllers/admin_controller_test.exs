@@ -5,7 +5,8 @@ defmodule PratiBaWeb.AdminControllerTest do
     test "redirects to the dashboard", %{conn: conn} do
       authorization = "Basic " <> Base.encode64("pratiba:pratiba")
 
-      conn = conn
+      conn =
+        conn
         |> put_req_header("authorization", authorization)
         |> get(Routes.admin_path(conn, :index))
 

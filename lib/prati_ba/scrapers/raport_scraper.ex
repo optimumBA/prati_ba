@@ -31,6 +31,7 @@ defmodule PratiBa.Scrapers.RaportScraper do
       _ -> {:ok, Map.put(article, :image, nil)}
     end
   end
+
   def article_details(article), do: {:ok, article}
 
   defp parse_article(article, url_base) do
@@ -39,12 +40,12 @@ defmodule PratiBa.Scrapers.RaportScraper do
       "date_gmt" => published_at,
       "link" => url,
       "title" => %{
-        "rendered" => title,
+        "rendered" => title
       },
       "excerpt" => %{
-        "rendered" => description,
+        "rendered" => description
       },
-      "featured_media" => image_id,
+      "featured_media" => image_id
     } = article
 
     title =
@@ -64,7 +65,7 @@ defmodule PratiBa.Scrapers.RaportScraper do
       published_at: Timex.parse!(published_at, "{RFC3339}"),
       author: nil,
       image: "#{url_base}/wp-json/wp/v2/media/#{image_id}",
-      url: URI.encode(url),
+      url: URI.encode(url)
     }
   end
 end

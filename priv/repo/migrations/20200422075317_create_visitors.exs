@@ -7,6 +7,5 @@ defmodule PratiBa.Repo.Migrations.CreateVisitors do
 
       timestamps()
     end
-
   end
 end

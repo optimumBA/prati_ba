@@ -10,10 +10,12 @@ defmodule PratiBa.Scrapers.KlixScraper do
       {:ok, %{status_code: 200, body: body}} ->
         {:ok, rss} = FastRSS.parse(body)
 
-        articles = rss["items"]
-        |> Stream.map(&parse_article/1)
+        articles =
+          rss["items"]
+          |> Stream.map(&parse_article/1)
 
         {:ok, articles}
+
       {_, response} ->
         {:error, response}
     end
@@ -25,39 +27,43 @@ defmodule PratiBa.Scrapers.KlixScraper do
     %{
       "description" => description,
       "dublin_core_ext" => %{
-        "creators" => [author],
+        "creators" => [author]
       },
       "extensions" => image_properties,
       "link" => url,
       "pub_date" => date,
-      "title" => title,
+      "title" => title
     } = article
 
-    original_id = url
-    |> String.split("/")
-    |> Enum.fetch!(-1)
+    original_id =
+      url
+      |> String.split("/")
+      |> Enum.fetch!(-1)
 
-    published_at = date
-    |> Timex.parse!("{RFC1123}")
-    |> DateTime.shift_zone!("Etc/UTC")
-    |> DateTime.to_naive()
+    published_at =
+      date
+      |> Timex.parse!("{RFC1123}")
+      |> DateTime.shift_zone!("Etc/UTC")
+      |> DateTime.to_naive()
 
-    image = case image_properties do
-      %{
-        "media" => %{
-          "content" => [
-            %{
-              "attrs" => %{
-                "url" => image_url,
-              },
-            },
-          ],
-        },
-      } ->
-        URI.encode(image_url)
-      _ ->
-        nil
-    end
+    image =
+      case image_properties do
+        %{
+          "media" => %{
+            "content" => [
+              %{
+                "attrs" => %{
+                  "url" => image_url
+                }
+              }
+            ]
+          }
+        } ->
+          URI.encode(image_url)
+
+        _ ->
+          nil
+      end
 
     %{
       original_id: original_id,
@@ -66,7 +72,7 @@ defmodule PratiBa.Scrapers.KlixScraper do
       published_at: published_at,
       author: author,
       image: image,
-      url: URI.encode(url),
+      url: URI.encode(url)
     }
   end
 end

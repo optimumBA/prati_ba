@@ -13,15 +13,16 @@ defmodule PratiBa.Release do
 
   def seed do
     for repo <- repos() do
-      {:ok, _, _} = Ecto.Migrator.with_repo(repo, fn(repo) ->
-        # Run the seed script if it exists
-        seed_script = priv_path_for(repo, "seeds.exs")
+      {:ok, _, _} =
+        Ecto.Migrator.with_repo(repo, fn repo ->
+          # Run the seed script if it exists
+          seed_script = priv_path_for(repo, "seeds.exs")
 
-        if File.exists?(seed_script) do
-          IO.puts("Running seed script..")
-          Code.eval_file(seed_script)
-        end
-      end)
+          if File.exists?(seed_script) do
+            IO.puts("Running seed script..")
+            Code.eval_file(seed_script)
+          end
+        end)
     end
   end
 

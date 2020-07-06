@@ -5,6 +5,7 @@ defmodule PratiBa.Scrapers do
 
   alias PratiBa.Articles
   alias PratiBa.Articles.Source
+
   alias PratiBa.Scrapers.{
     DnevniAvazScraper,
     KlixScraper,
@@ -13,7 +14,7 @@ defmodule PratiBa.Scrapers do
     PrvaSmjenaScraper,
     RadioSarajevoScraper,
     RaportScraper,
-    ZurnalScraper,
+    ZurnalScraper
   }
 
   @scrapers %{
@@ -24,7 +25,7 @@ defmodule PratiBa.Scrapers do
     "Prva smjena" => PrvaSmjenaScraper,
     "radiosarajevo.ba" => RadioSarajevoScraper,
     "Raport.ba" => RaportScraper,
-    "Žurnal" => ZurnalScraper,
+    "Žurnal" => ZurnalScraper
   }
 
   @article_keys [:image, :original_id, :published_at, :title, :url]
@@ -55,6 +56,7 @@ defmodule PratiBa.Scrapers do
           |> Stream.filter(&successful?/1)
           |> Stream.map(&transform_article/1)
           |> Enum.each(&Articles.create_article(source, &1))
+
         {:error, _} ->
           nil
       end

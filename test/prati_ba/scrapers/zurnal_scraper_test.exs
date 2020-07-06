@@ -11,33 +11,37 @@ defmodule PratiBa.Scrapers.ZurnalScraperTest do
 
   describe "articles/1" do
     test "fetches articles", %{bypass: bypass} do
-      Bypass.expect bypass, fn conn ->
+      Bypass.expect(bypass, fn conn ->
         Plug.Conn.resp(conn, 200, articles_payload())
-      end
+      end)
 
       response = ZurnalScraper.articles("http://localhost:#{bypass.port}/")
 
       assert {:ok, articles} = response
+
       assert [
-        %{
-          original_id: "23208",
-          title: "Russia imperils Bosnia-Herzegovina!",
-          description: "Western leaders seek stability and security in the Western Balkans even while viewing several states as unprepared for EU membership. Putin is seeking Balkan allies or supplicants. This is where the economic and energy dimensions are most pronounced in corrupting, blackmailing, or bribing key officials",
-          published_at: ~N[2020-07-03 09:19:51],
-          author: nil,
-          image: "https://zurnal.info/upload/images/2020/Bugajski%201.jpg",
-          url: "https://zurnal.info/novost/23208/russia-imperils-bosnia-herzegovina",
-        },
-        %{
-          original_id: "23206",
-          title: "Profesor odbrane je komunalni inspektor, bravar brine o kriptozaštiti",
-          description: "Dok su u privatnim firmama zbog korona virusa radnicima dijeljeni otkazi, u javnim ustanovama u Kantonu Sarajevu aktivno su vršena nova zapošljavanja. Samo u Službi za zapošljavanje KS od prvog aprila zaposleno je 18 osoba",
-          published_at: ~N[2020-07-02 17:27:06],
-          author: nil,
-          image: "https://zurnal.info/upload/images/afzzz_kzzz1_Fotor.jpg",
-          url: "https://zurnal.info/novost/23206/profesor-odbrane-je-komunalni-inspektor-bravar-brine-o-kriptozastiti",
-        }
-      ] = Enum.to_list(articles)
+               %{
+                 original_id: "23208",
+                 title: "Russia imperils Bosnia-Herzegovina!",
+                 description:
+                   "Western leaders seek stability and security in the Western Balkans even while viewing several states as unprepared for EU membership. Putin is seeking Balkan allies or supplicants. This is where the economic and energy dimensions are most pronounced in corrupting, blackmailing, or bribing key officials",
+                 published_at: ~N[2020-07-03 09:19:51],
+                 author: nil,
+                 image: "https://zurnal.info/upload/images/2020/Bugajski%201.jpg",
+                 url: "https://zurnal.info/novost/23208/russia-imperils-bosnia-herzegovina"
+               },
+               %{
+                 original_id: "23206",
+                 title: "Profesor odbrane je komunalni inspektor, bravar brine o kriptozaštiti",
+                 description:
+                   "Dok su u privatnim firmama zbog korona virusa radnicima dijeljeni otkazi, u javnim ustanovama u Kantonu Sarajevu aktivno su vršena nova zapošljavanja. Samo u Službi za zapošljavanje KS od prvog aprila zaposleno je 18 osoba",
+                 published_at: ~N[2020-07-02 17:27:06],
+                 author: nil,
+                 image: "https://zurnal.info/upload/images/afzzz_kzzz1_Fotor.jpg",
+                 url:
+                   "https://zurnal.info/novost/23206/profesor-odbrane-je-komunalni-inspektor-bravar-brine-o-kriptozastiti"
+               }
+             ] = Enum.to_list(articles)
     end
   end
 

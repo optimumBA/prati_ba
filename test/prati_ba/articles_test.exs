@@ -6,7 +6,13 @@ defmodule PratiBa.ArticlesTest do
   describe "articles" do
     alias PratiBa.Articles.{Article, Source}
 
-    @valid_attrs %{image: nil, original_id: "1234", published_at: ~N[2020-03-11 07:50:00], title: "Article Title", url: "https://sourcedomain.com/valid"}
+    @valid_attrs %{
+      image: nil,
+      original_id: "1234",
+      published_at: ~N[2020-03-11 07:50:00],
+      title: "Article Title",
+      url: "https://sourcedomain.com/valid"
+    }
     @invalid_attrs %{image: nil, original_id: nil, published_at: nil, title: nil, url: nil}
 
     test "list_articles/0 returns newest articles" do
@@ -35,6 +41,7 @@ defmodule PratiBa.ArticlesTest do
       insert(:article, original_id: "84256")
 
       source = insert(:source)
+
       attrs =
         %{original_id: "84256"}
         |> Enum.into(@valid_attrs)

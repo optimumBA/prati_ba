@@ -10,7 +10,7 @@ defmodule PratiBa.Factory do
       published_at: ~N[2020-03-11 07:44:00],
       source: build(:source),
       title: sequence(:title, &"Article #{&1}"),
-      url: sequence(:url, &"https://sourceurl.com/articles/#{&1}"),
+      url: sequence(:url, &"https://sourceurl.com/articles/#{&1}")
     }
   end
 

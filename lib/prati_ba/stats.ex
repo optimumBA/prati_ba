@@ -35,14 +35,16 @@ defmodule PratiBa.Stats do
   end
 
   def track_request(request_id, visitor_id, conn) do
-    visitor = case Repo.get(Visitor, visitor_id) do
-      nil ->
-        %Visitor{}
-        |> Visitor.changeset(%{id: visitor_id})
-        |> Repo.insert!()
-      visitor ->
-        visitor
-    end
+    visitor =
+      case Repo.get(Visitor, visitor_id) do
+        nil ->
+          %Visitor{}
+          |> Visitor.changeset(%{id: visitor_id})
+          |> Repo.insert!()
+
+        visitor ->
+          visitor
+      end
 
     attrs = parse_request_data(request_id, conn)
 
@@ -72,10 +74,10 @@ defmodule PratiBa.Stats do
       path: conn.request_path,
       raw: %{
         remote_ip: remote_ip,
-        req_headers: headers,
+        req_headers: headers
       },
       referer: headers["referer"],
-      user_agent: user_agent,
+      user_agent: user_agent
     }
   end
 
@@ -87,6 +89,7 @@ defmodule PratiBa.Stats do
 
   defp parse_geo_data(nil), do: {nil, nil}
   defp parse_geo_data(map) when map_size(map) == 0, do: {nil, nil}
+
   defp parse_geo_data(%{asn: asn, city: city}) do
     isp = parse_asn(asn)
     geo = parse_city(city)
@@ -98,11 +101,12 @@ defmodule PratiBa.Stats do
   defp parse_asn(%{autonomous_system_organization: isp}), do: isp
 
   defp parse_city(nil), do: nil
+
   defp parse_city(%{continent: continent, country: country, city: city}) do
     %{
       continent: get_name(continent),
       country: get_name(country),
-      city: get_name(city),
+      city: get_name(city)
     }
   end
 
