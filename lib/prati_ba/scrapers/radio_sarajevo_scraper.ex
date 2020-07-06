@@ -22,6 +22,8 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
     end
   end
 
+  def article_details(article), do: {:ok, article}
+
   defp parse_article(article) do
     %FeederEx.Entry{
       author: author,

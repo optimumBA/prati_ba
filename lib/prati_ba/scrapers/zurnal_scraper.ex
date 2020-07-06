@@ -19,6 +19,8 @@ defmodule PratiBa.Scrapers.ZurnalScraper do
     end
   end
 
+  def article_details(article), do: {:ok, article}
+
   defp parse_article(article) do
     %{
       "description" => description,

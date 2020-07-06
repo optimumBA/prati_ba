@@ -9,6 +9,7 @@ defmodule PratiBa.Scrapers do
     DnevniAvazScraper,
     KlixScraper,
     OslobodjenjeScraper,
+    PrvaSmjenaScraper,
     RadioSarajevoScraper,
     RaportScraper,
     ZurnalScraper,
@@ -18,6 +19,7 @@ defmodule PratiBa.Scrapers do
     "Dnevni avaz" => DnevniAvazScraper,
     "Klix.ba" => KlixScraper,
     "Oslobođenje" => OslobodjenjeScraper,
+    "Prva smjena" => PrvaSmjenaScraper,
     "radiosarajevo.ba" => RadioSarajevoScraper,
     "Raport.ba" => RaportScraper,
     "Žurnal" => ZurnalScraper,
@@ -44,11 +46,19 @@ defmodule PratiBa.Scrapers do
         {:ok, articles} ->
           articles
           |> Stream.reject(&Articles.exists?(source.id, &1))
-          |> Stream.map(&Map.take(&1, @article_keys))
+          |> Enum.map(&Task.async(fn -> scraper.article_details(&1) end))
+          |> Enum.map(&Task.await(&1, 5000))
+          |> Stream.filter(&successful?/1)
+          |> Stream.map(&transform_article/1)
           |> Enum.each(&Articles.create_article(source, &1))
         {:error, _} ->
           nil
       end
     end)
   end
+
+  defp successful?({:ok, _}), do: true
+  defp successful?({:error, _}), do: false
+
+  defp transform_article({:ok, article}), do: Map.take(article, @article_keys)
 end

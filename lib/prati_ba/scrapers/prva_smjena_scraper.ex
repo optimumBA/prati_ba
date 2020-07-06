@@ -1,14 +1,17 @@
-defmodule PratiBa.Scrapers.KlixScraper do
+defmodule PratiBa.Scrapers.PrvaSmjenaScraper do
   @behaviour PratiBa.Scrapers.Scraper
 
-  @rss_url "https://www.klix.ba/rss/svevijesti"
+  @rss_url "http://prvasmjena.com/feed/"
 
   def articles(url \\ @rss_url) do
     response = Mojito.request(method: :get, url: url)
 
     case response do
       {:ok, %{status_code: 200, body: body}} ->
-        {:ok, rss} = FastRSS.parse(body)
+        {:ok, rss} =
+          body
+          |> HtmlEntities.decode()
+          |> FastRSS.parse()
 
         articles = rss["items"]
         |> Stream.map(&parse_article/1)
@@ -19,53 +22,47 @@ defmodule PratiBa.Scrapers.KlixScraper do
     end
   end
 
-  def article_details(article), do: {:ok, article}
+  def article_details(%{url: url} = article) do
+    response = Mojito.request(method: :get, url: url)
+
+    with {:ok, %{status_code: 200, body: body}} <- response,
+         {:ok, html} <- Floki.parse_document(body) do
+      image_url =
+        html
+        |> Floki.find(".entry-thumbnail img")
+        |> Floki.attribute("src")
+        |> Enum.at(0)
+        |> URI.encode()
+
+      {:ok, Map.put(article, :image, image_url)}
+    else
+      _ -> {:ok, Map.put(article, :image, nil)}
+    end
+  end
 
   defp parse_article(article) do
     %{
       "description" => description,
-      "dublin_core_ext" => %{
-        "creators" => [author],
-      },
-      "extensions" => image_properties,
       "link" => url,
+      "guid" => %{
+        "value" => "http://prvasmjena.com/?p=" <> original_id
+      },
       "pub_date" => date,
       "title" => title,
     } = article
-
-    original_id = url
-    |> String.split("/")
-    |> Enum.fetch!(-1)
 
     published_at = date
     |> Timex.parse!("{RFC1123}")
     |> DateTime.shift_zone!("Etc/UTC")
     |> DateTime.to_naive()
 
-    image = case image_properties do
-      %{
-        "media" => %{
-          "content" => [
-            %{
-              "attrs" => %{
-                "url" => image_url,
-              },
-            },
-          ],
-        },
-      } ->
-        URI.encode(image_url)
-      _ ->
-        nil
-    end
-
     %{
       original_id: original_id,
       title: title,
       description: description,
       published_at: published_at,
-      author: author,
-      image: image,
+      author: nil,
+      image: nil,
       url: URI.encode(url),
     }
   end

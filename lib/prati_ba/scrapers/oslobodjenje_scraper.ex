@@ -20,6 +20,8 @@ defmodule PratiBa.Scrapers.OslobodjenjeScraper do
     end
   end
 
+  def article_details(article), do: {:ok, article}
+
   defp should_scrape(%{"categories" => [%{"name" => "Izjava dana"}]}), do: false
   defp should_scrape(%{"categories" => [%{"name" => "Smrtovnice"}]}), do: false
   defp should_scrape(_), do: true
