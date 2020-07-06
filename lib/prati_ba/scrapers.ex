@@ -23,7 +23,7 @@ defmodule PratiBa.Scrapers do
     "N1" => N1Scraper,
     "Oslobođenje" => OslobodjenjeScraper,
     "Prva smjena" => PrvaSmjenaScraper,
-    "radiosarajevo.ba" => RadioSarajevoScraper,
+    "Radio Sarajevo" => RadioSarajevoScraper,
     "Raport.ba" => RaportScraper,
     "Žurnal" => ZurnalScraper
   }
