@@ -31,7 +31,7 @@ defmodule PratiBa.Scrapers do
     Articles.list_sources()
     |> Stream.map(&get_scraper(&1, scrapers))
     |> Enum.map(&scrape_articles/1)
-    |> Enum.each(&Task.await(&1, 15000))
+    |> Enum.each(&Task.await(&1, 30000))
   end
 
   defp get_scraper(source = %Source{name: source_name}, scrapers) do
@@ -47,7 +47,7 @@ defmodule PratiBa.Scrapers do
           articles
           |> Stream.reject(&Articles.exists?(source.id, &1))
           |> Enum.map(&Task.async(fn -> scraper.article_details(&1) end))
-          |> Enum.map(&Task.await(&1, 5000))
+          |> Enum.map(&Task.await(&1, 10000))
           |> Stream.filter(&successful?/1)
           |> Stream.map(&transform_article/1)
           |> Enum.each(&Articles.create_article(source, &1))
