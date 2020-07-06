@@ -21,7 +21,7 @@ sources = [
   %Source{name: "N1", url: "https://ba.n1info.com"},
   %Source{name: "Oslobođenje", url: "https://www.oslobodjenje.ba"},
   %Source{name: "Prva smjena", url: "http://prvasmjena.com"},
-  %Source{name: "radiosarajevo.ba", url: "https://radiosarajevo.ba"},
+  %Source{name: "Radio Sarajevo", url: "https://radiosarajevo.ba"},
   %Source{name: "Raport.ba", url: "https://raport.ba"},
   %Source{name: "Žurnal", url: "https://zurnal.info"},
 ]

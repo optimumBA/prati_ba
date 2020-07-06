@@ -60,4 +60,13 @@ defmodule PratiBa.ScrapersTest do
 
     assert [] = Articles.list_articles()
   end
+
+  test "fetch_new_articles/0 doesn't crash when the scraper module is not defined" do
+    source_name = "Fake source"
+    insert(:source, name: source_name)
+
+    Scrapers.fetch_new_articles(%{})
+
+    assert [] = Articles.list_articles()
+  end
 end

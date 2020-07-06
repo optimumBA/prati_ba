@@ -32,14 +32,16 @@ defmodule PratiBa.Scrapers do
   def fetch_new_articles(scrapers \\ @scrapers) do
     Articles.list_sources()
     |> Stream.map(&get_scraper(&1, scrapers))
+    |> Stream.reject(&is_nil/1)
     |> Enum.map(&scrape_articles/1)
     |> Enum.each(&Task.await(&1, 30000))
   end
 
   defp get_scraper(source = %Source{name: source_name}, scrapers) do
-    %{^source_name => scraper} = scrapers
-
-    {source, scraper}
+    case Map.get(scrapers, source_name) do
+      nil -> nil
+      scraper -> {source, scraper}
+    end
   end
 
   defp scrape_articles({source, scraper}) do
