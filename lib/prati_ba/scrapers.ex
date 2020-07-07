@@ -8,6 +8,7 @@ defmodule PratiBa.Scrapers do
 
   alias PratiBa.Scrapers.{
     DnevniAvazScraper,
+    FaceScraper,
     KlixScraper,
     N1Scraper,
     OslobodjenjeScraper,
@@ -19,6 +20,7 @@ defmodule PratiBa.Scrapers do
 
   @scrapers %{
     "Dnevni avaz" => DnevniAvazScraper,
+    "face.ba" => FaceScraper,
     "Klix.ba" => KlixScraper,
     "N1" => N1Scraper,
     "Oslobođenje" => OslobodjenjeScraper,

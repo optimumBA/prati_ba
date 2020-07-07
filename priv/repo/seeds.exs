@@ -17,6 +17,7 @@ import Ecto.Query, only: [from: 2]
 
 sources = [
   %Source{name: "Dnevni avaz", url: "https://avaz.ba"},
+  %Source{name: "face.ba", url: "https://www.face.ba"},
   %Source{name: "Klix.ba", url: "https://www.klix.ba"},
   %Source{name: "N1", url: "https://ba.n1info.com"},
   %Source{name: "Oslobođenje", url: "https://www.oslobodjenje.ba"},
