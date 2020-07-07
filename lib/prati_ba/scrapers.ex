@@ -15,6 +15,7 @@ defmodule PratiBa.Scrapers do
     PrvaSmjenaScraper,
     RadioSarajevoScraper,
     RaportScraper,
+    TheBosniaTimesScraper,
     ZurnalScraper
   }
 
@@ -27,6 +28,7 @@ defmodule PratiBa.Scrapers do
     "Prva smjena" => PrvaSmjenaScraper,
     "Radio Sarajevo" => RadioSarajevoScraper,
     "Raport.ba" => RaportScraper,
+    "The Bosnia Times" => TheBosniaTimesScraper,
     "Žurnal" => ZurnalScraper
   }
 
