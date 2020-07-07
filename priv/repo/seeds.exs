@@ -24,6 +24,7 @@ sources = [
   %Source{name: "Prva smjena", url: "http://prvasmjena.com"},
   %Source{name: "Radio Sarajevo", url: "https://radiosarajevo.ba"},
   %Source{name: "Raport.ba", url: "https://raport.ba"},
+  %Source{name: "Slobodna Bosna", url: "https://www.slobodna-bosna.ba"},
   %Source{name: "The Bosnia Times", url: "https://thebosniatimes.ba"},
   %Source{name: "Žurnal", url: "https://zurnal.info"}
 ]
