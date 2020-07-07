@@ -51,7 +51,7 @@ defmodule PratiBa.Scrapers.ZurnalScraper do
       description: description,
       published_at: published_at,
       author: nil,
-      image: image_url,
+      image: URI.encode(image_url),
       url: URI.encode(url)
     }
   end

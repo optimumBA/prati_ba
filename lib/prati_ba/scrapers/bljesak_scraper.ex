@@ -57,8 +57,8 @@ defmodule PratiBa.Scrapers.BljesakScraper do
       article = Map.put(article, :published_at, published_at)
 
       article =
-        case Floki.find(article_container, ".box a[data-image-id=\"1\"] img") do
-          [image] ->
+        case Floki.find(article_container, ".box a img") do
+          [image | _] ->
             image_url =
               image
               |> Floki.attribute("src")
@@ -103,6 +103,7 @@ defmodule PratiBa.Scrapers.BljesakScraper do
       |> Floki.find(".image img")
       |> Floki.attribute("src")
       |> Enum.at(0)
+      |> URI.encode()
 
     %{
       original_id: original_id,
