@@ -21,6 +21,15 @@ defmodule PratiBa.Scrapers.OslobodjenjeScraperTest do
 
       assert [
                %{
+                 original_id: "569244",
+                 title: "Na današnji dan - 8. juli",
+                 description: nil,
+                 published_at: ~N[2020-07-08 11:00:00],
+                 author: nil,
+                 image: "https://cdn.oslobodjenje.ba/images/slike/api/2020/07/01/3754521.jpg",
+                 url: "https://www.oslobodjenje.ba/naslovnica/na-danasnji-dan-8-juli-569244"
+               },
+               %{
                  original_id: "570770",
                  title:
                    "Rasizam u Rusiji: Priče o predrasudama u zemlji gde protesti Crni životi nemaju uticaj",

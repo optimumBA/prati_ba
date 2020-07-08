@@ -41,7 +41,7 @@ defmodule PratiBa.Scrapers.OslobodjenjeScraper do
     original_id =
       url
       |> String.split("/")
-      |> Enum.fetch!(5)
+      |> Enum.fetch!(-1)
       |> String.split("-")
       |> Enum.fetch!(-1)
 
