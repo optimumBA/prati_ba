@@ -10,10 +10,7 @@ defmodule PratiBa.Scrapers.SlobodnaBosnaScraper do
 
     case response do
       {:ok, %{status_code: 200, body: body}} ->
-        {:ok, rss} =
-          body
-          |> HtmlEntities.decode()
-          |> FastRSS.parse()
+        {:ok, rss} = FastRSS.parse(body)
 
         articles =
           rss["items"]
