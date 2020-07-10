@@ -85,7 +85,7 @@ defmodule PratiBa.Scrapers.SourceScraper do
             Map.put(article, :author, author)
 
           _ ->
-            nil
+            article
         end
 
       article =
