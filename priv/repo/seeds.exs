@@ -21,6 +21,7 @@ sources = [
   %Source{name: "Dnevni avaz", url: "https://avaz.ba"},
   %Source{name: "DW", url: "https://www.dw.com/bs/teme/s-10037"},
   %Source{name: "face.ba", url: "https://www.face.ba"},
+  %Source{name: "Fokus.ba", url: "https://www.fokus.ba"},
   %Source{name: "Klix.ba", url: "https://www.klix.ba"},
   %Source{name: "N1", url: "https://ba.n1info.com"},
   %Source{name: "Nezavisne novine", url: "https://www.nezavisne.com"},
