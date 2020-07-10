@@ -1,0 +1,844 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="header"><title>
+	source.ba | video portal
+</title><link rel="shortcut icon" href="/img_project/favicon.ico" /><meta charset="utf-8" /><meta name="robots" content="all" />
+
+    <script src="/js/jquery-1.9.1.min.js"></script>
+
+    <script type="text/javascript">
+
+
+        if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
+        {
+            var redirekcija = "";
+            var pathArray = window.location.pathname.split('/');
+
+            redirekcija = pathArray[0] + "/mobile";
+
+            for (i = 1; i < pathArray.length; i++)
+            {
+                if (i <= 3)
+                {
+                    redirekcija += "/";
+                    redirekcija += pathArray[i];
+                }
+            }
+            window.location.href = redirekcija;
+        }
+
+    </script>
+    
+      
+
+    
+    
+    <meta http-equiv="refresh" content="300" />
+
+     
+    
+
+    
+    <!--CSS-->
+    <link href="/css/master_style.css" rel="stylesheet" /><link href="/css/tabs.css" rel="stylesheet" /><link href="/css/controls.css" rel="stylesheet" /><link href="css/telerikCustom.css" rel="stylesheet" />
+
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    
+<meta name="keywords" content="source.ba, source, video, internet, bih, portal, bosna, hercegovina, vijesti, zadnje, sarajevo " /><meta name="description" content="source.ba je najčitaniji video portal u Bosni i Hercegovini. Vijesti iz Sarajeva, BiH i svijeta" /></head>
+<body>
+    
+    <script>
+        window.fbAsyncInit = function () {
+            FB.init({
+                appId: '699415650174236',// original source code'211606990498',
+                status: true,
+                cookie: true,
+                xfbml: true,
+                version: 'v2.2'
+            });
+        };
+
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) { return; }
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/hr_HR/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+
+
+        
+        function showSourcePlus(fromFixed)
+        {
+                $("html, body").animate({ scrollTop: 0 }, "slow");
+                          
+                $('#sourcePlus').toggle();
+            
+        }
+
+                
+        function postKlikBanner(bannerFK)
+        {
+            $.post("/xmlHttpRequest/klikBanner.aspx",
+                {
+                    bannerFK: bannerFK
+                });
+        }
+
+                
+</script>
+
+    <!--JS-->
+    <script src="/js/sourceJS.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    
+
+
+    <form method="post" action="./" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="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" />
+</div>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="CA0B0334" />
+</div>
+        
+        
+        <!--top header -->
+        <div id="headerTop" class="headerTop">
+            
+            <div class="headerTopContent">
+              
+                <div class="menuItemLeft" onmousedown="window.location.href='/';">
+                    <img src="/img_project/source-logo.png" />
+                </div>
+               <div class="menuItemSearch">
+                   <input type="text" id="txtPretraga" class="searchBox" value="pretraži..." />
+               </div>
+                
+                <div id="source" class="menuItemRight source" style="border-right:none;" onmousedown="showSourcePlus(false); ">Source+</div>
+                <div id="zanimljivo" class="menuItemRight zanimljivo" onmousedown="window.location.href='/kanal/zanimljivo';">Zanimljivo</div>
+                <div id="sourceprice" class="menuItemRight sourcePrice" onmousedown="window.location.href='/kanal/sourcePrice';">Source priče</div>
+                <div id="lifestyle" class="menuItemRight Lifestyle" onmousedown="window.location.href='/kanal/lifestyle';">Lifestyle</div>
+                <div id="technomania" class="menuItemRight technomania" onmousedown="window.location.href='/kanal/technomania';">Technomania</div>
+                <div id="showmagazine" class="menuItemRight showmagazine" onmousedown="window.location.href='/kanal/showmagazine';">Showmagazine</div>
+                <div id="ekonomija" class="menuItemRight ekonomija" onmousedown="window.location.href='/kanal/ekonomija';">Ekonomija</div>
+                <div id="sport" class="menuItemRight sport" onmousedown="window.location.href='/kanal/sport';">Sport</div>
+                <div id="vijesti" class="menuItemRight vijesti" onmousedown="window.location.href='/kanal/vijesti';">Vijesti</div>
+                
+            </div>     
+            
+            
+            <div id="submenu" class="submenu">
+                
+            </div>                   
+        </div>
+
+      
+        
+    <div class="siteContainer">   
+        
+        
+          
+        <div id="odvojiVRH" style="width:100%; height:50px;"></div>
+        
+        <div id="sourcePlus" style="width:900px; height:auto; background-color:white; display:none; color:#666; line-height:20px; font-size:14px; font-family:Arial, Verdana;">
+                <table style="border:none; width:100%; height:auto; margin-left:50px; margin-right:50px; margin-top:10px; margin-bottom:10px;">
+                    <tr style="margin-bottom:10px;">
+                        <td><a href="/kanal/BiH">BiH</a></td>
+                        <td><a href="/kanal/Svijet">Svijet</a></td>
+                        <td><a href="/kanal/Region">Region</a></td>
+                        <td><a href="/kanal/Crnahronika">Crna hronika</a></td>
+                        <td><a href="/kanal/Cooltura">Cooltura</a></td>
+                        <td><a href="/kanal/Infoteka">Infoteka</a></td>
+                        <td><a href="/kanal/Fudbal">Fudbal</a></td>
+                        <td><a href="/kanal/Kosarka">Košarka</a></td>
+                        <td><a href="/kanal/Tenis">Tenis</a></td>
+                        <td><a href="/kanal/Ostalisportovi">Ostali sportovi</a></td>
+                        <td><a href="/kanal/Muzika">Muzika</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="/kanal/Filmofil">Filmofil</a></td>
+                        <td><a href="/kanal/TV">TV</a></td>
+                        <td><a href="/kanal/On">On</a></td>
+                        <td><a href="/kanal/Ona">Ona</a></td>
+                        <td><a href="/kanal/Celebzone">Celebzone</a></td>
+                        <td><a href="/kanal/Trash">Trash</a></td>
+                        <td><a href="/kanal/Mobiteli">Mobiteli</a></td>
+                        <td><a href="/kanal/Auta">Auta</a></td>
+                        <td><a href="/kanal/Igrice">Igrice</a></td>
+                        <td><a href="/kanal/Gadgeti">Gadgeti</a></td>
+                        <td><a href="/kanal/Informatika">Informatika</a></td>
+                    </tr>
+                    <tr>
+                        <td><a href="/kanal/Web">Web</a></td>
+                        <td><a href="/kanal/Noviteti">Noviteti</a></td>
+                        <td><a href="/kanal/Nauka">Nauka</a></td>
+                        <td><a href="/kanal/Moda">Moda</a></td>
+                        <td><a href="/kanal/Ljepota">Ljepota</a></td>
+                        <td><a href="/kanal/Zdravlje">Zdravlje</a></td>
+                        <td><a href="/kanal/Veze-seks">Veze-seks</a></td>
+                        <td><a href="/kanal/Gastro">Gastro</a></td>
+                        <td><a href="/kanal/Domioffice">Dom i office</a></td>
+                        <td><a href="/kanal/Putovanja">Putovanja</a></td>
+                        <td><a href="/kanal/Djeca">Djeca</a></td>
+                    </tr>
+                </table>
+        </div>
+
+
+      
+
+        
+
+    
+   
+
+
+    
+    <div id="reklamaHor1">
+        <script type="text/javascript">
+
+            //postavi skin banner       
+            $.get("/xmlHttpRequest/dajBanner.aspx?chanFK=1EFB23E8-D6F3-41DA-9F44-AB1DDAF60205&pozicija=skin", function (data, status) {
+                if (data != '') {
+                    document.body.setAttribute("style", data);
+                }
+            });
+
+            $('#reklamaHor1').load('/xmlHttpRequest/dajBanner.aspx?chanFK=1EFB23E8-D6F3-41DA-9F44-AB1DDAF60205&pozicija=hor1');
+        </script>
+    </div>
+
+                
+        <!--LIJEVO-->
+        <div class="lijevoContent">
+            
+
+    
+
+
+
+
+<div class="okvirRotator">
+
+    <span id="lijevoContent_source_rotator_naslovRotatora" style="font-family: &#39;customNaslov&#39;,Arial;font-size: 20px; text-transform:uppercase;"></span>
+
+    <a href="/clanak/BiH/526956/Vojnici-odbili-Vulinov-zahtjev-da-izadju-na-ulice" id="lijevoContent_source_rotator_rotatorUdarnaLink">
+    <div id="lijevoContent_source_rotator_rotatorUdarna" class="rotator" style="background-image:url(/local_files/pocetneSlike/f66ef3d87b1644978649601f41a1ac8b.jpg);">   
+         <div id="lijevoContent_source_rotator_kom"></div>
+        <div id="lijevoContent_source_rotator_rotatorUdarnaNaslov" class="rotatorTextHover">Vojnici odbili Vulinov zahtjev da izađu na ulice</div>    
+    </div>
+    </a>
+    <div id="lijevoContent_source_rotator_rotatorUdarnaSubNaslov" class="rotatorTextSub">Dejan Pavlović, predsjednik sindikata Sloga zaposlenih u Ministarstvu odbrane i Vojsci Srbije, potvrdio je za Nova.rs da je prema nezvaničnim podacima 63. padobranska brigada Vojske Srbije sinoć odbila da bude angažirana na suzbijanju demonstracija.</div>
+
+
+    <a href="/clanak/Region/526963/Beogradski-protesti--I-veceras-napadnut-novinar" id="lijevoContent_source_rotator_rotatorPrvaLink">
+    <div class="rotatorOstale prvaOstala">
+        <div id="lijevoContent_source_rotator_rotatorPrvaSlika" class="rotatorOstaleSlika" style="background-image:url(/local_files/crop/crop2a68b754a82f45bda8b7430e6ae3f461.jpg);"></div>
+        <div id="lijevoContent_source_rotator_rotatorPrvaNaslov">Beogradski protesti: I večeras napadnut novinar</div>
+    </div>
+    </a>
+
+    <a href="/clanak/Region/526944/Otkriveno-da-li-je-preminuo-mladic-koji-je-sinoc-pretucen-na-Terazijama-u-Beogradu" id="lijevoContent_source_rotator_rotatorDrugaLink">
+    <div class="rotatorOstale">
+        <div id="lijevoContent_source_rotator_rotatorDrugaSlika" class="rotatorOstaleSlika" style="background-image:url(/local_files/crop/crop3717539d7f5a4b9893026514af699365.jpg);"></div>
+        <div id="lijevoContent_source_rotator_rotatorDrugaNaslov">Otkriveno da li je preminuo mladić koji je sinoć pretučen na Terazijama u Beogradu</div>
+    </div>
+    </a>
+
+    <a href="/clanak/Region/526961/Mladic-koji-je-obiljezio-proteste--Tu-sam-sa-majkom-nismo-huligani" id="lijevoContent_source_rotator_rotatorTrecaLink">
+    <div class="rotatorOstale">
+        <div id="lijevoContent_source_rotator_rotatorTrecaSlika" class="rotatorOstaleSlika" style="background-image:url(/local_files/crop/crop213a0afa6b914bf592acfb223a1c7098.jpg);"></div>
+        <div id="lijevoContent_source_rotator_rotatorTrecaNaslov">Mladić koji je obilježio proteste: Tu sam sa majkom, nismo huligani</div>
+    </div>
+    </a>
+
+    <a href="/clanak/Region/526960/Treci-dan-protesta-u-Beogradu--Izbila-zestoka-tuca-medju-demonstrantima" id="lijevoContent_source_rotator_rotatorCetvrtaLink">
+    <div class="rotatorOstale">
+        <div id="lijevoContent_source_rotator_rotatorCetvrtaSlika" class="rotatorOstaleSlika" style="background-image:url(/local_files/crop/crop170568eff59c4ac0af50288294bdbe92.jpg);"></div>
+        <div id="lijevoContent_source_rotator_rotatorCetvrtaNaslov">Treći dan protesta u Beogradu: Izbila žestoka tuča među demonstrantima</div>
+    </div>
+    </a>
+        
+    
+</div>
+
+<div class="clearDiv" style="max-width:684px;"></div>
+
+
+
+    
+    <div id="reklamaHor2">
+        <script type="text/javascript">
+            $('#reklamaHor2').load('/xmlHttpRequest/dajBanner.aspx?chanFK=1EFB23E8-D6F3-41DA-9F44-AB1DDAF60205&pozicija=hor2');
+        </script>
+    </div>
+    
+
+
+<div class="nazivKontrole_kl">
+        <span><a class="linkKanala" href="/kanal/vijesti">VIJESTI</a></span>
+    </div>
+
+<div class="okvirJedanPlusDva vijesti">
+
+    
+    
+    <!--Velika vijest-->
+    <a href="/clanak/Region/526959/Brutalno-pretuceni-novinar-Bete--Petnaest-do-20-sekundi-sam-bio-udaran-dok-sam-lezao-na-zemlji" id="lijevoContent_kontrolaJedanPlusDva_jedanPlusDva_linkVijestVelika">
+    <div class="JedanPlusDvaOVijestVelika">
+        <div id="lijevoContent_kontrolaJedanPlusDva_jedanPlusDva_SlikaVelika" class="JedanPlusDvaOVijestVelikaSlika" style="background-image:url(/local_files/crop/cropfb554f70cac8416ca89bc74c524312f4.jpg);"></div>
+        <div id="lijevoContent_kontrolaJedanPlusDva_jedanPlusDva_naslovVeliki" class="JedanPlusDvaOVijestVelikaNaslov">Brutalno pretučeni novinar Bete: Petnaest do 20 sekundi sam bio udaran dok sam ležao na zemlji</div>
+        <div id="lijevoContent_kontrolaJedanPlusDva_jedanPlusDva_uvodVeliki" class="JedanPlusDvaOVijestVelikaUvod">Novinar Bete Žikica Stevanović, koji je napadnut na jučerašnjem protestu, iako je, kaže, pripadnicima Žandarmerije pokazao press karticu, rekao je u emisiji Dan uživo da mu je otvorena glava na dva mjesta, kao i da je dobio više udaraca po nogama, leđima i rukama.</div>
+    </div>
+    </a>
+
+    <!--Mala vijest prvi dio-->
+    <div id="lijevoContent_kontrolaJedanPlusDva_jedanPlusDva_malePrviDio" class="JedanPlusDvaOVijestMala"><a href="/clanak/Region/526958/Potparol-Lige-socijaldemokrata-Vojvodine--Bilo-bi-dobro-da-se-svi-u-Srbiji-bar-na-pet-minuta-u-subotu-sjete-genocida-u-Srebrenici"><div class="jedanPlusDvaVijestMala_Vijest"><div class="jedanPlusDvaVijestMala_Vijest_slika" style="background-image:url(/local_files/crop/croped4965ccc11f4464b8d46395d3d6777e.jpg);"></div><div class="jedanPlusDvaVijestMala_VijestText">Potparol Lige socijaldemokrata Vojvodine: Bilo bi dobro da se svi u Srbiji bar na pet minuta u subotu sjete genocida u Srebrenici</div></div></a><a href="/clanak/BiH/526955/Vlada-KS--Tim-ljekara-ide-u-Sandzak"><div class="jedanPlusDvaVijestMala_Vijest"><div class="jedanPlusDvaVijestMala_VijestText">Vlada KS: Tim ljekara ide u Sandžak</div></div></a><a href="/clanak/Region/526953/Vucic-demonstrantima-u-Beogradu--Mozete-samo-da-me-ubijete"><div class="jedanPlusDvaVijestMala_Vijest"><div class="jedanPlusDvaVijestMala_VijestText">Vučić demonstrantima u Beogradu: Možete samo da me ubijete</div></div></a><a href="/clanak/Region/526950/Uzivo--%C5%A0irom-Srbije-poceli-novi-protesti-za-sada-je-mirno"><div class="jedanPlusDvaVijestMala_Vijest"><div class="jedanPlusDvaVijestMala_VijestText">Uživo: Širom Srbije počeli novi protesti, za sada je mirno</div></div></a></div>
+
+
+    <!--Mala vijest drugi dio-->
+    <div id="lijevoContent_kontrolaJedanPlusDva_jedanPlusDva_maleDrugiDio" class="JedanPlusDvaOVijestMala_desna"><a href="/clanak/BiH/526957/Sarajevska-filharmonija-nastupa-za-sve-zrtve-ali-i-Fatimu-najmladju-zrtvu-genocida-u-Srebrenici--U-sekundi-sve-je-stalo-majcin-uzdah-bebe-plac"><div class="jedanPlusDvaVijestMala_Vijest"><div class="jedanPlusDvaVijestMala_Vijest_slika" style="background-image:url(/local_files/crop/crop84bd623dcb8342e0b949fe22d41fd685.jpg);"></div><div class="jedanPlusDvaVijestMala_VijestText">Sarajevska filharmonija nastupa za sve žrtve, ali i Fatimu, najmlađu žrtvu genocida u Srebrenici: U sekundi sve je stalo, majčin uzdah, bebe plač</div></div></a><a href="/clanak/Region/526954/Kosor--Vucic-s-pusketinom-iznad-Sarajeva-forever"><div class="jedanPlusDvaVijestMala_Vijest"><div class="jedanPlusDvaVijestMala_VijestText">Kosor: Vučić s pušketinom iznad Sarajeva, forever</div></div></a><a href="/clanak/BiH/526952/Komsic--Zaborav-prvi-preduslov-za-vracanje-zla-a-sjecanje-na-zlo-prvi-preduslov-da-se-ne-ponovi"><div class="jedanPlusDvaVijestMala_Vijest"><div class="jedanPlusDvaVijestMala_VijestText">Komšić: Zaborav prvi preduslov za vraćanje zla, a sjećanje na zlo, prvi preduslov da se ne ponovi</div></div></a><a href="/clanak/BiH/526949/Potocari--Porodice-docekale-tabute-s-posmrtnim-ostacima-devet-zrtava-genocida"><div class="jedanPlusDvaVijestMala_Vijest"><div class="jedanPlusDvaVijestMala_VijestText">Potočari: Porodice dočekale tabute s posmrtnim ostacima devet žrtava genocida</div></div></a></div>
+
+    <div style="clear:both;"></div>
+</div>
+
+<div class="clearDiv" style="max-width:684px;"></div>
+
+
+    
+    <div id="reklamaHor3">
+        <script type="text/javascript">
+            $('#reklamaHor3').load('/xmlHttpRequest/dajBanner.aspx?chanFK=1EFB23E8-D6F3-41DA-9F44-AB1DDAF60205&pozicija=hor3');
+        </script>
+    </div>
+    
+
+<div class="kontrolaDvijeKategorijeOkvir">
+
+    <!--jedna kategorija-->
+   <div id="lijevoContent_kontrolaDvijeKategorije_okvirLijevo" class="kontrolaDvijeKategorije_jednaKategorijaOkvir showmagazine">
+       <span id="lijevoContent_kontrolaDvijeKategorije_naslovKategorijeLijevo"><a class="linkKanala" href="/kanal/showmagazine">SHOWMAGAZINE</a></span>
+       
+       <a href="/clanak/Celebzone/526935/Nestala-poznata-glumica--Utopila-se-pred-ocima-cetverogodisnjeg-sina" id="lijevoContent_kontrolaDvijeKategorije_linkVelikaKategorijaLijevo">
+        <div class="kontrolaDvijeKategorije_jednaKategorija_velikaVijest">
+           <div id="lijevoContent_kontrolaDvijeKategorije_velikaSlikaLijevo" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestSlika" style="background-image:url(/local_files/crop/cropca1f1b69527a4a099f9d07d439854480.jpg);"></div>           
+           <div id="lijevoContent_kontrolaDvijeKategorije_velikaKategorijaLijevoUdarniNaslov" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestNaslov">Nestala poznata glumica: Utopila se pred očima četverogodišnjeg sina?</div>
+           <div id="lijevoContent_kontrolaDvijeKategorije_velikaKategorijaLijevoUdarniUvod" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestUvod">Policija, hitna pomoć i druge službe u srijedu su u večernjim satima započele potragu za američkom glumicom Nayjom Riverom (33) nakon što je njezin četverogodišnji sin pronađen sam na iznajmljenom brodu na jezeru Piru u Kaliforniji, javlja CBS.</div>
+        </div>
+       </a>
+
+       <div id="lijevoContent_kontrolaDvijeKategorije_lijevoOstale"><a href="/clanak/Trash/526905/Romana-ce-deset-mjeseci-biti-smjestena-u-centru-s-migrantima"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Romana će deset mjeseci biti smještena u centru s migrantima</div></a><a href="/clanak/Trash/526894/Severina--Ove-godine-nema-egzoticnih-destinacija"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Severina: Ove godine nema egzotičnih destinacija</div></a><a href="/clanak/Trash/526889/Za-rodjendan-Maji-Berovic-fanovi-pozeljeli-bebu"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Za rođendan Maji Berović fanovi poželjeli bebu</div></a><a href="/clanak/TV/526817/Dok-su-hiljade-gradjana-Srbije-bili-na-ulicama-Beograda-RTS-emitovao-akcioni-film-u-kojem-glumi-Jackie-Chan"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Dok su hiljade građana Srbije bili na ulicama Beograda, RTS emitovao akcioni film u kojem glumi Jackie Chan</div></a></div>
+   </div>
+
+
+    <!--druga kategorija-->
+   <div id="lijevoContent_kontrolaDvijeKategorije_okvirDesno" class="kontrolaDvijeKategorije_jednaKategorijaOkvir sport">
+       <span id="lijevoContent_kontrolaDvijeKategorije_naslovKategorijeDesno"><a class="linkKanala" href="/kanal/sport">SPORT</a></span>
+
+       <a href="/clanak/Fudbal/526962/Crveni-djavoli-pregazili-Aston-Villu" id="lijevoContent_kontrolaDvijeKategorije_linkVelikaKategorijaDesno">
+        <div class="kontrolaDvijeKategorije_jednaKategorija_velikaVijest">
+           <div id="lijevoContent_kontrolaDvijeKategorije_velikaSlikaDesno" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestSlika" style="background-image:url(/local_files/crop/crop889e3bb5e5e24120ac274465737b61a6.jpg);"></div>
+           <div id="lijevoContent_kontrolaDvijeKategorije_velikaKategorijaDesnoUdarniNaslov" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestNaslov">Crveni đavoli "pregazili" Aston Villu</div>
+           <div id="lijevoContent_kontrolaDvijeKategorije_velikaKategorijaDesnoUdarniUvod" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestUvod">Fudbaleri Manchester Uniteda ubjedljivo su pobijedili Aston Villu 3:0 u 34. kolu Premijer lige.</div>
+        </div>
+       </a>
+
+       <div id="lijevoContent_kontrolaDvijeKategorije_desnoOstale"><a href="/clanak/Fudbal/526951/UEFA-odlucila--Sve-utakmice-bez-gledatelja-na-tribinama"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">UEFA odlučila: Sve utakmice bez gledatelja na tribinama</div></a><a href="/clanak/Ostalisportovi/526849/Danil-Kvyat-objasnio-zasto-nije-kleknuo--U-mojoj-domovini-se-kleci-samo-pred-Bogom-i-zastavom"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Danil Kvyat objasnio zašto nije kleknuo: U mojoj domovini se kleči samo pred Bogom i zastavom!</div></a><a href="/clanak/Fudbal/526835/Ronaldo-dobacivao-Ibrahimovicu-dok-je-izvodio-penal--Ibra-mu-odgovorio-pogotkom-i-osmijehom"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Ronaldo dobacivao Ibrahimoviću dok je izvodio penal: Ibra mu odgovorio pogotkom i osmijehom</div></a><a href="/clanak/Tenis/526829/Ostaje-zal-sto-mec-protiv-%C4%90okovica-u-Sarajevu-nije-odrzan"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">"Ostaje žal što meč protiv Đokovića u Sarajevu nije održan"</div></a></div>
+   </div>
+
+    <div style="clear:both;"></div>
+    
+</div>
+
+<div id="lijevoContent_kontrolaDvijeKategorije_donjaLinija" class="clearDiv" style="max-width:684px;"></div>
+
+
+    
+    <div id="reklamaHor4">
+        <script type="text/javascript">
+            $('#reklamaHor4').load('/xmlHttpRequest/dajBanner.aspx?chanFK=1EFB23E8-D6F3-41DA-9F44-AB1DDAF60205&pozicija=hor4');
+        </script>
+    </div>
+    <div id="lijevoContent_sourcePriceKontrola_okvirVideoVijesti" class="okvirVideoVijesti"><div class="nazivKontrole_kl"><a class="linkKanala" href="/kanal/sourceprice">SOURCE PRIČE</a></div><div><div class="videoLijevo" id="videoLijevo"><a href="/clanak/Admir/526928/Ko-se-krije-iza-nereda-u-Beogradu-moze-li-se-nesto-slicno-desiti-u-BiH--Ovo-je-opasnost-za-sve"><div class="glavnaVijestSlika" style="background-image:url(/local_files/pocetneSlike/50ec7adcf5d646b3a1366cbd84d015e6.jpg)"></div><div class="glavnaVijestNaslov">Ko se krije iza nereda u Beogradu, može li se nešto slično desiti u BiH: Ovo je opasnost za sve!</div><div class="glavnaVijestUvod">Trinaest policajaca i sedam civila povrijeđeno je tokom protesta ispred Skupštine Srbije. Ekipe Hitne pomoći intervenisale su više od 20 puta tokom noći, prenose srbijanski mediji. Protekle dvije noći sve oči su bile uprte u Beograd i na dešavanja na ulicama glavnog grada Srbije. Za sad ostaje zagonetno kakvu poruku pretesti i demonstracije iz Beograda nose, te ko se krije iza svega?!</div></a></div><div class="videoDesno" id="videoDesno"><a href="/clanak/Haris/526923/Sourceba-na-licu-mjesta--Tuzna-povorka-prosla-kroz-Sarajevo-i-krenula-ka-Potocarima"><div class="malaVijestDesnoOkvir"><div class="malaSlikaDesno" style="background-image:url(/local_files/crop/cropfbac1f45c6014d3a9e53d18fd28ce5fd.jpg)"><div class="videoIkona_mala"></div></div><div class="maliTekstDesno">Source.ba na licu mjesta: Tužna povorka prošla kroz Sarajevo i krenula ka Potočarima</div></div></a><a href="/clanak/Haris/526919/Doktori-su-dobili-vise-od-800-maraka-na-platu-Mi-trazimo-127-KM-za-medicinsku-sestru-i-50-do-60-KM-za-radnicu-Nisu-to-neke-velike-pare"><div class="malaVijestDesnoOkvir"><div class="malaSlikaDesno" style="background-image:url(/local_files/crop/crop720f1d10b1d643e1aea1e3e706255607.jpg)"><div class="videoIkona_mala"></div><div class="komentariStr">3<div class="komentariStrelica"></div></div></div><div class="maliTekstDesno">"Doktori su dobili više od 800 maraka na platu. Mi tražimo 127 KM za medicinsku sestru i 50 do 60 KM za radnicu. Nisu to neke velike pare"</div></div></a><a href="/clanak/Haris/526914/Izetbegovica-su-provozali-i-Dodik-i-%C4%8Covic-i-dobili-su-sve-sto-hoce-Imaju-svoje-poslusnike-koji-kazu--Predsjednice-ovo-je-super-mi-dobro-stojimo-a-stanje-nikad-nije-bilo-gore"><div class="malaVijestDesnoOkvir"><div class="maliTekstDesnoSamoTekst">"Izetbegovića su provozali i Dodik i Čović i dobili su sve što hoće. Imaju svoje poslušnike koji kažu: 'Predsjedniče, ovo je super, mi dobro stojimo', a stanje nikad nije bilo gore"</div></div></a><a href="/clanak/Haris/526904/Nista-pandemija-idemo-u-strajk--Pogledajte-sta-smo-danas-zatekli-na-Otoci-u-Vrazovoj-i-ispred-Doma-zdravlja-Omer-Maslic"><div class="malaVijestDesnoOkvir"><div class="maliTekstDesnoSamoTekst">Ništa pandemija, idemo u štrajk: Pogledajte šta smo danas zatekli na Otoci, u Vrazovoj i ispred Doma zdravlja "Omer Maslić"</div></div></a></div></div><div class="clearDiv"></div></div>
+
+
+
+    
+    <div id="reklamaHor5">
+        <script type="text/javascript">
+            $('#reklamaHor5').load('/xmlHttpRequest/dajBanner.aspx?chanFK=1EFB23E8-D6F3-41DA-9F44-AB1DDAF60205&pozicija=hor5');
+        </script>
+    </div>
+    <div id="lijevoContent_kontrolaCetiriKategorije_cetiriKategorijeOkvir" class="cetiriKategorijeOkvir"><div class="cetiriKategorijeKategorija bezMargine ekonomija"><span><a class="linkKanala" href="/kanal/ekonomija">EKONOMIJA</a></span><a href="/clanak/Ekonomija/526943/RaiConnect---potpuno-nova-usluga-Raiffeisen-banke"><div class="cetiriKategorijeGlavnaVijest"><div class="cetiriKategorijeGlavnaVijestSlika" style="background-image:url(/local_files/crop/cropd2d7ce72e3bf47a0b9b3a86ec7e728e0.jpg);"><div class="videoIkona_mala"></div></div><div class="cetiriKategorijeText">RaiConnect - potpuno nova usluga Raiffeisen banke</div></a></div><a href="/clanak/Ekonomija/526846/%C5%A0panija-i-Italija-traze-ambiciozne-odredbe-za-evropski-fond-oporavka"><div class="cetiriKategorijeTextOstale ekonomija">Španija i Italija traže 'ambiciozne odredbe' za evropski fond oporavka</div></a><a href="/clanak/Ekonomija/526845/Placajte-Raiffeisen-karticama-i-ostvarite-pet-posto-popusta-prilikom-kupovine-u-Bingo-i-Amko-komerc-trgovinama"><div class="cetiriKategorijeTextOstale ekonomija">Plaćajte Raiffeisen karticama i ostvarite pet posto popusta prilikom kupovine u Bingo i Amko komerc trgovinama</div></a><a href="/clanak/Ekonomija/526758/Uvjerite-se-u-jednostavno-i-brzo-placanje-putem-Raiffeisen-mobilnog-bankarstva"><div class="cetiriKategorijeTextOstale ekonomija">Uvjerite se u jednostavno i brzo plaćanje putem Raiffeisen mobilnog bankarstva</div></a><a href="/clanak/Ekonomija/526680/Raiffeisen-Mobilno-Bankarstvo-%E2%80%93-Placajte-iz-sigurnosti-Vaseg-doma"><div class="cetiriKategorijeTextOstale ekonomija">Raiffeisen Mobilno Bankarstvo – Plaćajte iz sigurnosti Vašeg doma</div></a></div><div class="cetiriKategorijeKategorija technomania"><span><a class="linkKanala" href="/kanal/technomania">TECHNOMANIA</a></span><a href="/clanak/Noviteti/526841/Novo-vozilo-wheels-osvaja-becke-ulice"><div class="cetiriKategorijeGlavnaVijest"><div class="cetiriKategorijeGlavnaVijestSlika" style="background-image:url(/local_files/crop/cropf275a0092d0c4b7388ae210bb7c4f516.jpg);"></div><div class="cetiriKategorijeText">Novo vozilo "wheels" osvaja bečke ulice</div></a></div><a href="/clanak/Noviteti/526760/Becki-Wiener-Linien-predstavio-prvi-metro-bez-vozaca-X-Vagon"><div class="cetiriKategorijeTextOstale TECHNOMANIA">Bečki Wiener Linien predstavio prvi metro bez vozača 'X-Vagon'</div></a><a href="/clanak/Mobiteli/526672/U-Japanu-prva-zabrana-gledanja-u-ekran-mobitela-tokom-hodanja"><div class="cetiriKategorijeTextOstale TECHNOMANIA">U Japanu prva zabrana gledanja u ekran mobitela tokom hodanja</div></a><a href="/clanak/Mobiteli/526644/U-Japanu-prva-zabrana-gledanja-u-ekran-mobitela-tokom-hodanja"><div class="cetiriKategorijeTextOstale TECHNOMANIA">U Japanu prva zabrana gledanja u ekran mobitela tokom hodanja</div></a><a href="/clanak/Noviteti/525825/U-Sarajevu-veceras-otvaranje-prvog-kina-za-automobile-Drive-in-Cinema"><div class="cetiriKategorijeTextOstale TECHNOMANIA">U Sarajevu večeras otvaranje prvog kina za automobile 'Drive-in Cinema'</div></a></div><div class="cetiriKategorijeKategorija lifestyle"><span><a class="linkKanala" href="/kanal/lifestyle">LIFESTYLE</a></span><a href="/clanak/KuhPoh/526902/Rezanci-sa-pollo-cuftama"><div class="cetiriKategorijeGlavnaVijest"><div class="cetiriKategorijeGlavnaVijestSlika" style="background-image:url(/local_files/crop/cropf88504a6d4af43caa19524c23cc8d99f.jpg);"><div class="videoIkona_mala"></div></div><div class="cetiriKategorijeText">Rezanci sa pollo čuftama</div></a></div><a href="/clanak/Putovanja/526843/U-Banjoj-Luci-promovisana-Inicijativa-Odmori-u-BiH"><div class="cetiriKategorijeTextOstale LIFESTYLE">U Banjoj Luci promovisana Inicijativa 'Odmori u BiH'</div></a><a href="/clanak/KuhPoh/526794/Punjene-zemicke"><div class="cetiriKategorijeTextOstale LIFESTYLE">Punjene zemičke</div></a><a href="/clanak/Vezeseks/526780/Prekid-prijateljstva-bolniji-od-raskida-veze"><div class="cetiriKategorijeTextOstale LIFESTYLE">Prekid prijateljstva bolniji od raskida veze</div></a><a href="/clanak/Zdravlje/526733/Tihi-prenosioci-mogli-bi-biti-odgovorni-za-skoro-polovinu-zarazenih-virusom"><div class="cetiriKategorijeTextOstale LIFESTYLE">"Tihi prenosioci" mogli bi biti odgovorni za skoro polovinu zaraženih virusom</div></a></div><div class="cetiriKategorijeKategorija zanimljivo"><span><a class="linkKanala" href="/kanal/zanimljivo">ZANIMLJIVO</a></span><a href="/clanak/Zanimljivosti/526649/Meteor-osvijetlio-nebo-iznad-Tokija-a-zatim-eksplodirao-jacinom-od-165-tona-TNT-a"><div class="cetiriKategorijeGlavnaVijest"><div class="cetiriKategorijeGlavnaVijestSlika" style="background-image:url(/local_files/crop/crop4f24f320e6a54005be434c15513312a5.jpg);"><div class="videoIkona_mala"></div><div class="komentariStr">1<div class="komentariStrelica"></div></div></div><div class="cetiriKategorijeText">Meteor osvijetlio nebo iznad Tokija, a zatim eksplodirao jačinom od 165 tona TNT-a</div></a></div><a href="/clanak/Zanimljivosti/526535/Ova-interaktivna-mapa-za-restrikcije-ce-vam-pomoci-da-isplanirate-putovanje"><div class="cetiriKategorijeTextOstale ZANIMLJIVO">Ova interaktivna mapa za restrikcije će vam pomoći da isplanirate putovanje</div></a><a href="/clanak/Zanimljivosti/526514/Hit-snimak-iz-crnogorske-Covid-bolnice--Hajmo-baba"><div class="cetiriKategorijeTextOstale ZANIMLJIVO">Hit snimak iz crnogorske Covid bolnice: Hajmo baba</div></a><a href="/clanak/Zanimljivosti/526408/Razbojnik-napao-prodavca-on-mu-razbio-skoro-cijelu-gajbu-piva-od-glavu"><div class="cetiriKategorijeTextOstale ZANIMLJIVO">Razbojnik napao prodavča, on mu razbio skoro cijelu gajbu piva od glavu</div></a><a href="/clanak/Zanimljivosti/526283/Koale-bi-mogle-izumrijeti-do-2050-godine"><div class="cetiriKategorijeTextOstale ZANIMLJIVO">Koale bi mogle izumrijeti do 2050. godine</div></a></div><div style="clear:both;"></div></div>
+
+<div class="clearDiv" style="max-width:684px;"></div>
+
+
+
+    
+    <div id="reklamaHor6">
+        <script type="text/javascript">
+            $('#reklamaHor6').load('/xmlHttpRequest/dajBanner.aspx?chanFK=1EFB23E8-D6F3-41DA-9F44-AB1DDAF60205&pozicija=hor6');
+        </script>
+    </div>
+
+
+    
+    
+    
+
+
+
+
+<div class="okvirRotator">
+
+    <span id="lijevoContent_source_kuhpoh_naslovRotatora" style="font-family: &#39;customNaslov&#39;,Arial;font-size: 20px; text-transform:uppercase;"><a href="http://www.source.ba/kanal/KuhPoh">KUH POH</a></span>
+
+    <a href="/clanak/KuhPoh/526902/Rezanci-sa-pollo-cuftama" id="lijevoContent_source_kuhpoh_rotatorUdarnaLink">
+    <div id="lijevoContent_source_kuhpoh_rotatorUdarna" class="rotator" style="background-image:url(/local_files/pocetneSlike/f88504a6d4af43caa19524c23cc8d99f.jpg);">   
+         <div id="lijevoContent_source_kuhpoh_kom"></div>
+        <div id="lijevoContent_source_kuhpoh_rotatorUdarnaNaslov" class="rotatorTextHover">Rezanci sa pollo čuftama</div>    
+    </div>
+    </a>
+    <div id="lijevoContent_source_kuhpoh_rotatorUdarnaSubNaslov" class="rotatorTextSub">Čufte mogu biti i u bijelom umaku, a jednako su ukusne i od pilećeg mesa u šta ćete se i sami uvjeriti kad isprobate ovaj jednostavni recept.</div>
+
+
+    <a href="/clanak/KuhPoh/526794/Punjene-zemicke" id="lijevoContent_source_kuhpoh_rotatorPrvaLink">
+    <div class="rotatorOstale prvaOstala">
+        <div id="lijevoContent_source_kuhpoh_rotatorPrvaSlika" class="rotatorOstaleSlika" style="background-image:url(/local_files/crop/cropab50f33993fe4a0f875ab260b4237e1e.jpg);"><div class="videoIkona_mala"></div></div>
+        <div id="lijevoContent_source_kuhpoh_rotatorPrvaNaslov">Punjene zemičke</div>
+    </div>
+    </a>
+
+    <a href="/clanak/KuhPoh/526704/Piletina-na-indijski" id="lijevoContent_source_kuhpoh_rotatorDrugaLink">
+    <div class="rotatorOstale">
+        <div id="lijevoContent_source_kuhpoh_rotatorDrugaSlika" class="rotatorOstaleSlika" style="background-image:url(/local_files/crop/crop40d5aa4b8dd54bc388185bd220786b59.jpg);"><div class="videoIkona_mala"></div></div>
+        <div id="lijevoContent_source_kuhpoh_rotatorDrugaNaslov">Piletina na indijski</div>
+    </div>
+    </a>
+
+    <a href="/clanak/KuhPoh/526657/Domaca-majoneza-bez-jaja" id="lijevoContent_source_kuhpoh_rotatorTrecaLink">
+    <div class="rotatorOstale">
+        <div id="lijevoContent_source_kuhpoh_rotatorTrecaSlika" class="rotatorOstaleSlika" style="background-image:url(/local_files/crop/cropa60d4821a73b44d0a4ad1d5a668bcc80.jpg);"><div class="videoIkona_mala"></div></div>
+        <div id="lijevoContent_source_kuhpoh_rotatorTrecaNaslov">Domaća majoneza bez jaja</div>
+    </div>
+    </a>
+
+    <a href="/clanak/KuhPoh/526455/Babuska-pliva-u-povrcu" id="lijevoContent_source_kuhpoh_rotatorCetvrtaLink">
+    <div class="rotatorOstale">
+        <div id="lijevoContent_source_kuhpoh_rotatorCetvrtaSlika" class="rotatorOstaleSlika" style="background-image:url(/local_files/crop/crop01faba728b5a400c9e56ad31ac0a840c.jpg);"><div class="videoIkona_mala"></div></div>
+        <div id="lijevoContent_source_kuhpoh_rotatorCetvrtaNaslov">Babuška pliva u povrću</div>
+    </div>
+    </a>
+        
+    
+</div>
+
+<div class="clearDiv" style="max-width:684px;"></div>
+
+
+
+    
+   
+
+
+    
+    <div id="lijevoContent_svePodkategorijeDiv">
+    
+
+<div class="kontrolaDvijeKategorijeOkvir">
+
+    <!--jedna kategorija-->
+   <div id="lijevoContent_ctl00_okvirLijevo" class="kontrolaDvijeKategorije_jednaKategorijaOkvir vijesti">
+       <span id="lijevoContent_ctl00_naslovKategorijeLijevo"><a class="linkKanala" href="/kanal/bih">BIH</a></span>
+       
+       <a href="/clanak/BiH/526939/Predstavnicki-dom-PSBiH-15-jula-o-budzetu-institucija-BiH-za-2020-godinu" id="lijevoContent_ctl00_linkVelikaKategorijaLijevo">
+        <div class="kontrolaDvijeKategorije_jednaKategorija_velikaVijest">
+           <div id="lijevoContent_ctl00_velikaSlikaLijevo" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestSlika" style="background-image:url(/local_files/crop/crop114e9bc1e1bc4a2e92fa2dd23b35a321.jpg);"></div>           
+           <div id="lijevoContent_ctl00_velikaKategorijaLijevoUdarniNaslov" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestNaslov">Predstavnički dom PSBiH 15. jula o budžetu institucija BiH za 2020. godinu</div>
+           <div id="lijevoContent_ctl00_velikaKategorijaLijevoUdarniUvod" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestUvod">Predsjedavajući Predstavničkog doma Parlamentarne skupštine Bosne i Hercegovine Nebojša Radmanović sazvao je za 15. juli hitnu sjednicu Predstavničkog doma na kojoj bi trebao biti razmatran Izvještaj komisije Kolegija o nastojanju za postizanje saglasnosti o Prijedlogu zakona o Budžetu institucija BiH i međunarodnih obaveza BiH za 2020. godinu, čiji je predlagač  Predsjedništvo BiH</div>
+        </div>
+       </a>
+
+       <div id="lijevoContent_ctl00_lijevoOstale"><a href="/clanak/BiH/526947/Vlada-FBiH-Odluka-o-prenamjeni-i-prijenosu-sredstava-s-posebnih-namjenskih-racuna"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Vlada FBiH Odluka o prenamjeni i prijenosu sredstava s posebnih namjenskih računa</div></a><a href="/clanak/BiH/526942/Tahirovic--Strasno-je-da-Inzko-nije-ispunio-obecanje-dato-na-svetom-mjestu-u-Potocarima"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Tahirović: Strašno je da Inzko nije ispunio obećanje dato na svetom mjestu u Potočarima</div></a><a href="/clanak/BiH/526938/U-Potocarima-dopremljeni-tabuti-s-posmrtnim-ostacima-devet-zrtava-genocida"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">U Potočarima dopremljeni tabuti s posmrtnim ostacima devet žrtava genocida</div></a><a href="/clanak/BiH/526936/Wicker--Obavezni-smo-postovati-zrve-genocida-u-Srebrenici-i-promovirati-pravdu"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Wicker: Obavezni smo poštovati žrve genocida u Srebrenici i promovirati pravdu</div></a></div>
+   </div>
+
+
+    <!--druga kategorija-->
+   <div id="lijevoContent_ctl00_okvirDesno" class="kontrolaDvijeKategorije_jednaKategorijaOkvir vijesti">
+       <span id="lijevoContent_ctl00_naslovKategorijeDesno"><a class="linkKanala" href="/kanal/crnahronika">CRNA HRONIKA</a></span>
+
+       <a href="/clanak/Crnahronika/526941/Sunita-Hindic-odbija-dati-sifru-za-iPhone-vjestaci-ne-mogu-doci-do-podataka-iz-mobitela" id="lijevoContent_ctl00_linkVelikaKategorijaDesno">
+        <div class="kontrolaDvijeKategorije_jednaKategorija_velikaVijest">
+           <div id="lijevoContent_ctl00_velikaSlikaDesno" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestSlika" style="background-image:url(/local_files/crop/cropd3b08d32b0774a19a73e1a3a63be8496.jpg);"></div>
+           <div id="lijevoContent_ctl00_velikaKategorijaDesnoUdarniNaslov" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestNaslov">Sunita Hindić odbija dati šifru za iPhone, vještaci ne mogu doći do podataka iz mobitela</div>
+           <div id="lijevoContent_ctl00_velikaKategorijaDesnoUdarniUvod" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestUvod">U Kantonalnom sudu Mostar danas je nastavljeno suđenje Suniti Hindić (21) optuženoj za ubistvo Nine Ivankovića (55), vlasnika motela „Villa Ivanković“, koje se dogodilo 4. oktobra prošle godine.</div>
+        </div>
+       </a>
+
+       <div id="lijevoContent_ctl00_desnoOstale"><a href="/clanak/Crnahronika/526925/Pritvor-osumnjicenom-za-pokusaj-ubistva-navijaca-Crvene-zvezde"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Pritvor osumnjičenom za pokušaj ubistva navijača Crvene zvezde</div></a><a href="/clanak/Crnahronika/526888/Akcija-FUP-a--Uhapsen-jos-jedan-Sarajlija-zbog-trgovine-drogom"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Akcija FUP-a: Uhapšen još jedan Sarajlija zbog trgovine drogom</div></a><a href="/clanak/Crnahronika/526853/Uhapsen-39-godisnji-pedofil-koji-je-devetogodisnjoj-i-15-godisnjoj-djevojcici-na-ulici-pokazivao-spolni-organ"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Uhapšen 39-godišnji pedofil koji je devetogodišnjoj i 15-godišnjoj djevojčici na ulici pokazivao spolni organ</div></a><a href="/clanak/Crnahronika/526830/Podignuta-optuznica-protiv-banjaluckih-inspektora-zbog-primanja-30000-KM-mita"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Podignuta optužnica protiv banjalučkih inspektora zbog primanja 30.000 KM mita</div></a></div>
+   </div>
+
+    <div style="clear:both;"></div>
+    
+</div>
+
+<div id="lijevoContent_ctl00_donjaLinija" class="clearDiv" style="max-width:684px;"></div>
+
+<div class="kontrolaDvijeKategorijeOkvir">
+
+    <!--jedna kategorija-->
+   <div id="lijevoContent_ctl01_okvirLijevo" class="kontrolaDvijeKategorije_jednaKategorijaOkvir vijesti">
+       <span id="lijevoContent_ctl01_naslovKategorijeLijevo"><a class="linkKanala" href="/kanal/svijet">SVIJET</a></span>
+       
+       <a href="/clanak/Svijet/526940/Pompeo-optimistican-prema-uspostavi-dijaloga-sa-Sjevernom-Korejom" id="lijevoContent_ctl01_linkVelikaKategorijaLijevo">
+        <div class="kontrolaDvijeKategorije_jednaKategorija_velikaVijest">
+           <div id="lijevoContent_ctl01_velikaSlikaLijevo" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestSlika" style="background-image:url(/local_files/crop/crop6b3b6bc030cc456aa7c71518d07f473f.jpg);"></div>           
+           <div id="lijevoContent_ctl01_velikaKategorijaLijevoUdarniNaslov" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestNaslov">Pompeo optimističan prema uspostavi dijaloga sa Sjevernom Korejom</div>
+           <div id="lijevoContent_ctl01_velikaKategorijaLijevoUdarniUvod" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestUvod">Američki državni sekretar Mike Pompeo izjavio je u četvrtak da Washington nastavlja raditi na uspostavi dijaloga sa Sjevernom Korejom i da je veoma optimističan da se razgovor može nastaviti, iako je odbio komentirati tempiranje ili detalje američkih aktivnosti.</div>
+        </div>
+       </a>
+
+       <div id="lijevoContent_ctl01_lijevoOstale"><a href="/clanak/Svijet/526929/Sirijci-suoceni-s-nestasicama-hljeba-prvi-put-od-pocetka-rata"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Sirijci suočeni s nestašicama hljeba prvi put od početka rata</div></a><a href="/clanak/Svijet/526912/Planirali-preko-drustvenih-mreza-proteste-protiv-Vladimira-Putina-a-onda-zavrsili-u-zatvoru"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Planirali preko društvenih mreža proteste protiv Vladimira Putina, a onda završili u zatvoru</div></a><a href="/clanak/Svijet/526906/Transkripti-otkrili--%C5%A0ta-je-George-Floyd-govorio-u-posljednjim-minutama-zivota"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Transkripti otkrili: Šta je George Floyd govorio u posljednjim minutama života</div></a><a href="/clanak/Svijet/526866/Iran-i-Sirija-potpisali-sporazum-o-sirenju-vojne-saradnje"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Iran i Sirija potpisali sporazum o širenju vojne saradnje</div></a></div>
+   </div>
+
+
+    <!--druga kategorija-->
+   <div id="lijevoContent_ctl01_okvirDesno" class="kontrolaDvijeKategorije_jednaKategorijaOkvir vijesti">
+       <span id="lijevoContent_ctl01_naslovKategorijeDesno"><a class="linkKanala" href="/kanal/region">REGION</a></span>
+
+       <a href="/clanak/Region/526948/Treci-dan-protesta-u-Beogradu" id="lijevoContent_ctl01_linkVelikaKategorijaDesno">
+        <div class="kontrolaDvijeKategorije_jednaKategorija_velikaVijest">
+           <div id="lijevoContent_ctl01_velikaSlikaDesno" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestSlika" style="background-image:url(/local_files/crop/crop68e697e3b44745cd940a6260e583b26f.jpg);"><div class="videoIkona_mala"></div></div>
+           <div id="lijevoContent_ctl01_velikaKategorijaDesnoUdarniNaslov" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestNaslov">Treći dan protesta u Beogradu</div>
+           <div id="lijevoContent_ctl01_velikaKategorijaDesnoUdarniUvod" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestUvod">Nešto iza 18.00 sati građani Beograda su se počeli okupljati ispred Skupštine Srbije.</div>
+        </div>
+       </a>
+
+       <div id="lijevoContent_ctl01_desnoOstale"><a href="/clanak/Region/526946/Mame-su-zakon--Suzavac-ugrozio-tek-rodjene-bebe-u-dva-najveca-porodilista"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Mame su zakon: Suzavac ugrozio tek rođene bebe u dva najveća porodilišta</div></a><a href="/clanak/Region/526945/Sergej-Trifunovic-pozvao-gradjane-da-veceras-izadju-na-nove-proteste--Demonstranti-protiv-huligana"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Sergej Trifunović pozvao građane da večeras izađu na nove proteste: Demonstranti protiv huligana</div></a><a href="/clanak/Region/526937/Srbija--Umrlo-11-osoba-zarazeno-266"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Srbija: Umrlo 11 osoba, zaraženo 266</div></a><a href="/clanak/Admir/526928/Ko-se-krije-iza-nereda-u-Beogradu-moze-li-se-nesto-slicno-desiti-u-BiH--Ovo-je-opasnost-za-sve"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Ko se krije iza nereda u Beogradu, može li se nešto slično desiti u BiH: Ovo je opasnost za sve!</div></a></div>
+   </div>
+
+    <div style="clear:both;"></div>
+    
+</div>
+
+<div id="lijevoContent_ctl01_donjaLinija" class="clearDiv" style="max-width:684px;"></div>
+
+<div class="kontrolaDvijeKategorijeOkvir">
+
+    <!--jedna kategorija-->
+   <div id="lijevoContent_ctl02_okvirLijevo" class="kontrolaDvijeKategorije_jednaKategorijaOkvir sport">
+       <span id="lijevoContent_ctl02_naslovKategorijeLijevo"><a class="linkKanala" href="/kanal/fudbal">FUDBAL</a></span>
+       
+       <a href="/clanak/Fudbal/526827/Zlatan-Ibrahimovic-%E2%80%9Crazbio-Juventus-pa-porucio--Ja-sam-predsjednik-trener-i-igrac" id="lijevoContent_ctl02_linkVelikaKategorijaLijevo">
+        <div class="kontrolaDvijeKategorije_jednaKategorija_velikaVijest">
+           <div id="lijevoContent_ctl02_velikaSlikaLijevo" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestSlika" style="background-image:url(/local_files/crop/crop62b1b7d700334e10b32a2a1a9a9c0edf.jpg);"></div>           
+           <div id="lijevoContent_ctl02_velikaKategorijaLijevoUdarniNaslov" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestNaslov">Zlatan Ibrahimović “razbio” Juventus, pa poručio: Ja sam predsjednik, trener i igrač</div>
+           <div id="lijevoContent_ctl02_velikaKategorijaLijevoUdarniUvod" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestUvod">Zbog novog kiksa Lacija djeluje da je Juventus na korak od nove šampionske titule, ali će se čelnici “stare dame” pošteno zamisliti poslije sinoćnje lekcije koju im je održao Milan, prenosi “Mondo“.</div>
+        </div>
+       </a>
+
+       <div id="lijevoContent_ctl02_lijevoOstale"><a href="/clanak/Fudbal/526786/%C4%8Cudo-na-San-Siru--Nezapamcen-preokret-Milana-protiv-Juventusa"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Čudo na San Siru: Nezapamćen preokret Milana protiv Juventusa</div></a><a href="/clanak/Fudbal/526782/Arsenal-i-Leicester-remizirali"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Arsenal i Leicester remizirali</div></a><a href="/clanak/Fudbal/526773/Milionska-kazna-za-Kolumbijski-nogometni-savez-zbog-neregularne-prodaje-ulaznica-za-kvalifikacije-SP-2018-godine"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Milionska kazna za Kolumbijski nogometni savez zbog neregularne prodaje ulaznica za kvalifikacije SP 2018. godine</div></a><a href="/clanak/Fudbal/526747/Nogometas-znao-da-ima-koronu-odigrao-utakmicu-i-zarazio-20-igraca"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Nogometaš znao da ima koronu, odigrao utakmicu i zarazio 20 igrača</div></a></div>
+   </div>
+
+
+    <!--druga kategorija-->
+   <div id="lijevoContent_ctl02_okvirDesno" class="kontrolaDvijeKategorije_jednaKategorijaOkvir sourceprice">
+       <span id="lijevoContent_ctl02_naslovKategorijeDesno"><a class="linkKanala" href="/kanal/admir">ADMIR</a></span>
+
+       <a href="/clanak/Admir/526819/Pitali-smo-Edu-Selimica-zbog-cega-strajkuju-u-vrijeme-pandemije--Nas-strajk-nema-veze-sa-povecanjem-broja-oboljelih-za-to-su-krivi-gradjani-koji-su-se-previse-opustili" id="lijevoContent_ctl02_linkVelikaKategorijaDesno">
+        <div class="kontrolaDvijeKategorije_jednaKategorija_velikaVijest">
+           <div id="lijevoContent_ctl02_velikaSlikaDesno" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestSlika" style="background-image:url(/local_files/crop/crop148992b26cb24e8b82a4f163169d5e59.jpg);"><div class="videoIkona_mala"></div><div class="komentariStr">8<div class="komentariStrelica"></div></div></div>
+           <div id="lijevoContent_ctl02_velikaKategorijaDesnoUdarniNaslov" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestNaslov">Pitali smo Edu Selimića zbog čega štrajkuju u vrijeme pandemije: Naš štrajk nema veze sa povećanjem broja oboljelih, za to su krivi građani koji su se previše opustili</div>
+           <div id="lijevoContent_ctl02_velikaKategorijaDesnoUdarniUvod" class="kontrolaDvijeKategorije_jednaKategorija_velikaVijestUvod">Oko tri i po hiljade medicinskih radnika, članova Sindikata radnika u zdravstvu Kantona Sarajevo povlače se sa trijažnih punktova i nastavljaju sa generalnim štrajkom tokom kojeg će, kako su najavili, primati samo životno ugrožene pacijente.</div>
+        </div>
+       </a>
+
+       <div id="lijevoContent_ctl02_desnoOstale"><a href="/clanak/Admir/526730/Husein-Mujanovic-ce-nazalost-brzo-pasti-u-zaborav-Dopustili-smo-Beogradu-da-nam-glumi-moralnu-vertikalu"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">"Husein Mujanović će nažalost brzo pasti u zaborav. Dopustili smo Beogradu da nam glumi moralnu vertikalu"</div></a><a href="/clanak/Admir/526658/Sarajevska-epidemiologinja-upozorava--Plasimo-se-jeseni-u-BiH-jos-uvijek-traje-prvi-val-koronavirusa-Nista-vise-nece-biti-kao-prije"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Sarajevska epidemiologinja upozorava: Plašimo se jeseni, u BiH još uvijek traje prvi val koronavirusa. Ništa više neće biti kao prije!</div></a><a href="/clanak/Admir/526395/Vrijedi-znati--Evo-u-koje-zemlje-gradjani-BiH-mogu-putovati-i-na-koji-nacin"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">Vrijedi znati: Evo u koje zemlje građani BiH mogu putovati i na koji način</div></a><a href="/clanak/Admir/526303/Nemam-temperaturu-nakon-izlaska-iz-bolnice-testirao-sam-se-dva-puta-prvi-nalaz-bio-je-negativan-a-drugi-opet-pozitivan"><div class="kontrolaDvijeKategorije_jednaKategorija_ostale">"Nemam temperaturu, nakon izlaska iz bolnice testirao sam se dva puta, prvi nalaz bio je negativan, a drugi opet pozitivan"</div></a></div>
+   </div>
+
+    <div style="clear:both;"></div>
+    
+</div>
+
+</div>
+
+
+
+        </div>
+
+        <!--DESNO-->
+        <div class="desnoContent">
+
+            
+    
+    <div id="reklamaVer1">
+        <script type="text/javascript">
+            $('#reklamaVer1').load('/xmlHttpRequest/dajBanner.aspx?chanFK=1EFB23E8-D6F3-41DA-9F44-AB1DDAF60205&pozicija=ver1');
+        </script>
+    </div>
+    
+
+
+
+<ul id="tabs">
+
+        <li><a id="tabNajnovije">Najnovije</a></li>
+      <li><a id="tabNajcitanije">Najčitanije</a></li>
+      
+
+</ul>
+
+
+<div class="container" id="tabNajnovijeC">
+    <div id="desnoTopContent_najcitanijeNajnovije_okvirNajnovije" class="okvirNajcitanije"><div class="najnovijeNajcitanijeOkvirVijesti"><a href="/clanak/Region/526963/Beogradski-protesti--I-veceras-napadnut-novinar">Beogradski protesti: I večeras napadnut novinar</a></div><div class="najnovijeNajcitanijeOkvirVijesti"><a href="/clanak/Fudbal/526962/Crveni-djavoli-pregazili-Aston-Villu">Crveni đavoli "pregazili" Aston Villu</a></div><div class="najnovijeNajcitanijeOkvirVijesti"><a href="/clanak/Region/526961/Mladic-koji-je-obiljezio-proteste--Tu-sam-sa-majkom-nismo-huligani">Mladić koji je obilježio proteste: Tu sam sa majkom, nismo huligani</a></div><div class="najnovijeNajcitanijeOkvirVijesti"><a href="/clanak/Region/526960/Treci-dan-protesta-u-Beogradu--Izbila-zestoka-tuca-medju-demonstrantima">Treći dan protesta u Beogradu: Izbila žestoka tuča među demonstrantima</a></div><div class="najnovijeNajcitanijeOkvirVijesti" style="padding-bottom:16px;"><a href="/clanak/Region/526959/Brutalno-pretuceni-novinar-Bete--Petnaest-do-20-sekundi-sam-bio-udaran-dok-sam-lezao-na-zemlji">Brutalno pretučeni novinar Bete: Petnaest do 20 sekundi sam bio udaran dok sam ležao na zemlji</a></div></div>
+</div>
+
+
+<div class="container" id="tabNajcitanijeC">
+    <div id="desnoTopContent_najcitanijeNajnovije_okvirNajcitanije" class="okvirNajcitanije"><div class="najnovijeNajcitanijeOkvirVijesti"><a href="/clanak/Haris/526919/Doktori-su-dobili-vise-od-800-maraka-na-platu-Mi-trazimo-127-KM-za-medicinsku-sestru-i-50-do-60-KM-za-radnicu-Nisu-to-neke-velike-pare">"Doktori su dobili više od 800 maraka na platu. Mi tražimo 127 KM za medicinsku sestru i 50 do 60 KM za radnicu. Nisu to neke velike pare"</a></div><div class="najnovijeNajcitanijeOkvirVijesti"><a href="/clanak/Region/526944/Otkriveno-da-li-je-preminuo-mladic-koji-je-sinoc-pretucen-na-Terazijama-u-Beogradu">Otkriveno da li je preminuo mladić koji je sinoć pretučen na Terazijama u Beogradu</a></div><div class="najnovijeNajcitanijeOkvirVijesti"><a href="/clanak/BiH/526956/Vojnici-odbili-Vulinov-zahtjev-da-izadju-na-ulice">Vojnici odbili Vulinov zahtjev da izađu na ulice</a></div><div class="najnovijeNajcitanijeOkvirVijesti"><a href="/clanak/Haris/526904/Nista-pandemija-idemo-u-strajk--Pogledajte-sta-smo-danas-zatekli-na-Otoci-u-Vrazovoj-i-ispred-Doma-zdravlja-Omer-Maslic">Ništa pandemija, idemo u štrajk: Pogledajte šta smo danas zatekli na Otoci, u Vrazovoj i ispred Doma zdravlja "Omer Maslić"</a></div><div class="najnovijeNajcitanijeOkvirVijesti" style="padding-bottom:16px;"><a href="/clanak/BiH/526884/KCUS--Nova-52-slucaja-koronavirusa-dva-pacijenta-na-Podhrastovima-umrla">KCUS: Nova 52 slučaja koronavirusa, dva pacijenta na Podhrastovima umrla</a></div></div>
+    
+</div>
+
+<div class="clearDiv"></div>
+
+
+
+    
+    
+    
+    <div id="reklamaVer2">
+        <script type="text/javascript">
+            $('#reklamaVer2').load('/xmlHttpRequest/dajBanner.aspx?chanFK=1EFB23E8-D6F3-41DA-9F44-AB1DDAF60205&pozicija=ver2');
+        </script>
+    </div>
+    
+
+
+<div style="width:300px;  height:43px; text-align:center;">
+    
+
+    <img src="../../img_project/social_f_big.png" style="margin-left:65px; float:left;" onmousedown="window.open('https://www.facebook.com/pages/Sourceba/211606990498');" onmouseover="this.style.cursor='pointer';"/>
+    <img src="../../img_project/social_tw_big.png" style="margin-left:22px; float:left;" onmousedown="window.open('https://twitter.com/sourceba');"  onmouseover="this.style.cursor='pointer';"/>
+    <img src="../../img_project/social_yt_big.png" style="margin-left:22px; float:left;" onmousedown="window.open('https://www.youtube.com/channel/UCD4Bl6tXwO0GKVaLDWd-ykw');" onmouseover="this.style.cursor='pointer';" />
+
+    
+</div>
+
+<div class="clearDiv"></div>
+
+    <div id="desnoTopContent_prviDioNajcitanijeDesno"><div id="desnoTopContent_ctl00_okvirJednaVijest" class="jednaVijestOkvir"><a href="/clanak/Admir/526819/Pitali-smo-Edu-Selimica-zbog-cega-strajkuju-u-vrijeme-pandemije--Nas-strajk-nema-veze-sa-povecanjem-broja-oboljelih-za-to-su-krivi-gradjani-koji-su-se-previse-opustili"><div class="jednaVijestOkvirSlika" style="background-image:url(/local_files/crop/crop148992b26cb24e8b82a4f163169d5e59.jpg)"><div class="videoIkona_mala"></div><div class="komentariStr">8<div class="komentariStrelica"></div></div></div><div class="jednaVijestOkvirNaslov sourcepriceBCK" style="">Pitali smo Edu Selimića zbog čega štrajkuju u vrijeme pandemije: Naš štrajk nema veze sa povećanjem broja oboljelih, za to su krivi građani koji su se previše opustili</div><div class="jednaVijestOkvirTekst sourcepriceBCK" style="">Oko tri i po hiljade medicinskih radnika, članova Sindikata radnika u zdravstvu Kantona Sarajevo povlače se sa trijažnih punktova i nastavljaju sa generalnim štrajkom tokom kojeg će, kako su najavili, primati samo životno ugrožene pacijente.</div></a></div>
+
+<div class="clearDiv"></div></div>
+    <div id="desnoTopContent_drugiDioNajcitanijeDesno"><div id="desnoTopContent_ctl01_okvirJednaVijest" class="jednaVijestOkvir"><a href="/clanak/Haris/526818/Provjerili-smo-kakvo-je-stanje-i-da-li-ima-guzvi-ispred-sarajevskih-opcina-u-vrijeme-pandemije"><div class="jednaVijestOkvirSlika" style="background-image:url(/local_files/crop/cropa001f69248d24816970c6c0da62dc412.jpg)"><div class="galerijaIkona_mala"></div><div class="komentariStr">2<div class="komentariStrelica"></div></div></div><div class="jednaVijestOkvirNaslov sourcepriceBCK" style="">Provjerili smo kakvo je stanje i da li ima gužvi ispred sarajevskih općina u vrijeme pandemije</div><div class="jednaVijestOkvirTekst sourcepriceBCK" style="">Koronavirus je i dalje prisutna kako u cijelom svijetu, pa tako i u Bosni i Hercegovini.</div></a></div>
+
+<div class="clearDiv"></div></div>
+
+    
+    <div id="reklamaVer3">
+        <script type="text/javascript">
+            $('#reklamaVer3').load('/xmlHttpRequest/dajBanner.aspx?chanFK=1EFB23E8-D6F3-41DA-9F44-AB1DDAF60205&pozicija=ver3');
+        </script>
+    </div>
+
+         
+
+            
+    
+    <div id="desnoContentIspod300x250_treciDioNajcitanijeDesno"><div id="desnoContentIspod300x250_ctl00_okvirJednaVijest" class="jednaVijestOkvir"><a href="/clanak/Crnahronika/526941/Sunita-Hindic-odbija-dati-sifru-za-iPhone-vjestaci-ne-mogu-doci-do-podataka-iz-mobitela"><div class="jednaVijestOkvirSlika" style="background-image:url(/local_files/crop/cropd3b08d32b0774a19a73e1a3a63be8496.jpg)"></div><div class="jednaVijestOkvirNaslov vijestiBCK" style="">Sunita Hindić odbija dati šifru za iPhone, vještaci ne mogu doći do podataka iz mobitela</div><div class="jednaVijestOkvirTekst vijestiBCK" style="">U Kantonalnom sudu Mostar danas je nastavljeno suđenje Suniti Hindić (21) optuženoj za ubistvo Nine Ivankovića (55), vlasnika motela „Villa Ivanković“, koje se dogodilo 4. oktobra prošle godine.</div></a></div>
+
+<div class="clearDiv"></div></div>
+  <div id="desnoContentIspod300x250_cetvrtiDioNajcitanijeDesno"><div id="desnoContentIspod300x250_ctl01_okvirJednaVijest" class="jednaVijestOkvir"><a href="/clanak/Region/526897/Jadranka-Kosor--Vucic-s-pusketinom-iznad-Sarajeva-forever"><div class="jednaVijestOkvirSlika" style="background-image:url(/local_files/crop/crop42b82ee284e94cb49f4c7b9712027018.jpg)"></div><div class="jednaVijestOkvirNaslov vijestiBCK" style="">Jadranka Kosor: "Vučić s pušketinom iznad Sarajeva, forever"</div><div class="jednaVijestOkvirTekst vijestiBCK" style="">Jadranka Kosor, bivša predsjednica Vlade Hrvatske, oglasila se na svom Twitteru i jasno kazala šta misli o Aleksandru Vučiću i njegovoj stranci.</div></a></div>
+
+<div class="clearDiv"></div></div>
+
+    
+    <div id="reklamaVer4">
+        <script type="text/javascript">
+            $('#reklamaVer4').load('/xmlHttpRequest/dajBanner.aspx?chanFK=1EFB23E8-D6F3-41DA-9F44-AB1DDAF60205&pozicija=ver4');
+        </script>
+    </div>
+
+    <div id="desnoContentIspod300x250_petiDioNajcitanijeDesno"><div id="desnoContentIspod300x250_ctl02_okvirJednaVijest" class="jednaVijestOkvir"><a href="/clanak/Fudbal/526827/Zlatan-Ibrahimovic-%E2%80%9Crazbio-Juventus-pa-porucio--Ja-sam-predsjednik-trener-i-igrac"><div class="jednaVijestOkvirSlika" style="background-image:url(/local_files/crop/crop62b1b7d700334e10b32a2a1a9a9c0edf.jpg)"></div><div class="jednaVijestOkvirNaslov sportBCK" style="">Zlatan Ibrahimović “razbio” Juventus, pa poručio: Ja sam predsjednik, trener i igrač</div><div class="jednaVijestOkvirTekst sportBCK" style="">Zbog novog kiksa Lacija djeluje da je Juventus na korak od nove šampionske titule, ali će se čelnici “stare dame” pošteno zamisliti poslije sinoćnje lekcije koju im je održao Milan, prenosi “Mondo“.</div></a></div>
+
+<div class="clearDiv"></div></div>
+    <div id="desnoContentIspod300x250_sestiDioNajcitanijeDesno"><div id="desnoContentIspod300x250_ctl03_okvirJednaVijest" class="jednaVijestOkvir"><a href="/clanak/Ostalisportovi/526822/Veliki-Fernando-Alonso-se-vraca-u-F1--Od-sljedece-sezone-ponovo-u-bolidu-Renaulta"><div class="jednaVijestOkvirSlika" style="background-image:url(/local_files/crop/crop24c3a02b6b7c4925bd63ed721e686acd.jpg)"></div><div class="jednaVijestOkvirNaslov sportBCK" style="">Veliki Fernando Alonso se vraća u F1: Od sljedeće sezone ponovo u bolidu Renaulta!</div><div class="jednaVijestOkvirTekst sportBCK" style="">Nekadašnji dvostruki F1 šampion, Fernando Alonso, sljedeće se godine vraća u Formulu 1.</div></a></div>
+
+<div class="clearDiv"></div></div>
+    
+    
+    <div id="reklamaVer5">
+        <script type="text/javascript">
+            $('#reklamaVer5').load('/xmlHttpRequest/dajBanner.aspx?chanFK=1EFB23E8-D6F3-41DA-9F44-AB1DDAF60205&pozicija=ver5');
+        </script>
+    </div>
+
+
+
+            
+    
+    <div id="desnoContentIspod300xnesto_sedmiDioNajcitanijeDesno"><div id="desnoContentIspod300xnesto_ctl00_okvirJednaVijest" class="jednaVijestOkvir"><a href="/clanak/Filmofil/526761/Filmski-festival-u-Veneciji-u-septembru-uz-izvjesne-modifikacije"><div class="jednaVijestOkvirSlika" style="background-image:url(/local_files/crop/cropa7ccab7d9f42481f888a38406d2653b0.jpg)"></div><div class="jednaVijestOkvirNaslov showmagazineBCK" style="">Filmski festival u Veneciji u septembru uz izvjesne modifikacije</div><div class="jednaVijestOkvirTekst showmagazineBCK" style="">Zabava će se nastaviti na Venecijanskom filmskom festivalu u septembru, ali uz nekoliko modifikacija uslijed pandemije COVID-19.</div></a></div>
+
+<div class="clearDiv"></div></div>
+    
+    
+    <div id="reklamaVer6">
+        <script type="text/javascript">
+            $('#reklamaVer6').load('/xmlHttpRequest/dajBanner.aspx?chanFK=1EFB23E8-D6F3-41DA-9F44-AB1DDAF60205&pozicija=ver6');
+
+        </script>
+    </div>
+
+    <div id="desnoContentIspod300xnesto_osmiDioNajcitanijeDesno"><div id="desnoContentIspod300xnesto_ctl01_okvirJednaVijest" class="jednaVijestOkvir"><a href="/clanak/Trash/526727/Teodora-Dzehverovic-skroz-gola-pozirala-u-bazenu"><div class="jednaVijestOkvirSlika" style="background-image:url(/local_files/crop/cropa4cacdb87d924078922f07969cb3b934.jpg)"><div class="komentariStr">2<div class="komentariStrelica"></div></div></div><div class="jednaVijestOkvirNaslov showmagazineBCK" style="">Teodora Džehverović skroz gola pozirala u bazenu</div><div class="jednaVijestOkvirTekst showmagazineBCK" style="">Mlada pjevačica Teodora Džehverović oduvijek se oblačila smjelo, ali je u tome bila umjerena, ali sada je odlučila da pređe svoju granicu.</div></a></div>
+
+<div class="clearDiv"></div><div id="desnoContentIspod300xnesto_ctl02_okvirJednaVijest" class="jednaVijestOkvir"><a href="/clanak/KuhPoh/526704/Piletina-na-indijski"><div class="jednaVijestOkvirSlika" style="background-image:url(/local_files/crop/crop40d5aa4b8dd54bc388185bd220786b59.jpg)"><div class="videoIkona_mala"></div></div><div class="jednaVijestOkvirNaslov lifestyleBCK" style="">Piletina na indijski</div><div class="jednaVijestOkvirTekst lifestyleBCK" style="">Okus sočan, miris moćan, bio bi kratki opis piletine koju je naš kuhar ovoga puta pripremio na način kako se to čini u dalekoj Indiji.</div></a></div>
+
+<div class="clearDiv"></div></div>
+
+
+
+        </div>
+
+
+        <div style="clear:both;"></div>
+        <!--footer -->
+        <div style="height:200px;width:100%"></div>
+                <footer>
+
+            <div style="float:left; padding:16px; padding-left:82px; ">
+                <b><a style="text-decoration: underline;" href="/impressum/imp.aspx">Impressum</a></b>
+                <br />
+                <div style="margin-top:16px;">
+                    <div>T: <label style="padding-left:12px;">033 868 414</label></div>
+                    <div>M: <label style="padding-left:10px;">redakcija@source.ba</label></div>
+                    <div>   <label style="padding-left:26px;">info@source.ba</label></div>
+                </div>
+                
+            </div> 
+
+            <div style="height:40px; float:left; width:1px; border:none; background-color:#ccc; margin-top:55px;"></div>
+
+            <div style="float:left;  padding:16px;">
+                <b>Marketing</b>
+                <br />
+                <div style="margin-top:30px;">
+                   <div></div>
+                    <div>T: <label style="padding-left:12px;">033 809 060</label></div>
+                    <div>M: <label style="padding-left:10px;">marketing@source.ba</label></div>   
+			<div style="padding-left:25px;"><a style="text-decoration: underline;" href="/cjenovnik/cjenovnik2018.pdf">Cjenovnik usluga </a></div>                 
+                </div>
+            </div> 
+
+            <div style="height:40px; float:left; width:1px; border:none; background-color:#ccc; margin-top:55px;"></div>
+
+
+            <div style="float:left; padding:16px;">
+                 <b>Aplikacije</b>
+                <br />
+                <div style="margin-top:30px;">
+                    <div>Mobilna aplikacija</div>
+                    <div>Android aplikacija</div>
+                </div>
+            </div> 
+
+            <div style="height:40px; float:left; width:1px; border:none; background-color:#ccc; margin-top:55px;"></div>
+
+            <div style="float:left; padding:16px;">
+                 <b>Social</b>
+                <br />
+                <div style="margin-top:33px;">
+                   <img src="/img_project/social_f.png" onmousedown="window.open('https://www.facebook.com/pages/Sourceba/211606990498');"  style="float:left;" onmouseover="this.style.cursor='pointer';"/>
+                    <img src="/img_project/social_tw.png" onmousedown="window.open('https://twitter.com/sourceba');" style="float:left; margin-left:10px;" onmouseover="this.style.cursor='pointer';"/>
+                    <img src="/img_project/social_yt.png" onmousedown="window.open('https://www.youtube.com/channel/UCD4Bl6tXwO0GKVaLDWd-ykw');" style="float:left;margin-left:10px;" onmouseover="this.style.cursor='pointer';"/>
+                </div>
+            </div> 
+
+            <div style="height:40px; float:left; width:1px; border:none; background-color:#ccc; margin-top:55px;"></div>
+
+            <div style="float:left; padding:16px; padding-top:60px;">                 
+                
+                   <img src="/img_project/source_foot.png"  style="float:left;" onmouseover="this.style.cursor='pointer';"/>
+                <br /><div style="float:left; padding-top:2px;">Copyright ©2009 - 2015, Source d.o.o.</div>
+                
+            </div> 
+             
+
+            <div style="clear:both;"></div>
+
+		
+            
+        </footer>
+                
+    </div>   
+
+        
+        
+    </form>
+
+
+     
+    <script type="text/javascript">
+        
+
+        //ako je kanal i ima podkategorije prikazi ih
+        if ('' != ""
+            && '' == "")
+        {   
+
+            
+        }
+
+
+        function selectTab(id) {
+
+            if (id != '') {
+
+                var doc = document.getElementById(id.toLowerCase());
+                if (doc != null) {
+                        doc.setAttribute('class', 'menuItemRight menuItemRightSelected');
+                    }                                
+            }
+        }
+        
+        //setovanje odabranog taba
+        selectTab('');
+                
+    </script>
+    
+
+   
+    
+    <script type="text/javascript">var pp_gemius_identifier = new String('bDE7WRxMcNXqaUnJCSQoaPU5rtKdKY_iEgKzoPdt.yL.u7');</script><script type="text/javascript" src="http://source.ba/xgemius.js"></script>
+
+    
+    <script>
+            (function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+            ga('create', 'UA-11917963-1', 'auto');
+            ga('send', 'pageview');
+
+    </script>
+
+
+        
+    <script type="text/javascript">(function() {var d = document,h = d.getElementsByTagName('head')[0],s = d.createElement('script');s.type = 'text/javascript';s.async = true;s.src = document.location.protocol + '//test-script.dotmetrics.net/door.js?id=1761';h.appendChild(s);} ());</script>
+
+
+
+
+
+
+</body>
+</html>

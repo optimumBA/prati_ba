@@ -19,6 +19,7 @@ defmodule PratiBa.Scrapers do
     RadioSlobodnaEvropaScraper,
     RaportScraper,
     SlobodnaBosnaScraper,
+    SourceScraper,
     TheBosniaTimesScraper,
     ZurnalScraper
   }
@@ -36,6 +37,7 @@ defmodule PratiBa.Scrapers do
     "Radio Slobodna Evropa" => RadioSlobodnaEvropaScraper,
     "Raport.ba" => RaportScraper,
     "Slobodna Bosna" => SlobodnaBosnaScraper,
+    "source.ba" => SourceScraper,
     "The Bosnia Times" => TheBosniaTimesScraper,
     "Žurnal" => ZurnalScraper
   }
