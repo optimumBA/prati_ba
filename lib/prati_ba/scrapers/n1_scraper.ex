@@ -10,7 +10,6 @@ defmodule PratiBa.Scrapers.N1Scraper do
       {:ok, %{status_code: 200, body: body}} ->
         {:ok, feed, _} =
           body
-          |> HtmlEntities.decode()
           |> String.trim()
           |> FeederEx.parse()
 
