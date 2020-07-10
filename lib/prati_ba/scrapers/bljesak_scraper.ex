@@ -3,6 +3,8 @@ defmodule PratiBa.Scrapers.BljesakScraper do
 
   @url "https://www.bljesak.info/najnovije"
 
+  alias PratiBa.Scrapers.ScrapingHelper
+
   def articles(url \\ @url) do
     response = Mojito.request(method: :get, url: url)
 
@@ -56,20 +58,9 @@ defmodule PratiBa.Scrapers.BljesakScraper do
 
       article = Map.put(article, :published_at, published_at)
 
-      article =
-        case Floki.find(article_container, ".box a img") do
-          [image | _] ->
-            image_url =
-              image
-              |> Floki.attribute("src")
-              |> Enum.at(0)
-              |> URI.encode()
+      image_url = ScrapingHelper.get_og_image(html)
 
-            Map.put(article, :image, image_url)
-
-          _ ->
-            article
-        end
+      article = Map.put(article, :image, image_url)
 
       {:ok, article}
     else
@@ -98,20 +89,13 @@ defmodule PratiBa.Scrapers.BljesakScraper do
       |> Floki.text()
       |> String.trim()
 
-    image =
-      article
-      |> Floki.find(".image img")
-      |> Floki.attribute("src")
-      |> Enum.at(0)
-      |> URI.encode()
-
     %{
       original_id: original_id,
       title: title,
       description: nil,
       published_at: nil,
       author: nil,
-      image: image,
+      image: nil,
       url: url
     }
   end

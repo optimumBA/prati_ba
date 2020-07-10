@@ -29,7 +29,7 @@ defmodule PratiBa.Scrapers.BljesakScraperTest do
                description: nil,
                published_at: nil,
                author: nil,
-               image: "https://storage.bljesak.info/article/317067/450x310/Galaxy-fold.jpg",
+               image: nil,
                url:
                  "https://www.bljesak.info/sci-tech/tehnologija/procurile-nove-informacije-o-nadolazecem-samsungovom-savitljivom-telefonu/317067"
              } = Enum.at(articles, 0)
@@ -56,7 +56,7 @@ defmodule PratiBa.Scrapers.BljesakScraperTest do
         description: nil,
         published_at: nil,
         author: nil,
-        image: "https://storage.bljesak.info/article/317067/450x310/Galaxy-fold.jpg",
+        image: nil,
         url: article_url
       }
 
@@ -71,7 +71,7 @@ defmodule PratiBa.Scrapers.BljesakScraperTest do
                  "Savitljivi telefoni predstavljat će se u sklopu brenda Galaxy Z pa bi se nasljednik Galaxyja Fold trebao u prodaji pojaviti kao Galaxy Z Fold 2.",
                published_at: ~N[2020-07-07 12:23:00],
                author: nil,
-               image: "https://storage.bljesak.info/image/346344/800x550/Galaxy-fold.jpg",
+               image: "https://storage.bljesak.info/article/317067/800x550/Galaxy-fold.jpg",
                url: ^article_url
              } = article
     end

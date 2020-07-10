@@ -30,7 +30,7 @@ defmodule PratiBa.Scrapers.FaceScraperTest do
                description: nil,
                published_at: nil,
                author: nil,
-               image: "https://storage.face.ba/article/61831/450x310/1268370.jpeg",
+               image: nil,
                url:
                  "https://www.face.ba/vijesti/svijet/kineska-regija-upozorava-u-jednoj-bolnici-prijavljen-slucaj-bolesti-koja-je-u-srednjem-vijeku-pokosila-pola-europe-video/61831"
              } = Enum.at(articles, 0)
@@ -58,7 +58,7 @@ defmodule PratiBa.Scrapers.FaceScraperTest do
         description: nil,
         published_at: nil,
         author: nil,
-        image: "https://storage.face.ba/article/61831/450x310/1268370.jpeg",
+        image: nil,
         url: article_url
       }
 
@@ -74,8 +74,7 @@ defmodule PratiBa.Scrapers.FaceScraperTest do
                  "Mongolija je stavila regiju Hovd u karantenu nakon što su otkrivena dva slučaja bubonske kuge, bolesti koja je u srednjem vijeku odnijela milione života",
                published_at: ~N[2020-07-06 21:14:00],
                author: nil,
-               image:
-                 "https://storage.face.ba/article/61831/1280x880/1268370.jpeg?q=2020-07-07%2007:03:01",
+               image: "https://storage.face.ba/article/61831/1200x628/1268370.jpeg",
                url: ^article_url
              } = article
     end

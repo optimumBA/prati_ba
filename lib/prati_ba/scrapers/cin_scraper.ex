@@ -3,6 +3,8 @@ defmodule PratiBa.Scrapers.CinScraper do
 
   @rss_url "https://www.cin.ba/feed/"
 
+  alias PratiBa.Scrapers.ScrapingHelper
+
   def articles(url \\ @rss_url) do
     response = Mojito.request(method: :get, url: url)
 
@@ -29,12 +31,7 @@ defmodule PratiBa.Scrapers.CinScraper do
 
     with {:ok, %{status_code: 200, body: body}} <- response,
          {:ok, html} <- Floki.parse_document(body) do
-      image_url =
-        html
-        |> Floki.find("meta[property=\"og:image\"]")
-        |> Floki.attribute("content")
-        |> Enum.at(0)
-        |> URI.encode()
+      image_url = ScrapingHelper.get_og_image(html)
 
       {:ok, Map.put(article, :image, image_url)}
     else

@@ -3,6 +3,8 @@ defmodule PratiBa.Scrapers.FaceScraper do
 
   @url "https://www.face.ba/najnovije"
 
+  alias PratiBa.Scrapers.ScrapingHelper
+
   def articles(url \\ @url) do
     response = Mojito.request(method: :get, url: url)
 
@@ -57,20 +59,9 @@ defmodule PratiBa.Scrapers.FaceScraper do
 
       article = Map.put(article, :published_at, published_at)
 
-      article =
-        case Floki.find(article_container, ".main-article-image-wrapper img") do
-          [image] ->
-            image_url =
-              image
-              |> Floki.attribute("src")
-              |> Enum.at(0)
-              |> URI.encode()
+      image_url = ScrapingHelper.get_og_image(html)
 
-            Map.put(article, :image, image_url)
-
-          _ ->
-            article
-        end
+      article = Map.put(article, :image, image_url)
 
       {:ok, article}
     else
@@ -95,28 +86,13 @@ defmodule PratiBa.Scrapers.FaceScraper do
       |> Floki.text()
       |> String.trim()
 
-    background =
-      article
-      |> Floki.find(".article-background")
-      |> Floki.attribute("style")
-      |> Enum.at(0)
-
-    image =
-      case Regex.named_captures(~r/background:url\('(?<url>[^']+)'\);/, background) do
-        %{"url" => image_url} ->
-          URI.encode(image_url)
-
-        _ ->
-          nil
-      end
-
     %{
       original_id: original_id,
       title: title,
       description: nil,
       published_at: nil,
       author: nil,
-      image: image,
+      image: nil,
       url: URI.encode(url)
     }
   end
