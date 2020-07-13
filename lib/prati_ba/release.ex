@@ -28,6 +28,7 @@ defmodule PratiBa.Release do
 
   defp repos do
     Application.load(@app)
+    Application.ensure_all_started(:ssl)
     Application.fetch_env!(@app, :ecto_repos)
   end
 
