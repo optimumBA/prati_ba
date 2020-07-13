@@ -1,8 +1,0 @@
-apiVersion: networking.gke.io/v1beta2
-kind: ManagedCertificate
-metadata:
-  name: pratiba-staging
-  namespace: staging
-spec:
-  domains:
-    - staging-2345.prati.ba
