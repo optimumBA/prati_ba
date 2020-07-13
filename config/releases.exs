@@ -8,7 +8,7 @@ database_url =
     """
 
 config :prati_ba, PratiBa.Repo,
-  # ssl: true,
+  ssl: true,
   url: database_url,
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
 
@@ -54,34 +54,7 @@ config :prati_ba,
     username: "pratiba",
     password: admin_password
   ],
-  ssl_excluded_hosts: ["localhost", System.get_env("HOST_IP"), System.get_env("POD_IP")]
-
-maxmind_license_key =
-  System.get_env("MAXMIND_LICENSE_KEY") ||
-    raise """
-    environment variable MAXMIND_LICENSE_KEY is missing.
-    For example: 4FMnz1Pr2Cxnd6BR
-    """
-
-config :geolix,
-  databases: [
-    %{
-      id: :asn,
-      adapter: Geolix.Adapter.MMDB2,
-      source:
-        "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=#{
-          maxmind_license_key
-        }&suffix=tar.gz"
-    },
-    %{
-      id: :city,
-      adapter: Geolix.Adapter.MMDB2,
-      source:
-        "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=#{
-          maxmind_license_key
-        }&suffix=tar.gz"
-    }
-  ]
+  ssl_excluded_hosts: ["localhost"]
 
 aws_s3_bucket =
   System.get_env("AWS_S3_BUCKET") ||
@@ -121,22 +94,25 @@ config :ex_aws,
     region: "eu-central-1"
   ]
 
-namespace =
-  System.get_env("NAMESPACE") ||
+dns_name =
+  System.get_env("RENDER_DISCOVERY_SERVICE") ||
     raise """
-    environment variable NAMESPACE is missing.
-    For example: staging
+    environment variable RENDER_DISCOVERY_SERVICE is missing.
+    """
+
+app_name =
+  System.get_env("RENDER_SERVICE_NAME") ||
+    raise """
+    environment variable RENDER_SERVICE_NAME is missing.
     """
 
 config :libcluster,
   topologies: [
     prati_ba_topology: [
-      strategy: Cluster.Strategy.Kubernetes,
+      strategy: Cluster.Strategy.Kubernetes.DNS,
       config: [
-        mode: :dns,
-        kubernetes_selector: "app=pratiba,env=#{namespace}",
-        kubernetes_node_basename: "prati_ba",
-        kubernetes_namespace: namespace
+        service: dns_name,
+        application_name: app_name
       ]
     ]
   ]

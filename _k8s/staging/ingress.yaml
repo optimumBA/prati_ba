@@ -1,8 +1,0 @@
-- op: add
-  path: /metadata/annotations
-  value:
-    kubernetes.io/ingress.global-static-ip-name: pratiba-staging
-    networking.gke.io/managed-certificates: pratiba-staging
-- op: replace
-  path: /spec/rules/0/host
-  value: staging-2345.prati.ba

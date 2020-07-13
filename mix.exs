@@ -25,7 +25,7 @@ defmodule PratiBa.MixProject do
   def application do
     [
       mod: {PratiBa.Application, []},
-      extra_applications: [:inets, :logger, :os_mon, :runtime_tools, :timex, :ssl, :xmerl]
+      extra_applications: [:inets, :logger, :os_mon, :runtime_tools, :ssl, :timex, :xmerl]
     ]
   end
 
@@ -70,9 +70,6 @@ defmodule PratiBa.MixProject do
       {:quantum, "~> 3.0-rc"},
       {:mox, "~> 0.5", only: :test},
       {:html_entities, "~> 0.5"},
-      {:geolix, "~> 1.0"},
-      {:geolix_adapter_mmdb2, "~> 0.4.0"},
-      {:ua_inspector, "~> 2.0"},
       {:libcluster, "~> 3.2"},
       {:remote_ip, github: "almirsarajcic/remote_ip", branch: "runtime-env-variables"},
       {:html_sanitize_ex, "~> 1.4"}

@@ -2,6 +2,9 @@ defmodule PratiBaWeb.HealthController do
   use PratiBaWeb, :controller
 
   def index(conn, _params) do
+    # Return status 500 if unable to connect to DB
+    Ecto.Adapters.SQL.query!(PratiBa.Repo, "SELECT 1")
+
     {_, timestamp} = Timex.format(DateTime.utc_now(), "%FT%T%:z", :strftime)
 
     {:ok, hostname} = :inet.gethostname()
