@@ -58,26 +58,17 @@ defmodule PratiBa.Stats do
     headers = Enum.into(conn.req_headers, %{})
     remote_ip = parse_remote_ip(conn)
 
-    {isp, geo} =
-      remote_ip
-      |> Geolix.lookup()
-      |> parse_geo_data()
-
-    user_agent =
-      headers["user-agent"]
-      |> UAInspector.parse()
-
     %{
       id: request_id,
-      geo: geo,
-      isp: isp,
+      geo: nil,
+      isp: nil,
       path: conn.request_path,
       raw: %{
         remote_ip: remote_ip,
         req_headers: headers
       },
       referer: headers["referer"],
-      user_agent: user_agent
+      user_agent: nil
     }
   end
 
@@ -86,30 +77,4 @@ defmodule PratiBa.Stats do
     |> Tuple.to_list()
     |> Enum.join(".")
   end
-
-  defp parse_geo_data(nil), do: {nil, nil}
-  defp parse_geo_data(map) when map_size(map) == 0, do: {nil, nil}
-
-  defp parse_geo_data(%{asn: asn, city: city}) do
-    isp = parse_asn(asn)
-    geo = parse_city(city)
-
-    {isp, geo}
-  end
-
-  defp parse_asn(nil), do: nil
-  defp parse_asn(%{autonomous_system_organization: isp}), do: isp
-
-  defp parse_city(nil), do: nil
-
-  defp parse_city(%{continent: continent, country: country, city: city}) do
-    %{
-      continent: get_name(continent),
-      country: get_name(country),
-      city: get_name(city)
-    }
-  end
-
-  defp get_name(nil), do: nil
-  defp get_name(%{name: name}), do: name
 end
