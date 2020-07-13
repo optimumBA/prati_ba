@@ -71,6 +71,7 @@ defmodule PratiBa.MixProject do
       {:mox, "~> 0.5", only: :test},
       {:html_entities, "~> 0.5"},
       {:libcluster, "~> 3.2"},
+      {:remote_ip, github: "almirsarajcic/remote_ip", branch: "runtime-env-variables"},
       {:html_sanitize_ex, "~> 1.4"}
     ]
   end
