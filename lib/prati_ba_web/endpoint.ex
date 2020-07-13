@@ -1,12 +1,6 @@
 defmodule PratiBaWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :prati_ba
 
-  if Application.get_env(:prati_ba, :env) == :prod do
-    plug RemoteIp,
-      headers: ~w[x-forwarded-for],
-      proxies: {__MODULE__, :proxy?, []}
-  end
-
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
@@ -57,15 +51,4 @@ defmodule PratiBaWeb.Endpoint do
   plug Plug.Head
   plug Plug.Session, @session_options
   plug PratiBaWeb.Router
-
-  def ssl_excluded_host?(host) do
-    list = Application.get_env(:prati_ba, :ssl_excluded_hosts, ["localhost"])
-    :lists.member(host, list)
-  end
-
-  def proxy?(ip) do
-    System.get_env("PROXY_CIDR")
-    |> InetCidr.parse()
-    |> InetCidr.contains?(ip)
-  end
 end

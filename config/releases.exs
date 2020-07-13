@@ -54,7 +54,7 @@ config :prati_ba,
     username: "pratiba",
     password: admin_password
   ],
-  ssl_excluded_hosts: ["localhost", System.get_env("HOST_IP"), System.get_env("POD_IP")]
+  ssl_excluded_hosts: ["localhost"]
 
 aws_s3_bucket =
   System.get_env("AWS_S3_BUCKET") ||
@@ -94,22 +94,26 @@ config :ex_aws,
     region: "eu-central-1"
   ]
 
-namespace =
-  System.get_env("NAMESPACE") ||
+dns_name =
+  System.get_env("RENDER_DISCOVERY_SERVICE") ||
     raise """
-    environment variable NAMESPACE is missing.
-    For example: staging
+    environment variable RENDER_DISCOVERY_SERVICE is missing.
     """
+
+app_name =
+  System.get_env("RENDER_SERVICE_NAME") ||
+    raise """
+    environment variable RENDER_SERVICE_NAME is missing.
+    """
+
 
 config :libcluster,
   topologies: [
     prati_ba_topology: [
-      strategy: Cluster.Strategy.Kubernetes,
+      strategy: Cluster.Strategy.Kubernetes.DNS,
       config: [
-        mode: :dns,
-        kubernetes_selector: "app=pratiba,env=#{namespace}",
-        kubernetes_node_basename: "prati_ba",
-        kubernetes_namespace: namespace
+        service: dns_name,
+        application_name: app_name
       ]
     ]
   ]
