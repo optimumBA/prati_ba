@@ -106,7 +106,6 @@ app_name =
     environment variable RENDER_SERVICE_NAME is missing.
     """
 
-
 config :libcluster,
   topologies: [
     prati_ba_topology: [
