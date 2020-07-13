@@ -25,7 +25,7 @@ defmodule PratiBa.MixProject do
   def application do
     [
       mod: {PratiBa.Application, []},
-      extra_applications: [:inets, :logger, :os_mon, :runtime_tools, :timex, :xmerl]
+      extra_applications: [:inets, :logger, :os_mon, :runtime_tools, :ssl, :timex, :xmerl]
     ]
   end
 
