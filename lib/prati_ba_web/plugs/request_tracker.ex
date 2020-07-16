@@ -3,7 +3,7 @@ defmodule PratiBaWeb.Plugs.RequestTracker do
 
   import Plug.Conn
 
-  alias PratiBa.Stats
+  alias PratiBa.Analytics
 
   def init(_opts), do: nil
 
@@ -29,7 +29,7 @@ defmodule PratiBaWeb.Plugs.RequestTracker do
 
     task =
       Task.async(fn ->
-        Stats.track_request(request_id, visitor_id, conn)
+        Analytics.track_request(request_id, visitor_id, requested_at, conn)
       end)
 
     if Application.get_env(:prati_ba, :env) == :test do
