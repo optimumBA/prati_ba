@@ -31,3 +31,11 @@ liveSocket.connect()
 // >> liveSocket.enableDebug()
 // >> liveSocket.enableLatencySim(1000)
 window.liveSocket = liveSocket
+
+import socket from "./socket"
+import Analytics from "./analytics"
+
+if (socket) {
+  let analytics = new Analytics(socket)
+  analytics.track()
+}

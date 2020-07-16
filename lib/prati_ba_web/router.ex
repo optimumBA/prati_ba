@@ -30,6 +30,7 @@ defmodule PratiBaWeb.Router do
 
     resources "/", AdminController, only: [:index]
     live_dashboard "/dashboard", metrics: {PratiBaWeb.Telemetry, :metrics}
+    live "/analytics", AnalyticsLive.Index, :index
   end
 
   scope "/", PratiBaWeb do

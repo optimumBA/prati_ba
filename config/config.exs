@@ -49,7 +49,8 @@ config :prati_ba,
   admin_auth: [
     username: "pratiba",
     password: "pratiba"
-  ]
+  ],
+  socket_salt: "GXtpirSt"
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
