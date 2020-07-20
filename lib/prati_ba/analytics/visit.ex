@@ -23,7 +23,29 @@ defmodule PratiBa.Analytics.Visit do
   @doc false
   def changeset(visit, attrs) do
     visit
-    |> cast(attrs, [:location, :isp, :os, :device, :browser, :size, :language, :raw, :started_at, :last_active_at])
-    |> validate_required([:location, :isp, :os, :device, :browser, :size, :language, :raw, :started_at, :last_active_at])
+    |> cast(attrs, [
+      :location,
+      :isp,
+      :os,
+      :device,
+      :browser,
+      :size,
+      :language,
+      :raw,
+      :started_at,
+      :last_active_at
+    ])
+    |> validate_required([
+      :location,
+      :isp,
+      :os,
+      :device,
+      :browser,
+      :size,
+      :language,
+      :raw,
+      :started_at,
+      :last_active_at
+    ])
   end
 end

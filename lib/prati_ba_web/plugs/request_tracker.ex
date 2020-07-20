@@ -23,7 +23,11 @@ defmodule PratiBaWeb.Plugs.RequestTracker do
       end
 
     analytics_token =
-      Phoenix.Token.sign(conn, Application.get_env(:prati_ba, :socket_salt), visitor_id <> ":" <> request_id)
+      Phoenix.Token.sign(
+        conn,
+        Application.get_env(:prati_ba, :socket_salt),
+        visitor_id <> ":" <> request_id
+      )
 
     conn = assign(conn, :analytics_token, analytics_token)
 
