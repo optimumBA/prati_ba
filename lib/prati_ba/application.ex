@@ -6,6 +6,17 @@ defmodule PratiBa.Application do
   use Application
 
   def start(_type, _args) do
+    if Application.get_env(:prati_ba, :env) == :prod do
+      :ok =
+        :telemetry.attach(
+          "timber-ecto-query-handler",
+          [:prati_ba, :repo, :query],
+          &Timber.Ecto.handle_event/4,
+          log_level: :warn,
+          query_time_ms_threshold: 1_000
+        )
+    end
+
     children = [
       # Start the Ecto repository
       PratiBa.Repo,

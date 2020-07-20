@@ -55,5 +55,7 @@ defmodule PratiBaWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
+  plug Timber.Plug.HTTPContext
+  plug Timber.Plug.Event
   plug PratiBaWeb.Router
 end
