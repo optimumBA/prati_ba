@@ -4,7 +4,7 @@ defmodule PratiBa.Analytics.Visit do
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
-  schema "visits" do
+  schema "analytics_visits" do
     field :browser, :map
     field :device, :map
     field :isp, :string

@@ -2,7 +2,7 @@ defmodule PratiBa.Repo.Migrations.CreateVisits do
   use Ecto.Migration
 
   def change do
-    create table(:visits, primary_key: false) do
+    create table(:analytics_visits, primary_key: false) do
       add :id, :binary_id, primary_key: true
       add :location, :map
       add :isp, :string
@@ -14,11 +14,13 @@ defmodule PratiBa.Repo.Migrations.CreateVisits do
       add :raw, :map
       add :started_at, :naive_datetime
       add :last_active_at, :naive_datetime
-      add :visitor_id, references(:visitors, on_delete: :delete_all, type: :binary_id), null: false
+
+      add :visitor_id, references(:analytics_visitors, on_delete: :delete_all, type: :binary_id),
+        null: false
 
       timestamps()
     end
 
-    create index(:visits, [:visitor_id])
+    create index(:analytics_visits, [:visitor_id])
   end
 end

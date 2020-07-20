@@ -4,7 +4,7 @@ defmodule PratiBa.Analytics.Event do
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
-  schema "events" do
+  schema "analytics_events" do
     field :details, :map
     field :finished_at, :naive_datetime
     field :requested_at, :naive_datetime
