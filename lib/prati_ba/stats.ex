@@ -1,10 +1,10 @@
-defmodule PratiBa.Analytics do
+defmodule PratiBa.Stats do
   @moduledoc """
-  The Analytics context.
+  The Stats context.
   """
 
   alias PratiBa.Repo
-  alias PratiBa.Analytics.{Request, Visitor}
+  alias PratiBa.Stats.{Request, Visitor}
 
   @doc """
   Returns the list of requests.
@@ -34,7 +34,7 @@ defmodule PratiBa.Analytics do
     |> Repo.all()
   end
 
-  def track_request(request_id, visitor_id, requested_at, conn) do
+  def track_request(request_id, visitor_id, conn) do
     visitor =
       case Repo.get(Visitor, visitor_id) do
         nil ->
@@ -46,7 +46,7 @@ defmodule PratiBa.Analytics do
           visitor
       end
 
-    attrs = parse_request_data(request_id, requested_at, conn)
+    attrs = parse_request_data(request_id, conn)
 
     %Request{}
     |> Request.changeset(attrs)
@@ -54,14 +54,7 @@ defmodule PratiBa.Analytics do
     |> Repo.insert!()
   end
 
-  def add_details(request_id, %{} = details) do
-    Request
-    |> Repo.get!(request_id)
-    |> Request.changeset(details)
-    |> Repo.update!()
-  end
-
-  defp parse_request_data(request_id, requested_at, conn) do
+  defp parse_request_data(request_id, conn) do
     headers = Enum.into(conn.req_headers, %{})
     remote_ip = parse_remote_ip(conn)
 
@@ -75,8 +68,7 @@ defmodule PratiBa.Analytics do
         req_headers: headers
       },
       referer: headers["referer"],
-      user_agent: nil,
-      requested_at: requested_at
+      user_agent: nil
     }
   end
 

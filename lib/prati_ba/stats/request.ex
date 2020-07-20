@@ -1,8 +1,8 @@
-defmodule PratiBa.Analytics.Request do
+defmodule PratiBa.Stats.Request do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias PratiBa.Analytics.Visitor
+  alias PratiBa.Stats.Visitor
 
   @primary_key {:id, :binary_id, autogenerate: false}
   @foreign_key_type :binary_id
