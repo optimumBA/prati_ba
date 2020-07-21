@@ -1,6 +1,9 @@
 defmodule PratiBa.Analytics.Event do
   use Ecto.Schema
+
   import Ecto.Changeset
+
+  alias PratiBa.Analytics.{EventType, Visit}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -9,8 +12,8 @@ defmodule PratiBa.Analytics.Event do
     field :finished_at, :naive_datetime
     field :requested_at, :naive_datetime
     field :started_at, :naive_datetime
-    field :event_type, :binary_id
-    field :visit, :binary_id
+    belongs_to :event_type, EventType
+    belongs_to :visit, Visit
 
     timestamps()
   end
@@ -18,7 +21,7 @@ defmodule PratiBa.Analytics.Event do
   @doc false
   def changeset(event, attrs) do
     event
-    |> cast(attrs, [:details, :requested_at, :started_at, :finished_at])
-    |> validate_required([:details, :requested_at, :started_at, :finished_at])
+    |> cast(attrs, [:details, :finished_at, :requested_at, :started_at])
+    |> validate_required([:requested_at])
   end
 end

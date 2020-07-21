@@ -8,5 +8,7 @@ defmodule PratiBa.Repo.Migrations.CreateEventTypes do
 
       timestamps()
     end
+
+    create unique_index(:analytics_event_types, [:name])
   end
 end

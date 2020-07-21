@@ -38,6 +38,9 @@ defmodule PratiBaWeb.ConnCase do
       Ecto.Adapters.SQL.Sandbox.mode(PratiBa.Repo, {:shared, self()})
     end
 
+    # Avoid errors from Analytics plug
+    PratiBa.Factory.insert(:event_type, name: "page_view")
+
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

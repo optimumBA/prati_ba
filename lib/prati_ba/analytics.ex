@@ -3,7 +3,7 @@ defmodule PratiBa.Analytics do
   The Analytics context.
   """
 
-  alias PratiBa.Analytics.{Visit, Visitor}
+  alias PratiBa.Analytics.{Event, EventType, Visit, Visitor}
   alias PratiBa.Repo
 
   @doc """
@@ -125,5 +125,59 @@ defmodule PratiBa.Analytics do
     visit
     |> Visit.changeset(attrs)
     |> Repo.update()
+  end
+
+  @doc """
+  Returns the list of events.
+
+  ## Examples
+
+      iex> list_events()
+      [%Event{}, ...]
+
+  """
+  def list_events() do
+    Event
+    |> Repo.all()
+    |> Repo.preload(:event_type)
+  end
+
+  @doc """
+  Creates an event.
+
+  ## Examples
+
+      iex> create_event(visit, event_type, %{field: value})
+      {:ok, %Event{}}
+
+      iex> create_event(visit, event_type, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_event(%Visit{} = visit, %EventType{} = event_type, %{} = attrs) do
+    %Event{}
+    |> Event.changeset(attrs)
+    |> Ecto.Changeset.put_assoc(:visit, visit)
+    |> Ecto.Changeset.put_assoc(:event_type, event_type)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Gets a single event type.
+
+  Returns `nil` if the EventType does not exist.
+
+  ## Examples
+
+      iex> get_event_type("event_type_name")
+      %Visitor{}
+
+      iex> get_event_type("inexistent_event_type")
+      nil
+
+  """
+  def get_event_type(name) do
+    EventType
+    |> Repo.get_by(name: name)
   end
 end

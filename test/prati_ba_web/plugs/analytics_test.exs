@@ -2,6 +2,7 @@ defmodule PratiBaWeb.Plugs.AnalyticsTest do
   use PratiBaWeb.ConnCase, async: true
 
   alias PratiBa.Analytics
+  alias PratiBa.Analytics.EventType
 
   describe "call" do
     test "tracks new visitor", %{conn: conn} do
@@ -61,6 +62,23 @@ defmodule PratiBaWeb.Plugs.AnalyticsTest do
       assert length(Analytics.list_visitors()) == 1
       assert [returned_visit] = Analytics.list_visits()
       refute returned_visit.last_active_at == returned_visit.started_at
+    end
+
+    test "tracks page view", %{conn: conn} do
+      assert length(Analytics.list_events()) == 0
+
+      conn = get(conn, "/")
+
+      assert [event] = Analytics.list_events()
+      assert %EventType{name: "page_view"} = event.event_type
+
+      assert %{
+               "path" => "/",
+               "referer" => nil
+             } = event.details
+
+      assert [assigned_event] = conn.assigns[:events]
+      assert assigned_event.id == event.id
     end
   end
 end

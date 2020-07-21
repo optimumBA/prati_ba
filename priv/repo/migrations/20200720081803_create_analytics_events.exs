@@ -9,17 +9,17 @@ defmodule PratiBa.Repo.Migrations.CreateAnalyticsEvents do
       add :started_at, :naive_datetime
       add :finished_at, :naive_datetime
 
-      add :event_type,
+      add :event_type_id,
           references(:analytics_event_types, on_delete: :delete_all, type: :binary_id),
           null: false
 
-      add :visit, references(:analytics_visits, on_delete: :delete_all, type: :binary_id),
+      add :visit_id, references(:analytics_visits, on_delete: :delete_all, type: :binary_id),
         null: false
 
       timestamps()
     end
 
-    create index(:analytics_events, [:event_type])
-    create index(:analytics_events, [:visit])
+    create index(:analytics_events, [:event_type_id])
+    create index(:analytics_events, [:visit_id])
   end
 end

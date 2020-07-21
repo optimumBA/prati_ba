@@ -2,7 +2,7 @@ defmodule PratiBa.AnalyticsTest do
   use PratiBa.DataCase, async: true
 
   alias PratiBa.Analytics
-  alias PratiBa.Analytics.Visitor
+  alias PratiBa.Analytics.{Event, EventType, Visit, Visitor}
 
   def visitor_fixture() do
     {:ok, %Visitor{} = visitor} = Analytics.create_visitor()
@@ -32,8 +32,6 @@ defmodule PratiBa.AnalyticsTest do
   end
 
   describe "visits" do
-    alias PratiBa.Analytics.{Visit, Visitor}
-
     @valid_attrs %{started_at: NaiveDateTime.utc_now(), last_active_at: NaiveDateTime.utc_now()}
     @invalid_attrs %{started_at: nil, last_active_at: nil}
 
@@ -107,6 +105,47 @@ defmodule PratiBa.AnalyticsTest do
       visit = visit_fixture(visitor)
       assert {:error, %Ecto.Changeset{}} = Analytics.update_visit(visit, @invalid_attrs)
       assert visit == Analytics.get_active_visit(visitor, visit.id) |> Repo.preload(:visitor)
+    end
+  end
+
+  describe "events" do
+    @valid_attrs %{requested_at: NaiveDateTime.utc_now()}
+    @invalid_attrs %{requested_at: nil}
+
+    test "list_events/0 returns all events with event types" do
+      event_type = insert(:event_type, name: "some_great_event")
+      insert(:event, event_type: event_type)
+      assert [%Event{event_type: %EventType{name: "some_great_event"}}] = Analytics.list_events()
+    end
+
+    test "create_event/3 with valid data creates event" do
+      visit = insert(:visit)
+      event_type = insert(:event_type)
+
+      assert {:ok, %Event{} = event} = Analytics.create_event(visit, event_type, @valid_attrs)
+      assert ^visit = event.visit
+      assert ^event_type = event.event_type
+    end
+
+    test "create_event/3 with invalid data returns error changeset" do
+      visit = insert(:visit)
+      event_type = insert(:event_type)
+
+      assert {:error, %Ecto.Changeset{}} =
+               Analytics.create_event(visit, event_type, @invalid_attrs)
+    end
+  end
+
+  describe "event_types" do
+    test "get_event_type/1 returns the event type with the given name" do
+      event_type = insert(:event_type, name: "new_event_type")
+      assert loaded_event_type = Analytics.get_event_type("new_event_type")
+      assert loaded_event_type.id == event_type.id
+      assert loaded_event_type.name == event_type.name
+    end
+
+    test "get_event_type/1 returns nil when given wrong name" do
+      refute Analytics.get_event_type("inexistent_event_type")
     end
   end
 end

@@ -5,7 +5,7 @@ defmodule PratiBaWeb.Plugs.Analytics do
 
   alias Plug.Conn
   alias PratiBa.Analytics
-  alias PratiBa.Analytics.Visitor
+  alias PratiBa.Analytics.{Event, EventType, Visit, Visitor}
 
   def init(_opts), do: nil
 
@@ -13,6 +13,7 @@ defmodule PratiBaWeb.Plugs.Analytics do
     conn
     |> get_or_create_visitor()
     |> create_or_update_visit()
+    |> track_page_view()
   end
 
   defp get_or_create_visitor(%Conn{} = conn) do
@@ -34,7 +35,7 @@ defmodule PratiBaWeb.Plugs.Analytics do
     end
   end
 
-  defp create_or_update_visit({conn, nil}), do: conn
+  defp create_or_update_visit({%Conn{} = conn, nil}), do: {conn, nil}
 
   defp create_or_update_visit({%Conn{} = conn, %Visitor{} = visitor}) do
     now = NaiveDateTime.utc_now()
@@ -47,7 +48,7 @@ defmodule PratiBaWeb.Plugs.Analytics do
         last_active_at: now
       })
 
-      conn
+      {conn, visit}
     else
       _ ->
         visit_attrs = %{
@@ -56,9 +57,43 @@ defmodule PratiBaWeb.Plugs.Analytics do
         }
 
         case Analytics.create_visit(visitor, visit_attrs) do
-          {:ok, visit} -> conn |> put_session(:visit_id, visit.id)
-          _ -> conn
+          {:ok, visit} ->
+            conn =
+              conn
+              |> put_session(:visit_id, visit.id)
+
+            {conn, visit}
+
+          _ ->
+            {conn, nil}
         end
+    end
+  end
+
+  defp track_page_view({%Conn{} = conn, nil}), do: conn
+
+  defp track_page_view({%Conn{} = conn, %Visit{} = visit}) do
+    case Analytics.get_event_type("page_view") do
+      %EventType{} = event_type ->
+        headers = Enum.into(conn.req_headers, %{})
+
+        case Analytics.create_event(visit, event_type, %{
+               details: %{
+                 path: conn.request_path,
+                 referer: headers["referer"]
+               },
+               requested_at: NaiveDateTime.utc_now()
+             }) do
+          {:ok, %Event{} = event} ->
+            events = Map.get(conn.assigns, :events, [])
+            assign(conn, :events, [event | events])
+
+          {:error, _reason} ->
+            conn
+        end
+
+      _ ->
+        conn
     end
   end
 end

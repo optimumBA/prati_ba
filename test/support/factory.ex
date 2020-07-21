@@ -1,6 +1,7 @@
 defmodule PratiBa.Factory do
   use ExMachina.Ecto, repo: PratiBa.Repo
 
+  alias PratiBa.Analytics.{Event, EventType, Visit, Visitor}
   alias PratiBa.Articles.{Article, Source}
 
   def article_factory do
@@ -18,6 +19,31 @@ defmodule PratiBa.Factory do
     %Source{
       name: sequence(:name, &"Source-#{&1}"),
       url: sequence(:url, &"https://sourceurl-#{&1}.com")
+    }
+  end
+
+  def visitor_factory do
+    %Visitor{}
+  end
+
+  def visit_factory do
+    %Visit{
+      last_active_at: NaiveDateTime.utc_now(),
+      started_at: NaiveDateTime.utc_now(),
+      visitor: build(:visitor)
+    }
+  end
+
+  def event_type_factory do
+    %EventType{
+      name: sequence(:name, &"event_type-#{&1}")
+    }
+  end
+
+  def event_factory do
+    %Event{
+      event_type: build(:event_type),
+      visit: build(:visit)
     }
   end
 end
