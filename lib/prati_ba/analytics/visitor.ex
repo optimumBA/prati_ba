@@ -1,17 +1,12 @@
 defmodule PratiBa.Analytics.Visitor do
   use Ecto.Schema
-  import Ecto.Changeset
+  alias PratiBa.Analytics.Visit
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
   schema "analytics_visitors" do
-    timestamps()
-  end
+    has_many :visits, Visit
 
-  @doc false
-  def changeset(visitor, attrs) do
-    visitor
-    |> cast(attrs, [])
-    |> validate_required([])
+    timestamps()
   end
 end

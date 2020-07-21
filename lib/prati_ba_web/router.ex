@@ -12,6 +12,7 @@ defmodule PratiBaWeb.Router do
   end
 
   pipeline :tracking do
+    plug PratiBaWeb.Plugs.Analytics
     plug PratiBaWeb.Plugs.RequestTracker
   end
 

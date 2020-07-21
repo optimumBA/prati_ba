@@ -1,6 +1,10 @@
 defmodule PratiBa.Analytics.Visit do
   use Ecto.Schema
+
   import Ecto.Changeset
+  import Ecto.Query, only: [from: 2]
+
+  alias PratiBa.Analytics.Visitor
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -15,7 +19,7 @@ defmodule PratiBa.Analytics.Visit do
     field :raw, :map
     field :size, :string
     field :started_at, :naive_datetime
-    field :visitor_id, :binary_id
+    belongs_to :visitor, Visitor
 
     timestamps()
   end
@@ -24,28 +28,25 @@ defmodule PratiBa.Analytics.Visit do
   def changeset(visit, attrs) do
     visit
     |> cast(attrs, [
-      :location,
-      :isp,
-      :os,
-      :device,
       :browser,
-      :size,
+      :device,
+      :isp,
       :language,
+      :last_active_at,
+      :location,
+      :os,
       :raw,
-      :started_at,
-      :last_active_at
+      :size,
+      :started_at
     ])
     |> validate_required([
-      :location,
-      :isp,
-      :os,
-      :device,
-      :browser,
-      :size,
-      :language,
-      :raw,
-      :started_at,
-      :last_active_at
+      :last_active_at,
+      :started_at
     ])
+  end
+
+  def active(queryable \\ __MODULE__) do
+    from v in queryable,
+      where: fragment("? > now() AT TIME ZONE 'UTC' - INTERVAL '10 minutes'", v.last_active_at)
   end
 end
