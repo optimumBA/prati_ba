@@ -48,7 +48,7 @@ defmodule PratiBaWeb.Plugs.Analytics do
         last_active_at: now
       })
 
-      {conn, visit}
+      {assign(conn, :visit, visit), visit}
     else
       _ ->
         visit_attrs = %{
@@ -61,6 +61,7 @@ defmodule PratiBaWeb.Plugs.Analytics do
             conn =
               conn
               |> put_session(:visit_id, visit.id)
+              |> assign(:visit, visit)
 
             {conn, visit}
 

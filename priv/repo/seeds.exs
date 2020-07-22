@@ -47,6 +47,7 @@ for source <- sources do
 end
 
 event_types = [
+  %EventType{name: "article_view"},
   %EventType{name: "page_view"}
 ]
 

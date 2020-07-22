@@ -15,6 +15,7 @@ defmodule PratiBaWeb.Plugs.AnalyticsTest do
 
       assert [visit] = Analytics.list_visits()
       assert get_session(conn, :visit_id) == visit.id
+      assert conn.assigns[:visit] == visit
     end
 
     test "recognizes visitor and creates new visit if current is too old", %{conn: conn} do
@@ -38,6 +39,7 @@ defmodule PratiBaWeb.Plugs.AnalyticsTest do
       assert [^visit, new_visit] = Analytics.list_visits()
 
       assert get_session(conn, :visit_id) == new_visit.id
+      assert conn.assigns[:visit] == new_visit
     end
 
     test "recognizes current visit", %{conn: conn} do
@@ -59,6 +61,7 @@ defmodule PratiBaWeb.Plugs.AnalyticsTest do
 
       assert get_session(conn, :visitor_id) == visitor.id
       assert get_session(conn, :visit_id) == visit.id
+      assert conn.assigns[:visit].id == visit.id
       assert length(Analytics.list_visitors()) == 1
       assert [returned_visit] = Analytics.list_visits()
       refute returned_visit.last_active_at == returned_visit.started_at
