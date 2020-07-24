@@ -17,5 +17,9 @@ export default class Analytics {
     }
 
     this.channel.push('details', details);
+
+    setInterval(() => {
+      this.channel.push('ping', null);
+    }, 60000);
   }
 }

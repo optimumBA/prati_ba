@@ -43,6 +43,13 @@ defmodule PratiBaWeb.AnalyticsChannel do
   end
 
   @impl true
+  def handle_in("ping", _, socket) do
+    Analytics.update_visit(socket.assigns.visit, %{last_active_at: NaiveDateTime.utc_now()})
+
+    {:reply, :ok, socket}
+  end
+
+  @impl true
   def handle_info(:after_join, socket) do
     {:ok, _} = Presence.track(socket, socket.assigns.visit.id, %{})
 

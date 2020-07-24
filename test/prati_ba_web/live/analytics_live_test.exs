@@ -1,5 +1,5 @@
 defmodule PratiBaWeb.AnalyticsLiveTest do
-  use PratiBaWeb.ConnCase, async: true
+  use PratiBaWeb.ConnCase
 
   import Phoenix.LiveViewTest
   import Phoenix.ChannelTest

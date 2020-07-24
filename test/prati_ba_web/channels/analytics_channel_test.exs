@@ -39,4 +39,14 @@ defmodule PratiBaWeb.AnalyticsChannelTest do
              "screen_color_depth" => 24
            } = visit.raw
   end
+
+  test "ping prolongs visit", %{socket: socket} do
+    :timer.sleep(1000)
+
+    ref = push(socket, "ping", nil)
+    assert_reply ref, :ok
+
+    updated_visit = Analytics.get_active_visit(socket.assigns.visitor, socket.assigns.visit.id)
+    refute updated_visit.last_active_at == socket.assigns.visit.last_active_at
+  end
 end
