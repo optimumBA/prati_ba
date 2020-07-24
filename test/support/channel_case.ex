@@ -22,6 +22,7 @@ defmodule PratiBaWeb.ChannelCase do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
       import PratiBaWeb.ChannelCase
+      import PratiBa.Factory
 
       # The default endpoint for testing
       @endpoint PratiBaWeb.Endpoint

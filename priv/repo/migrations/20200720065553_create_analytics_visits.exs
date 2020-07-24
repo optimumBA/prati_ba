@@ -11,7 +11,7 @@ defmodule PratiBa.Repo.Migrations.CreateVisits do
       add :browser, :map
       add :size, :string
       add :language, :string
-      add :raw, :map
+      add :raw, :map, null: false, default: "{}"
       add :started_at, :naive_datetime
       add :last_active_at, :naive_datetime
 

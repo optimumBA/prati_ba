@@ -1,10 +1,21 @@
 export default class Analytics {
   constructor(socket) {
     this.socket = socket;
+    this.channel = this.socket.channel("analytics", {})
   }
 
   track() {
-    let channel = this.socket.channel("analytics", {})
-    channel.join()
+    this.channel.join()
+
+    let details = {
+      siteLanguage: (navigator.language || navigator.userLanguage).substr(0, 2),
+      screenWidth: screen.width,
+      screenHeight: screen.height,
+      screenColorDepth: screen.colorDepth,
+      browserWidth: document.documentElement.clientWidth || window.outerWidth,
+      browserHeight: document.documentElement.clientHeight || window.outerHeight
+    }
+
+    this.channel.push('details', details);
   }
 }

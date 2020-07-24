@@ -11,7 +11,7 @@ defmodule PratiBaWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :tracking do
+  pipeline :analytics do
     plug PratiBaWeb.Plugs.Analytics
     plug PratiBaWeb.Plugs.RequestTracker
   end
@@ -35,7 +35,7 @@ defmodule PratiBaWeb.Router do
   end
 
   scope "/", PratiBaWeb do
-    pipe_through [:browser, :tracking]
+    pipe_through [:browser, :analytics]
 
     live "/", ArticleLive.Index, :index
     resources "/", ArticleController, only: [:show]

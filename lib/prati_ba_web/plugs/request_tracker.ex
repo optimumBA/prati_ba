@@ -22,15 +22,6 @@ defmodule PratiBaWeb.Plugs.RequestTracker do
           {conn, visitor_id}
       end
 
-    analytics_token =
-      Phoenix.Token.sign(
-        conn,
-        Application.get_env(:prati_ba, :socket_salt),
-        visitor_id <> ":" <> request_id
-      )
-
-    conn = assign(conn, :analytics_token, analytics_token)
-
     task =
       Task.async(fn ->
         Stats.track_request(request_id, visitor_id, conn)

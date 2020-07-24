@@ -1,6 +1,8 @@
 defmodule PratiBaWeb.UserSocket do
   use Phoenix.Socket
 
+  alias PratiBa.Analytics
+
   ## Channels
   # channel "room:*", PratiBaWeb.RoomChannel
   channel "analytics", PratiBaWeb.AnalyticsChannel
@@ -20,20 +22,16 @@ defmodule PratiBaWeb.UserSocket do
   def connect(%{"token" => token}, socket, _connect_info) do
     salt = Application.get_env(:prati_ba, :socket_salt)
 
-    case Phoenix.Token.verify(socket, salt, token, max_age: 1_209_600) do
-      {:ok, result} ->
-        [visitor_id, request_id] =
-          result
-          |> String.split(":")
-
-        socket =
-          socket
-          |> assign(:visitor_id, visitor_id)
-          |> assign(:request_id, request_id)
-
-        {:ok, socket}
-
-      {:error, _reason} ->
+    with {:ok, result} <- Phoenix.Token.verify(socket, salt, token, max_age: 1_209_600),
+         [visitor_id, visit_id] <- String.split(result, ":"),
+         visitor <- Analytics.get_visitor(visitor_id),
+         visit <- Analytics.get_active_visit(visitor, visit_id) do
+      {:ok,
+       socket
+       |> assign(:visitor, visitor)
+       |> assign(:visit, visit)}
+    else
+      _ ->
         :error
     end
   end

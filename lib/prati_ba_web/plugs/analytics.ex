@@ -13,6 +13,7 @@ defmodule PratiBaWeb.Plugs.Analytics do
     conn
     |> get_or_create_visitor()
     |> create_or_update_visit()
+    |> sign_analytics_token()
     |> track_page_view()
   end
 
@@ -51,7 +52,14 @@ defmodule PratiBaWeb.Plugs.Analytics do
       {assign(conn, :visit, visit), visit}
     else
       _ ->
+        headers = Enum.into(conn.req_headers, %{})
+        remote_ip = parse_remote_ip(conn)
+
         visit_attrs = %{
+          raw: %{
+            remote_ip: remote_ip,
+            user_agent: headers["user-agent"]
+          },
           started_at: now,
           last_active_at: now
         }
@@ -69,6 +77,21 @@ defmodule PratiBaWeb.Plugs.Analytics do
             {conn, nil}
         end
     end
+  end
+
+  defp sign_analytics_token({%Conn{} = conn, nil}), do: {conn, nil}
+
+  defp sign_analytics_token(
+         {%Conn{} = conn, %Visit{id: visit_id, visitor_id: visitor_id} = visit}
+       ) do
+    token =
+      Phoenix.Token.sign(
+        conn,
+        Application.get_env(:prati_ba, :socket_salt),
+        visitor_id <> ":" <> visit_id
+      )
+
+    {assign(conn, :analytics_token, token), visit}
   end
 
   defp track_page_view({%Conn{} = conn, nil}), do: conn
@@ -96,5 +119,11 @@ defmodule PratiBaWeb.Plugs.Analytics do
       _ ->
         conn
     end
+  end
+
+  defp parse_remote_ip(conn) do
+    conn.remote_ip
+    |> Tuple.to_list()
+    |> Enum.join(".")
   end
 end

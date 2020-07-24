@@ -20,11 +20,14 @@ defmodule PratiBaWeb.AnalyticsLiveTest do
     test "shows number of visitors", %{conn: conn} do
       {:ok, index_live, html} = live(conn, Routes.analytics_index_path(conn, :index))
 
+      visitor = insert(:visitor)
+      visit = insert(:visit, visitor: visitor)
+
       assert html =~ "Visitors online: 0"
 
       {:ok, _, socket} =
         PratiBaWeb.UserSocket
-        |> socket("user_id", %{visitor_id: "", request_id: ""})
+        |> socket(nil, %{visitor: visitor, visit: visit})
         |> subscribe_and_join(PratiBaWeb.AnalyticsChannel, "analytics")
 
       # Prevent test crashing

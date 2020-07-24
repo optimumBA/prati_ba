@@ -16,7 +16,7 @@ defmodule PratiBa.Analytics.Visit do
     field :last_active_at, :naive_datetime
     field :location, :map
     field :os, :map
-    field :raw, :map
+    field :raw, :map, default: %{}
     field :size, :string
     field :started_at, :naive_datetime
     belongs_to :visitor, Visitor
