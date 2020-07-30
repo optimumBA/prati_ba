@@ -37,7 +37,7 @@ defmodule PratiBa.Scrapers.BljesakScraperTest do
   end
 
   describe "article_details/1" do
-    test "fetches article image", %{bypass: bypass} do
+    test "fetches more article info", %{bypass: bypass} do
       Bypass.expect(
         bypass,
         "GET",
@@ -75,6 +75,45 @@ defmodule PratiBa.Scrapers.BljesakScraperTest do
                url: ^article_url
              } = article
     end
+
+    test "works with different article format", %{bypass: bypass} do
+      Bypass.expect(
+        bypass,
+        "GET",
+        "/kultura/vjera/nepravda-tesko-zlo-i-zlocin-jos-uvijek-strasno-zaudaraju-necovjestvom/318379",
+        fn conn ->
+          Plug.Conn.resp(conn, 200, different_article_payload())
+        end
+      )
+
+      article_url =
+        "http://localhost:#{bypass.port}/kultura/vjera/nepravda-tesko-zlo-i-zlocin-jos-uvijek-strasno-zaudaraju-necovjestvom/318379"
+
+      article = %{
+        original_id: "318379",
+        title: "Ubija se istina da se ubilo čovjeka",
+        description: nil,
+        published_at: nil,
+        author: nil,
+        image: nil,
+        url: article_url
+      }
+
+      response = BljesakScraper.article_details(article)
+
+      assert {:ok, article} = response
+
+      assert %{
+               original_id: "318379",
+               title: "Ubija se istina da se ubilo čovjeka",
+               description:
+                 "Franjo Komarica, biskup banjalučki, povodom današnjeg ukopa šest prijedorskih žrtava u Memorijalnom centru Kamičani",
+               published_at: ~N[2020-07-20 09:30:00],
+               author: nil,
+               image: "https://storage.bljesak.info/article/318379/800x550/franjo-komarica.jpg",
+               url: ^article_url
+             } = article
+    end
   end
 
   defp articles_payload do
@@ -83,5 +122,9 @@ defmodule PratiBa.Scrapers.BljesakScraperTest do
 
   defp article_payload do
     File.read!("test/support/payloads/bljesak_scraper/article.html")
+  end
+
+  defp different_article_payload do
+    File.read!("test/support/payloads/bljesak_scraper/different_article.html")
   end
 end

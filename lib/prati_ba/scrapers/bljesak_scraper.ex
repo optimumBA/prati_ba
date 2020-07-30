@@ -28,13 +28,9 @@ defmodule PratiBa.Scrapers.BljesakScraper do
          {:ok, html} <- Floki.parse_document(body) do
       article_container =
         html
-        |> Floki.find("article")
+        |> Floki.find("#article-content")
 
-      description =
-        article_container
-        |> Floki.find(".intro")
-        |> Floki.text()
-        |> String.trim()
+      description = ScrapingHelper.get_og_description(html)
 
       article =
         case description do

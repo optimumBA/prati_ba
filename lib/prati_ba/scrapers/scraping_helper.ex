@@ -6,4 +6,12 @@ defmodule PratiBa.Scrapers.ScrapingHelper do
     |> Enum.at(0)
     |> URI.encode()
   end
+
+  def get_og_description(html) do
+    html
+    |> Floki.find("meta[property=\"og:description\"]")
+    |> Floki.attribute("content")
+    |> Enum.at(0)
+    |> String.trim()
+  end
 end
