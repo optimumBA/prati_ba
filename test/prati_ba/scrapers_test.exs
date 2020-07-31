@@ -38,13 +38,13 @@ defmodule PratiBa.ScrapersTest do
 
     ScraperMock
     |> expect(:articles, fn -> {:ok, Stream.map(articles, fn article -> article end)} end)
-    |> expect(:article_details, fn article -> {:ok, Map.put(article, :title, "Fake title")} end)
+    |> expect(:article_details, fn article -> {:ok, Map.merge(article, %{title: "Fake title", image: "https://via.placeholder.com/350x150"})} end)
     |> expect(:article_details, fn _ -> {:error, %Mojito.Error{}} end)
 
     Scrapers.fetch_new_articles(%{source_name => ScraperMock})
 
     assert [article] = Articles.list_articles()
-    assert article.image == nil
+    refute is_nil(article.image)
     assert article.original_id == "1234"
     assert article.published_at == ~N[2020-03-11 18:49:00]
     assert article.title == "Fake title"

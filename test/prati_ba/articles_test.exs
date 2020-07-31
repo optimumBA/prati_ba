@@ -7,7 +7,7 @@ defmodule PratiBa.ArticlesTest do
     alias PratiBa.Articles.{Article, Source}
 
     @valid_attrs %{
-      image: nil,
+      image: "https://via.placeholder.com/350x150",
       original_id: "1234",
       published_at: ~N[2020-03-11 07:50:00],
       title: "Article Title",
@@ -64,7 +64,7 @@ defmodule PratiBa.ArticlesTest do
     test "create_article/2 with valid data creates an article" do
       source = insert(:source, name: "Great source")
       assert {:ok, %Article{} = article} = Articles.create_article(source, @valid_attrs)
-      assert article.image == nil
+      refute is_nil(article.image)
       assert article.published_at == ~N[2020-03-11 07:50:00]
       assert article.title == "Article Title"
       assert article.url == "https://sourcedomain.com/valid"
