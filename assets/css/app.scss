@@ -1,6 +1,5 @@
 /* This file is for your main application css. */
 @import "../node_modules/normalize.css/normalize.css";
-@import "../node_modules/milligram/dist/milligram.css";
 @import "../node_modules/nprogress/nprogress.css";
 
 /* LiveView specific classes for your customizations */
@@ -90,7 +89,6 @@
   display: none;
 }
 
-@import "./colors.css";
-@import "./layout.css";
+@import "./layout.scss";
 @import "./style.css";
 @import "./articles.scss";

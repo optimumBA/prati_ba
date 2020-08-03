@@ -11,7 +11,7 @@ defmodule PratiBa.Uploaders.ArticleImage do
   def storage_dir(_version, {_file, _scope}), do: "uploads/articles"
 
   def transform(:thumb, _) do
-    {:convert, "-thumbnail 200x200^ -gravity center -extent 200x200 -format jpg", :jpg}
+    {:convert, "-format jpg", :jpg}
   end
 
   def s3_object_headers(_version, {_file, _scope}) do

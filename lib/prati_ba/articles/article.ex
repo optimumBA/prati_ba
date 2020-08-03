@@ -35,7 +35,7 @@ defmodule PratiBa.Articles.Article do
     from a in __MODULE__, where: a.source_id == ^source_id and a.original_id == ^original_id
   end
 
-  def newest(limit \\ 15) do
+  def newest(limit \\ 17) do
     from a in __MODULE__,
       order_by: [desc_nulls_last: :published_at, desc_nulls_last: :inserted_at],
       limit: ^limit,

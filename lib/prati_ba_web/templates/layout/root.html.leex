@@ -6,18 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <%= csrf_meta_tag() %>
     <%= live_title_tag assigns[:page_title] || "Prati.ba" %>
-    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+    <link rel="stylesheet" href="https://use.typekit.net/rij3dtb.css">
     <link phx-track-static rel="stylesheet" href="<%= Routes.static_url(@conn, "/css/app.css") %>"/>
     <script defer phx-track-static type="text/javascript" src="<%= Routes.static_url(@conn, "/js/app.js") %>"></script>
   </head>
   <body>
-    <nav role="navigation">
-      <section class="container">
-        <%= link to: Routes.article_index_path(@conn, :index) do %>
-          <h4 class="title">Prati.ba</h4>
-        <% end %>
-      </section>
-    </nav>
+    <header class="container">
+      <%= link to: Routes.article_index_path(@conn, :index) do %>
+        <img src="<%= Routes.static_url(@conn, "/images/logo.png") %>" class="logo" />
+
+        <span class="heading">
+          <span class="title">Prati</span>
+          <span class="subtitle">Vaš news agregator</span>
+        </span>
+      <% end %>
+    </header>
+
     <%= @inner_content %>
   </body>
 </html>

@@ -8,8 +8,8 @@
       <div class="article-title"><%= @article.title %></div>
 
       <div class="article-info">
-        <span class="article-source"><%= @article.source.name %></span>
-        |
+        <img src="/images/sources/Klix.ba.png" class="article-source-image" />
+        <span class="article-source-name"><%= @article.source.name %></span>
         <%= published_date(@article) %>
       </div>
     </div>
