@@ -2,11 +2,13 @@ body {
   background-color: #fcfcfc;
   padding-top: 54px;
   padding-bottom: 130px;
+  font-family: lato, sans-serif;
+  font-style: normal;
+  font-feature-settings: 'kern' off;
 }
 
 .container {
-  width: 83.33%;
-  max-width: 1600px;
+  width: 1600px;
   margin-left: auto;
   margin-right: auto;
 }
@@ -16,37 +18,33 @@ header {
     display: flex;
     flex-direction: row;
     text-decoration: none;
-
-    height: 22px;
+    height: 32px;
 
     .logo {
-      width: 22px;
-      height: 22px;
+      width: 32px;
+      height: 32px;
     }
 
     .heading {
       display: flex;
       flex-direction: column;
-
+      justify-content: center;
       margin-left: 5px;
-
-      font-family: lato, sans-serif;
-      font-style: normal;
       text-transform: uppercase;
 
       .title {
         font-weight: 800;
-        font-size: 10px;
-
-        letter-spacing: 0.9px;
+        font-size: 14px;
+        line-height: 17px;
+        letter-spacing: 1.44px;
         color: #000000;
       }
 
       .subtitle {
         font-weight: 600;
-        font-size: 9px;
-        letter-spacing: 0.3px;
-        text-transform: uppercase;
+        font-size: 12px;
+        line-height: 14px;
+        letter-spacing: 1.44px;
         color: #48484A;
       }
     }
