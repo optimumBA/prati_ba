@@ -1,0 +1,28 @@
+:root {
+  color-scheme: light dark;
+  --bg-color: #fcfcfc;
+  --header-title-color: #000000;
+  --header-subtitle-color: #48484A;
+  --article-bg-color: #FFFFFF;
+  --article-border-color: #F2F2F7;
+  --article-title-color: #1C1C1E;
+  --article-source-image-border-color: #F2F2F7;
+  --article-source-color: #48484A;
+  --article-divider-color: #AEAEB2;
+  --article-published-color: #636366;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-color: #000000;
+    --header-title-color: #FFFFFF;
+    --header-subtitle-color: #636366;
+    --article-bg-color: rgba(28, 28, 30, 0.3);
+    --article-border-color: rgba(28, 28, 30, 0.4);
+    --article-title-color: #FFFFFF;
+    --article-source-image-border-color: #2C2C2E;
+    --article-source-color: #C7C7CC;
+    --article-divider-color: #636366;
+    --article-published-color: #AEAEB2;
+  }
+}

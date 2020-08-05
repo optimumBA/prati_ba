@@ -1,5 +1,5 @@
 body {
-  background-color: #fcfcfc;
+  background-color: var(--bg-color);
   padding-top: 54px;
   padding-bottom: 130px;
   font-family: lato, sans-serif;
@@ -21,6 +21,7 @@ header {
     height: 32px;
 
     .logo {
+      background-image: url('/images/logo.png');
       width: 32px;
       height: 32px;
     }
@@ -37,7 +38,7 @@ header {
         font-size: 14px;
         line-height: 17px;
         letter-spacing: 1.44px;
-        color: #000000;
+        color: var(--header-title-color);
       }
 
       .subtitle {
@@ -45,7 +46,7 @@ header {
         font-size: 12px;
         line-height: 14px;
         letter-spacing: 1.44px;
-        color: #48484A;
+        color: var(--header-subtitle-color);
       }
     }
   }
@@ -53,4 +54,14 @@ header {
 
 main {
   margin-top: 52px;
+}
+
+@media (prefers-color-scheme: dark) {
+  header {
+    a {
+      .logo {
+        background-image: url('/images/logo-inverted.png');
+      }
+    }
+  }
 }
