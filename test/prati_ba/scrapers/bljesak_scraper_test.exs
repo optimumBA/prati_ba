@@ -52,7 +52,8 @@ defmodule PratiBa.Scrapers.BljesakScraperTest do
 
       article = %{
         original_id: "319902",
-        title: "Poruka koju ste dobili na WhatsApp izgleda sumnjivo? Provjerite njenu točnost na internetu",
+        title:
+          "Poruka koju ste dobili na WhatsApp izgleda sumnjivo? Provjerite njenu točnost na internetu",
         description: nil,
         published_at: nil,
         author: nil,
@@ -66,7 +67,8 @@ defmodule PratiBa.Scrapers.BljesakScraperTest do
 
       assert %{
                original_id: "319902",
-               title: "Poruka koju ste dobili na WhatsApp izgleda sumnjivo? Provjerite njenu točnost na internetu",
+               title:
+                 "Poruka koju ste dobili na WhatsApp izgleda sumnjivo? Provjerite njenu točnost na internetu",
                description:
                  "WhatsApp predstavio je još jednu opciju kojom žele, ako ne spriječiti, onda barem smanjiti širenje lažnih informacija.",
                published_at: ~N[2020-08-04 16:39:00],
