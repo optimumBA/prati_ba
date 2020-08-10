@@ -41,8 +41,8 @@ defmodule PratiBa.Scrapers.BljesakScraper do
       date =
         article_container
         |> Floki.find(".info span")
-        |> Enum.at(-2)
-        |> Floki.text()
+        |> Enum.reverse()
+        |> get_date()
         |> String.trim()
 
       published_at =
@@ -94,5 +94,15 @@ defmodule PratiBa.Scrapers.BljesakScraper do
       image: nil,
       url: url
     }
+  end
+
+  defp get_date([head | tail]) do
+    text = Floki.text(head)
+
+    if text =~ ~r/\d{2}\. \d{2}\. \d{4}\. u \d{2}:\d{2}/ do
+      text
+    else
+      get_date(tail)
+    end
   end
 end

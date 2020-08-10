@@ -41,18 +41,18 @@ defmodule PratiBa.Scrapers.BljesakScraperTest do
       Bypass.expect(
         bypass,
         "GET",
-        "/sci-tech/tehnologija/procurile-nove-informacije-o-nadolazecem-samsungovom-savitljivom-telefonu/317067",
+        "/sci-tech/internet/poruka-koju-ste-dobili-na-whatsapp-izgleda-sumnjivo-provjerite-njenu-tocnost-na-internetu/319902",
         fn conn ->
           Plug.Conn.resp(conn, 200, article_payload())
         end
       )
 
       article_url =
-        "http://localhost:#{bypass.port}/sci-tech/tehnologija/procurile-nove-informacije-o-nadolazecem-samsungovom-savitljivom-telefonu/317067"
+        "http://localhost:#{bypass.port}/sci-tech/internet/poruka-koju-ste-dobili-na-whatsapp-izgleda-sumnjivo-provjerite-njenu-tocnost-na-internetu/319902"
 
       article = %{
-        original_id: "317067",
-        title: "Procurile nove informacije o nadolazećem Samsungovom savitljivom telefonu",
+        original_id: "319902",
+        title: "Poruka koju ste dobili na WhatsApp izgleda sumnjivo? Provjerite njenu točnost na internetu",
         description: nil,
         published_at: nil,
         author: nil,
@@ -65,13 +65,13 @@ defmodule PratiBa.Scrapers.BljesakScraperTest do
       assert {:ok, article} = response
 
       assert %{
-               original_id: "317067",
-               title: "Procurile nove informacije o nadolazećem Samsungovom savitljivom telefonu",
+               original_id: "319902",
+               title: "Poruka koju ste dobili na WhatsApp izgleda sumnjivo? Provjerite njenu točnost na internetu",
                description:
-                 "Savitljivi telefoni predstavljat će se u sklopu brenda Galaxy Z pa bi se nasljednik Galaxyja Fold trebao u prodaji pojaviti kao Galaxy Z Fold 2.",
-               published_at: ~N[2020-07-07 12:23:00],
+                 "WhatsApp predstavio je još jednu opciju kojom žele, ako ne spriječiti, onda barem smanjiti širenje lažnih informacija.",
+               published_at: ~N[2020-08-04 16:39:00],
                author: nil,
-               image: "https://storage.bljesak.info/article/317067/800x550/Galaxy-fold.jpg",
+               image: "https://storage.bljesak.info/article/319902/800x550/WhatsApp.jpg",
                url: ^article_url
              } = article
     end
