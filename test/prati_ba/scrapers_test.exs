@@ -1,5 +1,5 @@
 defmodule PratiBa.ScrapersTest do
-  use PratiBa.DataCase, async: true
+  use PratiBa.DataCase
 
   import Mox
 

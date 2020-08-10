@@ -1,5 +1,5 @@
 defmodule PratiBaWeb.ArticleLiveTest do
-  use PratiBaWeb.ConnCase, async: true
+  use PratiBaWeb.ConnCase
 
   import Phoenix.LiveViewTest
 
