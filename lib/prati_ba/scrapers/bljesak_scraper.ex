@@ -30,12 +30,10 @@ defmodule PratiBa.Scrapers.BljesakScraper do
         html
         |> Floki.find("#article-content")
 
-      description = ScrapingHelper.get_og_description(html)
-
       article =
-        case description do
-          "" -> article
-          description -> Map.put(article, :description, description)
+        case ScrapingHelper.get_og_description(html) do
+          {:ok, description} -> Map.put(article, :description, description)
+          _ -> article
         end
 
       date =
@@ -54,13 +52,15 @@ defmodule PratiBa.Scrapers.BljesakScraper do
 
       article = Map.put(article, :published_at, published_at)
 
-      image_url = ScrapingHelper.get_og_image(html)
+      case ScrapingHelper.get_og_image(html) do
+        {:ok, image_url} ->
+          {:ok, Map.put(article, :image, image_url)}
 
-      article = Map.put(article, :image, image_url)
-
-      {:ok, article}
+        {:error, _} ->
+          {:error, :image_not_available}
+      end
     else
-      _ -> {:ok, article}
+      _ -> {:error, :article_not_available}
     end
   end
 

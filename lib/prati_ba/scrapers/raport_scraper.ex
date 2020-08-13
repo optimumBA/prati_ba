@@ -28,7 +28,7 @@ defmodule PratiBa.Scrapers.RaportScraper do
       image_url = URI.encode(image_url)
       {:ok, Map.put(article, :image, image_url)}
     else
-      _ -> {:ok, Map.put(article, :image, nil)}
+      _ -> {:error, :article_not_available}
     end
   end
 

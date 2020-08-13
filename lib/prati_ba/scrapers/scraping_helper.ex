@@ -1,17 +1,33 @@
 defmodule PratiBa.Scrapers.ScrapingHelper do
   def get_og_image(html) do
-    html
-    |> Floki.find("meta[property=\"og:image\"]")
-    |> Floki.attribute("content")
-    |> Enum.at(0)
-    |> URI.encode()
+    image_url =
+      html
+      |> Floki.find("meta[property=\"og:image\"]")
+      |> Floki.attribute("content")
+      |> Enum.at(0)
+
+    case image_url do
+      nil ->
+        {:error, :image_not_available}
+
+      image_url ->
+        {:ok, URI.encode(image_url)}
+    end
   end
 
   def get_og_description(html) do
-    html
-    |> Floki.find("meta[property=\"og:description\"]")
-    |> Floki.attribute("content")
-    |> Enum.at(0)
-    |> String.trim()
+    description =
+      html
+      |> Floki.find("meta[property=\"og:description\"]")
+      |> Floki.attribute("content")
+      |> Enum.at(0)
+
+    case description do
+      nil ->
+        {:error, :description_not_available}
+
+      description ->
+        {:ok, String.trim(description)}
+    end
   end
 end
