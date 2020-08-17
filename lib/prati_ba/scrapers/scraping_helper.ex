@@ -1,4 +1,10 @@
 defmodule PratiBa.Scrapers.ScrapingHelper do
+  @user_agent Application.get_env(:prati_ba, :user_agent, "")
+
+  def get(url) do
+    Mojito.get(url, [{"user-agent", @user_agent}])
+  end
+
   def get_og_image(html) do
     image_url =
       html

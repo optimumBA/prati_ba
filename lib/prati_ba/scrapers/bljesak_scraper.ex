@@ -6,7 +6,7 @@ defmodule PratiBa.Scrapers.BljesakScraper do
   alias PratiBa.Scrapers.ScrapingHelper
 
   def articles(url \\ @url) do
-    response = Mojito.request(method: :get, url: url)
+    response = ScrapingHelper.get(url)
 
     with {:ok, %{status_code: 200, body: body}} <- response,
          {:ok, html} <- Floki.parse_document(body) do
@@ -22,7 +22,7 @@ defmodule PratiBa.Scrapers.BljesakScraper do
   end
 
   def article_details(%{url: url} = article) do
-    response = Mojito.request(method: :get, url: url)
+    response = ScrapingHelper.get(url)
 
     with {:ok, %{status_code: 200, body: body}} <- response,
          {:ok, html} <- Floki.parse_document(body) do

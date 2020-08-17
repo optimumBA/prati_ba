@@ -3,8 +3,10 @@ defmodule PratiBa.Scrapers.RaskrinkavanjeScraper do
 
   @url "https://raskrinkavanje.ba/analize"
 
+  alias PratiBa.Scrapers.ScrapingHelper
+
   def articles(url \\ @url) do
-    response = Mojito.request(method: :get, url: url)
+    response = ScrapingHelper.get(url)
 
     with {:ok, %{status_code: 200, body: body}} <- response,
          {:ok, html} <- Floki.parse_document(body) do
