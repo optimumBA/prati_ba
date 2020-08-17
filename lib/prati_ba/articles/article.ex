@@ -36,10 +36,14 @@ defmodule PratiBa.Articles.Article do
     from a in __MODULE__, where: a.source_id == ^source_id and a.original_id == ^original_id
   end
 
-  def newest(limit \\ 15) do
-    from a in __MODULE__,
+  def newest(queryable \\ __MODULE__, limit \\ 15) do
+    from a in queryable,
       order_by: [desc_nulls_last: :published_at, desc_nulls_last: :inserted_at],
       limit: ^limit,
       preload: :source
+  end
+
+  def from_enabled_sources(queryable \\ __MODULE__) do
+    from a in queryable, join: s in Source, on: [id: a.source_id], where: s.enabled == true
   end
 end

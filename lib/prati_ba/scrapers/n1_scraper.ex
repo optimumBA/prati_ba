@@ -3,8 +3,10 @@ defmodule PratiBa.Scrapers.N1Scraper do
 
   @rss_url "https://ba.n1info.com/rss/249/Naslovna"
 
+  alias PratiBa.Scrapers.ScrapingHelper
+
   def articles(url \\ @rss_url) do
-    response = Mojito.request(method: :get, url: url)
+    response = ScrapingHelper.get(url)
 
     case response do
       {:ok, %{status_code: 200, body: body}} ->

@@ -33,9 +33,12 @@ config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 # Set Timex locale to Bosnian (Latin)
 config :timex, default_locale: "bs_latin"
 
+user_agent = "Prati.ba (info@optimum.ba)"
+
 config :waffle,
   storage: Waffle.Storage.Local,
-  storage_dir_prefix: "priv/static"
+  storage_dir_prefix: "priv/static",
+  headers: [{"User-Agent", user_agent}]
 
 config :prati_ba, PratiBa.Scheduler,
   global: true,
@@ -49,7 +52,8 @@ config :prati_ba,
   admin_auth: [
     username: "pratiba",
     password: "pratiba"
-  ]
+  ],
+  user_agent: user_agent
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
