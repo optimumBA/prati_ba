@@ -44,8 +44,6 @@ defmodule PratiBa.Articles.Article do
   end
 
   def from_enabled_sources(queryable \\ __MODULE__) do
-    from a in queryable,
-      join: s in Source, on: [id: a.source_id],
-      where: s.enabled == true
+    from a in queryable, join: s in Source, on: [id: a.source_id], where: s.enabled == true
   end
 end
