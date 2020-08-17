@@ -17,7 +17,8 @@ defmodule PratiBa.Factory do
   def source_factory do
     %Source{
       name: sequence(:name, &"Source-#{&1}"),
-      url: sequence(:url, &"https://sourceurl-#{&1}.com")
+      url: sequence(:url, &"https://sourceurl-#{&1}.com"),
+      enabled: true
     }
   end
 end

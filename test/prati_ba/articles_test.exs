@@ -15,9 +15,11 @@ defmodule PratiBa.ArticlesTest do
     }
     @invalid_attrs %{image: nil, original_id: nil, published_at: nil, title: nil, url: nil}
 
-    test "list_articles/0 returns newest articles" do
+    test "list_articles/0 returns newest articles from enabled sources" do
       article = insert(:article)
       article_id = article.id
+      disabled_source = insert(:source, enabled: false)
+      insert(:article, source: disabled_source)
       assert [%Article{id: ^article_id}] = Articles.list_articles()
     end
 
@@ -78,8 +80,9 @@ defmodule PratiBa.ArticlesTest do
   end
 
   describe "sources" do
-    test "list_sources/0 returns all sources" do
+    test "list_sources/0 returns all enabled sources" do
       source = insert(:source)
+      insert(:source, enabled: false)
       assert Articles.list_sources() == [source]
     end
   end
