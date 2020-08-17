@@ -6,7 +6,7 @@ defmodule PratiBa.Articles.Source do
   alias PratiBa.Articles.Article
 
   schema "sources" do
-    field :enabled, :boolean
+    field :enabled, :boolean, default: true
     field :name, :string
     field :url, EctoFields.URL
     has_many :articles, Article

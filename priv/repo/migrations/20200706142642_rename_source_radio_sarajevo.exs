@@ -2,29 +2,18 @@ defmodule PratiBa.Repo.Migrations.RenameSourceRadioSarajevo do
   use Ecto.Migration
 
   alias PratiBa.Repo
-  alias PratiBa.Articles.Source
 
   def up do
-    case Repo.get_by(Source, name: "radiosarajevo.ba") do
-      nil ->
-        nil
-
-      source ->
-        source
-        |> Ecto.Changeset.change(name: "Radio Sarajevo")
-        |> Repo.update!()
-    end
+    Repo.query("UPDATE \"sources\" SET name = $1 WHERE name = $2", [
+      "Radio Sarajevo",
+      "radiosarajevo.ba"
+    ])
   end
 
   def down do
-    case Repo.get_by(Source, name: "Radio Sarajevo") do
-      nil ->
-        nil
-
-      source ->
-        source
-        |> Ecto.Changeset.change(name: "radiosarajevo.ba")
-        |> Repo.update!()
-    end
+    Repo.query("UPDATE \"sources\" SET name = $1 WHERE name = $2", [
+      "radiosarajevo.ba",
+      "Radio Sarajevo"
+    ])
   end
 end
