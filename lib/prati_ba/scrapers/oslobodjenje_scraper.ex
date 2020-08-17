@@ -51,13 +51,22 @@ defmodule PratiBa.Scrapers.OslobodjenjeScraper do
       |> DateTime.shift_zone!("Etc/UTC")
       |> DateTime.to_naive()
 
+    image_url =
+      case image_url do
+        nil ->
+          nil
+
+        image_url ->
+          URI.encode(image_url)
+      end
+
     %{
       original_id: original_id,
       title: title,
       description: nil,
       published_at: published_at,
       author: nil,
-      image: URI.encode(image_url),
+      image: image_url,
       url: URI.encode(url)
     }
   end

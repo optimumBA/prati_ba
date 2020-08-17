@@ -28,25 +28,19 @@ defmodule PratiBa.Scrapers.BljesakScraper do
          {:ok, html} <- Floki.parse_document(body) do
       article_container =
         html
-        |> Floki.find("article")
-
-      description =
-        article_container
-        |> Floki.find(".intro")
-        |> Floki.text()
-        |> String.trim()
+        |> Floki.find("#article-content")
 
       article =
-        case description do
-          "" -> article
-          description -> Map.put(article, :description, description)
+        case ScrapingHelper.get_og_description(html) do
+          {:ok, description} -> Map.put(article, :description, description)
+          _ -> article
         end
 
       date =
         article_container
         |> Floki.find(".info span")
-        |> Enum.at(-2)
-        |> Floki.text()
+        |> Enum.reverse()
+        |> get_date()
         |> String.trim()
 
       published_at =
@@ -58,13 +52,15 @@ defmodule PratiBa.Scrapers.BljesakScraper do
 
       article = Map.put(article, :published_at, published_at)
 
-      image_url = ScrapingHelper.get_og_image(html)
+      case ScrapingHelper.get_og_image(html) do
+        {:ok, image_url} ->
+          {:ok, Map.put(article, :image, image_url)}
 
-      article = Map.put(article, :image, image_url)
-
-      {:ok, article}
+        {:error, _} ->
+          {:error, :image_not_available}
+      end
     else
-      _ -> {:ok, article}
+      _ -> {:error, :article_not_available}
     end
   end
 
@@ -98,5 +94,15 @@ defmodule PratiBa.Scrapers.BljesakScraper do
       image: nil,
       url: url
     }
+  end
+
+  defp get_date([head | tail]) do
+    text = Floki.text(head)
+
+    if text =~ ~r/\d{2}\. \d{2}\. \d{4}\. u \d{2}:\d{2}/ do
+      text
+    else
+      get_date(tail)
+    end
   end
 end

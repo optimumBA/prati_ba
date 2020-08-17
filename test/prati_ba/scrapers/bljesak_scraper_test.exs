@@ -37,22 +37,23 @@ defmodule PratiBa.Scrapers.BljesakScraperTest do
   end
 
   describe "article_details/1" do
-    test "fetches article image", %{bypass: bypass} do
+    test "fetches more article info", %{bypass: bypass} do
       Bypass.expect(
         bypass,
         "GET",
-        "/sci-tech/tehnologija/procurile-nove-informacije-o-nadolazecem-samsungovom-savitljivom-telefonu/317067",
+        "/sci-tech/internet/poruka-koju-ste-dobili-na-whatsapp-izgleda-sumnjivo-provjerite-njenu-tocnost-na-internetu/319902",
         fn conn ->
           Plug.Conn.resp(conn, 200, article_payload())
         end
       )
 
       article_url =
-        "http://localhost:#{bypass.port}/sci-tech/tehnologija/procurile-nove-informacije-o-nadolazecem-samsungovom-savitljivom-telefonu/317067"
+        "http://localhost:#{bypass.port}/sci-tech/internet/poruka-koju-ste-dobili-na-whatsapp-izgleda-sumnjivo-provjerite-njenu-tocnost-na-internetu/319902"
 
       article = %{
-        original_id: "317067",
-        title: "Procurile nove informacije o nadolazećem Samsungovom savitljivom telefonu",
+        original_id: "319902",
+        title:
+          "Poruka koju ste dobili na WhatsApp izgleda sumnjivo? Provjerite njenu točnost na internetu",
         description: nil,
         published_at: nil,
         author: nil,
@@ -65,13 +66,53 @@ defmodule PratiBa.Scrapers.BljesakScraperTest do
       assert {:ok, article} = response
 
       assert %{
-               original_id: "317067",
-               title: "Procurile nove informacije o nadolazećem Samsungovom savitljivom telefonu",
+               original_id: "319902",
+               title:
+                 "Poruka koju ste dobili na WhatsApp izgleda sumnjivo? Provjerite njenu točnost na internetu",
                description:
-                 "Savitljivi telefoni predstavljat će se u sklopu brenda Galaxy Z pa bi se nasljednik Galaxyja Fold trebao u prodaji pojaviti kao Galaxy Z Fold 2.",
-               published_at: ~N[2020-07-07 12:23:00],
+                 "WhatsApp predstavio je još jednu opciju kojom žele, ako ne spriječiti, onda barem smanjiti širenje lažnih informacija.",
+               published_at: ~N[2020-08-04 16:39:00],
                author: nil,
-               image: "https://storage.bljesak.info/article/317067/800x550/Galaxy-fold.jpg",
+               image: "https://storage.bljesak.info/article/319902/800x550/WhatsApp.jpg",
+               url: ^article_url
+             } = article
+    end
+
+    test "works with different article format", %{bypass: bypass} do
+      Bypass.expect(
+        bypass,
+        "GET",
+        "/kultura/vjera/nepravda-tesko-zlo-i-zlocin-jos-uvijek-strasno-zaudaraju-necovjestvom/318379",
+        fn conn ->
+          Plug.Conn.resp(conn, 200, different_article_payload())
+        end
+      )
+
+      article_url =
+        "http://localhost:#{bypass.port}/kultura/vjera/nepravda-tesko-zlo-i-zlocin-jos-uvijek-strasno-zaudaraju-necovjestvom/318379"
+
+      article = %{
+        original_id: "318379",
+        title: "Ubija se istina da se ubilo čovjeka",
+        description: nil,
+        published_at: nil,
+        author: nil,
+        image: nil,
+        url: article_url
+      }
+
+      response = BljesakScraper.article_details(article)
+
+      assert {:ok, article} = response
+
+      assert %{
+               original_id: "318379",
+               title: "Ubija se istina da se ubilo čovjeka",
+               description:
+                 "Franjo Komarica, biskup banjalučki, povodom današnjeg ukopa šest prijedorskih žrtava u Memorijalnom centru Kamičani",
+               published_at: ~N[2020-07-20 09:30:00],
+               author: nil,
+               image: "https://storage.bljesak.info/article/318379/800x550/franjo-komarica.jpg",
                url: ^article_url
              } = article
     end
@@ -83,5 +124,9 @@ defmodule PratiBa.Scrapers.BljesakScraperTest do
 
   defp article_payload do
     File.read!("test/support/payloads/bljesak_scraper/article.html")
+  end
+
+  defp different_article_payload do
+    File.read!("test/support/payloads/bljesak_scraper/different_article.html")
   end
 end
