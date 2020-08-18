@@ -61,7 +61,7 @@ defmodule PratiBa.MixProject do
       {:tzdata, "~> 1.0.3"},
       {:ecto_fields, "~> 1.2.0"},
       {:ex_machina, "~> 2.3", only: :test},
-      {:waffle, "~> 1.1.0"},
+      {:waffle, github: "almirsarajcic/waffle", branch: "remote-request-headers", override: true},
       {:waffle_ecto, "~> 0.0.9"},
       {:ex_aws, "~> 2.1"},
       {:ex_aws_s3, "~> 2.0"},
@@ -72,7 +72,10 @@ defmodule PratiBa.MixProject do
       {:html_entities, "~> 0.5"},
       {:libcluster, "~> 3.2"},
       {:remote_ip, github: "almirsarajcic/remote_ip", branch: "runtime-env-variables"},
-      {:html_sanitize_ex, "~> 1.4"}
+      {:html_sanitize_ex, "~> 1.4"},
+      {:timber, "~> 3.1"},
+      {:timber_ecto, "~> 2.0"},
+      {:timber_plug, "~> 1.0"}
     ]
   end
 

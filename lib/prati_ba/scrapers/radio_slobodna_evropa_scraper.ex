@@ -3,8 +3,10 @@ defmodule PratiBa.Scrapers.RadioSlobodnaEvropaScraper do
 
   @rss_url "https://www.slobodnaevropa.org/api/zqtovekoir"
 
+  alias PratiBa.Scrapers.ScrapingHelper
+
   def articles(url \\ @rss_url) do
-    response = Mojito.request(method: :get, url: url)
+    response = ScrapingHelper.get(url)
 
     case response do
       {:ok, %{status_code: 200, body: body}} ->
@@ -56,13 +58,22 @@ defmodule PratiBa.Scrapers.RadioSlobodnaEvropaScraper do
       |> DateTime.shift_zone!("Etc/UTC")
       |> DateTime.to_naive()
 
+    image_url =
+      case image do
+        nil ->
+          nil
+
+        image_url ->
+          URI.encode(image_url)
+      end
+
     %{
       original_id: original_id,
       title: title,
       description: description,
       published_at: published_at,
       author: author,
-      image: URI.encode(image),
+      image: image_url,
       url: url
     }
   end

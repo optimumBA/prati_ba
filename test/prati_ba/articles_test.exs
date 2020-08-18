@@ -7,7 +7,7 @@ defmodule PratiBa.ArticlesTest do
     alias PratiBa.Articles.{Article, Source}
 
     @valid_attrs %{
-      image: nil,
+      image: "https://via.placeholder.com/350x150",
       original_id: "1234",
       published_at: ~N[2020-03-11 07:50:00],
       title: "Article Title",
@@ -15,9 +15,11 @@ defmodule PratiBa.ArticlesTest do
     }
     @invalid_attrs %{image: nil, original_id: nil, published_at: nil, title: nil, url: nil}
 
-    test "list_articles/0 returns newest articles" do
+    test "list_articles/0 returns newest articles from enabled sources" do
       article = insert(:article)
       article_id = article.id
+      disabled_source = insert(:source, enabled: false)
+      insert(:article, source: disabled_source)
       assert [%Article{id: ^article_id}] = Articles.list_articles()
     end
 
@@ -64,7 +66,7 @@ defmodule PratiBa.ArticlesTest do
     test "create_article/2 with valid data creates an article" do
       source = insert(:source, name: "Great source")
       assert {:ok, %Article{} = article} = Articles.create_article(source, @valid_attrs)
-      assert article.image == nil
+      refute is_nil(article.image)
       assert article.published_at == ~N[2020-03-11 07:50:00]
       assert article.title == "Article Title"
       assert article.url == "https://sourcedomain.com/valid"
@@ -78,8 +80,9 @@ defmodule PratiBa.ArticlesTest do
   end
 
   describe "sources" do
-    test "list_sources/0 returns all sources" do
+    test "list_sources/0 returns all enabled sources" do
       source = insert(:source)
+      insert(:source, enabled: false)
       assert Articles.list_sources() == [source]
     end
   end

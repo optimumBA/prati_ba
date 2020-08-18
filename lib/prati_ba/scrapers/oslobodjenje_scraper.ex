@@ -3,8 +3,10 @@ defmodule PratiBa.Scrapers.OslobodjenjeScraper do
 
   @rss_url "https://www.oslobodjenje.ba/feed"
 
+  alias PratiBa.Scrapers.ScrapingHelper
+
   def articles(url \\ @rss_url) do
-    response = Mojito.request(method: :get, url: url)
+    response = ScrapingHelper.get(url)
 
     case response do
       {:ok, %{status_code: 200, body: body}} ->
@@ -51,13 +53,22 @@ defmodule PratiBa.Scrapers.OslobodjenjeScraper do
       |> DateTime.shift_zone!("Etc/UTC")
       |> DateTime.to_naive()
 
+    image_url =
+      case image_url do
+        nil ->
+          nil
+
+        image_url ->
+          URI.encode(image_url)
+      end
+
     %{
       original_id: original_id,
       title: title,
       description: nil,
       published_at: published_at,
       author: nil,
-      image: URI.encode(image_url),
+      image: image_url,
       url: URI.encode(url)
     }
   end

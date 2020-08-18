@@ -30,7 +30,9 @@ defmodule PratiBa.Articles do
 
   """
   def list_articles do
-    Article.newest()
+    Article
+    |> Article.from_enabled_sources()
+    |> Article.newest()
     |> Repo.all()
   end
 
@@ -119,5 +121,9 @@ defmodule PratiBa.Articles do
       [%Source{}, ...]
 
   """
-  def list_sources, do: Repo.all(Source)
+  def list_sources do
+    Source
+    |> Source.enabled()
+    |> Repo.all()
+  end
 end

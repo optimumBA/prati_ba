@@ -3,8 +3,10 @@ defmodule PratiBa.Scrapers.TheBosniaTimesScraper do
 
   @url_base "https://thebosniatimes.ba"
 
+  alias PratiBa.Scrapers.ScrapingHelper
+
   def articles(url_base \\ @url_base) do
-    response = Mojito.request(method: :get, url: url_base <> "/wp-json/wp/v2/posts/")
+    response = ScrapingHelper.get(url_base <> "/wp-json/wp/v2/posts/")
 
     with {:ok, %{status_code: 200, body: body}} <- response,
          {:ok, articles} <- Jason.decode(body) do
@@ -19,7 +21,7 @@ defmodule PratiBa.Scrapers.TheBosniaTimesScraper do
   end
 
   def article_details(%{image: image_url} = article) when is_binary(image_url) do
-    response = Mojito.request(method: :get, url: image_url)
+    response = ScrapingHelper.get(image_url)
 
     with {:ok, %{status_code: 200, body: body}} <- response,
          {:ok, media} <- Jason.decode(body),
@@ -27,7 +29,7 @@ defmodule PratiBa.Scrapers.TheBosniaTimesScraper do
       image_url = URI.encode(image_url)
       {:ok, Map.put(article, :image, image_url)}
     else
-      _ -> {:ok, Map.put(article, :image, nil)}
+      _ -> {:error, :article_not_available}
     end
   end
 

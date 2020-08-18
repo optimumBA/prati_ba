@@ -3,8 +3,10 @@ defmodule PratiBa.Scrapers.DnevniAvazScraper do
 
   @rss_url "https://avaz.ba/rss"
 
+  alias PratiBa.Scrapers.ScrapingHelper
+
   def articles(url \\ @rss_url) do
-    response = Mojito.request(method: :get, url: url)
+    response = ScrapingHelper.get(url)
 
     case response do
       {:ok, %{status_code: 200, body: body}} ->
