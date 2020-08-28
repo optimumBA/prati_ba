@@ -130,4 +130,22 @@ defmodule PratiBaWeb.Plugs.AnalyticsTest do
       assert visit_id == visit.id
     end
   end
+
+  test "avoids tracking bots", %{conn: conn} do
+    assert length(Analytics.list_visitors()) == 0
+
+    conn =
+      conn
+      |> Plug.Test.init_test_session(visitor_id: nil, visit_id: nil)
+      |> put_req_header(
+        "user-agent",
+        "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+      )
+      |> get("/")
+
+    assert length(Analytics.list_visitors()) == 0
+    assert length(Analytics.list_visits()) == 0
+    assert is_nil(get_session(conn, :visitor_id))
+    assert is_nil(get_session(conn, :visit_id))
+  end
 end

@@ -75,7 +75,11 @@ defmodule PratiBa.MixProject do
       {:html_sanitize_ex, "~> 1.4"},
       {:timber, "~> 3.1"},
       {:timber_ecto, "~> 2.0"},
-      {:timber_plug, "~> 1.0"}
+      {:timber_plug, "~> 1.0"},
+      {:geolix, github: "elixir-geolix/geolix"},
+      {:geolix_adapter_mmdb2,
+       github: "almirsarajcic/adapter_mmdb2", branch: "memory-improvements"},
+      {:ua_inspector, "~> 2.0"}
     ]
   end
 

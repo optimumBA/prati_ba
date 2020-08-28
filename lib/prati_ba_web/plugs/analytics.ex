@@ -5,16 +5,22 @@ defmodule PratiBaWeb.Plugs.Analytics do
 
   alias Plug.Conn
   alias PratiBa.Analytics
-  alias PratiBa.Analytics.{Event, EventType, Visit, Visitor}
+  alias PratiBa.Analytics.{Event, EventType, Parser, Visit, Visitor}
 
   def init(_opts), do: nil
 
   def call(%Conn{} = conn, _opts) do
-    conn
-    |> get_or_create_visitor()
-    |> create_or_update_visit()
-    |> sign_analytics_token()
-    |> track_page_view()
+    user_agent = Plug.Conn.get_req_header(conn, "user-agent") |> List.first()
+
+    if UAInspector.bot?(user_agent) do
+      conn
+    else
+      conn
+      |> get_or_create_visitor()
+      |> create_or_update_visit()
+      |> sign_analytics_token()
+      |> track_page_view()
+    end
   end
 
   defp get_or_create_visitor(%Conn{} = conn) do
@@ -55,13 +61,26 @@ defmodule PratiBaWeb.Plugs.Analytics do
         headers = Enum.into(conn.req_headers, %{})
         remote_ip = parse_remote_ip(conn)
 
+        {browser, device, os} =
+          headers["user-agent"]
+          |> Parser.parse_user_agent()
+
+        {isp, location} =
+          remote_ip
+          |> Parser.parse_ip_address()
+
         visit_attrs = %{
+          browser: browser,
+          device: device,
+          isp: isp,
+          last_active_at: now,
+          location: location,
+          os: os,
           raw: %{
             remote_ip: remote_ip,
             user_agent: headers["user-agent"]
           },
-          started_at: now,
-          last_active_at: now
+          started_at: now
         }
 
         case Analytics.create_visit(visitor, visit_attrs) do
