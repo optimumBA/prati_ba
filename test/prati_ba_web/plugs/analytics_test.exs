@@ -1,5 +1,5 @@
 defmodule PratiBaWeb.Plugs.AnalyticsTest do
-  use PratiBaWeb.ConnCase
+  use PratiBaWeb.ConnCase, async: true
 
   alias PratiBa.Analytics
   alias PratiBa.Analytics.EventType
