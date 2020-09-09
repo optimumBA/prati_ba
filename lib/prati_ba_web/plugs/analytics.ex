@@ -61,21 +61,8 @@ defmodule PratiBaWeb.Plugs.Analytics do
         headers = Enum.into(conn.req_headers, %{})
         remote_ip = parse_remote_ip(conn)
 
-        {browser, device, os} =
-          headers["user-agent"]
-          |> Parser.parse_user_agent()
-
-        {isp, location} =
-          remote_ip
-          |> Parser.parse_ip_address()
-
         visit_attrs = %{
-          browser: browser,
-          device: device,
-          isp: isp,
           last_active_at: now,
-          location: location,
-          os: os,
           raw: %{
             remote_ip: remote_ip,
             user_agent: headers["user-agent"]
@@ -89,6 +76,8 @@ defmodule PratiBaWeb.Plugs.Analytics do
               conn
               |> put_session(:visit_id, visit.id)
               |> assign(:visit, visit)
+
+            Task.async(fn -> parse_visit_info(visit, remote_ip, headers["user-agent"]) end)
 
             {conn, visit}
 
@@ -144,5 +133,25 @@ defmodule PratiBaWeb.Plugs.Analytics do
     conn.remote_ip
     |> Tuple.to_list()
     |> Enum.join(".")
+  end
+
+  defp parse_visit_info(%Visit{} = visit, remote_ip, user_agent) do
+    {isp, location} =
+      remote_ip
+      |> Parser.parse_ip_address()
+
+    {browser, device, os} =
+      user_agent
+      |> Parser.parse_user_agent()
+
+    visit_attrs = %{
+      browser: browser,
+      device: device,
+      isp: isp,
+      location: location,
+      os: os
+    }
+
+    Analytics.update_visit(visit, visit_attrs)
   end
 end
