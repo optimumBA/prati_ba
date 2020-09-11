@@ -24,6 +24,8 @@ defmodule PratiBaWeb.AnalyticsLive.Index do
       |> count_current_visitors()
       |> fetch_data()
 
+    schedule_refresh()
+
     {:ok, socket}
   end
 
@@ -48,6 +50,14 @@ defmodule PratiBaWeb.AnalyticsLive.Index do
     visitors_count = count + joins_count - leaves_count
 
     {:noreply, assign(socket, :current_visitors_count, visitors_count)}
+  end
+
+  def handle_info(:refresh, socket) do
+    socket = fetch_data(socket)
+
+    schedule_refresh()
+
+    {:noreply, socket}
   end
 
   defp count_current_visitors(socket) do
@@ -128,5 +138,9 @@ defmodule PratiBaWeb.AnalyticsLive.Index do
     |> assign(:article_views_count, article_views_count)
     |> assign(:article_views_count_before, article_views_count_before)
     |> assign(:visitors_per_day, visitors_per_day)
+  end
+
+  defp schedule_refresh() do
+    Process.send_after(self(), :refresh, 5000)
   end
 end
