@@ -23,7 +23,7 @@ defmodule PratiBaWeb.AnalyticsLiveTest do
       visitor = insert(:visitor)
       visit = insert(:visit, visitor: visitor)
 
-      assert html =~ "Visitors online: 0"
+      assert html =~ "0 current visitors"
 
       {:ok, _, socket} =
         PratiBaWeb.UserSocket
@@ -33,12 +33,12 @@ defmodule PratiBaWeb.AnalyticsLiveTest do
       # Prevent test crashing
       Process.unlink(socket.channel_pid)
 
-      assert has_element?(index_live, "main", "Visitors online: 1")
+      assert has_element?(index_live, "main", "1 current visitor")
 
       close(socket)
       :timer.sleep(1)
 
-      assert has_element?(index_live, "main", "Visitors online: 0")
+      assert has_element?(index_live, "main", "0 current visitors")
     end
   end
 end

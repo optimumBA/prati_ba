@@ -14,7 +14,7 @@
   </div>
 </section>
 
-<main class="container analytics-main" phx-update="ignore">
+<main id="analytics-main" class="container analytics-main" phx-update="ignore">
   <div class="row">
     <%= analytics_indicator("Unique visitors", @visitors_count, @visitors_count_before) %>
     <%= analytics_indicator("Visits", @visits_count, @visits_count_before) %>
