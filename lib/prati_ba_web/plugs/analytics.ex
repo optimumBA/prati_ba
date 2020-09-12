@@ -7,12 +7,20 @@ defmodule PratiBaWeb.Plugs.Analytics do
   alias PratiBa.Analytics
   alias PratiBa.Analytics.{Event, EventType, Parser, Visit, Visitor}
 
+  @ignored_remote_ips MapSet.new([
+                        {0, 0, 0, 0, 0, 0, 0, 1}
+                      ])
+
+  @ignored_user_agents MapSet.new([
+                         "Amazon CloudFront"
+                       ])
+
   def init(_opts), do: nil
 
   def call(%Conn{} = conn, _opts) do
     user_agent = Plug.Conn.get_req_header(conn, "user-agent") |> List.first()
 
-    if UAInspector.bot?(user_agent) do
+    if should_ignore?(conn.remote_ip, user_agent) do
       conn
     else
       conn
@@ -21,6 +29,12 @@ defmodule PratiBaWeb.Plugs.Analytics do
       |> sign_analytics_token()
       |> track_page_view()
     end
+  end
+
+  defp should_ignore?(remote_ip, user_agent) do
+    MapSet.member?(@ignored_remote_ips, remote_ip) ||
+      MapSet.member?(@ignored_user_agents, user_agent) ||
+      UAInspector.bot?(user_agent)
   end
 
   defp get_or_create_visitor(%Conn{} = conn) do
