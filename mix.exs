@@ -56,12 +56,12 @@ defmodule PratiBa.MixProject do
       {:mojito, "~> 0.6.1"},
       {:bypass, "~> 1.0", only: :test},
       {:fast_rss, "~> 0.3.0"},
-      {:timex, github: "almirsarajcic/timex", branch: "bosnian-translations"},
+      {:timex, "~> 3.6"},
       {:feeder_ex, "~> 1.1"},
       {:tzdata, "~> 1.0.3"},
       {:ecto_fields, "~> 1.2.0"},
       {:ex_machina, "~> 2.3", only: :test},
-      {:waffle, github: "almirsarajcic/waffle", branch: "remote-request-headers", override: true},
+      {:waffle, "~> 1.1"},
       {:waffle_ecto, "~> 0.0.9"},
       {:ex_aws, "~> 2.1"},
       {:ex_aws_s3, "~> 2.0"},
@@ -76,9 +76,8 @@ defmodule PratiBa.MixProject do
       {:timber, "~> 3.1"},
       {:timber_ecto, "~> 2.0"},
       {:timber_plug, "~> 1.0"},
-      {:geolix, github: "elixir-geolix/geolix"},
-      {:geolix_adapter_mmdb2,
-       github: "almirsarajcic/adapter_mmdb2", branch: "memory-improvements"},
+      {:geolix, "~> 2.0"},
+      {:geolix_adapter_mmdb2, github: "elixir-geolix/adapter_mmdb2"},
       {:ua_inspector, "~> 2.0"}
     ]
   end
