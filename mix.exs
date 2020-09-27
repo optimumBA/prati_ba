@@ -43,11 +43,11 @@ defmodule PratiBa.MixProject do
       {:plug, "~> 1.10"},
       {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_live_view, "~> 0.13.2"},
+      {:phoenix_live_view, "~> 0.14.7"},
       {:floki, ">= 0.26.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_dashboard, "~> 0.2.0"},
+      {:phoenix_live_dashboard, "~> 0.2.8"},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
@@ -77,7 +77,7 @@ defmodule PratiBa.MixProject do
       {:timber_ecto, "~> 2.0"},
       {:timber_plug, "~> 1.0"},
       {:geolix, "~> 2.0"},
-      {:geolix_adapter_mmdb2, github: "elixir-geolix/adapter_mmdb2"},
+      {:geolix_adapter_mmdb2, "~> 0.6"},
       {:ua_inspector, "~> 2.0"}
     ]
   end
