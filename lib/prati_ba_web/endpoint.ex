@@ -11,15 +11,19 @@ defmodule PratiBaWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
+    max_age: 10 * 365 * 24 * 60 * 60,
     key: "_prati_ba_session",
-    signing_salt: "sYjQsFTR"
+    signing_salt: "sYjQsFTR",
+    same_site: "Lax"
   ]
 
   socket "/socket", PratiBaWeb.UserSocket,
     websocket: true,
-    longpoll: false
+    longpoll: true
 
-  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
+  socket "/live", Phoenix.LiveView.Socket,
+    websocket: [connect_info: [session: @session_options]],
+    longpoll: true
 
   # Serve at "/" the static files from "priv/static" directory.
   #

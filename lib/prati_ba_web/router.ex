@@ -11,11 +11,12 @@ defmodule PratiBaWeb.Router do
     plug :put_secure_browser_headers
   end
 
-  pipeline :tracking do
-    plug PratiBaWeb.Plugs.RequestTracker
+  pipeline :analytics do
+    plug PratiBaWeb.Plugs.Analytics
   end
 
   pipeline :admin do
+    plug :put_root_layout, {PratiBaWeb.LayoutView, :admin}
     plug :admin_auth
   end
 
@@ -30,10 +31,11 @@ defmodule PratiBaWeb.Router do
 
     resources "/", AdminController, only: [:index]
     live_dashboard "/dashboard", metrics: {PratiBaWeb.Telemetry, :metrics}
+    live "/analytics", AnalyticsLive.Index, :index
   end
 
   scope "/", PratiBaWeb do
-    pipe_through [:browser, :tracking]
+    pipe_through [:browser, :analytics]
 
     live "/", ArticleLive.Index, :index
     resources "/", ArticleController, only: [:show]

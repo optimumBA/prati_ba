@@ -54,8 +54,11 @@ jobs:
       - name: Compile dependencies
         run: MIX_ENV=test mix deps.compile
 
+      - name: Download UAInspector databases
+        run: MIX_ENV=test mix ua_inspector.download --force --quiet
+
       - name: Run Tests
         run: |
-          MIX_ENV=test mix compile --warnings-as-errors
+          MIX_ENV=test mix compile --force --warnings-as-errors
           mix format --check-formatted
           mix test
