@@ -38,5 +38,21 @@ defmodule PratiBaWeb.ArticleControllerTest do
 
       assert event_article_id == article.id
     end
+
+    test "doesn't crash when bot opens article", %{conn: conn, article: article} do
+      conn =
+        conn
+        |> Plug.Test.init_test_session(visitor_id: nil, visit_id: nil)
+        |> put_req_header(
+          "user-agent",
+          "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+        )
+
+      conn =
+        conn
+        |> get(Routes.article_path(conn, :show, article))
+
+      assert redirected_to(conn) == "http://sour.ce/article"
+    end
   end
 end
