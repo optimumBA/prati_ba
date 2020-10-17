@@ -56,6 +56,33 @@ config :prati_ba,
   ],
   ssl_excluded_hosts: ["localhost"]
 
+maxmind_license_key =
+  System.get_env("MAXMIND_LICENSE_KEY") ||
+    raise """
+    environment variable MAXMIND_LICENSE_KEY is missing.
+    For example: 4FMnz1Pr2Cxnd6BR
+    """
+
+config :geolix,
+  databases: [
+    %{
+      id: :asn,
+      adapter: Geolix.Adapter.MMDB2,
+      source:
+        "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=#{
+          maxmind_license_key
+        }&suffix=tar.gz"
+    },
+    %{
+      id: :city,
+      adapter: Geolix.Adapter.MMDB2,
+      source:
+        "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=#{
+          maxmind_license_key
+        }&suffix=tar.gz"
+    }
+  ]
+
 aws_s3_bucket =
   System.get_env("AWS_S3_BUCKET") ||
     raise """

@@ -10,8 +10,9 @@
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
 
-alias PratiBa.Repo
+alias PratiBa.Analytics.EventType
 alias PratiBa.Articles.Source
+alias PratiBa.Repo
 
 import Ecto.Query, only: [from: 2]
 
@@ -42,5 +43,18 @@ for source <- sources do
 
   unless Repo.exists?(query) do
     Repo.insert!(source)
+  end
+end
+
+event_types = [
+  %EventType{name: "article_view"},
+  %EventType{name: "page_view"}
+]
+
+for event_type <- event_types do
+  query = from et in EventType, where: et.name == ^event_type.name
+
+  unless Repo.exists?(query) do
+    Repo.insert!(event_type)
   end
 end

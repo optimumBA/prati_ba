@@ -6,7 +6,7 @@ defmodule PratiBa.Scrapers.SourceScraper do
   alias PratiBa.Scrapers.ScrapingHelper
 
   def articles(url \\ @url) do
-    response = Mojito.request(method: :get, url: url)
+    response = ScrapingHelper.get(url)
 
     with {:ok, %{status_code: 200, body: body}} <- response,
          {:ok, html} <- Floki.parse_document(body) do
@@ -22,7 +22,7 @@ defmodule PratiBa.Scrapers.SourceScraper do
   end
 
   def article_details(%{url: url} = article) do
-    response = Mojito.request(method: :get, url: url)
+    response = ScrapingHelper.get(url)
 
     with {:ok, %{status_code: 200, body: body}} <- response,
          {:ok, html} <- Floki.parse_document(body) do
@@ -90,13 +90,15 @@ defmodule PratiBa.Scrapers.SourceScraper do
             article
         end
 
-      image_url = ScrapingHelper.get_og_image(html)
+      case ScrapingHelper.get_og_image(html) do
+        {:ok, image_url} ->
+          {:ok, Map.put(article, :image, image_url)}
 
-      article = Map.put(article, :image, image_url)
-
-      {:ok, article}
+        {:error, _} ->
+          {:error, :image_not_available}
+      end
     else
-      _ -> {:ok, article}
+      _ -> {:error, :article_not_available}
     end
   end
 

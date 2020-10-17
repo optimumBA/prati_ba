@@ -6,7 +6,7 @@ defmodule PratiBa.Scrapers.FokusScraper do
   alias PratiBa.Scrapers.ScrapingHelper
 
   def articles(url \\ @rss_url) do
-    response = Mojito.request(method: :get, url: url)
+    response = ScrapingHelper.get(url)
 
     case response do
       {:ok, %{status_code: 200, body: body}} ->
@@ -27,15 +27,14 @@ defmodule PratiBa.Scrapers.FokusScraper do
   end
 
   def article_details(%{url: url} = article) do
-    response = Mojito.request(method: :get, url: url)
+    response = ScrapingHelper.get(url)
 
     with {:ok, %{status_code: 200, body: body}} <- response,
-         {:ok, html} <- Floki.parse_document(body) do
-      image_url = ScrapingHelper.get_og_image(html)
-
+         {:ok, html} <- Floki.parse_document(body),
+         {:ok, image_url} <- ScrapingHelper.get_og_image(html) do
       {:ok, Map.put(article, :image, image_url)}
     else
-      _ -> {:ok, article}
+      _ -> {:error, :article_not_available}
     end
   end
 

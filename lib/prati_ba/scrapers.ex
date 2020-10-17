@@ -73,7 +73,7 @@ defmodule PratiBa.Scrapers do
         {:ok, articles} ->
           articles
           |> Stream.reject(&Articles.exists?(source.id, &1))
-          |> Enum.map(&Task.async(fn -> scraper.article_details(&1) end))
+          |> Enum.map(&Task.async(fn -> get_article_details(scraper, &1) end))
           |> Enum.map(&Task.await(&1, 10000))
           |> Stream.filter(&successful?/1)
           |> Stream.map(&transform_article/1)
@@ -83,6 +83,11 @@ defmodule PratiBa.Scrapers do
           nil
       end
     end)
+  end
+
+  defp get_article_details(scraper, article) do
+    Timber.add_context(article: article)
+    scraper.article_details(article)
   end
 
   defp successful?({:ok, _}), do: true

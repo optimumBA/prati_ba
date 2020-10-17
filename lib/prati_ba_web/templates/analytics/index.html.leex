@@ -1,0 +1,34 @@
+<div phx-hook="Analytics">
+  <section class="container analytics-info">
+    <div class="row">
+      <div class="analytics-domain">
+        <%= PratiBaWeb.Endpoint.host() %>
+      </div>
+
+      <div class="analytics-onlinevisitors">
+        <svg aria-hidden="true" focusable="false" class="analytics-icon-online" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" >
+          <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>
+        </svg>
+
+        <%= ngettext("1 current visitor", "%{count} current visitors", @current_visitors_count) %>
+      </div>
+    </div>
+  </section>
+
+  <main id="analytics-main" class="container analytics-main">
+    <div class="row">
+      <%= analytics_indicator("Unique visitors", @visitors_count, @visitors_count_before) %>
+      <%= analytics_indicator("Visits", @visits_count, @visits_count_before) %>
+      <%= analytics_indicator("Average visit duration", @visit_duration, @visit_duration_before) %>
+      <%= analytics_indicator("Article views", @article_views_count, @article_views_count_before) %>
+    </div>
+
+    <div class="row">
+      <div class="column">
+        <div class="analytics-main-graph">
+          <canvas id="analytics-main-graph" data-results="<%= @visitors_per_day %>" />
+        </div>
+      </div>
+    </div>
+  </main>
+</div>

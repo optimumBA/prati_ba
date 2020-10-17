@@ -43,11 +43,11 @@ defmodule PratiBa.MixProject do
       {:plug, "~> 1.10"},
       {:ecto_sql, "~> 3.4"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_live_view, "~> 0.13.2"},
+      {:phoenix_live_view, "~> 0.14.7"},
       {:floki, ">= 0.26.0"},
       {:phoenix_html, "~> 2.11"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_dashboard, "~> 0.2.0"},
+      {:phoenix_live_dashboard, "~> 0.2.8"},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
       {:gettext, "~> 0.11"},
@@ -56,12 +56,12 @@ defmodule PratiBa.MixProject do
       {:mojito, "~> 0.6.1"},
       {:bypass, "~> 1.0", only: :test},
       {:fast_rss, "~> 0.3.0"},
-      {:timex, github: "almirsarajcic/timex", branch: "bosnian-translations"},
+      {:timex, "~> 3.6"},
       {:feeder_ex, "~> 1.1"},
       {:tzdata, "~> 1.0.3"},
       {:ecto_fields, "~> 1.2.0"},
       {:ex_machina, "~> 2.3", only: :test},
-      {:waffle, "~> 1.1.0"},
+      {:waffle, "~> 1.1"},
       {:waffle_ecto, "~> 0.0.9"},
       {:ex_aws, "~> 2.1"},
       {:ex_aws_s3, "~> 2.0"},
@@ -75,7 +75,10 @@ defmodule PratiBa.MixProject do
       {:html_sanitize_ex, "~> 1.4"},
       {:timber, "~> 3.1"},
       {:timber_ecto, "~> 2.0"},
-      {:timber_plug, "~> 1.0"}
+      {:timber_plug, "~> 1.0"},
+      {:geolix, "~> 2.0"},
+      {:geolix_adapter_mmdb2, "~> 0.6"},
+      {:ua_inspector, "~> 2.0"}
     ]
   end
 
