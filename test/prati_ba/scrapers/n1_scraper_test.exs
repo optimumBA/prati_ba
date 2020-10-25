@@ -28,8 +28,7 @@ defmodule PratiBa.Scrapers.N1ScraperTest do
                    "Zamjenica predsjedavajućeg Predstavničkog doma Parlamentarne skupštine BiH Borjana Krišto izjavila je da je u dnevni red sutrašnje sjednice Predstavničkog doma uvršteno razmatranje budžeta institucija BiH za ovu godinu, po hitnoj proceduri.",
                  published_at: ~N[2020-07-06 13:32:00],
                  author: nil,
-                 image:
-                   "https://ba.n1info.com/Thumbnail/247936/jpeg/D9VfXfMX4AAZmGQ.jpg-large.jpg",
+                 image: nil,
                  url:
                    "http://ba.n1info.com/Vijesti/a445641/Kristo-o-izmjenama-budzeta-BiH-Predsjednistvo-je-prekrsilo-Zakon-o-finansiranju.html"
                },
@@ -41,11 +40,54 @@ defmodule PratiBa.Scrapers.N1ScraperTest do
                    "Glavne novine Sjeverne Koreje, Rodon Sinmun, pozvale su u nedjelju na provođenje naredbe lidera Kim Jong-un da zemlja izvrši \"maksimalnu pripravnost\" protiv pandemije koronavirusa.",
                  published_at: ~N[2020-07-06 13:23:00],
                  author: nil,
-                 image: "https://ba.n1info.com/Thumbnail/240994/jpeg/Kim-Jong-Un",
+                 image: nil,
                  url:
                    "http://ba.n1info.com/Svijet/a445639/Kim-Jong-un-izdao-naredbu-o-maksimalnoj-pripravnosti-protiv-pandemije.html"
                }
              ] = Enum.to_list(articles)
+    end
+  end
+
+  describe "article_details/1" do
+    test "fetches article image", %{bypass: bypass} do
+      Bypass.expect(
+        bypass,
+        "GET",
+        "/Vijesti/a445641/Kristo-o-izmjenama-budzeta-BiH-Predsjednistvo-je-prekrsilo-Zakon-o-finansiranju.html",
+        fn conn ->
+          Plug.Conn.resp(conn, 200, article_payload())
+        end
+      )
+
+      article_url =
+        "http://localhost:#{bypass.port}/Vijesti/a445641/Kristo-o-izmjenama-budzeta-BiH-Predsjednistvo-je-prekrsilo-Zakon-o-finansiranju.html"
+
+      article = %{
+        original_id: "a445641",
+        title: "Krišto o izmjenama budžeta BiH: Predsjedništvo je prekršilo Zakon o finansiranju",
+        description:
+          "Zamjenica predsjedavajućeg Predstavničkog doma Parlamentarne skupštine BiH Borjana Krišto izjavila je da je u dnevni red sutrašnje sjednice Predstavničkog doma uvršteno razmatranje budžeta institucija BiH za ovu godinu, po hitnoj proceduri.",
+        published_at: ~N[2020-07-06 13:32:00],
+        author: nil,
+        image: nil,
+        url: article_url
+      }
+
+      response = N1Scraper.article_details(article)
+
+      assert {:ok, article} = response
+
+      assert %{
+               original_id: "a445641",
+               title:
+                 "Krišto o izmjenama budžeta BiH: Predsjedništvo je prekršilo Zakon o finansiranju",
+               description:
+                 "Zamjenica predsjedavajućeg Predstavničkog doma Parlamentarne skupštine BiH Borjana Krišto izjavila je da je u dnevni red sutrašnje sjednice Predstavničkog doma uvršteno razmatranje budžeta institucija BiH za ovu godinu, po hitnoj proceduri.",
+               published_at: ~N[2020-07-06 13:32:00],
+               author: nil,
+               image: "https://ba.n1info.com/Picture/247936/jpeg/D9VfXfMX4AAZmGQ.jpg-large.jpg",
+               url: ^article_url
+             } = article
     end
   end
 
@@ -85,5 +127,9 @@ defmodule PratiBa.Scrapers.N1ScraperTest do
         </channel>
       </rss>
     )
+  end
+
+  defp article_payload do
+    File.read!("test/support/payloads/n1_scraper/article.html")
   end
 end

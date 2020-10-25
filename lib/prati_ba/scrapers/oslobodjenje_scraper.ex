@@ -24,7 +24,17 @@ defmodule PratiBa.Scrapers.OslobodjenjeScraper do
     end
   end
 
-  def article_details(article), do: {:ok, article}
+  def article_details(%{url: url} = article) do
+    response = ScrapingHelper.get(url)
+
+    with {:ok, %{status_code: 200, body: body}} <- response,
+         {:ok, html} <- Floki.parse_document(body),
+         {:ok, image_url} <- ScrapingHelper.get_og_image(html) do
+      {:ok, Map.put(article, :image, image_url)}
+    else
+      _ -> {:error, :article_not_available}
+    end
+  end
 
   defp should_scrape(%{"categories" => [%{"name" => "Izjava dana"}]}), do: false
   defp should_scrape(%{"categories" => [%{"name" => "Smrtovnice"}]}), do: false
@@ -32,9 +42,6 @@ defmodule PratiBa.Scrapers.OslobodjenjeScraper do
 
   defp parse_article(article) do
     %{
-      "enclosure" => %{
-        "url" => image_url
-      },
       "link" => url,
       "pub_date" => date,
       "title" => title
@@ -53,22 +60,13 @@ defmodule PratiBa.Scrapers.OslobodjenjeScraper do
       |> DateTime.shift_zone!("Etc/UTC")
       |> DateTime.to_naive()
 
-    image_url =
-      case image_url do
-        nil ->
-          nil
-
-        image_url ->
-          URI.encode(image_url)
-      end
-
     %{
       original_id: original_id,
       title: title,
       description: nil,
       published_at: published_at,
       author: nil,
-      image: image_url,
+      image: nil,
       url: URI.encode(url)
     }
   end

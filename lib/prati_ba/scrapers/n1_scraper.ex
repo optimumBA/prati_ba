@@ -27,14 +27,23 @@ defmodule PratiBa.Scrapers.N1Scraper do
     end
   end
 
-  def article_details(article), do: {:ok, article}
+  def article_details(%{url: url} = article) do
+    response = ScrapingHelper.get(url)
+
+    with {:ok, %{status_code: 200, body: body}} <- response,
+         {:ok, html} <- Floki.parse_document(body),
+         {:ok, image_url} <- ScrapingHelper.get_og_image(html) do
+      {:ok, Map.put(article, :image, image_url)}
+    else
+      _ -> {:error, :article_not_available}
+    end
+  end
 
   defp should_scrape(%{link: "http://ba.n1info.com/English/" <> _}), do: false
   defp should_scrape(_), do: true
 
   defp parse_article(article) do
     %FeederEx.Entry{
-      image: image_url,
       link: url,
       summary: description,
       title: title,
@@ -52,22 +61,13 @@ defmodule PratiBa.Scrapers.N1Scraper do
       |> DateTime.shift_zone!("Etc/UTC")
       |> DateTime.to_naive()
 
-    image_url =
-      case image_url do
-        nil ->
-          nil
-
-        image_url ->
-          URI.encode(image_url)
-      end
-
     %{
       original_id: original_id,
       title: title,
       description: description,
       published_at: published_at,
       author: nil,
-      image: image_url,
+      image: nil,
       url: URI.encode(url)
     }
   end

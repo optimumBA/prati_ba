@@ -17,7 +17,11 @@ defmodule PratiBa.Scrapers.ScrapingHelper do
         {:error, :image_not_available}
 
       image_url ->
-        {:ok, URI.encode(image_url)}
+        if String.contains?(image_url, " ") do
+          {:ok, URI.encode(image_url)}
+        else
+          {:ok, image_url}
+        end
     end
   end
 

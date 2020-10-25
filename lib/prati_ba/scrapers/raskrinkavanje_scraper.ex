@@ -21,7 +21,17 @@ defmodule PratiBa.Scrapers.RaskrinkavanjeScraper do
     end
   end
 
-  def article_details(article), do: {:ok, article}
+  def article_details(%{url: url} = article) do
+    response = ScrapingHelper.get(url)
+
+    with {:ok, %{status_code: 200, body: body}} <- response,
+         {:ok, html} <- Floki.parse_document(body),
+         {:ok, image_url} <- ScrapingHelper.get_og_image(html) do
+      {:ok, Map.put(article, :image, image_url)}
+    else
+      _ -> {:error, :article_not_available}
+    end
+  end
 
   defp parse_article(article) do
     link =
@@ -51,28 +61,13 @@ defmodule PratiBa.Scrapers.RaskrinkavanjeScraper do
       |> String.trim()
       |> Timex.parse!("{D}.{M}.{YYYY}")
 
-    image_style =
-      article
-      |> Floki.find(".image")
-      |> Floki.attribute("style")
-      |> Enum.at(0)
-
-    image_url =
-      case Regex.named_captures(~r/url\('(?<url>[^']+)'\);/, image_style) do
-        %{"url" => image_url} ->
-          URI.encode(image_url)
-
-        _ ->
-          nil
-      end
-
     %{
       original_id: original_id,
       title: title,
       description: nil,
       published_at: published_at,
       author: nil,
-      image: image_url,
+      image: nil,
       url: url
     }
   end
