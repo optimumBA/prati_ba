@@ -24,7 +24,7 @@ defmodule PratiBa.Articles.ArticleTest do
       |> Article.changeset(@valid_attrs)
       |> Ecto.Changeset.put_assoc(:source, source)
 
-    assert {:ok, article} = Repo.insert(article)
+    assert {:ok, _article} = Repo.insert(article)
 
     duplicate =
       %Article{}
