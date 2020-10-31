@@ -9,9 +9,21 @@ defmodule PratiBaWeb.ArticleView do
   def article_image_tag(%Article{image: nil}), do: nil
 
   def article_image_tag(%Article{image: image} = article) do
-    {image, article}
-    |> ArticleImage.url()
-    |> img_tag()
+    original_image =
+      {image, article}
+      |> ArticleImage.url(:original)
+
+    square_image =
+      {image, article}
+      |> ArticleImage.url(:square)
+
+
+    content_tag(:picture) do
+      [
+        tag(:source, srcset: square_image, media: "(max-width: 600px)"),
+        img_tag(original_image)
+      ]
+    end
   end
 
   def published_date(%Article{published_at: published_at}) do

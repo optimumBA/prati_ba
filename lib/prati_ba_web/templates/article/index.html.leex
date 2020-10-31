@@ -1,4 +1,4 @@
-<section class="articles row row-responsive">
+<section class="articles">
 <%= for article <- @articles do %>
   <%= render "_article.html", Map.put(assigns, :article, article) %>
 <% end %>

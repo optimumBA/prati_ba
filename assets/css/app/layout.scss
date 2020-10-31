@@ -1,67 +1,59 @@
 body {
   background-color: var(--bg-color);
-  padding-top: 54px;
-  padding-bottom: 130px;
   font-family: lato, sans-serif;
   font-style: normal;
   font-feature-settings: 'kern' off;
 }
 
-.container {
-  width: 1600px;
-  margin-left: auto;
-  margin-right: auto;
+main {
+  margin-top: 10px;
 }
 
-header {
-  a {
-    display: flex;
-    flex-direction: row;
-    text-decoration: none;
-    height: 32px;
+.header-link {
+  display: flex;
+  flex-direction: row;
+  text-decoration: none;
+  height: 32px;
+  padding: 8px 16px;
 
-    .logo {
-      background-image: url('/images/logo.png');
-      width: 32px;
-      height: 32px;
+  .logo {
+    display: flex;
+    background-image: url('/images/logo.png');
+    width: 32px;
+    height: 32px;
+  }
+
+  .heading {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-left: 5px;
+    text-transform: uppercase;
+
+    .title {
+      display: flex;
+      font-weight: 800;
+      font-size: 14px;
+      line-height: 14px;
+      letter-spacing: 1.44px;
+      color: var(--header-title-color);
     }
 
-    .heading {
+    .subtitle {
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      margin-left: 5px;
-      text-transform: uppercase;
-
-      .title {
-        font-weight: 800;
-        font-size: 14px;
-        line-height: 17px;
-        letter-spacing: 1.44px;
-        color: var(--header-title-color);
-      }
-
-      .subtitle {
-        font-weight: 600;
-        font-size: 12px;
-        line-height: 14px;
-        letter-spacing: 1.44px;
-        color: var(--header-subtitle-color);
-      }
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 12px;
+      letter-spacing: 1.44px;
+      color: var(--header-subtitle-color);
     }
   }
 }
 
-main {
-  margin-top: 52px;
-}
-
 @media (prefers-color-scheme: dark) {
-  header {
-    a {
-      .logo {
-        background-image: url('/images/logo-inverted.png');
-      }
+  .header-link {
+    .logo {
+      background-image: url('/images/logo-inverted.png');
     }
   }
 }

@@ -1,17 +1,15 @@
-<article class="column" id="article-<%= @article.id %>">
-  <%= link to: Routes.article_path(@socket, :show, @article), class: "article", target: "_blank", rel: "noopener" do %>
-    <div class="article-image">
-      <%= article_image_tag(@article) %>
-    </div>
+<%= link to: Routes.article_path(@socket, :show, @article), id: "article-#{@article.id}", class: "article", target: "_blank", rel: "noopener" do %>
+  <div class="article-image">
+    <%= article_image_tag(@article) %>
+  </div>
 
-    <div class="article-details">
-      <div class="article-title"><%= @article.title %></div>
+  <div class="article-details">
+    <div class="article-title"><%= @article.title %></div>
 
-      <div class="article-info">
-        <img src="/images/sources/Klix.ba.png" class="article-source-image" />
-        <span class="article-source-name"><%= @article.source.name %></span>
-        <%= published_date(@article) %>
-      </div>
+    <div class="article-info">
+      <img src="/images/sources/Klix.ba.png" class="article-source-image" />
+      <span class="article-source-name"><%= @article.source.name %></span>
+      <%= published_date(@article) %>
     </div>
-  <% end %>
-</article>
+  </div>
+<% end %>

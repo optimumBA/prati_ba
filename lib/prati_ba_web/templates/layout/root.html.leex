@@ -16,8 +16,8 @@
     <% end %>
   </head>
   <body>
-    <header class="container">
-      <%= link to: Routes.article_index_path(@conn, :index) do %>
+    <header>
+      <%= link to: Routes.article_index_path(@conn, :index), class: "header-link" do %>
         <div class="logo"></div>
 
         <span class="heading">
