@@ -78,7 +78,7 @@ defmodule PratiBa.MixProject do
       {:timber_plug, "~> 1.0"},
       {:geolix, "~> 2.0"},
       {:geolix_adapter_mmdb2, "~> 0.6"},
-      {:ua_inspector, "~> 2.0"}
+      {:ua_inspector, github: "elixir-inspector/ua_inspector"}
     ]
   end
 
