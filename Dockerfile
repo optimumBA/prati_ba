@@ -1,5 +1,5 @@
 # Setup build image
-FROM elixir:1.10.3-alpine AS builder
+FROM elixir:1.11.2-alpine AS builder
 
 # Install build dependencies
 RUN apk update && \
