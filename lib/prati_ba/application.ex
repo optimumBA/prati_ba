@@ -37,8 +37,6 @@ defmodule PratiBa.Application do
         :prod ->
           children ++
             [
-              {Cluster.Supervisor,
-               [Application.get_env(:libcluster, :topologies), [name: PratiBa.ClusterSupervisor]]},
               PratiBa.Scheduler
             ]
 

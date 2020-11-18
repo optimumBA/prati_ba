@@ -121,29 +121,6 @@ config :ex_aws,
     region: "eu-central-1"
   ]
 
-# dns_name =
-#   System.get_env("RENDER_DISCOVERY_SERVICE") ||
-#     raise """
-#     environment variable RENDER_DISCOVERY_SERVICE is missing.
-#     """
-
-# app_name =
-#   System.get_env("RENDER_SERVICE_NAME") ||
-#     raise """
-#     environment variable RENDER_SERVICE_NAME is missing.
-#     """
-
-# config :libcluster,
-#   topologies: [
-#     prati_ba_topology: [
-#       strategy: Cluster.Strategy.Kubernetes.DNS,
-#       config: [
-#         service: dns_name,
-#         application_name: app_name
-#       ]
-#     ]
-#   ]
-
 # ## Using releases (Elixir v1.9+)
 #
 # If you are doing OTP releases, you need to instruct Phoenix
