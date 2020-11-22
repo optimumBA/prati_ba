@@ -21,6 +21,16 @@ defmodule PratiBa.Scrapers.RadioSlobodnaEvropaScraperTest do
 
       assert [
                %{
+                 original_id: "30953162",
+                 title: "Kakve promjene očekujete nakon lokalnih izbora u BiH?",
+                 description: nil,
+                 published_at: ~N[2020-11-16 14:57:00],
+                 author: nil,
+                 image: nil,
+                 url:
+                   "https://www.slobodnaevropa.org/a/lokalni-izbori-bih-rezultati/30953162.html"
+               },
+               %{
                  original_id: "30713005",
                  title: "Srebrenica: Dokumentovani genocid",
                  description:
