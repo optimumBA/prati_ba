@@ -1,15 +1,15 @@
 # Setup build image
-FROM elixir:1.13.4-alpine AS builder
+FROM hexpm/elixir:1.13.4-erlang-25.0.4-alpine-3.16.1 AS builder
 
 # Install build dependencies
+RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.10/main/ python2
 RUN apk update && \
     apk add --no-cache \
     bash \
     build-base \
     curl \
     git \
-    libgcc \
-    python3
+    libgcc
 
 # Install rustup
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -19,7 +19,7 @@ ENV RUSTUP_HOME=/root/.rustup \
     PATH="/root/.cargo/bin:$PATH"
 
 # Install Node.js
-RUN apk add --update npm
+RUN apk add --no-cache --repository http://dl-cdn.alpinelinux.org/alpine/v3.10/main/ nodejs=10.24.1-r0 npm=10.24.1-r0
 
 # Prepare app dir
 WORKDIR /build
@@ -73,4 +73,8 @@ COPY docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
 
 ENTRYPOINT ["bash", "docker-entrypoint.sh"]
-CMD ["bin/prati_ba", "start"]
+CMD ["/app/bin/server"]
+
+# Appended by flyctl
+ENV ECTO_IPV6 true
+ENV ERL_AFLAGS "-proto_dist inet6_tcp"

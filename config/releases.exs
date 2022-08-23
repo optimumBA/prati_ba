@@ -8,14 +8,15 @@ database_url =
     """
 
 config :prati_ba, PratiBa.Repo,
-  ssl: true,
+  # ssl: true,
   url: database_url,
-  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10")
+  pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
+  socket_options: [:inet6]
 
 host =
-  System.get_env("HOST") ||
+  System.get_env("PHX_HOST") ||
     raise """
-    environment variable HOST is missing.
+    environment variable PHX_HOST is missing.
     For example: prati.ba
     """
 
@@ -29,8 +30,7 @@ secret_key_base =
 config :prati_ba, PratiBaWeb.Endpoint,
   server: true,
   http: [
-    port: String.to_integer(System.get_env("PORT") || "4000"),
-    transport_options: [socket_opts: [:inet6]]
+    port: String.to_integer(System.get_env("PORT") || "4000")
   ],
   secret_key_base: secret_key_base,
   url: [scheme: "https", host: host, port: 443],
@@ -62,17 +62,13 @@ config :geolix,
       id: :asn,
       adapter: Geolix.Adapter.MMDB2,
       source:
-        "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=#{
-          maxmind_license_key
-        }&suffix=tar.gz"
+        "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-ASN&license_key=#{maxmind_license_key}&suffix=tar.gz"
     },
     %{
       id: :city,
       adapter: Geolix.Adapter.MMDB2,
       source:
-        "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=#{
-          maxmind_license_key
-        }&suffix=tar.gz"
+        "https://download.maxmind.com/app/geoip_download?edition_id=GeoLite2-City&license_key=#{maxmind_license_key}&suffix=tar.gz"
     }
   ]
 
@@ -83,43 +79,10 @@ asset_host =
     For example: static.prati.ba
     """
 
-do_spaces_bucket =
-  System.get_env("DO_SPACES_BUCKET") ||
-    raise """
-    environment variable DO_SPACES_BUCKET is missing.
-    For example: static.prati.ba
-    """
-
 config :waffle,
-  storage: Waffle.Storage.S3,
-  storage_dir_prefix: "",
-  bucket: do_spaces_bucket,
+  storage: Waffle.Storage.Local,
+  storage_dir_prefix: "/data",
   asset_host: "https://#{asset_host}"
-
-do_spaces_id =
-  System.get_env("DO_SPACES_ID") ||
-    raise """
-    environment variable DO_SPACES_ID is missing.
-    For example: AKIB2GHLQBL82IVL1B4N
-    """
-
-do_spaces_secret =
-  System.get_env("DO_SPACES_SECRET") ||
-    raise """
-    environment variable DO_SPACES_SECRET is missing.
-    For example: 1qyPY8F93ZW4B2gHy1eR/U9BL2zqb3c0LB3CV4hV
-    """
-
-config :ex_aws,
-  json_codec: Jason,
-  access_key_id: do_spaces_id,
-  secret_access_key: do_spaces_secret,
-  region: "fra1",
-  s3: [
-    scheme: "https://",
-    host: "fra1.digitaloceanspaces.com",
-    region: "fra1"
-  ]
 
 # ## Using releases (Elixir v1.9+)
 #
