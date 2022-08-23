@@ -31,7 +31,7 @@ config :phoenix, :json_library, Jason
 config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
 
 # Set Timex locale to Bosnian (Latin)
-config :timex, default_locale: "bs_latin"
+config :gettext, default_locale: "bs_latin"
 
 user_agent = "Prati.ba (info@optimum.ba)"
 

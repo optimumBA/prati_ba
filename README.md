@@ -2,18 +2,16 @@
 
 To start your Phoenix server:
 
-  * Setup the project with `mix setup`
-  * Download UAInspector database with `mix ua_inspector.download`
-  * Start Phoenix endpoint with `mix phx.server`
+- install Imagemagick using [Homebrew](https://brew.sh) (`brew install imagemagick`)
+- install Elixir, Erlang, Node.js, Python and Rust using [asdf](https://asdf-vm.com) (`asdf install`)
+- start PostgreSQL server
+- set environment variables in `.env` (see: [.env.sample](.env.sample))
+- run `mix setup`
+- download UAInspector database with `mix ua_inspector.download`
+- start Phoenix server with `mix phx.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](https://hexdocs.pm/phoenix/deployment.html).
+## Running tests
 
-## Learn more
-
-  * Official website: https://www.phoenixframework.org/
-  * Guides: https://hexdocs.pm/phoenix/overview.html
-  * Docs: https://hexdocs.pm/phoenix
-  * Forum: https://elixirforum.com/c/phoenix-forum
-  * Source: https://github.com/phoenixframework/phoenix
+- run `mix test`

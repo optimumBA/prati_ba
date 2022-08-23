@@ -56,6 +56,7 @@ defmodule PratiBa.Scrapers.NezavisneNovineScraper do
 
     published_at =
       date
+      |> String.replace("PDT", "GMT-7")
       |> Timex.parse!("{RFC1123}")
       |> DateTime.shift_zone!("Etc/UTC")
       |> DateTime.to_naive()

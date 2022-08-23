@@ -55,7 +55,7 @@ defmodule PratiBa.MixProject do
       {:plug_cowboy, "~> 2.0"},
       {:mojito, "~> 0.6.1"},
       {:bypass, "~> 1.0", only: :test},
-      {:fast_rss, "~> 0.3.0"},
+      {:fast_rss, github: "almirsarajcic/fast_rss", branch: "rustler-0.25"},
       {:timex, "~> 3.6"},
       {:feeder_ex, "~> 1.1"},
       {:tzdata, "~> 1.0.3"},
