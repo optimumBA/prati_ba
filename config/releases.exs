@@ -30,11 +30,15 @@ secret_key_base =
 config :prati_ba, PratiBaWeb.Endpoint,
   server: true,
   http: [
+    # Enable IPv6 and bind on all interfaces.
+    # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
+    # See the documentation on https://hexdocs.pm/plug_cowboy/Plug.Cowboy.html
+    # for details about using IPv6 vs IPv4 and loopback vs public addresses.
+    ip: {0, 0, 0, 0, 0, 0, 0, 0},
     port: String.to_integer(System.get_env("PORT") || "4000")
   ],
   secret_key_base: secret_key_base,
-  url: [scheme: "https", host: host, port: 443],
-  static_url: [scheme: "https", host: host, port: 443]
+  url: [scheme: "https", host: host, port: 443]
 
 admin_password =
   System.get_env("ADMIN_PASSWORD") ||
@@ -72,17 +76,9 @@ config :geolix,
     }
   ]
 
-asset_host =
-  System.get_env("ASSET_HOST") ||
-    raise """
-    environment variable ASSET_HOST is missing.
-    For example: static.prati.ba
-    """
-
 config :waffle,
   storage: Waffle.Storage.Local,
-  storage_dir_prefix: "/data",
-  asset_host: "https://#{asset_host}"
+  storage_dir_prefix: "/data"
 
 # ## Using releases (Elixir v1.9+)
 #
