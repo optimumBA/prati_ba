@@ -2,8 +2,7 @@ defmodule PratiBaWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :prati_ba
 
   if Application.get_env(:prati_ba, :env) == :prod do
-    plug RemoteIp,
-      headers: ~w[x-forwarded-for]
+    plug RemoteIp, headers: ~w[fly-client-ip]
   end
 
   # The session will be stored in the cookie and signed,
