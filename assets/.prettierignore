@@ -19,3 +19,5 @@
 /../.gitignore
 /../.iex.exs
 /../.erl_crash.dump
+/../mix.exs
+/../mix.lock

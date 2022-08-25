@@ -1,4 +1,4 @@
-<div phx-hook="Analytics">
+<div id="analytics" phx-hook="Analytics">
   <section class="container analytics-info">
     <div class="row">
       <div class="analytics-domain">
@@ -17,16 +17,16 @@
 
   <main id="analytics-main" class="container analytics-main">
     <div class="row">
-      <%= analytics_indicator("Unique visitors", @visitors_count, @visitors_count_before) %>
-      <%= analytics_indicator("Visits", @visits_count, @visits_count_before) %>
-      <%= analytics_indicator("Average visit duration", @visit_duration, @visit_duration_before) %>
-      <%= analytics_indicator("Article views", @article_views_count, @article_views_count_before) %>
+      <AnalyticsComponent.analytics_indicator name="Unique visitors" value_now={@visitors_count} value_before={@visitors_count_before} />
+      <AnalyticsComponent.analytics_indicator name="Visits" value_now={@visits_count} value_before={@visits_count_before} />
+      <AnalyticsComponent.analytics_indicator name="Average visit duration" value_now={@visit_duration} value_before={@visit_duration_before} />
+      <AnalyticsComponent.analytics_indicator name="Article views" value_now={@article_views_count} value_before={@article_views_count_before} />
     </div>
 
     <div class="row">
       <div class="column">
         <div class="analytics-main-graph">
-          <canvas id="analytics-main-graph" data-results="<%= @visitors_per_day %>" />
+          <canvas id="analytics-main-graph" data-results={@visitors_per_day} />
         </div>
       </div>
     </div>

@@ -105,8 +105,6 @@ export default class Analytics {
         tooltips: {
           mode: 'index',
           intersect: false,
-          xPadding: 10,
-          yPadding: 10,
           titleFontSize: 18,
           footerFontSize: 14,
           bodyFontSize: 14,

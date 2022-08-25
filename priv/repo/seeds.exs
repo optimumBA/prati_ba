@@ -39,7 +39,7 @@ sources = [
 ]
 
 for source <- sources do
-  query = from s in Source, where: s.name == ^source.name
+  query = from(s in Source, where: s.name == ^source.name)
 
   unless Repo.exists?(query) do
     Repo.insert!(source)
@@ -52,7 +52,7 @@ event_types = [
 ]
 
 for event_type <- event_types do
-  query = from et in EventType, where: et.name == ^event_type.name
+  query = from(et in EventType, where: et.name == ^event_type.name)
 
   unless Repo.exists?(query) do
     Repo.insert!(event_type)

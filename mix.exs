@@ -5,17 +5,12 @@ defmodule PratiBa.MixProject do
     [
       app: :prati_ba,
       version: "0.1.0",
-      elixir: "~> 1.7",
+      elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      compilers: Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps(),
-      releases: [
-        prati_ba: [
-          include_executables_for: [:unix]
-        ]
-      ]
+      deps: deps()
     ]
   end
 
@@ -25,7 +20,7 @@ defmodule PratiBa.MixProject do
   def application do
     [
       mod: {PratiBa.Application, []},
-      extra_applications: [:inets, :logger, :os_mon, :runtime_tools, :ssl, :timex, :xmerl]
+      extra_applications: [:logger, :os_mon, :runtime_tools]
     ]
   end
 
@@ -38,46 +33,42 @@ defmodule PratiBa.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.5.3"},
-      {:phoenix_ecto, "~> 4.1"},
-      {:plug, "~> 1.10"},
-      {:ecto_sql, "~> 3.4"},
+      {:phoenix, "~> 1.6.11"},
+      {:phoenix_ecto, "~> 4.4"},
+      {:ecto_sql, "~> 3.6"},
       {:postgrex, ">= 0.0.0"},
-      {:phoenix_live_view, "~> 0.14.7"},
-      {:floki, ">= 0.26.0"},
-      {:phoenix_html, "~> 2.11"},
+      {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_dashboard, "~> 0.2.8"},
-      {:telemetry_metrics, "~> 0.4"},
-      {:telemetry_poller, "~> 0.4"},
-      {:gettext, "~> 0.11"},
-      {:jason, "~> 1.0"},
-      {:plug_cowboy, "~> 2.0"},
-      {:mojito, "~> 0.6.1"},
-      {:bypass, "~> 1.0", only: :test},
+      {:phoenix_live_view, "~> 0.17.5"},
+      {:floki, ">= 0.30.0"},
+      {:phoenix_live_dashboard, "~> 0.6"},
+      {:swoosh, "~> 1.3"},
+      {:telemetry_metrics, "~> 0.6"},
+      {:telemetry_poller, "~> 1.0"},
+      {:gettext, "~> 0.18"},
+      {:jason, "~> 1.2"},
+      {:plug_cowboy, "~> 2.5"},
+      {:mojito, "~> 0.7.12"},
+      {:bypass, "~> 2.1", only: :test},
       {:fast_rss, github: "almirsarajcic/fast_rss", branch: "rustler-0.25"},
-      {:timex, "~> 3.6"},
+      {:timex, "~> 3.7"},
       {:feeder_ex, "~> 1.1"},
-      {:tzdata, "~> 1.0.3"},
-      {:ecto_fields, "~> 1.2.0"},
-      {:ex_machina, "~> 2.3", only: :test},
-      {:waffle, "~> 1.1"},
-      {:waffle_ecto, "~> 0.0.9"},
-      {:ex_aws, "~> 2.1"},
-      {:ex_aws_s3, "~> 2.0"},
-      {:hackney, "~> 1.9"},
-      {:sweet_xml, "~> 0.6"},
-      {:quantum, "~> 3.0-rc"},
-      {:mox, "~> 0.5", only: :test},
+      {:tzdata, "~> 1.1.1"},
+      {:ecto_fields, "~> 1.3.0"},
+      {:ex_machina, "~> 2.7", only: :test},
+      {:waffle, "~> 1.1.6"},
+      {:waffle_ecto, "~> 0.0.11"},
+      {:quantum, "~> 3.5"},
+      {:mox, "~> 1.0", only: :test},
       {:html_entities, "~> 0.5"},
-      {:remote_ip, github: "almirsarajcic/remote_ip", branch: "runtime-env-variables"},
+      {:remote_ip, "~> 1.0"},
       {:html_sanitize_ex, "~> 1.4"},
       {:timber, "~> 3.1"},
-      {:timber_ecto, "~> 2.0"},
-      {:timber_plug, "~> 1.0"},
+      {:timber_ecto, "~> 2.1"},
+      {:timber_plug, "~> 1.1"},
       {:geolix, "~> 2.0"},
       {:geolix_adapter_mmdb2, "~> 0.6"},
-      {:ua_inspector, github: "elixir-inspector/ua_inspector"}
+      {:ua_inspector, "~> 3.0"}
     ]
   end
 
@@ -89,11 +80,12 @@ defmodule PratiBa.MixProject do
   # See the documentation for `Mix` for more info on aliases.
   defp aliases do
     [
-      setup: ["deps.get", "ecto.setup", "cmd npm install --prefix assets"],
+      setup: ["deps.get", "ecto.setup"],
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      prettier: ["cmd --cd assets npx prettier -w .."],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
+      "assets.deploy": ["cmd --cd assets node build.js --deploy", "phx.digest"],
+      prettier: ["cmd --cd assets npx prettier -w .."]
     ]
   end
 end
