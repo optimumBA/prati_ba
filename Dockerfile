@@ -90,21 +90,15 @@ ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 WORKDIR "/app"
-RUN chown nobody /app
 
 # set runner ENV
 ENV MIX_ENV="prod"
 
 # Only copy the final release from the build stage
-COPY --from=builder --chown=nobody:root /app/_build/${MIX_ENV}/rel/prati_ba ./
+COPY --from=builder /app/_build/${MIX_ENV}/rel/prati_ba ./
 
 COPY docker-entrypoint.sh ./
 RUN chmod +x docker-entrypoint.sh
-
-RUN mkdir /data
-RUN chown nobody /data
-
-USER nobody
 
 ENTRYPOINT ["/bin/sh", "docker-entrypoint.sh"]
 CMD ["/app/bin/server"]
