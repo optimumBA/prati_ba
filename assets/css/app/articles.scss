@@ -27,7 +27,7 @@ article {
   color: gray;
 }
 
-@media (min-width: 40.0rem) and (max-width: 80.0rem) {
+@media (min-width: 40rem) and (max-width: 80rem) {
   .articles article.column {
     width: 50%;
   }
@@ -51,7 +51,7 @@ article {
   }
 }
 
-@media (min-width: 80.0rem) {
+@media (min-width: 80rem) {
   .articles article.column {
     width: 33.333333%;
   }
