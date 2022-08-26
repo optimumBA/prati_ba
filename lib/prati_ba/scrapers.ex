@@ -25,7 +25,8 @@ defmodule PratiBa.Scrapers do
     SlobodnaBosnaScraper,
     SourceScraper,
     TheBosniaTimesScraper,
-    ZurnalScraper
+    ZurnalScraper,
+    StartBihScraper
   }
 
   @scrapers %{
@@ -47,7 +48,8 @@ defmodule PratiBa.Scrapers do
     "Slobodna Bosna" => SlobodnaBosnaScraper,
     "source.ba" => SourceScraper,
     "The Bosnia Times" => TheBosniaTimesScraper,
-    "Žurnal" => ZurnalScraper
+    "Žurnal" => ZurnalScraper,
+    "StartBiH" => StartBihScraper
   }
 
   @article_keys [:image, :original_id, :published_at, :title, :url]
@@ -64,6 +66,7 @@ defmodule PratiBa.Scrapers do
     case Map.get(scrapers, source_name) do
       nil -> nil
       scraper -> {source, scraper}
+      IO.puts scrapers
     end
   end
 
