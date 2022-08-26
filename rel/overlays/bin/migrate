@@ -1,0 +1,3 @@
+#!/bin/sh
+cd -P -- "$(dirname -- "$0")"
+exec ./prati_ba eval 'PratiBa.Release.migrate && PratiBa.Release.seed'

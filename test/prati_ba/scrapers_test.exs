@@ -39,8 +39,7 @@ defmodule PratiBa.ScrapersTest do
     ScraperMock
     |> expect(:articles, fn -> {:ok, Stream.map(articles, fn article -> article end)} end)
     |> expect(:article_details, fn article ->
-      {:ok,
-       Map.merge(article, %{title: "Fake title", image: "https://via.placeholder.com/350x150"})}
+      {:ok, Map.merge(article, %{title: "Fake title", image: "https://placekitten.com/350/150"})}
     end)
     |> expect(:article_details, fn _ -> {:error, %Mojito.Error{}} end)
 

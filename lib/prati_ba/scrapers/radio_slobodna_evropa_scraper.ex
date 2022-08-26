@@ -29,9 +29,7 @@ defmodule PratiBa.Scrapers.RadioSlobodnaEvropaScraper do
     %{
       "author" => author,
       "description" => description,
-      "enclosure" => %{
-        "url" => image
-      },
+      "enclosure" => enclosure,
       "link" => url,
       "pub_date" => date,
       "title" => title
@@ -59,11 +57,14 @@ defmodule PratiBa.Scrapers.RadioSlobodnaEvropaScraper do
       |> DateTime.to_naive()
 
     image_url =
-      case image do
+      case enclosure do
         nil ->
           nil
 
-        image_url ->
+        %{"url" => nil} ->
+          nil
+
+        %{"url" => image_url} ->
           URI.encode(image_url)
       end
 

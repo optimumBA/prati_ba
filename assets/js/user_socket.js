@@ -6,12 +6,12 @@
 //
 // Pass the token on params as below. Or remove it
 // from the params if you are not using authentication.
-import {Socket} from "phoenix"
+import { Socket } from 'phoenix'
 
-let socket;
+let socket
 
 if (window.analyticsToken) {
-  socket = new Socket("/socket", {params: {token: window.analyticsToken}})
+  socket = new Socket('/socket', { params: { token: window.analyticsToken } })
   socket.connect()
 }
 

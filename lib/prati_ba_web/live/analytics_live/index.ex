@@ -3,8 +3,8 @@ defmodule PratiBaWeb.AnalyticsLive.Index do
 
   alias PratiBa.Analytics.{Event, Visit}
   alias PratiBa.Repo
+  alias PratiBaWeb.Components.AnalyticsComponent
   alias PratiBaWeb.Presence
-  alias PratiBaWeb.AnalyticsView
 
   @topic "analytics"
 
@@ -28,9 +28,6 @@ defmodule PratiBaWeb.AnalyticsLive.Index do
 
     {:ok, socket}
   end
-
-  @impl true
-  def render(assigns), do: AnalyticsView.render("index.html", assigns)
 
   @impl true
   def handle_info(

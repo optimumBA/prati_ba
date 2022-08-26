@@ -39,7 +39,7 @@ defmodule PratiBaWeb.ArticleLiveTest do
     test "gets updated with new articles", %{conn: conn, source: source} do
       {:ok, index_live, _html} = live(conn, Routes.article_index_path(conn, :index))
 
-      attrs = build(:article, image: "https://via.placeholder.com/350x150") |> Map.from_struct()
+      attrs = build(:article, image: "https://placekitten.com/350/150") |> Map.from_struct()
       {:ok, article} = Articles.create_article(source, attrs)
 
       assert has_element?(index_live, "#article-#{article.id}", article.title)

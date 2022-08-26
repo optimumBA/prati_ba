@@ -7,7 +7,7 @@ defmodule PratiBa.ArticlesTest do
     alias PratiBa.Articles.{Article, Source}
 
     @valid_attrs %{
-      image: "https://via.placeholder.com/350x150",
+      image: "https://placekitten.com/350/150",
       original_id: "1234",
       published_at: ~N[2020-03-11 07:50:00],
       title: "Article Title",

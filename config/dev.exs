@@ -1,11 +1,12 @@
-use Mix.Config
+import Config
 
 # Configure your database
 config :prati_ba, PratiBa.Repo,
   username: "postgres",
   password: "postgres",
-  database: "prati_ba_dev",
   hostname: "localhost",
+  database: "prati_ba_dev",
+  stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
@@ -14,20 +15,18 @@ config :prati_ba, PratiBa.Repo,
 #
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
-# with webpack to recompile .js and .css sources.
+# with esbuild to bundle .js and .css sources.
 config :prati_ba, PratiBaWeb.Endpoint,
-  http: [port: 4000],
-  debug_errors: true,
-  code_reloader: true,
+  # Binding to loopback ipv4 address prevents access from other machines.
+  # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
+  http: [ip: {127, 0, 0, 1}, port: 4000],
   check_origin: false,
+  code_reloader: true,
+  debug_errors: true,
+  secret_key_base: "lf+ozMHBZ9R4h9y+Z28p2bNYNhuCEOYfdJ3S1jvhLN4EKnSzxC+iEc7XBP2pFDxV",
   watchers: [
-    node: [
-      "node_modules/webpack/bin/webpack.js",
-      "--mode",
-      "development",
-      "--watch-stdin",
-      cd: Path.expand("../assets", __DIR__)
-    ]
+    # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
+    node: ["build.js", "--watch", cd: Path.expand("../assets", __DIR__)]
   ]
 
 # ## SSL Support
@@ -58,7 +57,7 @@ config :prati_ba, PratiBaWeb.Endpoint,
 config :prati_ba, PratiBaWeb.Endpoint,
   live_reload: [
     patterns: [
-      ~r"priv/static/[^(uploads)].*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/[^(articles)].*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/prati_ba_web/(live|views)/.*(ex)$",
       ~r"lib/prati_ba_web/templates/.*(eex)$"
