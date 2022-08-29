@@ -21,7 +21,7 @@ defmodule PratiBa.Scrapers.StartBihScraper do
     end
   end
 
-  def article_details(url) do
+  def article_details(%{url: url} = article) do
     response = ScrapingHelper.get(url)
 
     with {:ok, %{status_code: 200, body: body}} <- response,
@@ -44,20 +44,25 @@ defmodule PratiBa.Scrapers.StartBihScraper do
         |> DateTime.shift_zone!("Etc/UTC")
         |> DateTime.to_naive()
 
-      # article = Map.put(article, :published_at, published_at);
+      article = Map.put(article, :published_at, published_at)
 
       image_url =
         article_content
         |> Floki.find("a .img-overlay-70 img")
         |> Floki.attribute("data-src")
-        |> URI.encode()
+        |> Enum.at(0)
 
+      image_url =
+        {:ok, URI.encode(image_url)}
 
-
-
-       # article = Map.put(article, :image_url, image_url)
-
-
+     case image_url do
+      {:ok, image_url} ->
+        {:ok, Map.put(article, :image, image_url)}
+      {:error, _} ->
+        {:error, :err}
+     end
+    else
+      _ -> {:error, :article_not_available}
     end
   end
 
@@ -65,12 +70,12 @@ defmodule PratiBa.Scrapers.StartBihScraper do
     url =
       article
       |> Floki.attribute("href")
-      |> Enum.fetch!(1)
+      |> Enum.at(0)
 
     original_id =
       url
       |> String.split("/")
-      |> Enum.fetch!(4)
+      |> Enum.fetch!(5)
 
     title =
       article
