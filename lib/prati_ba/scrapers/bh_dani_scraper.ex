@@ -6,6 +6,12 @@ defmodule PratiBa.Scrapers.BhDaniScraper do
   alias PratiBa.Scrapers.ScrapingHelper
 
   def articles(url \\ @url) do
+    response = ScrapingHelper.get(url)
+
+    with {:ok, %{status_code: 200, body: body}} <- response,
+    {:ok, html} <- Floki.parse_document(body) do
+
+    end
 
   end
 end
