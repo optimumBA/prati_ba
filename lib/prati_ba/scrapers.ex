@@ -64,9 +64,12 @@ defmodule PratiBa.Scrapers do
 
   defp get_scraper(source = %Source{name: source_name}, scrapers) do
     case Map.get(scrapers, source_name) do
-      nil -> nil
-      scraper -> {source, scraper}
-      IO.puts scrapers
+      nil ->
+        nil
+
+      scraper ->
+        {source, scraper}
+        IO.puts(scrapers)
     end
   end
 
