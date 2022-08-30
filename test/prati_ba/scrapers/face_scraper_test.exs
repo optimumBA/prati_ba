@@ -64,8 +64,6 @@ defmodule PratiBa.Scrapers.FaceScraperTest do
 
       response = FaceScraper.article_details(article)
 
-
-
       assert {:ok, article} = response
 
       assert %{

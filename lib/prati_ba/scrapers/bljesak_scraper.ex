@@ -64,7 +64,6 @@ defmodule PratiBa.Scrapers.BljesakScraper do
     end
   end
 
-
   defp parse_article(article) do
     link =
       article
