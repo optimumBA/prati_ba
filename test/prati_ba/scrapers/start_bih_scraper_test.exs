@@ -54,7 +54,7 @@ defmodule PratiBa.Scrapers.StartBihScraperTest do
         original_id: "191193",
         title: "1 / 1 Magoda: “Kroz podršku sportu nastojimo ojačati pozitivan imidž Sarajeva”",
         description: nil,
-        published_at: nil,
+        published_at: ~N[2022-08-29 14:40:00],
         author: nil,
         image: nil,
         url: article_url
@@ -72,7 +72,7 @@ defmodule PratiBa.Scrapers.StartBihScraperTest do
                published_at: ~N[2022-08-29 14:40:00],
                author: nil,
                image:
-                 "https://cdn.startbih.ba/articles/2022/08/29/560x410/301716529-3224200471130310-9200561889991231163-n_1.jpg",
+                 "https://cdn.startbih.ba/articles/2022/08/29/301716529-3224200471130310-9200561889991231163-n_1.jpg?v202103221134",
                url: ^article_url
              } = article
     end
@@ -83,6 +83,6 @@ defmodule PratiBa.Scrapers.StartBihScraperTest do
   end
 
   defp article_payload do
-    File.read!("test/support/payloads/start_bih_scraper/articles.html")
+    File.read!("test/support/payloads/start_bih_scraper/article.html")
   end
 end

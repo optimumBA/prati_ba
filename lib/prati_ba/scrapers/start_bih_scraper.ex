@@ -32,10 +32,11 @@ defmodule PratiBa.Scrapers.StartBihScraper do
 
       date =
         article_content
-        |> Floki.find("ul li span")
+        |> Floki.find(".news-details-layout1 ul li")
         |> Floki.attribute("title")
         |> Enum.at(0)
-        |> String.trim()
+
+        IO.puts date
 
       published_at =
         date
@@ -44,23 +45,31 @@ defmodule PratiBa.Scrapers.StartBihScraper do
         |> DateTime.shift_zone!("Etc/UTC")
         |> DateTime.to_naive()
 
-      article = Map.put(article, :published_at, published_at)
+      #article = Map.put(article, :published_at, published_at)
 
-      image_url =
-        article_content
-        |> Floki.find("a .img-overlay-70 img")
-        |> Floki.attribute("data-src")
-        |> Enum.at(0)
+      case ScrapingHelper.get_og_description(html) do
+        {:ok, description} ->
+          {:ok, Map.put(article, :description, description)}
+        {:error, _} ->
+          {:error, :not_available}
+      end
 
-      image_url =
-        {:ok, URI.encode(image_url)}
+      case ScrapingHelper.get_og_image(html) do
+        {:ok, image_url} ->
+          {:ok, Map.put(article, :image, image_url)}
 
-     case image_url do
-      {:ok, image_url} ->
-        {:ok, Map.put(article, :image, image_url)}
-      {:error, _} ->
-        {:error, :err}
-     end
+        {:error, _} ->
+          {:error, :image_not_available}
+      end
+
+
+      #case image_url do
+        #{:ok, image_url} ->
+          #{:ok, Map.put(article, :image, image_url)}
+
+        #{:error, _} ->
+         # {:error, :err}
+      #end
     else
       _ -> {:error, :article_not_available}
     end
