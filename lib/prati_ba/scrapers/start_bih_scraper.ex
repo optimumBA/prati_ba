@@ -36,7 +36,6 @@ defmodule PratiBa.Scrapers.StartBihScraper do
         |> Floki.attribute("title")
         |> Enum.at(0)
 
-
       published_at =
         date
         |> Timex.parse!("{D}.{M}.{YYYY} u {h24}:{m}")
@@ -44,9 +43,12 @@ defmodule PratiBa.Scrapers.StartBihScraper do
         |> DateTime.shift_zone!("Etc/UTC")
         |> DateTime.to_naive()
 
+      article = Map.put(article, :published_at, published_at)
+
       case ScrapingHelper.get_og_description(html) do
         {:ok, description} ->
           {:ok, Map.put(article, :description, description)}
+
         {:error, _} ->
           {:error, :not_available}
       end
@@ -58,7 +60,6 @@ defmodule PratiBa.Scrapers.StartBihScraper do
         {:error, _} ->
           {:error, :image_not_available}
       end
-
     else
       _ -> {:error, :article_not_available}
     end
