@@ -49,7 +49,7 @@ defmodule PratiBa.Scrapers do
     "source.ba" => SourceScraper,
     "The Bosnia Times" => TheBosniaTimesScraper,
     "Žurnal" => ZurnalScraper,
-    "StartBiH" => StartBihScraper
+    "Start BiH" => StartBihScraper
   }
 
   @article_keys [:image, :original_id, :published_at, :title, :url]
