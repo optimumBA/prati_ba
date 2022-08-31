@@ -24,9 +24,9 @@ defmodule PratiBa.Scrapers do
     RaskrinkavanjeScraper,
     SlobodnaBosnaScraper,
     SourceScraper,
+    StartBihScraper,
     TheBosniaTimesScraper,
-    ZurnalScraper,
-    StartBihScraper
+    ZurnalScraper
   }
 
   @scrapers %{
@@ -47,9 +47,9 @@ defmodule PratiBa.Scrapers do
     "Raskrinkavanje.ba" => RaskrinkavanjeScraper,
     "Slobodna Bosna" => SlobodnaBosnaScraper,
     "source.ba" => SourceScraper,
+    "Start BiH" => StartBihScraper,
     "The Bosnia Times" => TheBosniaTimesScraper,
-    "Žurnal" => ZurnalScraper,
-    "Start BiH" => StartBihScraper
+    "Žurnal" => ZurnalScraper
   }
 
   @article_keys [:image, :original_id, :published_at, :title, :url]
@@ -69,7 +69,6 @@ defmodule PratiBa.Scrapers do
 
       scraper ->
         {source, scraper}
-        IO.puts(scrapers)
     end
   end
 
