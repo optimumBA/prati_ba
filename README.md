@@ -5,7 +5,6 @@ To start your Phoenix server:
 - install Imagemagick using [Homebrew](https://brew.sh) (`brew install imagemagick`)
 - install Elixir, Erlang, Node.js, Python and Rust using [asdf](https://asdf-vm.com) (`asdf install`)
 - start PostgreSQL server
-- set environment variables in `.env` (see: [.env.sample](.env.sample))
 - run `mix setup`
 - download UAInspector database with `mix ua_inspector.download`
 - start Phoenix server with `mix phx.server`

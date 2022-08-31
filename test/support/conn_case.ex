@@ -24,6 +24,7 @@ defmodule PratiBaWeb.ConnCase do
       import Phoenix.ConnTest
       import PratiBaWeb.ConnCase
       import PratiBa.Factory
+
       alias PratiBaWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
@@ -32,11 +33,7 @@ defmodule PratiBaWeb.ConnCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PratiBa.Repo)
-
-    unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(PratiBa.Repo, {:shared, self()})
-    end
+    PratiBa.DataCase.setup_sandbox(tags)
 
     # Avoid errors from Analytics plug
     PratiBa.Factory.insert(:event_type, name: "page_view")

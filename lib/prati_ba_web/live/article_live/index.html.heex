@@ -1,0 +1,5 @@
+<section class="articles row row-responsive">
+  <%= for article <- @articles do %>
+    <ArticleComponent.article article={article} socket={@socket} />
+  <% end %>
+</section>

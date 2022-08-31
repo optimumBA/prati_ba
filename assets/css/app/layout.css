@@ -4,7 +4,7 @@ body {
 
 nav {
   background: var(--nav-color);
-  border-bottom: .1rem solid var(--border-color);
+  border-bottom: 0.1rem solid var(--border-color);
   display: block;
   height: 5.2rem;
   left: 0;

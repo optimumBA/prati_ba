@@ -1,5 +1,6 @@
 defmodule PratiBaWeb.Router do
   use PratiBaWeb, :router
+
   import Phoenix.LiveDashboard.Router
 
   pipeline :browser do
@@ -30,7 +31,7 @@ defmodule PratiBaWeb.Router do
     pipe_through [:browser, :admin]
 
     resources "/", AdminController, only: [:index]
-    live_dashboard "/dashboard", metrics: {PratiBaWeb.Telemetry, :metrics}
+    live_dashboard "/dashboard", metrics: PratiBaWeb.Telemetry
     live "/analytics", AnalyticsLive.Index, :index
   end
 
@@ -58,6 +59,18 @@ defmodule PratiBaWeb.Router do
       conn
     else
       _ -> conn |> Plug.BasicAuth.request_basic_auth() |> halt()
+    end
+  end
+
+  # Enables the Swoosh mailbox preview in development.
+  #
+  # Note that preview only shows emails that were sent by the same
+  # node running the Phoenix server.
+  if Mix.env() == :dev do
+    scope "/dev" do
+      pipe_through :browser
+
+      forward "/mailbox", Plug.Swoosh.MailboxPreview
     end
   end
 end

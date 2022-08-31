@@ -2,8 +2,7 @@ defmodule PratiBaWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :prati_ba
 
   if Application.get_env(:prati_ba, :env) == :prod do
-    plug RemoteIp,
-      headers: ~w[x-forwarded-for]
+    plug RemoteIp, headers: ~w[fly-client-ip]
   end
 
   # The session will be stored in the cookie and signed,
@@ -13,17 +12,16 @@ defmodule PratiBaWeb.Endpoint do
     store: :cookie,
     max_age: 10 * 365 * 24 * 60 * 60,
     key: "_prati_ba_session",
-    signing_salt: "sYjQsFTR",
-    same_site: "Lax"
+    signing_salt: "pRGp8JdR"
   ]
 
-  socket "/socket", PratiBaWeb.UserSocket,
-    websocket: true,
-    longpoll: true
-
   socket "/live", Phoenix.LiveView.Socket,
-    websocket: [connect_info: [session: @session_options]],
-    longpoll: true
+    longpoll: true,
+    websocket: [connect_info: [session: @session_options]]
+
+  socket "/socket", PratiBaWeb.UserSocket,
+    longpoll: true,
+    websocket: true
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -32,8 +30,8 @@ defmodule PratiBaWeb.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :prati_ba,
-    gzip: true,
-    only: ~w(articles css fonts images js favicon.ico robots.txt)
+    gzip: false,
+    only: ~w(articles assets fonts images favicon.ico robots.txt)
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
