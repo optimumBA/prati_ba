@@ -43,14 +43,12 @@ defmodule PratiBa.Scrapers.StartBihScraper do
         |> DateTime.shift_zone!("Etc/UTC")
         |> DateTime.to_naive()
 
-      article = Map.put(article, :published_at, published_at)
+      Map.put(article, :published_at, published_at)
 
+      article =
       case ScrapingHelper.get_og_description(html) do
-        {:ok, description} ->
-          {:ok, Map.put(article, :description, description)}
-
-        {:error, _} ->
-          {:error, :not_available}
+        {:ok, description} -> Map.put(article, :description, description)
+         _ -> article
       end
 
       case ScrapingHelper.get_og_image(html) do
