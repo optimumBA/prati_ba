@@ -17,6 +17,7 @@ alias PratiBa.Repo
 import Ecto.Query, only: [from: 2]
 
 sources = [
+  %Source{name: "BH Dani", url: "https://bhdani.oslobodjenje.ba/bhdani/"},
   %Source{name: "Bljesak.info", url: "https://www.bljesak.info"},
   %Source{name: "CIN", url: "https://www.cin.ba"},
   %Source{name: "Dnevni avaz", url: "https://avaz.ba"},
@@ -36,7 +37,6 @@ sources = [
   %Source{name: "source.ba", url: "http://source.ba"},
   %Source{name: "The Bosnia Times", url: "https://thebosniatimes.ba"},
   %Source{name: "Žurnal", url: "https://zurnal.info"},
-  %Source{name: "BH Dani", url: "https://bhdani.oslobodjenje.ba/bhdani/"}
 ]
 
 for source <- sources do
