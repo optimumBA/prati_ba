@@ -66,7 +66,8 @@ defmodule PratiBa.Scrapers.BhDaniTest do
       assert %{
                original_id: "778048",
                title: "Na kontinentu koji se nekad zvao Evropa: Mutantova priča",
-               description: nil,
+               description:
+                 "Padala je duga i uporna natapajuća kiša, takozvana kupusarka, iako nije bio novembar kada ona obično pada. Sjedili smo na kiši ispred Magične kocke, nije nam se dalo ići kućama, niti u unutrašnjost kafića, htjeli smo da kisnemo i baš tada je ulicom naletio Mutant Džo. Pravio se da nas ne vidi",
                published_at: ~N[2022-08-30 07:17:00],
                author: nil,
                image: "https://cdn.oslobodjenje.ba/images/slike/new/2022/07/22/6276563.jpg",

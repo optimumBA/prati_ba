@@ -30,13 +30,11 @@ defmodule PratiBa.Scrapers.BhDaniScraper do
         html
         |> Floki.find(".container--item")
 
-      case ScrapingHelper.get_og_description(html) do
-        {:ok, description} ->
-          {:ok, Map.put(article, :description, description)}
-
-        {:error, _} ->
-          {:error, :not_available}
-      end
+      article =
+        case ScrapingHelper.get_og_description(html) do
+          {:ok, description} -> Map.put(article, :description, description)
+          _ -> article
+        end
 
       date =
         article_container
