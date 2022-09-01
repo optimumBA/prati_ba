@@ -24,16 +24,14 @@ defmodule PratiBa.Scrapers.CapitalBaScraperTest do
       assert length(articles) == 30
 
       assert %{
-        original_id: nil,
-        title: "Pregovori propali, radnici Lufthanze ulaze u štrajk",
-        description: nil,
-        published_at: nil,
-        author: nil,
-        image: nil,
-        url: "https://www.capital.ba/pregovori-propali-radnici-lufthanze-ulaze-u-strajk/"
-      } = Enum.at(articles, 0)
-
-
+               original_id: nil,
+               title: "Pregovori propali, radnici Lufthanze ulaze u štrajk",
+               description: nil,
+               published_at: nil,
+               author: nil,
+               image: nil,
+               url: "https://www.capital.ba/pregovori-propali-radnici-lufthanze-ulaze-u-strajk/"
+             } = Enum.at(articles, 0)
     end
   end
 
@@ -53,8 +51,7 @@ defmodule PratiBa.Scrapers.CapitalBaScraperTest do
 
       article = %{
         original_id: nil,
-        title:
-          "Pregovori propali, radnici Lufthanze ulaze u štrajk",
+        title: "Pregovori propali, radnici Lufthanze ulaze u štrajk",
         description: nil,
         published_at: nil,
         author: nil,
@@ -68,21 +65,22 @@ defmodule PratiBa.Scrapers.CapitalBaScraperTest do
 
       assert %{
                original_id: nil,
-               title:
-                 "Pregovori propali, radnici Lufthanze ulaze u štrajk",
-               description: "Njemački državni prevoznik suočava se s novim prekidima u radu jer su posljednji pregovori između sindikata i uprave propali. Predstavnici radnika najavili su štrajk za petak.",
+               title: "Pregovori propali, radnici Lufthanze ulaze u štrajk",
+               description:
+                 "Njemački državni prevoznik suočava se s novim prekidima u radu jer su posljednji pregovori između sindikata i uprave propali. Predstavnici radnika najavili su štrajk za petak.",
                published_at: ~N[2022-09-01 11:30:00],
                author: nil,
-               image_url: "https://www.capital.ba/wp-content/uploads/2021/06/aircraft-1362586_1280-e1659951124385.jpg",
+               image_url:
+                 "https://www.capital.ba/wp-content/uploads/2021/06/aircraft-1362586_1280-e1659951124385.jpg",
                url: ^article_url
              } = article
     end
   end
 
-
   defp articles_payload do
     File.read!("test/support/payloads/capital_ba_scraper/articles.html")
   end
+
   defp article_payload do
     File.read!("test/support/payloads/capital_ba_scraper/article.html")
   end
