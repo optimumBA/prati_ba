@@ -8,6 +8,7 @@ defmodule PratiBa.Scrapers do
 
   alias PratiBa.Scrapers.{
     BljesakScraper,
+    CapitalBaScraper,
     CinScraper,
     DnevniAvazScraper,
     DwScraper,
@@ -30,6 +31,7 @@ defmodule PratiBa.Scrapers do
 
   @scrapers %{
     "Bljesak.info" => BljesakScraper,
+    "Capital.ba" => CapitalBaScraper,
     "CIN" => CinScraper,
     "Dnevni avaz" => DnevniAvazScraper,
     "DW" => DwScraper,
