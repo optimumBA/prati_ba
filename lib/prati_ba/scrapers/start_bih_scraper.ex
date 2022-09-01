@@ -46,10 +46,10 @@ defmodule PratiBa.Scrapers.StartBihScraper do
       Map.put(article, :published_at, published_at)
 
       article =
-      case ScrapingHelper.get_og_description(html) do
-        {:ok, description} -> Map.put(article, :description, description)
-         _ -> article
-      end
+        case ScrapingHelper.get_og_description(html) do
+          {:ok, description} -> Map.put(article, :description, description)
+          _ -> article
+        end
 
       case ScrapingHelper.get_og_image(html) do
         {:ok, image_url} ->

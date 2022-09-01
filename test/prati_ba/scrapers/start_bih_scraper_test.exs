@@ -68,7 +68,8 @@ defmodule PratiBa.Scrapers.StartBihScraperTest do
                original_id: "191193",
                title:
                  "1 / 1 Magoda: “Kroz podršku sportu nastojimo ojačati pozitivan imidž Sarajeva”",
-               description: "Turistička zajednica Kantona Sarajevo na čelu s predsjednikom Kenanom Magodom podržala je Odbojkaški savez Bosne i Hercegovine",
+               description:
+                 "Turistička zajednica Kantona Sarajevo na čelu s predsjednikom Kenanom Magodom podržala je Odbojkaški savez Bosne i Hercegovine",
                published_at: ~N[2022-08-29 14:40:00],
                author: nil,
                image:
