@@ -26,6 +26,8 @@ defmodule PratiBa.Scrapers.FrontalScraper do
     end
   end
 
+  def article_details(article), do: {:ok, article}
+
   def parse_article(article) do
     %{
       "guid" => %{
