@@ -1,5 +1,6 @@
 defmodule PratiBa.Scrapers.BhDaniTest do
   use ExUnit.Case, async: true
+
   alias PratiBa.Scrapers.BhDaniScraper
 
   setup do
@@ -36,7 +37,7 @@ defmodule PratiBa.Scrapers.BhDaniTest do
   end
 
   describe "article_details/1" do
-    test "fetches article image", %{bypass: bypass} do
+    test "fetches more article info", %{bypass: bypass} do
       Bypass.expect(
         bypass,
         "GET",

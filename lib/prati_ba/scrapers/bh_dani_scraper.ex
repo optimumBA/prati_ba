@@ -26,9 +26,7 @@ defmodule PratiBa.Scrapers.BhDaniScraper do
 
     with {:ok, %{status_code: 200, body: body}} <- response,
          {:ok, html} <- Floki.parse_document(body) do
-      article_container =
-        html
-        |> Floki.find(".container--item")
+      article_container = Floki.find(html, ".container--item")
 
       article =
         case ScrapingHelper.get_og_description(html) do
@@ -38,7 +36,7 @@ defmodule PratiBa.Scrapers.BhDaniScraper do
 
       date =
         article_container
-        |> Floki.find(".card__category-time span ")
+        |> Floki.find(".card__category-time span")
         |> Enum.at(0)
         |> Floki.text()
         |> String.trim()
