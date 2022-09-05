@@ -10,9 +10,7 @@ defmodule PratiBa.Scrapers.PreokretInfoScraper do
 
     with {:ok, %{status_code: 200, body: body}} <- response,
          {:ok, articles} <- Jason.decode(body) do
-      articles =
-        articles
-        |> Stream.map(&parse_article(&1, url_base))
+      articles = articles |> Stream.map(&parse_article(&1, url_base))
 
       {:ok, articles}
     else
