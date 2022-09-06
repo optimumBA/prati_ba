@@ -44,8 +44,4 @@ defmodule PratiBa.Scrapers.PreokretInfoScraperTest do
   defp articles_payload do
     File.read!("test/support/payloads/preokret_info_scraper/posts.json")
   end
-
-  defp article_payload do
-    File.read!("test/support/payloads/preokret_info_scraper/media.json")
-  end
 end
