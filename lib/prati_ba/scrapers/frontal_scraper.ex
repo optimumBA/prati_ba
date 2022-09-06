@@ -15,7 +15,7 @@ defmodule PratiBa.Scrapers.FrontalScraper do
           |> HtmlEntities.decode()
           |> FastRSS.parse()
 
-          articles = Stream.map(rss["items"], &parse_article/1)
+        articles = Stream.map(rss["items"], &parse_article/1)
 
         {:ok, articles}
 
