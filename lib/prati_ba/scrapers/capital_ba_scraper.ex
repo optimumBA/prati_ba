@@ -1,7 +1,7 @@
 defmodule PratiBa.Scrapers.CapitalBaScraper do
   @behaviour PratiBa.Scrapers.Scraper
 
-  @url "https://www.capital.ba/sve-vijesti/"
+  @url "https://www.capital.ba/"
 
   alias PratiBa.Scrapers.ScrapingHelper
 
@@ -19,6 +19,29 @@ defmodule PratiBa.Scrapers.CapitalBaScraper do
     else
       {_, response} -> {:error, response}
     end
+  end
+
+  defp parse_article(article) do
+    url =
+      article
+      |> Floki.find("a")
+      |> Floki.attribute("href")
+      |> Enum.at(0)
+
+    title =
+      article
+      |> Floki.find(".cat-description h2")
+      |> Floki.text()
+
+    %{
+      original_id: nil,
+      title: title,
+      description: nil,
+      published_at: nil,
+      author: nil,
+      image: nil,
+      url: url
+    }
   end
 
   def article_details(%{url: url} = article) do
@@ -62,28 +85,5 @@ defmodule PratiBa.Scrapers.CapitalBaScraper do
     else
       _ -> {:error, :article_not_available}
     end
-  end
-
-  def parse_article(article) do
-    url =
-      article
-      |> Floki.find("a")
-      |> Floki.attribute("href")
-      |> Enum.at(0)
-
-    title =
-      article
-      |> Floki.find(".cat-description h2")
-      |> Floki.text()
-
-    %{
-      original_id: nil,
-      title: title,
-      description: nil,
-      published_at: nil,
-      author: nil,
-      image: nil,
-      url: url
-    }
   end
 end
