@@ -40,7 +40,7 @@ defmodule PratiBa.Scrapers do
     "N1" => N1Scraper,
     "Nezavisne novine" => NezavisneNovineScraper,
     "Oslobođenje" => OslobodjenjeScraper,
-    "Prekret.info" => PreokretInfoScraper,
+    "Preokret.info" => PreokretInfoScraper,
     "Prva smjena" => PrvaSmjenaScraper,
     "Radio Sarajevo" => RadioSarajevoScraper,
     "Radio Slobodna Evropa" => RadioSlobodnaEvropaScraper,
