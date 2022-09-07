@@ -1,7 +1,7 @@
 defmodule PratiBa.Scrapers.CapitalBaScraper do
   @behaviour PratiBa.Scrapers.Scraper
 
-  @url "https://www.capital.ba/"
+  @url "https://www.capital.ba/sve-vijesti/"
 
   alias PratiBa.Scrapers.ScrapingHelper
 
