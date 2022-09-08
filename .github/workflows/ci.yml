@@ -51,11 +51,13 @@ jobs:
       - name: Install Dependencies
         run: mix deps.get --only test
 
-      - name: Download UAInspector databases
-        run: MIX_ENV=test mix ua_inspector.download --force --quiet
+      - name: Compile
+        run: MIX_ENV=test mix compile --force --warnings-as-errors
+
+      - name: Check formatting
+        run: mix format --check-formatted
 
       - name: Run Tests
         run: |
-          MIX_ENV=test mix compile --force --warnings-as-errors
-          mix format --check-formatted
+          MIX_ENV=test mix ua_inspector.download --force --quiet
           mix test
