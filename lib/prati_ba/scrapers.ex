@@ -7,6 +7,7 @@ defmodule PratiBa.Scrapers do
   alias PratiBa.Articles.Source
 
   alias PratiBa.Scrapers.{
+    BhDaniScraper,
     BljesakScraper,
     CapitalBaScraper,
     CinScraper,
@@ -14,10 +15,12 @@ defmodule PratiBa.Scrapers do
     DwScraper,
     FaceScraper,
     FokusScraper,
+    FrontalScraper,
     KlixScraper,
     N1Scraper,
     NezavisneNovineScraper,
     OslobodjenjeScraper,
+    PreokretInfoScraper,
     PrvaSmjenaScraper,
     RadioSarajevoScraper,
     RadioSlobodnaEvropaScraper,
@@ -25,11 +28,13 @@ defmodule PratiBa.Scrapers do
     RaskrinkavanjeScraper,
     SlobodnaBosnaScraper,
     SourceScraper,
+    StartBihScraper,
     TheBosniaTimesScraper,
     ZurnalScraper
   }
 
   @scrapers %{
+    "BH Dani" => BhDaniScraper,
     "Bljesak.info" => BljesakScraper,
     "Capital.ba" => CapitalBaScraper,
     "CIN" => CinScraper,
@@ -37,10 +42,12 @@ defmodule PratiBa.Scrapers do
     "DW" => DwScraper,
     "face.ba" => FaceScraper,
     "Fokus.ba" => FokusScraper,
+    "Frontal.ba" => FrontalScraper,
     "Klix.ba" => KlixScraper,
     "N1" => N1Scraper,
     "Nezavisne novine" => NezavisneNovineScraper,
     "Oslobođenje" => OslobodjenjeScraper,
+    "Preokret.info" => PreokretInfoScraper,
     "Prva smjena" => PrvaSmjenaScraper,
     "Radio Sarajevo" => RadioSarajevoScraper,
     "Radio Slobodna Evropa" => RadioSlobodnaEvropaScraper,
@@ -48,6 +55,7 @@ defmodule PratiBa.Scrapers do
     "Raskrinkavanje.ba" => RaskrinkavanjeScraper,
     "Slobodna Bosna" => SlobodnaBosnaScraper,
     "source.ba" => SourceScraper,
+    "Start BiH" => StartBihScraper,
     "The Bosnia Times" => TheBosniaTimesScraper,
     "Žurnal" => ZurnalScraper
   }
@@ -64,8 +72,11 @@ defmodule PratiBa.Scrapers do
 
   defp get_scraper(source = %Source{name: source_name}, scrapers) do
     case Map.get(scrapers, source_name) do
-      nil -> nil
-      scraper -> {source, scraper}
+      nil ->
+        nil
+
+      scraper ->
+        {source, scraper}
     end
   end
 

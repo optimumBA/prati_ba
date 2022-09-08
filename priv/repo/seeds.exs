@@ -17,6 +17,7 @@ alias PratiBa.Repo
 import Ecto.Query, only: [from: 2]
 
 sources = [
+  %Source{name: "BH Dani", url: "https://bhdani.oslobodjenje.ba/bhdani/"},
   %Source{name: "Bljesak.info", url: "https://www.bljesak.info"},
   %Source{name: "Capital.ba", url: "https://www.capital.ba"},
   %Source{name: "CIN", url: "https://www.cin.ba"},
@@ -24,10 +25,12 @@ sources = [
   %Source{name: "DW", url: "https://www.dw.com/bs/teme/s-10037"},
   %Source{name: "face.ba", url: "https://www.face.ba"},
   %Source{name: "Fokus.ba", url: "https://www.fokus.ba"},
+  %Source{name: "Frontal.ba", url: "https://www.frontal.ba"},
   %Source{name: "Klix.ba", url: "https://www.klix.ba"},
   %Source{name: "N1", url: "https://ba.n1info.com"},
   %Source{name: "Nezavisne novine", url: "https://www.nezavisne.com"},
   %Source{name: "Oslobođenje", url: "https://www.oslobodjenje.ba"},
+  %Source{name: "Preokret.info", url: "https://preokret.info"},
   %Source{name: "Prva smjena", url: "http://prvasmjena.com"},
   %Source{name: "Radio Sarajevo", url: "https://radiosarajevo.ba"},
   %Source{name: "Radio Slobodna Evropa", url: "https://www.slobodnaevropa.org"},
@@ -35,6 +38,7 @@ sources = [
   %Source{name: "Raskrinkavanje.ba", url: "https://raskrinkavanje.ba"},
   %Source{name: "Slobodna Bosna", url: "https://www.slobodna-bosna.ba"},
   %Source{name: "source.ba", url: "http://source.ba"},
+  %Source{name: "Start BIH", url: "https://startbih.ba"},
   %Source{name: "The Bosnia Times", url: "https://thebosniatimes.ba"},
   %Source{name: "Žurnal", url: "https://zurnal.info"}
 ]
