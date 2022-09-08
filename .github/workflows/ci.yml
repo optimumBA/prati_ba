@@ -51,9 +51,6 @@ jobs:
       - name: Install Dependencies
         run: mix deps.get --only test
 
-      - name: Compile dependencies
-        run: MIX_ENV=test mix deps.compile
-
       - name: Download UAInspector databases
         run: MIX_ENV=test mix ua_inspector.download --force --quiet
 
