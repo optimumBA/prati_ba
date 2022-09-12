@@ -18,6 +18,19 @@ defmodule PratiBa.Scrapers.PreokretInfoScraper do
     end
   end
 
+  def article_details(%{image: image_url} = article) when is_binary(image_url) do
+    response = ScrapingHelper.get(image_url)
+
+    with {:ok, %{status_code: 200, body: body}} <- response,
+         {:ok, media} <- Jason.decode(body),
+         %{"media_details" => %{"sizes" => %{"full" => %{"source_url" => image_url}}}} <- media do
+      image_url = URI.encode(image_url)
+      {:ok, Map.put(article, :image, image_url)}
+    else
+      _ -> {:error, :article_not_available}
+    end
+  end
+
   def article_details(article), do: {:ok, article}
 
   defp parse_article(article, url_base) do
