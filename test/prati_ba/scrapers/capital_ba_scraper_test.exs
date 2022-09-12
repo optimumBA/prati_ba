@@ -11,52 +11,50 @@ defmodule PratiBa.Scrapers.CapitalBaScraperTest do
 
   describe "articles/1" do
     test "fetches articles", %{bypass: bypass} do
-      Bypass.expect(bypass, fn conn ->
+      Bypass.expect(bypass, "GET", "/wp-json/wp/v2/posts/", fn conn ->
         Plug.Conn.resp(conn, 200, articles_payload())
       end)
 
-      response = CapitalBaScraper.articles("http://localhost:#{bypass.port}/")
+      response = CapitalBaScraper.articles("http://localhost:#{bypass.port}")
 
-      assert {:ok, articles} = response
+      first_image_url = "http://localhost:#{bypass.port}/wp-json/wp/v2/media/511665"
+
+      {:ok, articles} = response
 
       articles = Enum.to_list(articles)
 
-      assert length(articles) == 30
+      assert length(articles) == 10
 
-      assert %{
-               original_id: nil,
-               title: "Pregovori propali, radnici Lufthanze ulaze u štrajk",
-               description: nil,
-               published_at: nil,
-               author: nil,
-               image: nil,
-               url: "https://www.capital.ba/pregovori-propali-radnici-lufthanze-ulaze-u-strajk/"
-             } = Enum.at(articles, 0)
+      assert [
+               %{
+                 original_id: "721397",
+                 title: "Smanjenjem akciza gorivo jeftinije 50 feninga šest mjeseci",
+                 description:
+                   "Ranije su Predstavnički dom i Dom naroda usvojili ukidanje akciza na gorivo u različitim verzijama.",
+                 published_at: ~N[2022-09-12 14:45:53],
+                 author: nil,
+                 image: ^first_image_url,
+                 url:
+                   "https://www.capital.ba/smanjenjem-akciza-gorivo-jeftinije-50-feninga-sest-mjeseci/"
+               }
+             ] = Enum.take(articles, 1)
     end
   end
 
   describe "article_details/1" do
-    test "fetches article image", %{bypass: bypass} do
-      Bypass.expect(
-        bypass,
-        "GET",
-        "/pregovori-propali-radnici-lufthanze-ulaze-u-strajk/",
-        fn conn ->
-          Plug.Conn.resp(conn, 200, article_payload())
-        end
-      )
-
-      article_url =
-        "http://localhost:#{bypass.port}/pregovori-propali-radnici-lufthanze-ulaze-u-strajk/"
+    test "fetches articles image", %{bypass: bypass} do
+      Bypass.expect(bypass, "GET", "/wp-json/wp/v2/media/721373", fn conn ->
+        Plug.Conn.resp(conn, 200, media_payload())
+      end)
 
       article = %{
-        original_id: nil,
-        title: "Pregovori propali, radnici Lufthanze ulaze u štrajk",
+        original_id: "721373",
+        title: nil,
         description: nil,
-        published_at: nil,
+        published_at: ~N[2022-09-12T14:45:53],
         author: nil,
-        image_url: nil,
-        url: article_url
+        image: "http://localhost:#{bypass.port}/wp-json/wp/v2/media/721373",
+        url: "https://www.capital.ba/smanjenjem-akciza-gorivo-jeftinije-50-feninga-sest-mjeseci/"
       }
 
       response = CapitalBaScraper.article_details(article)
@@ -64,24 +62,24 @@ defmodule PratiBa.Scrapers.CapitalBaScraperTest do
       assert {:ok, article} = response
 
       assert %{
-               original_id: nil,
-               title: "Pregovori propali, radnici Lufthanze ulaze u štrajk",
-               description:
-                 "Njemački državni prevoznik suočava se s novim prekidima u radu jer su posljednji pregovori između sindikata i uprave propali. Predstavnici radnika najavili su štrajk za petak.",
-               published_at: ~N[2022-09-01 11:30:00],
+               original_id: "721373",
+               title: nil,
+               description: nil,
+               published_at: ~N[2022-09-12 14:45:53],
                author: nil,
-               image_url:
-                 "https://www.capital.ba/wp-content/uploads/2021/06/aircraft-1362586_1280-e1659951124385.jpg",
-               url: ^article_url
+               image:
+                 "https://www.capital.ba/wp-content/uploads/2022/09/zlato-poluge-foto-pixabay.jpg",
+               url:
+                 "https://www.capital.ba/smanjenjem-akciza-gorivo-jeftinije-50-feninga-sest-mjeseci/"
              } = article
     end
   end
 
   defp articles_payload do
-    File.read!("test/support/payloads/capital_ba_scraper/articles.html")
+    File.read!("test/support/payloads/capital_ba_scraper/posts.json")
   end
 
-  defp article_payload do
-    File.read!("test/support/payloads/capital_ba_scraper/article.html")
+  defp media_payload do
+    File.read!("test/support/payloads/capital_ba_scraper/media.json")
   end
 end

@@ -36,7 +36,7 @@ defmodule PratiBa.Scrapers do
   @scrapers %{
      "BH Dani" => BhDaniScraper,
     #"Bljesak.info" => BljesakScraper,
-    # "Capital.ba" => CapitalBaScraper,
+     "Capital.ba" => CapitalBaScraper,
     #"CIN" => CinScraper,
     #"Dnevni avaz" => DnevniAvazScraper,
     #"DW" => DwScraper,
