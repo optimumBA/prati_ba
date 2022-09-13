@@ -12,7 +12,7 @@ defmodule PratiBa.Scrapers.StartBihScraper do
          {:ok, html} <- Floki.parse_document(body) do
       articles =
         html
-        |> Floki.find(".row .mb-30 ul li h3 a")
+        |> Floki.find(".bg-secondary-accent .container .row  .col-lg-8 .row .mb-30")
         |> Stream.map(&parse_article/1)
 
       {:ok, articles}
@@ -26,9 +26,13 @@ defmodule PratiBa.Scrapers.StartBihScraper do
 
     with {:ok, %{status_code: 200, body: body}} <- response,
          {:ok, html} <- Floki.parse_document(body) do
-      article_content =
-        html
-        |> Floki.find(".row .mb-30")
+      article_content = Floki.find(html, ".row .mb-30")
+
+      article =
+        case ScrapingHelper.get_og_description(html) do
+          {:ok, description} -> Map.put(article, :description, description)
+          _ -> article
+        end
 
       date =
         article_content
@@ -45,12 +49,6 @@ defmodule PratiBa.Scrapers.StartBihScraper do
 
       article = Map.put(article, :published_at, published_at)
 
-      article =
-        case ScrapingHelper.get_og_description(html) do
-          {:ok, description} -> Map.put(article, :description, description)
-          _ -> article
-        end
-
       case ScrapingHelper.get_og_image(html) do
         {:ok, image_url} ->
           {:ok, Map.put(article, :image, image_url)}
@@ -64,20 +62,22 @@ defmodule PratiBa.Scrapers.StartBihScraper do
   end
 
   defp parse_article(article) do
+    path = Floki.find(article, "a")
+
     url =
-      article
+      path
       |> Floki.attribute("href")
       |> Enum.at(0)
 
     original_id =
       url
       |> String.split("/")
-      |> Enum.fetch!(5)
+      |> List.last()
 
     title =
       article
+      |> Floki.find("ul li h3")
       |> Floki.text()
-      |> String.trim()
 
     %{
       original_id: original_id,
@@ -86,7 +86,7 @@ defmodule PratiBa.Scrapers.StartBihScraper do
       published_at: nil,
       author: nil,
       image: nil,
-      url: url
+      url: URI.encode(url)
     }
   end
 end

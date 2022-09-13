@@ -38,7 +38,7 @@ sources = [
   %Source{name: "Raskrinkavanje.ba", url: "https://raskrinkavanje.ba"},
   %Source{name: "Slobodna Bosna", url: "https://www.slobodna-bosna.ba"},
   %Source{name: "source.ba", url: "http://source.ba"},
-  %Source{name: "Start BIH", url: "https://startbih.ba"},
+  %Source{name: "Start BiH", url: "https://startbih.ba"},
   %Source{name: "The Bosnia Times", url: "https://thebosniatimes.ba"},
   %Source{name: "Žurnal", url: "https://zurnal.info"}
 ]
