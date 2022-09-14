@@ -11,9 +11,7 @@ defmodule PratiBa.Scrapers.N1Scraper do
     with {:ok, %{status_code: 200, body: body}} <- response,
          body <- HtmlEntities.decode(body),
          {:ok, articles} <- Jason.decode(body) do
-      articles =
-        articles
-        |> Stream.map(&parse_article(&1, url_base))
+      articles = Stream.map(articles, &parse_article/1)
 
       {:ok, articles}
     else
@@ -39,7 +37,7 @@ defmodule PratiBa.Scrapers.N1Scraper do
   defp should_scrape(%{link: "https://ba.n1info.com/english/" <> _}), do: false
   defp should_scrape(_), do: true
 
-  defp parse_article(article, url_base) do
+  defp parse_article(article) do
     %{
       "id" => original_id,
       "date_gmt" => published_at,
