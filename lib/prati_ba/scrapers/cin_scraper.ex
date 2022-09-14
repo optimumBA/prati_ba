@@ -10,14 +10,9 @@ defmodule PratiBa.Scrapers.CinScraper do
 
     case response do
       {:ok, %{status_code: 200, body: body}} ->
-        {:ok, rss} =
-          body
-          |> HtmlEntities.decode()
-          |> FastRSS.parse()
+        {:ok, rss} = FastRSS.parse(body)
 
-        articles =
-          rss["items"]
-          |> Stream.map(&parse_article/1)
+        articles = Stream.map(rss["items"], &parse_article/1)
 
         {:ok, articles}
 
@@ -26,28 +21,18 @@ defmodule PratiBa.Scrapers.CinScraper do
     end
   end
 
-  def article_details(%{url: url} = article) do
-    response = ScrapingHelper.get(url)
-
-    with {:ok, %{status_code: 200, body: body}} <- response,
-         {:ok, html} <- Floki.parse_document(body),
-         {:ok, image_url} <- ScrapingHelper.get_og_image(html) do
-      {:ok, Map.put(article, :image, image_url)}
-    else
-      _ -> {:error, :article_not_available}
-    end
-  end
-
   defp parse_article(article) do
     %{
       "description" => description,
       "guid" => %{
-        "value" => "https://www.cin.ba/?p=" <> original_id
+        "value" => "https://cin.ba/?p=" <> original_id
       },
-      "link" => url,
       "pub_date" => date,
-      "title" => title
+      "title" => title,
+      "link" => url
     } = article
+
+    description = Floki.text(description)
 
     published_at =
       date
@@ -64,5 +49,17 @@ defmodule PratiBa.Scrapers.CinScraper do
       image: nil,
       url: URI.encode(url)
     }
+  end
+
+  def article_details(%{url: url} = article) do
+    response = ScrapingHelper.get(url)
+
+    with {:ok, %{status_code: 200, body: body}} <- response,
+         {:ok, html} <- Floki.parse_document(body),
+         {:ok, image_url} <- ScrapingHelper.get_og_image(html) do
+      {:ok, Map.put(article, :image, image_url)}
+    else
+      _ -> {:error, :article_not_available}
+    end
   end
 end
