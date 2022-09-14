@@ -36,7 +36,7 @@ defmodule PratiBa.Scrapers.N1Scraper do
 
   def article_details(article), do: {:ok, article}
 
-  defp should_scrape(%{link: "http://ba.n1info.com/english/" <> _}), do: false
+  defp should_scrape(%{link: "https://ba.n1info.com/english/" <> _}), do: false
   defp should_scrape(_), do: true
 
   defp parse_article(article, url_base) do
