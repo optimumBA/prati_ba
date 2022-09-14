@@ -21,36 +21,27 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraperTest do
 
       assert [
                %{
-                 original_id: "369198",
-                 title: "Djevojčica koja se smijala bombama sa porodicom prešla u Tursku",
+                 author: "RSA",
                  description: nil,
-                 published_at: ~N[2020-03-04 10:00:00],
-                 author: "Radiosarajevo.ba",
                  image:
-                   "https://storage.radiosarajevo.ba/article/369198/871x540/otac_kcerka_sirija_granatiranje_igra_smijeh_prtscr.jpg",
-                 url:
-                   "https://radiosarajevo.ba/vijesti/svijet/djevojcica-koja-se-smijala-bombama-sa-porodicom-presla-u-tursku/369198"
-               },
-               %{
-                 original_id: "369192",
-                 title: "Iskorijeniti korupciju, izliječiti zdravstvo",
-                 description: nil,
-                 published_at: ~N[2020-03-04 08:48:00],
-                 author: "EU info centar",
-                 image: nil,
-                 url:
-                   "https://radiosarajevo.ba/vijesti/euphoria/iskorijeniti-korupciju-izlijeciti-zdravstvo/369192"
-               },
-               %{
-                 original_id: "369087",
+                   "https://storage.radiosarajevo.ba/article/468944/871x540/skodaenyaq-radiosarajevo-001.jpg?v1663174544",
+                 original_id: "468944",
+                 published_at: ~N[2022-09-14 17:05:00],
                  title:
-                   "BiH prvi put u Diviziji A, direktnog prijenosa izvlačenja grupa neće biti?",
-                 description: nil,
-                 published_at: ~N[2020-03-03 09:15:00],
-                 author: "A. S.",
-                 image: "https://storage.radiosarajevo.ba/article/369915/871x540/SDP%20BiH.JPG",
+                   "Škoda Enyaq iV predstavljena u Sarajevu: Potpuno električni SUV vrhunskih karakteristika",
                  url:
-                   "https://radiosarajevo.ba/sport/nogomet/sramotno-bih-prvi-put-u-diviziji-a-ali-nece-biti-direktnog-prijenosa-izvlacenja-grupa/369087"
+                   "https://radiosarajevo.ba/auto-moto/noviteti/skoda-enyaq-iv-predstavljena-u-sarajevu-potpuno-elektricni-suv/468944"
+               },
+               %{
+                 author: "RSA",
+                 description: nil,
+                 image:
+                   "https://storage.radiosarajevo.ba/article/468950/871x540/mikrofon-1.jpg?v1663164991",
+                 original_id: "468950",
+                 published_at: ~N[2022-09-14 14:31:00],
+                 title: "Obaveze elektronskih medija prilikom praćenja predizbornih aktivnosti",
+                 url:
+                   "https://radiosarajevo.ba/vijesti/bosna-i-hercegovina/obaveze-elektronskih-medija-prilikom-pracenja-predizbornih-aktivnosti/468950"
                }
              ] = Enum.to_list(articles)
     end
@@ -69,37 +60,38 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraperTest do
         <logo>https://radiosarajevo.ba//build/img/logo-s.png</logo>
         <updated>2020-03-04T11:32:22+01:00</updated>
         <entry>
-          <author>
-            <name>Radiosarajevo.ba</name>
-          </author>
-          <title type="text"><![CDATA[Djevojčica koja se smijala bombama sa porodicom prešla u Tursku ]]></title>
-          <link rel="alternate" type="text/html" href="https://radiosarajevo.ba/vijesti/svijet/djevojcica-koja-se-smijala-bombama-sa-porodicom-presla-u-tursku/369198"></link>
-          <id>https://radiosarajevo.ba/vijesti/svijet/djevojcica-koja-se-smijala-bombama-sa-porodicom-presla-u-tursku/369198</id>
-          <summary type="html"><![CDATA[<img src="https://storage.radiosarajevo.ba/article/369198/871x540/otac_kcerka_sirija_granatiranje_igra_smijeh_prtscr.jpg" height="66" width="90" align="left" hspace="6" /> ]]></summary>
-          <content type="html"><![CDATA[]]></content>
-          <updated>2020-03-04T11:00:00+01:00</updated>
+        <author>
+        <name>RSA</name>
+        </author>
+        <title type="text">
+        <![CDATA[ Škoda Enyaq iV predstavljena u Sarajevu: Potpuno električni SUV vrhunskih karakteristika ]]>
+        </title>
+        <link rel="alternate" type="text/html" href="https://radiosarajevo.ba/auto-moto/noviteti/skoda-enyaq-iv-predstavljena-u-sarajevu-potpuno-elektricni-suv/468944"/>
+        <id>https://radiosarajevo.ba/auto-moto/noviteti/skoda-enyaq-iv-predstavljena-u-sarajevu-potpuno-elektricni-suv/468944</id>
+        <summary type="html">
+        <![CDATA[ <img src="https://storage.radiosarajevo.ba/article/468944/871x540/skodaenyaq-radiosarajevo-001.jpg?v1663174544" alt="" height="66" width="90" align="left" hspace="6" /> ]]>
+        </summary>
+        <content type="html">
+        <![CDATA[ ]]>
+        </content>
+        <updated>Wed, 14 Sep 2022 19:05:00 +0200</updated>
         </entry>
         <entry>
-          <author>
-            <name>EU info centar</name>
-          </author>
-          <title type="text"><![CDATA[Iskorijeniti korupciju, izliječiti zdravstvo]]></title>
-          <link rel="alternate" type="text/html" href="https://radiosarajevo.ba/vijesti/euphoria/iskorijeniti-korupciju-izlijeciti-zdravstvo/369192"></link>
-          <id>https://radiosarajevo.ba/vijesti/euphoria/iskorijeniti-korupciju-izlijeciti-zdravstvo/369192</id>
-          <summary type="html"><![CDATA[]]></summary>
-          <content type="html"><![CDATA[]]></content>
-          <updated>2020-03-04T09:48:00+01:00</updated>
-        </entry>
-        <entry>
-          <author>
-            <name>A. S. </name>
-          </author>
-          <title type="text"><![CDATA[BiH prvi put u Diviziji A, direktnog prijenosa izvlačenja grupa neće biti?]]></title>
-          <link rel="alternate" type="text/html" href="https://radiosarajevo.ba/sport/nogomet/sramotno-bih-prvi-put-u-diviziji-a-ali-nece-biti-direktnog-prijenosa-izvlacenja-grupa/369087"></link>
-          <id>https://radiosarajevo.ba/sport/nogomet/sramotno-bih-prvi-put-u-diviziji-a-ali-nece-biti-direktnog-prijenosa-izvlacenja-grupa/369087</id>
-          <summary type="html"><![CDATA[<img src="https://storage.radiosarajevo.ba/article/369915/871x540/SDP BiH.JPG" height="66" width="90" align="left" hspace="6" /> ]]></summary>
-          <content type="html"><![CDATA[]]></content>
-          <updated>2020-03-03T10:15:00+01:00</updated>
+        <author>
+        <name>RSA</name>
+        </author>
+        <title type="text">
+        <![CDATA[ Obaveze elektronskih medija prilikom praćenja predizbornih aktivnosti ]]>
+        </title>
+        <link rel="alternate" type="text/html" href="https://radiosarajevo.ba/vijesti/bosna-i-hercegovina/obaveze-elektronskih-medija-prilikom-pracenja-predizbornih-aktivnosti/468950"/>
+        <id>https://radiosarajevo.ba/vijesti/bosna-i-hercegovina/obaveze-elektronskih-medija-prilikom-pracenja-predizbornih-aktivnosti/468950</id>
+        <summary type="html">
+        <![CDATA[ <img src="https://storage.radiosarajevo.ba/article/468950/871x540/mikrofon-1.jpg?v1663164991" alt="" height="66" width="90" align="left" hspace="6" /> ]]>
+        </summary>
+        <content type="html">
+        <![CDATA[ ]]>
+        </content>
+        <updated>Wed, 14 Sep 2022 16:31:00 +0200</updated>
         </entry>
       </feed>
     )
