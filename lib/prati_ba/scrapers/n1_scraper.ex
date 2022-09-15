@@ -9,12 +9,11 @@ defmodule PratiBa.Scrapers.N1Scraper do
     response = ScrapingHelper.get(url_base <> "/wp-json/wp/v2/posts/")
 
     with {:ok, %{status_code: 200, body: body}} <- response,
-         body <- HtmlEntities.decode(body),
          {:ok, articles} <- Jason.decode(body) do
       articles =
         articles
         |> Stream.filter(&should_scrape/1)
-        |> Stream.map(&parse_article/1)
+        |> Stream.map(&parse_article(&1, url_base))
 
       {:ok, articles}
     else
@@ -40,7 +39,7 @@ defmodule PratiBa.Scrapers.N1Scraper do
   defp should_scrape(%{link: "https://ba.n1info.com/english/" <> _}), do: false
   defp should_scrape(_), do: true
 
-  defp parse_article(article) do
+  defp parse_article(article, url_base) do
     %{
       "id" => original_id,
       "date_gmt" => published_at,
@@ -48,7 +47,11 @@ defmodule PratiBa.Scrapers.N1Scraper do
       "title" => %{
         "rendered" => title
       },
-      "featured_image" => image
+      "acf" => %{
+        "single-post_featured-media_group" => %{
+          "single-post_image_image" => image_id
+        }
+      }
     } = article
 
     title =
@@ -62,7 +65,7 @@ defmodule PratiBa.Scrapers.N1Scraper do
       description: nil,
       published_at: Timex.parse!(published_at, "{RFC3339}"),
       author: nil,
-      image: image,
+      image: "#{url_base}/wp-json/wp/v2/media/#{image_id}",
       url: URI.encode(url)
     }
   end

@@ -15,6 +15,8 @@ defmodule PratiBa.Scrapers.N1ScraperTest do
         Plug.Conn.resp(conn, 200, articles_payload())
       end)
 
+      first_image_url = "http://localhost:#{bypass.port}/wp-json/wp/v2/media/5104499"
+
       response = N1Scraper.articles("http://localhost:#{bypass.port}")
 
       assert {:ok, articles} = response
@@ -31,8 +33,7 @@ defmodule PratiBa.Scrapers.N1ScraperTest do
                  description: nil,
                  published_at: ~N[2022-09-14 16:55:58],
                  author: nil,
-                 image:
-                   "https://ba.n1info.com/wp-content/uploads/2022/06/10/1654864622-thumbnail_AT5A0839.jpg",
+                 image: ^first_image_url,
                  url:
                    "https://ba.n1info.com/vijesti/niksic-odgovorio-na-spekulacije-nismo-na-prodaju-i-necemo-spasavati-sda/"
                }
