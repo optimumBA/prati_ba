@@ -21,15 +21,15 @@ defmodule PratiBa.Scrapers.NezavisneNovineScraperTest do
 
       assert [
                %{
-                 original_id: "609688",
-                 title: "Stefanović: Pronađene patrone suzavca koje MUP ne koristi",
+                 author: "Srna",
                  description:
-                   "BEOGRAD - Ministar policije Nebojša Stefanović izjavio je danas da su na prostoru oko Skupštine Srbije pronađene patrone suzavca koje MUP ne koristi.",
-                 published_at: ~N[2020-07-10 07:46:35],
-                 author: nil,
-                 image: "https://slika.nezavisne.rs/2020/07/555x333/20200710094635_609688.jpg",
+                   "GRADIŠKA - Predsjednik Socijalističke partije Srpske /SPS/ Goran Selak izrazio je očekivanje da će ova stranka, bez obzira što prvi put izlazi na opšte izbore, imati veliku podršku građana i da će u svih devet izbornih jedinica za Narodnu skupštinu Republike Srpske imati direktno izabrane ...",
+                 image: "https://slika.nezavisne.rs/2022/09/750x450/20220919192746_736572.jpg",
+                 original_id: "736572",
+                 published_at: ~N[2022-09-19 17:27:46],
+                 title: "Selak: Imaćemo direktno izabrane poslanike iz svih izbornih jedinica",
                  url:
-                   "https://www.nezavisne.com/novosti/ex-yu/Stefanovic-Pronadjene-patrone-suzavca-koje-MUP-ne-koristi/609688"
+                   "https://www.nezavisne.com/novosti/bih/Selak-Imacemo-direktno-izabrane-poslanike-iz-svih-izbornih-jedinica/736572"
                }
              ] = Enum.to_list(articles)
     end
