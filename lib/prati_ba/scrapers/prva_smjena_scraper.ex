@@ -1,7 +1,7 @@
 defmodule PratiBa.Scrapers.PrvaSmjenaScraper do
   @behaviour PratiBa.Scrapers.Scraper
 
-  @rss_url "http://prvasmjena.com/feed/"
+  @rss_url "https://prvasmjena.com/feed/"
 
   alias PratiBa.Scrapers.ScrapingHelper
 
@@ -43,7 +43,7 @@ defmodule PratiBa.Scrapers.PrvaSmjenaScraper do
       "description" => description,
       "link" => url,
       "guid" => %{
-        "value" => "http://prvasmjena.com/?p=" <> original_id
+        "value" => "https://prvasmjena.com/?p=" <> original_id
       },
       "pub_date" => date,
       "title" => title
@@ -54,6 +54,8 @@ defmodule PratiBa.Scrapers.PrvaSmjenaScraper do
       |> Timex.parse!("{RFC1123}")
       |> DateTime.shift_zone!("Etc/UTC")
       |> DateTime.to_naive()
+
+    description = String.trim(description)
 
     %{
       original_id: original_id,
