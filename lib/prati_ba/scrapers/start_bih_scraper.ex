@@ -12,7 +12,7 @@ defmodule PratiBa.Scrapers.StartBihScraper do
          {:ok, html} <- Floki.parse_document(body) do
       articles =
         html
-        |> Floki.find(".bg-secondary-accent .container .row  .col-lg-8 .row .mb-30")
+        |> Floki.find(".col-lg-8 .row .mb-30")
         |> Stream.map(&parse_article/1)
 
       {:ok, articles}
@@ -76,8 +76,10 @@ defmodule PratiBa.Scrapers.StartBihScraper do
 
     title =
       article
-      |> Floki.find("ul li h3")
+      |> Floki.find("h3")
+      |> Enum.at(0)
       |> Floki.text()
+      |> String.trim()
 
     %{
       original_id: original_id,

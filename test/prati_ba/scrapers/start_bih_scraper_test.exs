@@ -20,7 +20,7 @@ defmodule PratiBa.Scrapers.StartBihScraperTest do
 
       articles = Enum.to_list(articles)
 
-      assert length(articles) == 4
+      assert length(articles) == 11
 
       assert %{
                original_id: "191193",
