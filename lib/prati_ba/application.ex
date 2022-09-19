@@ -33,17 +33,17 @@ defmodule PratiBa.Application do
       # {PratiBa.Worker, arg}
     ]
 
-    # case Application.get_env(:prati_ba, :env) do
-    #  :prod ->
     children =
-      children ++
-        [
-          PratiBa.Scheduler
-        ]
+      case Application.get_env(:prati_ba, :env) do
+        :prod ->
+          children ++
+            [
+              PratiBa.Scheduler
+            ]
 
-    # _ ->
-    #  children
-    # end
+        _ ->
+          children
+      end
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
