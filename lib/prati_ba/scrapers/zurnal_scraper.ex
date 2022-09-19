@@ -36,11 +36,11 @@ defmodule PratiBa.Scrapers.ZurnalScraper do
       article
       |> Floki.find(".title")
       |> Floki.text()
-      |> String.trim()
 
     description =
       article
       |> Floki.find(".description")
+      |> Enum.at(0)
       |> Floki.text()
       |> String.trim()
 
@@ -51,7 +51,7 @@ defmodule PratiBa.Scrapers.ZurnalScraper do
       published_at: nil,
       author: nil,
       image: nil,
-      url: "https://zurnal.info/najnovije" <> URI.encode(url)
+      url: "https://zurnal.info" <> URI.encode(url)
     }
   end
 

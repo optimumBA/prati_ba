@@ -29,7 +29,7 @@ defmodule PratiBa.Scrapers.ZurnalScraperTest do
                title:
                  "FUP IZUZEO DOKUMENTACIJU: Ministar Željko Laketić novac za\n                                hitne slučajeve dodijelio vlastitoj sestri!",
                url:
-                 "https://zurnal.info/najnovije/clanak/ministar-zeljko-laketic-novac-za-hitne-slucajeve-dodijelio-vlastitoj-sestri/25312"
+                 "https://zurnal.info/clanak/ministar-zeljko-laketic-novac-za-hitne-slucajeve-dodijelio-vlastitoj-sestri/25312"
              } = Enum.at(articles, 0)
     end
   end
