@@ -10,13 +10,10 @@ defmodule PratiBa.Scrapers.ZurnalScraper do
 
     with {:ok, %{status_code: 200, body: body}} <- response,
          {:ok, html} <- Floki.parse_document(body) do
-      articles = IO.inspect()
-
-      html
-      |> Floki.find(".left .articles a")
-
-      IO.inspect()
-      |> Stream.map(&parse_article/1)
+      articles =
+        html
+        |> Floki.find(".left .articles a")
+        |> Stream.map(&parse_article/1)
 
       {:ok, articles}
     else
