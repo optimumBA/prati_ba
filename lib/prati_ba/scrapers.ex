@@ -67,7 +67,6 @@ defmodule PratiBa.Scrapers do
     |> Stream.map(&get_scraper(&1, scrapers))
     |> Stream.reject(&is_nil/1)
     |> Enum.map(&scrape_articles/1)
-    |> Enum.each(&Task.await(&1, 30000))
   end
 
   defp get_scraper(source = %Source{name: source_name}, scrapers) do
@@ -81,21 +80,18 @@ defmodule PratiBa.Scrapers do
   end
 
   defp scrape_articles({source, scraper}) do
-    Task.async(fn ->
-      case scraper.articles() do
-        {:ok, articles} ->
-          articles
-          |> Stream.reject(&Articles.exists?(source.id, &1))
-          |> Enum.map(&Task.async(fn -> get_article_details(scraper, &1) end))
-          |> Enum.map(&Task.await(&1, 10000))
-          |> Stream.filter(&successful?/1)
-          |> Stream.map(&transform_article/1)
-          |> Enum.each(&Articles.create_article(source, &1))
+    case scraper.articles() do
+      {:ok, articles} ->
+        articles
+        |> Stream.reject(&Articles.exists?(source.id, &1))
+        |> Enum.map(&get_article_details(scraper, &1))
+        |> Stream.filter(&successful?/1)
+        |> Stream.map(&transform_article/1)
+        |> Enum.each(&Articles.create_article(source, &1))
 
-        {:error, _} ->
-          nil
-      end
-    end)
+      {:error, _} ->
+        nil
+    end
   end
 
   defp get_article_details(scraper, article) do

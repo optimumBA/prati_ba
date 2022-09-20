@@ -54,8 +54,8 @@ config :waffle,
 config :prati_ba, PratiBa.Scheduler,
   global: true,
   jobs: [
-    # Every minute
-    {"* * * * *", {PratiBa.Scrapers, :fetch_new_articles, []}},
+    # Every 5 minutes
+    {"*/5 * * * *", {PratiBa.Scrapers, :fetch_new_articles, []}},
     {"45 16 * * 5", {Geolix, :reload_databases, []}}
   ]
 
