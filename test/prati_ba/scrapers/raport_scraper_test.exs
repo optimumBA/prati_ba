@@ -17,55 +17,48 @@ defmodule PratiBa.Scrapers.RaportScraperTest do
 
       response = RaportScraper.articles("http://localhost:#{bypass.port}")
 
-      first_image_url = "http://localhost:#{bypass.port}/wp-json/wp/v2/media/29016"
-      second_image_url = "http://localhost:#{bypass.port}/wp-json/wp/v2/media/29013"
+      first_image_url = "http://localhost:#{bypass.port}/wp-json/wp/v2/media/291381"
 
-      assert {:ok, articles} = response
+      {:ok, articles} = response
+
+      articles = Enum.to_list(articles)
+
+      assert length(articles) == 2
 
       assert [
                %{
-                 original_id: "29015",
-                 title: "Uskoro formiranje tima za restrukturiranje preduzeća GRAS",
-                 description:
-                   "Premijer Kantona Sarajevo Mario Nenadić, ministar saobraćaja Adi Kalem i ministar finansija Jasmin Halebić razgovarali su s v.d. direktorom GRAS-a Almirom Ahmetspahićem, rukovodiocem Sektora za razvoj Mustafom Mehanovićem, i predstavnicima sindikata GRAS-a Amirom Muminovićem i Adnanom Himzanijom o restruktuiranju tog preduzeća. Sastanak je inicirao Nenadić kako bi bili određeni budući koraci djelovanja radi unapređenja korporativnog […]",
-                 published_at: ~N[2020-07-03 07:43:01],
                  author: nil,
+                 description:
+                   "Na ovogodišnjem, 66. izdanju svečanosti dodjele Zlatne lopte magazina France Football za najboljeg nogometaša svijeta, koja će se održati 17. oktobra u pariškom pozorištu Chatelet, prvi put dodijelit će se i nagrada “Prix Socrates” za društvenu predanost. Nagradu Socrates, nazvanu po legendi brazilskog nogometa, ljekaru, filozofu i predanom građaninu koji […]",
                  image: ^first_image_url,
-                 url:
-                   "https://raport.ba/uskoro-formiranje-tima-za-restrukturiranje-preduzeca-gras/"
-               },
-               %{
-                 original_id: "29012",
+                 original_id: "291380",
+                 published_at: ~N[2022-09-21 11:30:00],
                  title:
-                   "Krenuo Marš mira Sarajevo-Nezuk: Da se nikad nikome ne ponovi Srebrenica",
-                 description:
-                   "Učesnici devetog Marša mira “Sarajevo – Nezuk” u organizaciji Udruženja građana “Svjedoci svog vremena”, uprkos pandemiji koronavirusa, krenuo je na jutros na pohod dug više od 150 kilometara u spomen na nekoliko hiljada Srebreničana koji su jula 1995. godine prepješačili put da bi pronašli spas u Tuzli. Jedan od organizatora Marša Muhamed Papić kazao je […]",
-                 published_at: ~N[2020-07-03 07:18:49],
-                 author: nil,
-                 image: ^second_image_url,
+                   "Prvi put će se na Zlatnoj lopti i dodijeliti nagrada nazvana po brazilskoj legendi",
                  url:
-                   "https://raport.ba/krenuo-mars-mira-sarajevo-nezuk-da-se-nikad-nikome-ne-ponovi-srebrenica/"
+                   "https://raport.ba/prvi-put-ce-se-na-zlatnoj-lopti-i-dodijeliti-nagrada-nazvana-po-brazilskoj-legendi/"
                }
-             ] = Enum.to_list(articles)
+             ] = Enum.take(articles, 1)
     end
   end
 
   describe "article_details/1" do
     test "fetches article image", %{bypass: bypass} do
-      Bypass.expect(bypass, "GET", "/wp-json/wp/v2/media/29013", fn conn ->
+      Bypass.expect(bypass, "GET", "/wp-json/wp/v2/media/291381", fn conn ->
         Plug.Conn.resp(conn, 200, media_payload())
       end)
 
       article = %{
-        original_id: "29012",
-        title: "Krenuo Marš mira Sarajevo-Nezuk: Da se nikad nikome ne ponovi Srebrenica",
+        original_id: "291380",
+        title:
+          "Prvi put će se na Zlatnoj lopti i dodijeliti nagrada nazvana po brazilskoj legendi",
         description:
-          "Učesnici devetog Marša mira “Sarajevo – Nezuk” u organizaciji Udruženja građana “Svjedoci svog vremena”, uprkos pandemiji koronavirusa, krenuo je na jutros na pohod dug više od 150 kilometara u spomen na nekoliko hiljada Srebreničana koji su jula 1995. godine prepješačili put da bi pronašli spas u Tuzli. Jedan od organizatora Marša Muhamed Papić kazao je […]",
+          "Na ovogodišnjem, 66. izdanju svečanosti dodjele Zlatne lopte magazina France Football za najboljeg nogometaša svijeta, koja će se održati 17. oktobra u pariškom pozorištu Chatelet, prvi put dodijelit će se i nagrada “Prix Socrates” za društvenu predanost. Nagradu Socrates, nazvanu po legendi brazilskog nogometa, ljekaru, filozofu i predanom građaninu koji […]",
         published_at: ~N[2020-07-03 07:18:49],
         author: nil,
-        image: "http://localhost:#{bypass.port}/wp-json/wp/v2/media/29013",
+        image: "http://localhost:#{bypass.port}/wp-json/wp/v2/media/291381",
         url:
-          "https://raport.ba/krenuo-mars-mira-sarajevo-nezuk-da-se-nikad-nikome-ne-ponovi-srebrenica/"
+          "https://raport.ba/prvi-put-ce-se-na-zlatnoj-lopti-i-dodijeliti-nagrada-nazvana-po-brazilskoj-legendi/"
       }
 
       response = RaportScraper.article_details(article)
@@ -73,15 +66,16 @@ defmodule PratiBa.Scrapers.RaportScraperTest do
       assert {:ok, article} = response
 
       assert %{
-               original_id: "29012",
-               title: "Krenuo Marš mira Sarajevo-Nezuk: Da se nikad nikome ne ponovi Srebrenica",
-               description:
-                 "Učesnici devetog Marša mira “Sarajevo – Nezuk” u organizaciji Udruženja građana “Svjedoci svog vremena”, uprkos pandemiji koronavirusa, krenuo je na jutros na pohod dug više od 150 kilometara u spomen na nekoliko hiljada Srebreničana koji su jula 1995. godine prepješačili put da bi pronašli spas u Tuzli. Jedan od organizatora Marša Muhamed Papić kazao je […]",
-               published_at: ~N[2020-07-03 07:18:49],
                author: nil,
-               image: "https://raport.ba/wp-content/uploads/2020/07/mars-mira3.jpg",
+               description:
+                 "Na ovogodišnjem, 66. izdanju svečanosti dodjele Zlatne lopte magazina France Football za najboljeg nogometaša svijeta, koja će se održati 17. oktobra u pariškom pozorištu Chatelet, prvi put dodijelit će se i nagrada “Prix Socrates” za društvenu predanost. Nagradu Socrates, nazvanu po legendi brazilskog nogometa, ljekaru, filozofu i predanom građaninu koji […]",
+               image: "https://raport.ba/wp-content/uploads/2022/09/sokrates-4.png",
+               original_id: "291380",
+               published_at: ~N[2020-07-03 07:18:49],
+               title:
+                 "Prvi put će se na Zlatnoj lopti i dodijeliti nagrada nazvana po brazilskoj legendi",
                url:
-                 "https://raport.ba/krenuo-mars-mira-sarajevo-nezuk-da-se-nikad-nikome-ne-ponovi-srebrenica/"
+                 "https://raport.ba/prvi-put-ce-se-na-zlatnoj-lopti-i-dodijeliti-nagrada-nazvana-po-brazilskoj-legendi/"
              } = article
     end
   end
