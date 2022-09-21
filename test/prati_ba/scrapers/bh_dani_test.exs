@@ -19,42 +19,43 @@ defmodule PratiBa.Scrapers.BhDaniTest do
 
       assert {:ok, articles} = response
 
-      articles = Enum.to_list(articles)
-
-      assert length(articles) == 1
-
-      assert %{
-               original_id: "778048",
-               title: "Na kontinentu koji se nekad zvao Evropa: Mutantova priča",
-               description: nil,
-               published_at: nil,
-               author: nil,
-               image: nil,
-               url:
-                 "https://bhdani.oslobodjenje.ba//bhdani/na-kontinentu-koji-se-nekad-zvao-evropa-mutantova-prica-778048"
-             } = Enum.at(articles, 0)
+      assert assert [
+                      %{
+                        original_id: "788005",
+                        title:
+                          "Švicarske tajne domaćeg carinika: Jesu li bh. vlasti zaboravile Janka Jovanovića?",
+                        description: nil,
+                        published_at: ~N[2022-09-12 11:30:00],
+                        author: nil,
+                        image:
+                          "https://cdn.oslobodjenje.ba/images/slike/new/2022/08/29/6343952.jpg",
+                        url:
+                          "https://bhdani.oslobodjenje.ba/bhdani/svicarske-tajne-domaceg-carinika-jesu-li-bh-vlasti-zaboravile-janka-jovanovica-788005"
+                      }
+                    ] = Enum.to_list(articles)
     end
   end
 
   describe "article_details/1" do
-    test "fetches more article info", %{bypass: bypass} do
+    test "fetches article image", %{bypass: bypass} do
       Bypass.expect(
         bypass,
         "GET",
-        "/na-kontinentu-koji-se-nekad-zvao-evropa-mutantova-prica-778048",
+        "/svicarske-tajne-domaceg-carinika-jesu-li-bh-vlasti-zaboravile-janka-jovanovica-788005",
         fn conn ->
           Plug.Conn.resp(conn, 200, article_payload())
         end
       )
 
       article_url =
-        "http://localhost:#{bypass.port}/na-kontinentu-koji-se-nekad-zvao-evropa-mutantova-prica-778048"
+        "http://localhost:#{bypass.port}/svicarske-tajne-domaceg-carinika-jesu-li-bh-vlasti-zaboravile-janka-jovanovica-788005"
 
       article = %{
-        original_id: "778048",
-        title: "Na kontinentu koji se nekad zvao Evropa: Mutantova priča",
+        original_id: "788005",
+        title:
+          "Švicarske tajne domaćeg carinika: Jesu li bh. vlasti zaboravile Janka Jovanovića?",
         description: nil,
-        published_at: ~N[2022-08-30 07:17:00],
+        published_at: ~N[2022-09-12 11:30:00],
         author: nil,
         image: nil,
         url: article_url
@@ -65,20 +66,20 @@ defmodule PratiBa.Scrapers.BhDaniTest do
       assert {:ok, article} = response
 
       assert %{
-               original_id: "778048",
-               title: "Na kontinentu koji se nekad zvao Evropa: Mutantova priča",
-               description:
-                 "Padala je duga i uporna natapajuća kiša, takozvana kupusarka, iako nije bio novembar kada ona obično pada. Sjedili smo na kiši ispred Magične kocke, nije nam se dalo ići kućama, niti u unutrašnjost kafića, htjeli smo da kisnemo i baš tada je ulicom naletio Mutant Džo. Pravio se da nas ne vidi",
-               published_at: ~N[2022-08-30 07:17:00],
+               original_id: "788005",
+               title:
+                 "Švicarske tajne domaćeg carinika: Jesu li bh. vlasti zaboravile Janka Jovanovića?",
+               description: nil,
+               published_at: ~N[2022-09-12 11:30:00],
                author: nil,
-               image: "https://cdn.oslobodjenje.ba/images/slike/new/2022/07/22/6276563.jpg",
+               image: "https://cdn.oslobodjenje.ba/images/slike/new/2022/08/29/6343952.jpg",
                url: ^article_url
              } = article
     end
   end
 
   defp articles_payload do
-    File.read!("test/support/payloads/bh_dani_scraper/articles.html")
+    File.read!("test/support/payloads/bh_dani_scraper/feed.xml")
   end
 
   defp article_payload do

@@ -20,7 +20,7 @@ defmodule PratiBa.Scrapers.StartBihScraperTest do
 
       articles = Enum.to_list(articles)
 
-      assert length(articles) == 10
+      assert length(articles) == 11
 
       assert %{
                original_id: "191193",
@@ -54,7 +54,7 @@ defmodule PratiBa.Scrapers.StartBihScraperTest do
         original_id: "191193",
         title: "1 / 1 Magoda: “Kroz podršku sportu nastojimo ojačati pozitivan imidž Sarajeva”",
         description: nil,
-        published_at: ~N[2022-08-29 14:40:00],
+        published_at: nil,
         author: nil,
         image: nil,
         url: article_url

@@ -21,14 +21,15 @@ defmodule PratiBa.Scrapers.CinScraperTest do
 
       assert [
                %{
-                 original_id: "1018669",
-                 title: "Građani taksama plaćali stanove za sudije",
+                 original_id: "1027985",
                  description:
-                   "Trojica nekadašnjih sudija Općinskog suda u Lukavcu već 20 godina koriste stanove, nezakonito kupljene budžetskim novcem. Niko nije kažnjen jer je predmet zastario.",
-                 published_at: ~N[2020-07-06 08:32:08],
+                   "Federalno ministarstvo za pitanja boraca i invalida odbilo je dostaviti CIN-u izvještaje o trošenju novca datog za zapošljavanje putem boračkih zadruga, iako je Kantonalni sud u Sarajevu ranije presudio da je takva odluka nezakonita.The post Ministarstvo skriva podatke o trošenju boračkog novca appeared first on CIN.",
+                 title: "Ministarstvo skriva podatke o trošenju boračkog novca",
+                 published_at: ~N[2022-09-13 07:10:42],
                  author: nil,
                  image: nil,
-                 url: "https://www.cin.ba/gradani-taksama-placali-stanove-za-sudije/"
+                 url:
+                   "https://cin.ba/ministarstvo-skriva-podatke-o-trosenju-borackog-novca/?utm_source=rss&utm_medium=rss&utm_campaign=ministarstvo-skriva-podatke-o-trosenju-borackog-novca"
                }
              ] = Enum.to_list(articles)
     end
@@ -76,45 +77,43 @@ defmodule PratiBa.Scrapers.CinScraperTest do
   end
 
   defp articles_payload do
-    ~s(
-      <?xml version="1.0" encoding="UTF-8"?>
-      <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
+    ~s"""
+    <?xml version="1.0" encoding="UTF-8"?>
+    <rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:wfw="http://wellformedweb.org/CommentAPI/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:slash="http://purl.org/rss/1.0/modules/slash/">
 
-        <channel>
-          <title>CIN</title>
-          <atom:link href="https://www.cin.ba/feed/" rel="self" type="application/rss+xml" />
-          <link>https://www.cin.ba</link>
-          <description>vaš izvor informacija</description>
-          <lastBuildDate>Tue, 07 Jul 2020 07:44:20 +0000</lastBuildDate>
-          <language>hr-HR</language>
-          <sy:updatePeriod>hourly</sy:updatePeriod>
-          <sy:updateFrequency>1</sy:updateFrequency>
-          <generator>https://wordpress.org/?v=4.9.8</generator>
-          <item>
-            <title>Građani taksama plaćali stanove za sudije</title>
-            <link>https://www.cin.ba/gradani-taksama-placali-stanove-za-sudije/</link>
-            <pubDate>Mon, 06 Jul 2020 08:32:08 +0000</pubDate>
-            <dc:creator>
-              <![CDATA[CIN]]>
-            </dc:creator>
-            <category>
-              <![CDATA[Pravosuđe]]>
-            </category>
-            <category>
-              <![CDATA[Korupcija]]>
-            </category>
-            <category>
-              <![CDATA[sudije]]>
-            </category>
+      <channel>
+        <title>CIN</title>
+        <atom:link href="https://www.cin.ba/feed/" rel="self" type="application/rss+xml" />
+        <link>https://www.cin.ba</link>
+        <description>vaš izvor informacija</description>
+        <lastBuildDate>Tue, 07 Jul 2020 07:44:20 +0000</lastBuildDate>
+        <language>hr-HR</language>
+        <sy:updatePeriod>hourly</sy:updatePeriod>
+        <sy:updateFrequency>1</sy:updateFrequency>
+        <generator>https://wordpress.org/?v=4.9.8</generator>
+        <item>
+    <title>Ministarstvo skriva podatke o trošenju boračkog novca</title>
+    <link>https://cin.ba/ministarstvo-skriva-podatke-o-trosenju-borackog-novca/?utm_source=rss&#038;utm_medium=rss&#038;utm_campaign=ministarstvo-skriva-podatke-o-trosenju-borackog-novca</link>
+    	<comments>https://cin.ba/ministarstvo-skriva-podatke-o-trosenju-borackog-novca/#respond</comments>
 
-            <guid isPermaLink="false">https://www.cin.ba/?p=1018669</guid>
-            <description>
-              <![CDATA[Trojica nekadašnjih sudija Općinskog suda u Lukavcu već 20 godina koriste stanove, nezakonito kupljene budžetskim novcem. Niko nije kažnjen jer je predmet zastario.]]>
-            </description>
-          </item>
-        </channel>
-      </rss>
-    )
+    <dc:creator><![CDATA[Centar za istraživačko novinarstvo (CIN)]]></dc:creator>
+    <pubDate>Tue, 13 Sep 2022 07:10:42 +0000</pubDate>
+    <category><![CDATA[Vijesti]]></category>
+    <category><![CDATA[kantonalni sud u sarajevu]]></category>
+    <category><![CDATA[boračke zadruge]]></category>
+    <category><![CDATA[federalno ministarstvo za pitanje boraca i invalida]]></category>
+    <category><![CDATA[trošenje novca]]></category>
+    <category><![CDATA[nezakonito trošenje novca]]></category>
+    <guid isPermaLink="false">https://cin.ba/?p=1027985</guid>
+
+    	<description><![CDATA[<p>Federalno ministarstvo za pitanja boraca i invalida odbilo je dostaviti CIN-u izvještaje o trošenju novca datog za zapošljavanje putem boračkih zadruga, iako je Kantonalni sud u Sarajevu ranije presudio da je takva odluka nezakonita.</p>
+    <p>The post <a rel="nofollow" href="https://cin.ba/ministarstvo-skriva-podatke-o-trosenju-borackog-novca/">Ministarstvo skriva podatke o trošenju boračkog novca</a> appeared first on <a rel="nofollow" href="https://cin.ba">CIN</a>.</p>
+    ]]></description>
+
+    </item>
+      </channel>
+    </rss>
+    """
   end
 
   defp article_payload do

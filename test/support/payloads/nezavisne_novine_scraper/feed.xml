@@ -1,32 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl" ?>
-<?xml-stylesheet type="text/css" media="screen" href="http://feeds.feedburner.com/~d/styles/itemcontent.css" ?>
-<rss xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0" version="2.0">
-  <channel>
+ <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?>
+    <channel>
     <title>Najnovije vijesti - Nezavisne novine</title>
     <link>https://www.nezavisne.com</link>
-    <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/NezavisneNovine" />
-    <description>Najnovije vijeste Nezavisnih novina</description>
-    <language>sr-Latn</language>
+    <description>
+    <![CDATA[ Najnovije vijeste Nezavisnih novina ]]>
+    </description>
     <image>
-      <link>https://www.nezavisne.com</link>
-      <url>http://www.nezavisne.com/android-icon-36x36.png</url>
-      <title>Najnovije vijesti - Nezavisne novine</title>
+    <title>Najnovije vijesti - Nezavisne novine</title>
+    <link>https://www.nezavisne.com</link>
+    <url>http://www.nezavisne.com/android-icon-36x36.png</url>
     </image>
-    <lastBuildDate>Fri, 10 Jul 2020 00:54:56 PDT</lastBuildDate>
+    <language>sr-Latn</language>
+    <lastBuildDate>Mon, 19 Sep 2022 19:38:43 +0200</lastBuildDate>
+    <pubDate>Mon, 19 Sep 2022 19:36:00 +0200</pubDate>
+    <atom:link href="https://www.nezavisne.com/rss/najnovije" rel="self" type="application/rss+xml"/>
+    <atom:link href="https://pubsubhubbub.appspot.com" rel="hub"/>
     <generator>FeedWriter</generator>
-    <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/NezavisneNovine" />
-    <feedburner:info uri="nezavisnenovine" />
-    <atom10:link xmlns:atom10="http://www.w3.org/2005/Atom" rel="hub" href="http://pubsubhubbub.appspot.com/" />
     <item>
-      <title>Stefanović: Pronađene patrone suzavca koje MUP ne koristi</title>
-      <link>http://feedproxy.google.com/~r/NezavisneNovine/~3/uN2rp6H80GE/609688</link>
-      <category>Ex -Yu</category>
-      <author>webmaster@nezavisne.com (Tanjug)</author>
-      <pubDate>Fri, 10 Jul 2020 00:46:35 PDT</pubDate>
-      <guid isPermaLink="false">https://www.nezavisne.com/novosti/ex-yu/Stefanovic-Pronadjene-patrone-suzavca-koje-MUP-ne-koristi/609688</guid>
-      <description>&lt;img src="https://slika.nezavisne.rs/2020/07/555x333/20200710094635_609688.jpg" style="float: left; margin-right: 5px; margin-bottom: 5px; width: 96px; height: 60px;" width="96" height="60" align="left"&gt;BEOGRAD - Ministar policije Nebojša Stefanović izjavio je danas da su na prostoru oko Skupštine Srbije pronađene patrone suzavca koje MUP ne koristi.&lt;img src="http://feeds.feedburner.com/~r/NezavisneNovine/~4/uN2rp6H80GE" height="1" width="1" alt=""/&gt;</description>
-      <feedburner:origLink>https://www.nezavisne.com/novosti/ex-yu/Stefanovic-Pronadjene-patrone-suzavca-koje-MUP-ne-koristi/609688</feedburner:origLink>
+
+    <title>Selak: Imaćemo direktno izabrane poslanike iz svih izbornih jedinica</title>
+    <description>
+    <![CDATA[ GRADIŠKA - Predsjednik Socijalističke partije Srpske /SPS/ Goran Selak izrazio je očekivanje da će ova stranka, bez obzira što prvi put izlazi na opšte izbore, imati veliku podršku građana i da će u svih devet izbornih jedinica za Narodnu skupštinu Republike Srpske imati direktno izabrane ... ]]>
+    </description>
+    <pubDate>Mon, 19 Sep 2022 19:27:46 +0200</pubDate>
+    <enclosure length="196884" type="image/jpg" url="https://slika.nezavisne.rs/2022/09/750x450/20220919192746_736572.jpg"/>
+    <author>Srna</author>
+    <guid isPermaLink="true">https://www.nezavisne.com/novosti/bih/Selak-Imacemo-direktno-izabrane-poslanike-iz-svih-izbornih-jedinica/736572</guid>
+    <source url="https://www.nezavisne.com/novosti/bih/Selak-Imacemo-direktno-izabrane-poslanike-iz-svih-izbornih-jedinica/736572">Selak: Imaćemo direktno izabrane poslanike iz svih izbornih jedinica</source>
+    <category domain="https://www.nezavisne.com/novosti/bih">BiH</category>
+
     </item>
-  </channel>
-</rss>
+
+    </channel>
+    </rss>

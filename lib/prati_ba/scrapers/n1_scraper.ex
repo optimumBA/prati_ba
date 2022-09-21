@@ -1,73 +1,71 @@
 defmodule PratiBa.Scrapers.N1Scraper do
   @behaviour PratiBa.Scrapers.Scraper
 
-  @rss_url "https://ba.n1info.com/rss/249/Naslovna"
+  @url_base "https://ba.n1info.com"
 
   alias PratiBa.Scrapers.ScrapingHelper
 
-  def articles(url \\ @rss_url) do
-    response = ScrapingHelper.get(url)
+  def articles(url_base \\ @url_base) do
+    response = ScrapingHelper.get(url_base <> "/wp-json/wp/v2/posts/")
 
-    case response do
-      {:ok, %{status_code: 200, body: body}} ->
-        {:ok, feed, _} =
-          body
-          |> String.trim()
-          |> FeederEx.parse()
+    with {:ok, %{status_code: 200, body: body}} <- response,
+         {:ok, articles} <- Jason.decode(body) do
+      articles =
+        articles
+        |> Stream.filter(&should_scrape/1)
+        |> Stream.map(&parse_article(&1, url_base))
 
-        articles =
-          feed.entries
-          |> Stream.filter(&should_scrape/1)
-          |> Stream.map(&parse_article/1)
+      {:ok, articles}
+    else
+      {_, response} -> {:error, response}
+    end
+  end
 
-        {:ok, articles}
+  def article_details(%{image: image_url} = article) when is_binary(image_url) do
+    response = ScrapingHelper.get(image_url)
 
-      {_, response} ->
-        {:error, response}
+    with {:ok, %{status_code: 200, body: body}} <- response,
+         {:ok, media} <- Jason.decode(body),
+         %{"media_details" => %{"sizes" => %{"full" => %{"source_url" => image_url}}}} <- media do
+      image_url = URI.encode(image_url)
+      {:ok, Map.put(article, :image, image_url)}
+    else
+      _ -> {:error, :article_not_available}
     end
   end
 
   def article_details(article), do: {:ok, article}
 
-  defp should_scrape(%{link: "http://ba.n1info.com/English/" <> _}), do: false
+  defp should_scrape(%{link: "https://ba.n1info.com/english/" <> _}), do: false
   defp should_scrape(_), do: true
 
-  defp parse_article(article) do
-    %FeederEx.Entry{
-      image: image_url,
-      link: url,
-      summary: description,
-      title: title,
-      updated: date
+  defp parse_article(article, url_base) do
+    %{
+      "id" => original_id,
+      "date_gmt" => published_at,
+      "link" => url,
+      "title" => %{
+        "rendered" => title
+      },
+      "acf" => %{
+        "single-post_featured-media_group" => %{
+          "single-post_image_image" => image_id
+        }
+      }
     } = article
 
-    original_id =
-      url
-      |> String.split("/")
-      |> Enum.fetch!(4)
-
-    published_at =
-      date
-      |> Timex.parse!("{RFC1123}")
-      |> DateTime.shift_zone!("Etc/UTC")
-      |> DateTime.to_naive()
-
-    image_url =
-      case image_url do
-        nil ->
-          nil
-
-        image_url ->
-          URI.encode(image_url)
-      end
+    title =
+      title
+      |> HtmlSanitizeEx.strip_tags()
+      |> String.trim()
 
     %{
-      original_id: original_id,
-      title: title,
-      description: description,
-      published_at: published_at,
+      original_id: Integer.to_string(original_id),
+      title: HtmlSanitizeEx.strip_tags(title),
+      description: nil,
+      published_at: Timex.parse!(published_at, "{RFC3339}"),
       author: nil,
-      image: image_url,
+      image: "#{url_base}/wp-json/wp/v2/media/#{image_id}",
       url: URI.encode(url)
     }
   end

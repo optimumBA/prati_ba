@@ -45,7 +45,7 @@ defmodule PratiBa.Scrapers.RadioSarajevoScraper do
 
     published_at =
       date
-      |> Timex.parse!("{RFC3339}")
+      |> Timex.parse!("{RFC1123}")
       |> DateTime.shift_zone!("Etc/UTC")
       |> DateTime.to_naive()
 

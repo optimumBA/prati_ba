@@ -9,7 +9,6 @@ defmodule PratiBa.Scrapers.RaportScraper do
     response = ScrapingHelper.get(url_base <> "/wp-json/wp/v2/posts/")
 
     with {:ok, %{status_code: 200, body: body}} <- response,
-         body <- HtmlEntities.decode(body),
          {:ok, articles} <- Jason.decode(body) do
       articles =
         articles

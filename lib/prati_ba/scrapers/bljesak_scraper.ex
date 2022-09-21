@@ -1,7 +1,7 @@
 defmodule PratiBa.Scrapers.BljesakScraper do
   @behaviour PratiBa.Scrapers.Scraper
 
-  @url "https://www.bljesak.info/najnovije"
+  @url "https://bljesak.info/najnovije"
 
   alias PratiBa.Scrapers.ScrapingHelper
 

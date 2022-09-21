@@ -41,6 +41,45 @@ defmodule PratiBa.Scrapers.PreokretInfoScraperTest do
     end
   end
 
+  describe "article_details/1" do
+    test "fetches articles image", %{bypass: bypass} do
+      Bypass.expect(bypass, "GET", "/wp-json/wp/v2/media/46344", fn conn ->
+        Plug.Conn.resp(conn, 200, media_payload())
+      end)
+
+      article = %{
+        original_id: "46344",
+        title: nil,
+        description: nil,
+        published_at: ~N[2022-09-11T15:07:57],
+        author: nil,
+        image: "http://localhost:#{bypass.port}/wp-json/wp/v2/media/46344",
+        url:
+          "https://preokret.info/index.php/2022/09/11/zlatko-pakovic-pazolini-u-republici-blitvi/"
+      }
+
+      response = PreokretInfoScraper.article_details(article)
+
+      assert {:ok, article} = response
+
+      assert %{
+               original_id: "46344",
+               title: nil,
+               description: nil,
+               published_at: ~N[2022-09-11T15:07:57],
+               author: nil,
+               image:
+                 "https://preokret.info/wp-content/uploads/2022/09/305756905_565815431989923_6655640067044910836_n.png",
+               url:
+                 "https://preokret.info/index.php/2022/09/11/zlatko-pakovic-pazolini-u-republici-blitvi/"
+             } = article
+    end
+  end
+
+  defp media_payload do
+    File.read!("test/support/payloads/preokret_info_scraper/media.json")
+  end
+
   defp articles_payload do
     File.read!("test/support/payloads/preokret_info_scraper/posts.json")
   end

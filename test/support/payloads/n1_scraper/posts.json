@@ -1,0 +1,2309 @@
+[
+  {
+    "id": 5311603,
+    "date": "2022-09-14T18:55:58",
+    "date_gmt": "2022-09-14T16:55:58",
+    "guid": { "rendered": "https://ba.n1info.com/?p=5311603" },
+    "modified": "2022-09-14T18:55:58",
+    "modified_gmt": "2022-09-14T16:55:58",
+    "slug": "niksic-odgovorio-na-spekulacije-nismo-na-prodaju-i-necemo-spasavati-sda",
+    "status": "publish",
+    "type": "post",
+    "link": "https://ba.n1info.com/vijesti/niksic-odgovorio-na-spekulacije-nismo-na-prodaju-i-necemo-spasavati-sda/",
+    "title": {
+      "rendered": "Nik\u0161i\u0107 odgovorio na \u0161pekulacije: Nismo na prodaju i ne\u0107emo spa\u0161avati SDA!"
+    },
+    "content": { "rendered": "", "protected": false },
+    "excerpt": { "rendered": "", "protected": false },
+    "author": 107,
+    "featured_media": 0,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [248135, 187522],
+    "tags": [
+      { "id": 7102, "name": "bakir izetbegovi\u0107" },
+      { "id": 1427, "name": "Nermin Nik\u0161i\u0107" },
+      { "id": 4872, "name": "SDA" },
+      { "id": 3662, "name": "SDP" }
+    ],
+    "featured_topics": [],
+    "topics": [],
+    "comments_allowed": true,
+    "unix_timestamp": 1663174558,
+    "date_parsed": "14. sep. 2022",
+    "time_parsed": "18:55",
+    "modification_time_parsed": "18:55",
+    "featured_image": "https://ba.n1info.com/wp-content/uploads/2022/06/10/1654864622-thumbnail_AT5A0839.jpg",
+    "thumbnail_new": {
+      "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/06/10/1654864622-thumbnail_AT5A0839.jpg",
+      "aspectRatio": 1.5,
+      "renditions": [
+        {
+          "uri": "https://ba.n1info.com/wp-content/uploads/2022/06/10/1654864622-thumbnail_AT5A0839-300x200.jpg",
+          "width": 300,
+          "height": 200
+        },
+        {
+          "uri": "https://ba.n1info.com/wp-content/uploads/2022/06/10/1654864622-thumbnail_AT5A0839-768x512.jpg",
+          "width": 768,
+          "height": 512
+        },
+        {
+          "uri": "https://ba.n1info.com/wp-content/uploads/2022/06/10/1654864622-thumbnail_AT5A0839-1024x682.jpg",
+          "width": 1024,
+          "height": 682
+        },
+        {
+          "uri": "https://ba.n1info.com/wp-content/uploads/2022/06/10/1654864622-thumbnail_AT5A0839.jpg",
+          "width": 1280,
+          "height": 853
+        }
+      ]
+    },
+    "author_info": { "display_name": "N1 BiH" },
+    "featured_caption": "Izvor: F.Z./N1",
+    "number_of_comments": 0,
+    "category_name": "Izbori 2022",
+    "category_slug": "izbori-2022",
+    "category_id": 248135,
+    "cpi": 3506245,
+    "add_manager_categories": ["vijesti"],
+    "banners": {
+      "top": {
+        "id": "/21876124292/N1BIH/N1BIHAPPBILLBOARD1",
+        "sizes": ["320x100"],
+        "new_sizes": []
+      },
+      "sidebar": {
+        "SB1": {
+          "id": "/21876124292/N1BIH/N1BIHAPPSB1",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        "SB2": {
+          "id": "/21876124292/N1BIH/N1BIHAPPSB2",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        "SB3": {
+          "id": "/21876124292/N1BIH/N1BIHAPPSB3",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        "SB4": {
+          "id": "/21876124292/N1BIH/N1BIHAPPSB4",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        }
+      },
+      "in_text": {
+        "id": "/21876124292/N1BIH/N1BIHAPPSB1",
+        "sizes": ["320x100", "300x250"],
+        "new_sizes": []
+      },
+      "after_text": {
+        "id": "/21876124292/N1BIH/N1BIHAPPSB2",
+        "sizes": ["320x100", "300x250"],
+        "new_sizes": []
+      },
+      "dynamic_status": true,
+      "first_appearance": 3,
+      "repetitive_appearance": 5,
+      "dynamic_banners": [
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        }
+      ]
+    },
+    "emphasized_sentence": "Predsjednik SDP-a BiH Nermin Nik\u0161i\u0107 rekao je na skupu u Vogo\u0161\u0107i kako je kandidat Ujedinjene opozicije Denis Be\u0107irovi\u0107 ve\u0107 jednom pobijedio za \u010dlana Predsjedni\u0161tva, ali mu treba druga pobjeda da bi ostvario prvi mandat. Negirao je da \u0107e SDP pru\u017eati \"pojas spasa\" Stranci demokratske akcije nakon izbora u oktobru. ",
+    "widget_latest_news": {
+      "title": "Najnovije vijesti",
+      "items": [
+        {
+          "id": 5311612,
+          "link": "https://ba.n1info.com/kultura/bh-oskarovac-danis-tanovic-u-ziriju-50-medjunarodne-nagrade-emmy/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174373-thumbnail_Ziri.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174373-thumbnail_Ziri.jpg",
+            "aspectRatio": 1.5,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174373-thumbnail_Ziri-300x200.jpg",
+                "width": 300,
+                "height": 200
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174373-thumbnail_Ziri-768x512.jpg",
+                "width": 768,
+                "height": 512
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174373-thumbnail_Ziri-1024x682.jpg",
+                "width": 1024,
+                "height": 682
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174373-thumbnail_Ziri.jpg",
+                "width": 1280,
+                "height": 853
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "Bh. oskarovac Danis Tanovi\u0107 u \u017eiriju 50. Me\u0111unarodne nagrade Emmy",
+          "category_id": 187692,
+          "category_name": "Kultura",
+          "category_slug": "kultura",
+          "breaking_news": false,
+          "date_parsed": "prije nekoliko minuta",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506300
+        },
+        {
+          "id": 5311569,
+          "link": "https://ba.n1info.com/sport-klub/nogomet/dinamovi-navijaci-pokazivali-nacisticki-pozdrav-u-milanu/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174320-naci.PNG",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174320-naci.PNG",
+            "aspectRatio": 1.29,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174320-naci-300x233.png",
+                "width": 300,
+                "height": 233
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174320-naci.PNG",
+                "width": 612,
+                "height": 476
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "Dinamovi navija\u010di pokazivali nacisti\u010dki pozdrav u Milanu (VIDEO)",
+          "category_id": 187537,
+          "category_name": "Nogomet",
+          "category_slug": "nogomet",
+          "breaking_news": false,
+          "date_parsed": "prije nekoliko minuta",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3512636
+        },
+        {
+          "id": 5311585,
+          "link": "https://ba.n1info.com/vijesti/hrvatski-ambasador-odbio-primiti-demars-mvp-a-bih/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2020/02/ivansabolic-hm-0120-03-284066.jpeg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2020/02/ivansabolic-hm-0120-03-284066.jpeg",
+            "aspectRatio": 1.67,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2020/02/ivansabolic-hm-0120-03-284066-300x180.jpeg",
+                "width": 300,
+                "height": 180
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2020/02/ivansabolic-hm-0120-03-284066.jpeg",
+                "width": 750,
+                "height": 450
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "Hrvatski ambasador odbio primiti demar\u0161 MVP-a BiH",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "prije 21 minut",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        },
+        {
+          "id": 5311502,
+          "link": "https://ba.n1info.com/vijesti/lani-pudar-zvanicno-urucen-diplomatski-pasos-bih/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663172080-l_7a77bb457b43724f16a9933092e8d17d.JPG",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663172080-l_7a77bb457b43724f16a9933092e8d17d.JPG",
+            "aspectRatio": 1.5,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663172080-l_7a77bb457b43724f16a9933092e8d17d-300x200.jpg",
+                "width": 300,
+                "height": 200
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663172080-l_7a77bb457b43724f16a9933092e8d17d-768x512.jpg",
+                "width": 768,
+                "height": 512
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663172080-l_7a77bb457b43724f16a9933092e8d17d.JPG",
+                "width": 1024,
+                "height": 683
+              }
+            ]
+          },
+          "format": "video",
+          "title": "Lani Pudar zvani\u010dno uru\u010den diplomatski paso\u0161 BiH",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "prije 35 minut",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        }
+      ]
+    },
+    "widget_popular_news": {
+      "title": "Naj\u010ditanije vijesti",
+      "items": [
+        {
+          "id": 5305445,
+          "title": "Sladi\u0107 najavio snijeg u BiH",
+          "uid": "320",
+          "pageviews": "108",
+          "link": "https://ba.n1info.com/vrijeme/sladic-najavio-snijeg-u-bih/",
+          "number_of_comments": 2,
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/08/22/1661153687-sladic.JPG",
+            "aspectRatio": 1.85,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/22/1661153687-sladic-300x162.jpg",
+                "width": 300,
+                "height": 162
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/22/1661153687-sladic-768x415.jpg",
+                "width": 768,
+                "height": 415
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/22/1661153687-sladic-1024x554.jpg",
+                "width": 1024,
+                "height": 554
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/22/1661153687-sladic.JPG",
+                "width": 1245,
+                "height": 673
+              }
+            ]
+          },
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/08/22/1661153687-sladic.JPG",
+          "format": "standard",
+          "category_id": 207568,
+          "category_name": "Vrijeme",
+          "category_slug": "vrijeme",
+          "breaking_news": false,
+          "date_parsed": "12. sep 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 4556485
+        },
+        {
+          "id": 5308482,
+          "title": "Skandalozna poruka generala HVO-a: \"Dobrodo\u0161li u hrvatski grad Jajce\"",
+          "uid": "32",
+          "pageviews": "102",
+          "link": "https://ba.n1info.com/vijesti/skandaloza-poruka-generala-hvo-a-dobrodosli-u-hrvatski-grad-jajce/",
+          "number_of_comments": 17,
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1.jpg",
+            "aspectRatio": 1.59,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1-300x189.jpg",
+                "width": 300,
+                "height": 189
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1-768x483.jpg",
+                "width": 768,
+                "height": 483
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1-1024x643.jpg",
+                "width": 1024,
+                "height": 643
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1.jpg",
+                "width": 1106,
+                "height": 695
+              }
+            ]
+          },
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1.jpg",
+          "format": "standard",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "13. sep 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        },
+        {
+          "id": 5309068,
+          "title": "Izborna debata: Jedan predsjednik BiH ili uvo\u0111enje 4. \u010dlana",
+          "uid": "32",
+          "pageviews": "84",
+          "link": "https://ba.n1info.com/vijesti/izborna-debata-jedan-predsjednik-bih-ili-uvodjenje-4-clana/",
+          "number_of_comments": 5,
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663096003-5678.JPG",
+            "aspectRatio": 2.05,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663096003-5678-300x146.jpg",
+                "width": 300,
+                "height": 146
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663096003-5678-768x374.jpg",
+                "width": 768,
+                "height": 374
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663096003-5678-1024x499.jpg",
+                "width": 1024,
+                "height": 499
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663096003-5678-1536x748.jpg",
+                "width": 1536,
+                "height": 748
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663096003-5678.JPG",
+                "width": 1630,
+                "height": 794
+              }
+            ]
+          },
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663096003-5678.JPG",
+          "format": "video",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "21:07",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        },
+        {
+          "id": 5308554,
+          "title": "Kasumovi\u0107: Razmi\u0161ljam da se iselim iz BiH ako Denis Be\u0107irovi\u0107 ne pobijedi",
+          "uid": "284",
+          "pageviews": "75",
+          "link": "https://ba.n1info.com/vijesti/kasumovic-razmisljam-da-se-iselim-iz-bih-ako-denis-becirovic-ne-pobijedi/",
+          "number_of_comments": 14,
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture.JPG",
+            "aspectRatio": 1.79,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture-300x168.jpg",
+                "width": 300,
+                "height": 168
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture-768x429.jpg",
+                "width": 768,
+                "height": 429
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture-1024x572.jpg",
+                "width": 1024,
+                "height": 572
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture.JPG",
+                "width": 1396,
+                "height": 780
+              }
+            ]
+          },
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture.JPG",
+          "format": "video",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "13. sep 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        }
+      ]
+    },
+    "widget_most_commented": {
+      "title": "Najvi\u0161e komentara",
+      "items": [
+        {
+          "id": 5308482,
+          "link": "https://ba.n1info.com/vijesti/skandaloza-poruka-generala-hvo-a-dobrodosli-u-hrvatski-grad-jajce/",
+          "number_of_comments": 17,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1.jpg",
+            "aspectRatio": 1.59,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1-300x189.jpg",
+                "width": 300,
+                "height": 189
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1-768x483.jpg",
+                "width": 768,
+                "height": 483
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1-1024x643.jpg",
+                "width": 1024,
+                "height": 643
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1.jpg",
+                "width": 1106,
+                "height": 695
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "Skandalozna poruka generala HVO-a: \"Dobrodo\u0161li u hrvatski grad Jajce\"",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "13. sep 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        },
+        {
+          "id": 5310150,
+          "link": "https://ba.n1info.com/vijesti/dodik-hriscanska-i-muslimanska-zajednica-ne-moze-naci-koegzistenciju-bih-dokaz/",
+          "number_of_comments": 17,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663152470-dodik.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663152470-dodik.jpg",
+            "aspectRatio": 1.33,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663152470-dodik-300x225.jpg",
+                "width": 300,
+                "height": 225
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663152470-dodik.jpg",
+                "width": 658,
+                "height": 494
+              }
+            ]
+          },
+          "format": "video",
+          "title": "Dodik: Hri\u0161\u0107anska i muslimanska zajednica ne mogu na\u0107i koegzistenciju, BiH dokaz",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "12:57",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        },
+        {
+          "id": 5308554,
+          "link": "https://ba.n1info.com/vijesti/kasumovic-razmisljam-da-se-iselim-iz-bih-ako-denis-becirovic-ne-pobijedi/",
+          "number_of_comments": 14,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture.JPG",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture.JPG",
+            "aspectRatio": 1.79,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture-300x168.jpg",
+                "width": 300,
+                "height": 168
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture-768x429.jpg",
+                "width": 768,
+                "height": 429
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture-1024x572.jpg",
+                "width": 1024,
+                "height": 572
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture.JPG",
+                "width": 1396,
+                "height": 780
+              }
+            ]
+          },
+          "format": "video",
+          "title": "Kasumovi\u0107: Razmi\u0161ljam da se iselim iz BiH ako Denis Be\u0107irovi\u0107 ne pobijedi",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "13. sep 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        },
+        {
+          "id": 5306760,
+          "link": "https://ba.n1info.com/vijesti/sehic-za-n1-u-gradjanskoj-bih-po-mjeri-sda-ne-bih-zivio-ni-sekunde/",
+          "number_of_comments": 10,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/12/1663012817-Vehid-Sehic.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/12/1663012817-Vehid-Sehic.jpg",
+            "aspectRatio": 1.78,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/12/1663012817-Vehid-Sehic-300x169.jpg",
+                "width": 300,
+                "height": 169
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/12/1663012817-Vehid-Sehic-768x432.jpg",
+                "width": 768,
+                "height": 432
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/12/1663012817-Vehid-Sehic-1024x576.jpg",
+                "width": 1024,
+                "height": 576
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/12/1663012817-Vehid-Sehic-1536x864.jpg",
+                "width": 1536,
+                "height": 864
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/12/1663012817-Vehid-Sehic.jpg",
+                "width": 1920,
+                "height": 1080
+              }
+            ]
+          },
+          "format": "video",
+          "title": "\u0160ehi\u0107 za N1: U gra\u0111anskoj BiH po mjeri SDA ne bih \u017eivio ni sekunde",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "12. sep 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        }
+      ]
+    },
+    "widget_latest_news_category": [],
+    "viral_bottom_slider": [],
+    "widget_related_news": {
+      "title": "Povezane vesti",
+      "items": [
+        {
+          "id": 5310690,
+          "link": "https://ba.n1info.com/vijesti/vukanovic-uputio-poruku-bosnjacima-prozvao-bakira-spomenuo-i-aliju-video/",
+          "number_of_comments": 5,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/04/11/1649678153-vukan.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/04/11/1649678153-vukan.jpg",
+            "aspectRatio": 1.78,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/04/11/1649678153-vukan-300x169.jpg",
+                "width": 300,
+                "height": 169
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/04/11/1649678153-vukan-768x432.jpg",
+                "width": 768,
+                "height": 432
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/04/11/1649678153-vukan.jpg",
+                "width": 960,
+                "height": 540
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "Vukanovi\u0107 uputio poruku Bo\u0161njacima, prozvao Bakira, spomenuo i Aliju (VIDEO)",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "15:01",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        },
+        {
+          "id": 5308575,
+          "link": "https://ba.n1info.com/vijesti/fazlic-o-izetbegovicu-rekao-sam-da-bih-volio-da-bude-izabran-a-ne/",
+          "number_of_comments": 3,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663086271-suhret-f.JPG",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663086271-suhret-f.JPG",
+            "aspectRatio": 2.18,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663086271-suhret-f-300x137.jpg",
+                "width": 300,
+                "height": 137
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663086271-suhret-f-768x352.jpg",
+                "width": 768,
+                "height": 352
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663086271-suhret-f-1024x469.jpg",
+                "width": 1024,
+                "height": 469
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663086271-suhret-f-1536x704.jpg",
+                "width": 1536,
+                "height": 704
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663086271-suhret-f.JPG",
+                "width": 1609,
+                "height": 737
+              }
+            ]
+          },
+          "format": "video",
+          "title": "Fazli\u0107 o Izetbegovi\u0107u: Rekao sam da bih volio da bude izabran, a ne...",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "13. sep 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        }
+      ]
+    },
+    "widget_other_news": [],
+    "widget_video_of_the_day": [],
+    "widget_quote_of_the_day": [],
+    "widget_caricature_of_the_day": [],
+    "widget_next_video": [],
+    "branded_params": { "is_branded": false, "style": {} },
+    "pre_roll_video": "https://pubads.g.doubleclick.net/gampad/ads?iu=/21876124292/N1BIH/N1BIHPREROLL&description_url=https%3A%2F%2Fba.n1info.com%2F&tfcd=0&npa=0&sz=400x300%7C640x480&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=&cust_params=category%3Dizbori-2022%2Cvijesti%26article_tags%3Dbakir-izetbegovic%2Cnermin-niksic%2Csda%2Csdp%26article_id%3D5311603",
+    "is_liveblog": "-1",
+    "isBreakingNews": false,
+    "under_article_zone": [],
+    "acf": {
+      "single-post_short_title": "",
+      "button_group": { "": null, "notification_empty_title": false },
+      "notification_lead": "",
+      "lead_button_group": { "": null, "notification_empty_lead": false },
+      "single-post_featured-media_group": {
+        "": null,
+        "single-post_image_image": 5104499,
+        "single-post_video_oEmbed": "",
+        "single-post_video_viblast": "",
+        "single-post_video_viblast_media": false
+      },
+      "single-post_emphasized-text_text-area": "Predsjednik SDP-a BiH Nermin Nik\u0161i\u0107 rekao je na skupu u Vogo\u0161\u0107i kako je kandidat Ujedinjene opozicije Denis Be\u0107irovi\u0107 ve\u0107 jednom pobijedio za \u010dlana Predsjedni\u0161tva, ali mu treba druga pobjeda da bi ostvario prvi mandat. Negirao je da \u0107e SDP pru\u017eati \"pojas spasa\" Stranci demokratske akcije nakon izbora u oktobru. ",
+      "single-post_post-content_wysiwyg-editor": "<p>Nik\u0161i\u0107 je odgovorio i na kritike zbog kandidature Vojina Mijatovi\u0107a u Republici Srpskoj.</p>\n<p><strong>\u201cDa smo ranije imali kandidata, danas bi to bila normalna stvar. Nikad vi\u0161e SDP ne\u0107e odustati od pedlja Bosne i Hercegovine. Ne\u0107emo odustati da u Republici Srpskoj gra\u0111ani moraju glasati za manje zlo. Nudimo im izbor za normalnu BiH. Ne\u0107emo odustati. Vojin je mogu\u0107nost izbora normalne BiH\u201d</strong>, rekao je Nik\u0161i\u0107.</p>\n<p><strong>\u201cNe znaju \u0161ta \u0107e pa ka\u017eu da \u0107e SDP i\u0107i sa SDA\u201d</strong>, poru\u010dio je predsjednik SDP-a pa nastavio:</p>\n<p><strong>\u201cU ovoj sali sjede ljudi koji znaju kakve smo ponude imali od SDA pa smo ih odbili. \u0160ta su nam sve nudili i kakav pritisak su na nas radili. Ljudi moji, kad nismo pristali tada, kad smo bili ranjivi, kad su nas neki na\u0161i ljudi prodavali, ne pada mi na pamet da bacamo pojas za spa\u0161avanje Stranci demokratske akcije, HDZ-u. Ne\u0107e biti spa\u0161avanja SDA i vojnika Bakira. Glasno i jasno poru\u010dujem \u2013 nema te ponude da se SDP proda. SDP BiH nije na prodaju. A oni koji misle da \u0107emo se prodati, zbog donacije ili radnog mjesta, 2. oktobra vidimo se na izborima. SDP \u0107e voditi promjene u Sarajevu, Federaciji i BiH\u201d</strong>, rekao je predsjednik Socijaldmeokratske partije Bosne i Hercegovine, Nermin Nik\u0161i\u0107.</p>\n<p>Podsjetimo, ranije je biv\u0161i ministar vanjskih poslova BiH i neformalni lider koalicije SDBiH \u2013 Zeleni pokret, Zlatko Lagumd\u017eija, u programu N1 rekao da je Vojin Mijatovi\u0107 \u201cDodikov \u010dovjek\u201d, a da se SDP sa SDA utkruje kako da bude patriotska bo\u0161nja\u010dka stranka. Tom prilikom Lagumd\u017eija je iznio procjenu da je uvjeren kako jedino Na\u0161a stranka i NiP jedini ne\u0107e u koaliciju sa Strankom demokratske akcije nakon predstoje\u0107ih izbora u oktobru.</p>\n<div class=\"entry-content\">\n<p><strong>Program N1 televizije mo\u017eete pratiti U\u017dIVO na\u00a0<a href=\"https://ba.n1info.com/n1-tv-live-stream/\">ovom linku</a>\u00a0kao i putem aplikacija za\u00a0<a title=\"https://play.google.com/store/apps/details?id=com.n1info&hl=en Ctrl+Click or tap to follow the link\" href=\"https://play.google.com/store/apps/details?id=com.n1info&hl=en\" target=\"_blank\" rel=\"noopener\">An</a><a title=\"https://play.google.com/store/apps/details?id=com.n1info&hl=en Ctrl+Click or tap to follow the link\" href=\"https://play.google.com/store/apps/details?id=com.n1info&hl=en\" target=\"_blank\" rel=\"noopener\">droid</a>|<a href=\"https://itunes.apple.com/us/app/n1-info/id920779491?mt=8\" target=\"_blank\" rel=\"noopener\">iPhone/iPad</a></strong></p>\n</div>\n",
+      "single-post_in-post-snippets_group": {
+        "": null,
+        "single-post_related-news-snippets_repeater": false,
+        "single-post_sliders_repeater": false,
+        "single-post_yt-video-embed_repeater": false,
+        "fb_live_video": "",
+        "single-post_sc-video-embed_repeater": false,
+        "social_embed_repeater": false,
+        "blockquote_repeater": false
+      },
+      "single_post_authors": ["660"],
+      "bottom_slider": {
+        "bottom_slider_title": "",
+        "slider_posts_repeater": false
+      },
+      "kajron": "",
+      "dynamic_banners_slider_news": true,
+      "breaking_news_status": false
+    },
+    "featured_video": null,
+    "_links": {
+      "self": [{ "href": "https://ba.n1info.com/wp-json/wp/v2/posts/5311603" }],
+      "collection": [{ "href": "https://ba.n1info.com/wp-json/wp/v2/posts" }],
+      "about": [{ "href": "https://ba.n1info.com/wp-json/wp/v2/types/post" }],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/users/107"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/comments?post=5311603"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 3,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/posts/5311603/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5311674,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/posts/5311603/revisions/5311674"
+        }
+      ],
+      "wp:attachment": [
+        { "href": "https://ba.n1info.com/wp-json/wp/v2/media?parent=5311603" }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/categories?post=5311603"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/tags?post=5311603"
+        },
+        {
+          "taxonomy": "featured_topics",
+          "embeddable": true,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/featured_topics?post=5311603"
+        },
+        {
+          "taxonomy": "topics",
+          "embeddable": true,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/topics?post=5311603"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  },
+  {
+    "id": 5311612,
+    "date": "2022-09-14T18:53:10",
+    "date_gmt": "2022-09-14T16:53:10",
+    "guid": { "rendered": "https://ba.n1info.com/?p=5311612" },
+    "modified": "2022-09-14T18:53:10",
+    "modified_gmt": "2022-09-14T16:53:10",
+    "slug": "bh-oskarovac-danis-tanovic-u-ziriju-50-medjunarodne-nagrade-emmy",
+    "status": "publish",
+    "type": "post",
+    "link": "https://ba.n1info.com/kultura/bh-oskarovac-danis-tanovic-u-ziriju-50-medjunarodne-nagrade-emmy/",
+    "title": {
+      "rendered": "Bh. oskarovac Danis Tanovi\u0107 u \u017eiriju 50. Me\u0111unarodne nagrade Emmy"
+    },
+    "content": { "rendered": "", "protected": false },
+    "excerpt": { "rendered": "", "protected": false },
+    "author": 284,
+    "featured_media": 0,
+    "comment_status": "closed",
+    "ping_status": "closed",
+    "sticky": false,
+    "template": "",
+    "format": "standard",
+    "meta": [],
+    "categories": [187692],
+    "tags": [
+      { "id": 11757, "name": "Danis Tanovi\u0107" },
+      { "id": 46562, "name": "emmy" },
+      { "id": 80777, "name": "united media" }
+    ],
+    "featured_topics": [],
+    "topics": [],
+    "comments_allowed": true,
+    "unix_timestamp": 1663174390,
+    "date_parsed": "14. sep. 2022",
+    "time_parsed": "18:53",
+    "modification_time_parsed": "18:53",
+    "featured_image": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174373-thumbnail_Ziri.jpg",
+    "thumbnail_new": {
+      "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174373-thumbnail_Ziri.jpg",
+      "aspectRatio": 1.5,
+      "renditions": [
+        {
+          "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174373-thumbnail_Ziri-300x200.jpg",
+          "width": 300,
+          "height": 200
+        },
+        {
+          "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174373-thumbnail_Ziri-768x512.jpg",
+          "width": 768,
+          "height": 512
+        },
+        {
+          "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174373-thumbnail_Ziri-1024x682.jpg",
+          "width": 1024,
+          "height": 682
+        },
+        {
+          "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174373-thumbnail_Ziri.jpg",
+          "width": 1280,
+          "height": 853
+        }
+      ]
+    },
+    "author_info": { "display_name": "N1 BiH" },
+    "featured_caption": "Izvor: Saop\u0107enje",
+    "number_of_comments": 0,
+    "category_name": "Kultura",
+    "category_slug": "kultura",
+    "category_id": 187692,
+    "cpi": 3506300,
+    "add_manager_categories": ["kultura"],
+    "banners": {
+      "top": {
+        "id": "/21876124292/N1BIH/N1BIHAPPBILLBOARD1",
+        "sizes": ["320x100"],
+        "new_sizes": []
+      },
+      "sidebar": {
+        "SB1": {
+          "id": "/21876124292/N1BIH/N1BIHAPPSB1",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        "SB2": {
+          "id": "/21876124292/N1BIH/N1BIHAPPSB2",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        "SB3": {
+          "id": "/21876124292/N1BIH/N1BIHAPPSB3",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        "SB4": {
+          "id": "/21876124292/N1BIH/N1BIHAPPSB4",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        }
+      },
+      "in_text": {
+        "id": "/21876124292/N1BIH/N1BIHAPPSB1",
+        "sizes": ["320x100", "300x250"],
+        "new_sizes": []
+      },
+      "after_text": {
+        "id": "/21876124292/N1BIH/N1BIHAPPSB2",
+        "sizes": ["320x100", "300x250"],
+        "new_sizes": []
+      },
+      "dynamic_status": true,
+      "first_appearance": 3,
+      "repetitive_appearance": 5,
+      "dynamic_banners": [
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        },
+        {
+          "id": "/21876124292/N1BIH/N1-BIH-APP-Dinamicki-InText",
+          "sizes": ["320x100", "300x250"],
+          "new_sizes": []
+        }
+      ]
+    },
+    "emphasized_sentence": "U Dubrovniku je odr\u017eano polufinalno ocjenjivanje u kategoriji Telenovela za 50. Me\u0111unarodnu nagradu Emmy. Doma\u0107ini ovog zna\u010dajnog procesa koji \u0107e odrediti nominirane za ovu presti\u017enu nagradu, United Media i Nova TV, okupili su na jednom mjestu vrhunske svjetske i regionalne profesionalce koji su svojom ekspertizom doprinijeli u odabiru najboljih u kategoriji Telenovela.",
+    "widget_latest_news": {
+      "title": "Najnovije vijesti",
+      "items": [
+        {
+          "id": 5311603,
+          "link": "https://ba.n1info.com/vijesti/niksic-odgovorio-na-spekulacije-nismo-na-prodaju-i-necemo-spasavati-sda/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/06/10/1654864622-thumbnail_AT5A0839.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/06/10/1654864622-thumbnail_AT5A0839.jpg",
+            "aspectRatio": 1.5,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/06/10/1654864622-thumbnail_AT5A0839-300x200.jpg",
+                "width": 300,
+                "height": 200
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/06/10/1654864622-thumbnail_AT5A0839-768x512.jpg",
+                "width": 768,
+                "height": 512
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/06/10/1654864622-thumbnail_AT5A0839-1024x682.jpg",
+                "width": 1024,
+                "height": 682
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/06/10/1654864622-thumbnail_AT5A0839.jpg",
+                "width": 1280,
+                "height": 853
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "Nik\u0161i\u0107 odgovorio na \u0161pekulacije: Nismo na prodaju i ne\u0107emo spa\u0161avati SDA!",
+          "category_id": 248135,
+          "category_name": "Izbori 2022",
+          "category_slug": "izbori-2022",
+          "breaking_news": false,
+          "date_parsed": "prije nekoliko minuta",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        },
+        {
+          "id": 5311569,
+          "link": "https://ba.n1info.com/sport-klub/nogomet/dinamovi-navijaci-pokazivali-nacisticki-pozdrav-u-milanu/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174320-naci.PNG",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174320-naci.PNG",
+            "aspectRatio": 1.29,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174320-naci-300x233.png",
+                "width": 300,
+                "height": 233
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663174320-naci.PNG",
+                "width": 612,
+                "height": 476
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "Dinamovi navija\u010di pokazivali nacisti\u010dki pozdrav u Milanu (VIDEO)",
+          "category_id": 187537,
+          "category_name": "Nogomet",
+          "category_slug": "nogomet",
+          "breaking_news": false,
+          "date_parsed": "prije nekoliko minuta",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3512636
+        },
+        {
+          "id": 5311585,
+          "link": "https://ba.n1info.com/vijesti/hrvatski-ambasador-odbio-primiti-demars-mvp-a-bih/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2020/02/ivansabolic-hm-0120-03-284066.jpeg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2020/02/ivansabolic-hm-0120-03-284066.jpeg",
+            "aspectRatio": 1.67,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2020/02/ivansabolic-hm-0120-03-284066-300x180.jpeg",
+                "width": 300,
+                "height": 180
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2020/02/ivansabolic-hm-0120-03-284066.jpeg",
+                "width": 750,
+                "height": 450
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "Hrvatski ambasador odbio primiti demar\u0161 MVP-a BiH",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "prije 21 minut",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        },
+        {
+          "id": 5311502,
+          "link": "https://ba.n1info.com/vijesti/lani-pudar-zvanicno-urucen-diplomatski-pasos-bih/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663172080-l_7a77bb457b43724f16a9933092e8d17d.JPG",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663172080-l_7a77bb457b43724f16a9933092e8d17d.JPG",
+            "aspectRatio": 1.5,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663172080-l_7a77bb457b43724f16a9933092e8d17d-300x200.jpg",
+                "width": 300,
+                "height": 200
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663172080-l_7a77bb457b43724f16a9933092e8d17d-768x512.jpg",
+                "width": 768,
+                "height": 512
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663172080-l_7a77bb457b43724f16a9933092e8d17d.JPG",
+                "width": 1024,
+                "height": 683
+              }
+            ]
+          },
+          "format": "video",
+          "title": "Lani Pudar zvani\u010dno uru\u010den diplomatski paso\u0161 BiH",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "prije 35 minut",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        }
+      ]
+    },
+    "widget_popular_news": {
+      "title": "Naj\u010ditanije vijesti",
+      "items": [
+        {
+          "id": 5305445,
+          "title": "Sladi\u0107 najavio snijeg u BiH",
+          "uid": "320",
+          "pageviews": "108",
+          "link": "https://ba.n1info.com/vrijeme/sladic-najavio-snijeg-u-bih/",
+          "number_of_comments": 2,
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/08/22/1661153687-sladic.JPG",
+            "aspectRatio": 1.85,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/22/1661153687-sladic-300x162.jpg",
+                "width": 300,
+                "height": 162
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/22/1661153687-sladic-768x415.jpg",
+                "width": 768,
+                "height": 415
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/22/1661153687-sladic-1024x554.jpg",
+                "width": 1024,
+                "height": 554
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/22/1661153687-sladic.JPG",
+                "width": 1245,
+                "height": 673
+              }
+            ]
+          },
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/08/22/1661153687-sladic.JPG",
+          "format": "standard",
+          "category_id": 207568,
+          "category_name": "Vrijeme",
+          "category_slug": "vrijeme",
+          "breaking_news": false,
+          "date_parsed": "12. sep 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 4556485
+        },
+        {
+          "id": 5308482,
+          "title": "Skandalozna poruka generala HVO-a: \"Dobrodo\u0161li u hrvatski grad Jajce\"",
+          "uid": "32",
+          "pageviews": "102",
+          "link": "https://ba.n1info.com/vijesti/skandaloza-poruka-generala-hvo-a-dobrodosli-u-hrvatski-grad-jajce/",
+          "number_of_comments": 17,
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1.jpg",
+            "aspectRatio": 1.59,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1-300x189.jpg",
+                "width": 300,
+                "height": 189
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1-768x483.jpg",
+                "width": 768,
+                "height": 483
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1-1024x643.jpg",
+                "width": 1024,
+                "height": 643
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1.jpg",
+                "width": 1106,
+                "height": 695
+              }
+            ]
+          },
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1.jpg",
+          "format": "standard",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "13. sep 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        },
+        {
+          "id": 5309068,
+          "title": "Izborna debata: Jedan predsjednik BiH ili uvo\u0111enje 4. \u010dlana",
+          "uid": "32",
+          "pageviews": "84",
+          "link": "https://ba.n1info.com/vijesti/izborna-debata-jedan-predsjednik-bih-ili-uvodjenje-4-clana/",
+          "number_of_comments": 5,
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663096003-5678.JPG",
+            "aspectRatio": 2.05,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663096003-5678-300x146.jpg",
+                "width": 300,
+                "height": 146
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663096003-5678-768x374.jpg",
+                "width": 768,
+                "height": 374
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663096003-5678-1024x499.jpg",
+                "width": 1024,
+                "height": 499
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663096003-5678-1536x748.jpg",
+                "width": 1536,
+                "height": 748
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663096003-5678.JPG",
+                "width": 1630,
+                "height": 794
+              }
+            ]
+          },
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663096003-5678.JPG",
+          "format": "video",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "21:07",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        },
+        {
+          "id": 5308554,
+          "title": "Kasumovi\u0107: Razmi\u0161ljam da se iselim iz BiH ako Denis Be\u0107irovi\u0107 ne pobijedi",
+          "uid": "284",
+          "pageviews": "75",
+          "link": "https://ba.n1info.com/vijesti/kasumovic-razmisljam-da-se-iselim-iz-bih-ako-denis-becirovic-ne-pobijedi/",
+          "number_of_comments": 14,
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture.JPG",
+            "aspectRatio": 1.79,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture-300x168.jpg",
+                "width": 300,
+                "height": 168
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture-768x429.jpg",
+                "width": 768,
+                "height": 429
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture-1024x572.jpg",
+                "width": 1024,
+                "height": 572
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture.JPG",
+                "width": 1396,
+                "height": 780
+              }
+            ]
+          },
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture.JPG",
+          "format": "video",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "13. sep 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        }
+      ]
+    },
+    "widget_most_commented": {
+      "title": "Najvi\u0161e komentara",
+      "items": [
+        {
+          "id": 5308482,
+          "link": "https://ba.n1info.com/vijesti/skandaloza-poruka-generala-hvo-a-dobrodosli-u-hrvatski-grad-jajce/",
+          "number_of_comments": 17,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1.jpg",
+            "aspectRatio": 1.59,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1-300x189.jpg",
+                "width": 300,
+                "height": 189
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1-768x483.jpg",
+                "width": 768,
+                "height": 483
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1-1024x643.jpg",
+                "width": 1024,
+                "height": 643
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663084134-FciBhNwXoAATnkh1.jpg",
+                "width": 1106,
+                "height": 695
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "Skandalozna poruka generala HVO-a: \"Dobrodo\u0161li u hrvatski grad Jajce\"",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "13. sep 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        },
+        {
+          "id": 5310150,
+          "link": "https://ba.n1info.com/vijesti/dodik-hriscanska-i-muslimanska-zajednica-ne-moze-naci-koegzistenciju-bih-dokaz/",
+          "number_of_comments": 17,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663152470-dodik.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663152470-dodik.jpg",
+            "aspectRatio": 1.33,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663152470-dodik-300x225.jpg",
+                "width": 300,
+                "height": 225
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663152470-dodik.jpg",
+                "width": 658,
+                "height": 494
+              }
+            ]
+          },
+          "format": "video",
+          "title": "Dodik: Hri\u0161\u0107anska i muslimanska zajednica ne mogu na\u0107i koegzistenciju, BiH dokaz",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "12:57",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        },
+        {
+          "id": 5308554,
+          "link": "https://ba.n1info.com/vijesti/kasumovic-razmisljam-da-se-iselim-iz-bih-ako-denis-becirovic-ne-pobijedi/",
+          "number_of_comments": 14,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture.JPG",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture.JPG",
+            "aspectRatio": 1.79,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture-300x168.jpg",
+                "width": 300,
+                "height": 168
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture-768x429.jpg",
+                "width": 768,
+                "height": 429
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture-1024x572.jpg",
+                "width": 1024,
+                "height": 572
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663085313-Capture.JPG",
+                "width": 1396,
+                "height": 780
+              }
+            ]
+          },
+          "format": "video",
+          "title": "Kasumovi\u0107: Razmi\u0161ljam da se iselim iz BiH ako Denis Be\u0107irovi\u0107 ne pobijedi",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "13. sep 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        },
+        {
+          "id": 5306760,
+          "link": "https://ba.n1info.com/vijesti/sehic-za-n1-u-gradjanskoj-bih-po-mjeri-sda-ne-bih-zivio-ni-sekunde/",
+          "number_of_comments": 10,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/12/1663012817-Vehid-Sehic.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/12/1663012817-Vehid-Sehic.jpg",
+            "aspectRatio": 1.78,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/12/1663012817-Vehid-Sehic-300x169.jpg",
+                "width": 300,
+                "height": 169
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/12/1663012817-Vehid-Sehic-768x432.jpg",
+                "width": 768,
+                "height": 432
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/12/1663012817-Vehid-Sehic-1024x576.jpg",
+                "width": 1024,
+                "height": 576
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/12/1663012817-Vehid-Sehic-1536x864.jpg",
+                "width": 1536,
+                "height": 864
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/12/1663012817-Vehid-Sehic.jpg",
+                "width": 1920,
+                "height": 1080
+              }
+            ]
+          },
+          "format": "video",
+          "title": "\u0160ehi\u0107 za N1: U gra\u0111anskoj BiH po mjeri SDA ne bih \u017eivio ni sekunde",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "12. sep 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        }
+      ]
+    },
+    "widget_latest_news_category": {
+      "title": "Najnovije vijesti - Kultura",
+      "items": [
+        {
+          "id": 5310916,
+          "link": "https://ba.n1info.com/kultura/umrla-legendarna-irena-papas-hinda-iz-filma-pod-zastavom-muhameda/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663163617-2022-09-14T095540Z_1453715114_RC2WGW9BJ77T_RTRMADP_3_GREECE-PAPAS2.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663163617-2022-09-14T095540Z_1453715114_RC2WGW9BJ77T_RTRMADP_3_GREECE-PAPAS2.jpg",
+            "aspectRatio": 1.33,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663163617-2022-09-14T095540Z_1453715114_RC2WGW9BJ77T_RTRMADP_3_GREECE-PAPAS2-300x225.jpg",
+                "width": 300,
+                "height": 225
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663163617-2022-09-14T095540Z_1453715114_RC2WGW9BJ77T_RTRMADP_3_GREECE-PAPAS2-768x575.jpg",
+                "width": 768,
+                "height": 575
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663163617-2022-09-14T095540Z_1453715114_RC2WGW9BJ77T_RTRMADP_3_GREECE-PAPAS2-1024x767.jpg",
+                "width": 1024,
+                "height": 767
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663163617-2022-09-14T095540Z_1453715114_RC2WGW9BJ77T_RTRMADP_3_GREECE-PAPAS2-1536x1151.jpg",
+                "width": 1536,
+                "height": 1151
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663163617-2022-09-14T095540Z_1453715114_RC2WGW9BJ77T_RTRMADP_3_GREECE-PAPAS2.jpg",
+                "width": 1674,
+                "height": 1254
+              }
+            ]
+          },
+          "format": "video",
+          "title": "Umrla legendarna Irena Papas, Hinda iz filma \"Pod zastavom Muhameda\"",
+          "category_id": 187692,
+          "category_name": "Kultura",
+          "category_slug": "kultura",
+          "breaking_news": false,
+          "date_parsed": "15:54",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506300
+        },
+        {
+          "id": 5310460,
+          "link": "https://ba.n1info.com/kultura/ulaz-slobodan-za-sve-zapocela-serija-kabaretskih-koncerata-kabare-nowadays/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663155883-kabare-1.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663155883-kabare-1.jpg",
+            "aspectRatio": 1.78,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663155883-kabare-1-300x169.jpg",
+                "width": 300,
+                "height": 169
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663155883-kabare-1-768x432.jpg",
+                "width": 768,
+                "height": 432
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663155883-kabare-1-1024x576.jpg",
+                "width": 1024,
+                "height": 576
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663155883-kabare-1-1536x864.jpg",
+                "width": 1536,
+                "height": 864
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663155883-kabare-1.jpg",
+                "width": 1920,
+                "height": 1080
+              }
+            ]
+          },
+          "format": "video",
+          "title": "Ulaz slobodan za sve: Zapo\u010dela serija kabaretskih koncerata \"Kabare Nowadays\"",
+          "category_id": 187692,
+          "category_name": "Kultura",
+          "category_slug": "kultura",
+          "breaking_news": false,
+          "date_parsed": "13:45",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506300
+        },
+        {
+          "id": 5310438,
+          "link": "https://ba.n1info.com/kultura/evropski-dan-jevrejske-kulture-u-znaku-sefardske-ljubavi-shira-utfila-u-bkc-u/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663155575-305449777_2324385724382396_6740270444971049700_n-e1663155648532.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663155575-305449777_2324385724382396_6740270444971049700_n-e1663155648532.jpg",
+            "aspectRatio": 1.08,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663155575-305449777_2324385724382396_6740270444971049700_n-e1663155648532-300x277.jpg",
+                "width": 300,
+                "height": 277
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663155575-305449777_2324385724382396_6740270444971049700_n-e1663155648532-768x709.jpg",
+                "width": 768,
+                "height": 709
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663155575-305449777_2324385724382396_6740270444971049700_n-e1663155648532-1024x945.jpg",
+                "width": 1024,
+                "height": 945
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663155575-305449777_2324385724382396_6740270444971049700_n-1100x1536.jpg",
+                "width": 1100,
+                "height": 1536
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663155575-305449777_2324385724382396_6740270444971049700_n-e1663155648532.jpg",
+                "width": 1459,
+                "height": 1346
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "Evropski dan jevrejske kulture u znaku \"Sefardske ljubavi\": Shira Utfila u BKC-u",
+          "category_id": 187692,
+          "category_name": "Kultura",
+          "category_slug": "kultura",
+          "breaking_news": false,
+          "date_parsed": "13:41",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506300
+        },
+        {
+          "id": 5310279,
+          "link": "https://ba.n1info.com/kultura/otvorena-izlozba-sarajevu-s-postovanjem-i-ljubavlju/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663153804-hebib.png",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663153804-hebib.png",
+            "aspectRatio": 1.78,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663153804-hebib-300x169.png",
+                "width": 300,
+                "height": 169
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663153804-hebib-768x432.png",
+                "width": 768,
+                "height": 432
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663153804-hebib-1024x576.png",
+                "width": 1024,
+                "height": 576
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663153804-hebib-1536x864.png",
+                "width": 1536,
+                "height": 864
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/14/1663153804-hebib.png",
+                "width": 1920,
+                "height": 1080
+              }
+            ]
+          },
+          "format": "video",
+          "title": "Otvorena izlo\u017eba \"Sarajevu s po\u0161tovanjem i ljubavlju\"",
+          "category_id": 187692,
+          "category_name": "Kultura",
+          "category_slug": "kultura",
+          "breaking_news": false,
+          "date_parsed": "13:17",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506300
+        }
+      ]
+    },
+    "viral_bottom_slider": {
+      "title": "Naj\u010ditanije vijesti - Kultura",
+      "items": [
+        {
+          "id": 5308351,
+          "title": "Legendarni Jean-Luc Godard zavr\u0161io \u017eivot eutanazijom",
+          "uid": "32",
+          "pageviews": "5",
+          "link": "https://ba.n1info.com/kultura/legendarni-jean-luc-godard-zavrsio-zivot-eutanazijom/",
+          "number_of_comments": 0,
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663081683-2022-09-13T081457Z_41397127_RC27GW9T3G6W_RTRMADP_3_FRANCE-PEOPLE-GODARD.JPG",
+            "aspectRatio": 1.5,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663081683-2022-09-13T081457Z_41397127_RC27GW9T3G6W_RTRMADP_3_FRANCE-PEOPLE-GODARD-300x200.jpg",
+                "width": 300,
+                "height": 200
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663081683-2022-09-13T081457Z_41397127_RC27GW9T3G6W_RTRMADP_3_FRANCE-PEOPLE-GODARD-768x511.jpg",
+                "width": 768,
+                "height": 511
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663081683-2022-09-13T081457Z_41397127_RC27GW9T3G6W_RTRMADP_3_FRANCE-PEOPLE-GODARD-1024x681.jpg",
+                "width": 1024,
+                "height": 681
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663081683-2022-09-13T081457Z_41397127_RC27GW9T3G6W_RTRMADP_3_FRANCE-PEOPLE-GODARD-1536x1022.jpg",
+                "width": 1536,
+                "height": 1022
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663081683-2022-09-13T081457Z_41397127_RC27GW9T3G6W_RTRMADP_3_FRANCE-PEOPLE-GODARD-2048x1363.jpg",
+                "width": 2048,
+                "height": 1363
+              }
+            ]
+          },
+          "format": "standard",
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/13/1663081683-2022-09-13T081457Z_41397127_RC27GW9T3G6W_RTRMADP_3_FRANCE-PEOPLE-GODARD.JPG",
+          "category_id": 187692,
+          "category_name": "Kultura",
+          "category_slug": "kultura",
+          "breaking_news": false,
+          "date_parsed": "13. sep 2022",
+          "is_liveblog": "-1",
+          "cpi": 3506300
+        },
+        {
+          "id": 5302947,
+          "title": "Re\u017eiser filma 'Sarajevo safari': Nisam vjerovao da toliko zlo i postoji",
+          "uid": "42",
+          "pageviews": "5",
+          "link": "https://ba.n1info.com/kultura/reziser-filma-sarajevo-safari-nisam-vjerovao-da-toliko-zlo-i-postoji/",
+          "number_of_comments": 0,
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/10/1662820028-reziser.JPG",
+            "aspectRatio": 1.59,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/10/1662820028-reziser-300x189.jpg",
+                "width": 300,
+                "height": 189
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/10/1662820028-reziser-768x483.jpg",
+                "width": 768,
+                "height": 483
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/10/1662820028-reziser-1024x644.jpg",
+                "width": 1024,
+                "height": 644
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/10/1662820028-reziser.JPG",
+                "width": 1143,
+                "height": 719
+              }
+            ]
+          },
+          "format": "standard",
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/10/1662820028-reziser.JPG",
+          "category_id": 187692,
+          "category_name": "Kultura",
+          "category_slug": "kultura",
+          "breaking_news": false,
+          "date_parsed": "10. sep 2022",
+          "is_liveblog": "-1",
+          "cpi": 3506300
+        },
+        {
+          "id": 4570913,
+          "title": "U Zemaljskom muzeju izlo\u017eba \"BiH u prethistorijsko doba\"",
+          "uid": "217",
+          "pageviews": "1",
+          "link": "https://ba.n1info.com/kultura/u-zemaljskom-muzeju-izlozba-bih-u-prethistorijsko-doba/",
+          "number_of_comments": 0,
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2021/10/20/1634728531-SA-ZEMALJSKI-MUZEJ-PKG-ADG-120211020-125820791.mxf_.00_00_16_15.Still001.jpg",
+            "aspectRatio": 1.78,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2021/10/20/1634728531-SA-ZEMALJSKI-MUZEJ-PKG-ADG-120211020-125820791.mxf_.00_00_16_15.Still001-300x169.jpg",
+                "width": 300,
+                "height": 169
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2021/10/20/1634728531-SA-ZEMALJSKI-MUZEJ-PKG-ADG-120211020-125820791.mxf_.00_00_16_15.Still001-768x432.jpg",
+                "width": 768,
+                "height": 432
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2021/10/20/1634728531-SA-ZEMALJSKI-MUZEJ-PKG-ADG-120211020-125820791.mxf_.00_00_16_15.Still001-1024x576.jpg",
+                "width": 1024,
+                "height": 576
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2021/10/20/1634728531-SA-ZEMALJSKI-MUZEJ-PKG-ADG-120211020-125820791.mxf_.00_00_16_15.Still001-1536x864.jpg",
+                "width": 1536,
+                "height": 864
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2021/10/20/1634728531-SA-ZEMALJSKI-MUZEJ-PKG-ADG-120211020-125820791.mxf_.00_00_16_15.Still001.jpg",
+                "width": 1920,
+                "height": 1080
+              }
+            ]
+          },
+          "format": "video",
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2021/10/20/1634728531-SA-ZEMALJSKI-MUZEJ-PKG-ADG-120211020-125820791.mxf_.00_00_16_15.Still001.jpg",
+          "category_id": 187692,
+          "category_name": "Kultura",
+          "category_slug": "kultura",
+          "breaking_news": false,
+          "date_parsed": "20. okt 2021",
+          "is_liveblog": "-1",
+          "cpi": 3506300
+        },
+        {
+          "id": 5241896,
+          "title": "Jasna \u017dalica: Slu\u010dajno sam saznala da \u0107u se na SFF-u pojaviti u jo\u0161 jednom filmu",
+          "uid": "284",
+          "pageviews": "1",
+          "link": "https://ba.n1info.com/kultura/jasna-zalica-slucajno-sam-saznala-da-cu-se-na-sff-u-pojaviti-u-jos-jednom-filmu/",
+          "number_of_comments": 1,
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/08/12/1660332625-jasna-zalica.jpg",
+            "aspectRatio": 1.78,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/12/1660332625-jasna-zalica-300x169.jpg",
+                "width": 300,
+                "height": 169
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/12/1660332625-jasna-zalica-768x432.jpg",
+                "width": 768,
+                "height": 432
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/12/1660332625-jasna-zalica-1024x576.jpg",
+                "width": 1024,
+                "height": 576
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/12/1660332625-jasna-zalica-1536x864.jpg",
+                "width": 1536,
+                "height": 864
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/12/1660332625-jasna-zalica.jpg",
+                "width": 1920,
+                "height": 1080
+              }
+            ]
+          },
+          "format": "video",
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/08/12/1660332625-jasna-zalica.jpg",
+          "category_id": 187692,
+          "category_name": "Kultura",
+          "category_slug": "kultura",
+          "breaking_news": false,
+          "date_parsed": "12. avg 2022",
+          "is_liveblog": "-1",
+          "cpi": 3506300
+        }
+      ]
+    },
+    "widget_related_news": {
+      "title": "Povezane vesti",
+      "items": [
+        {
+          "id": 5300377,
+          "link": "https://ba.n1info.com/promo/ziri-medjunarodne-nagrade-emmy-u-dubrovniku-ce-ocjenjivati-u-sekciji-telenovela/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/09/1662718325-International-Emmy-Award.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/09/1662718325-International-Emmy-Award.jpg",
+            "aspectRatio": 1.78,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/09/1662718325-International-Emmy-Award-300x169.jpg",
+                "width": 300,
+                "height": 169
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/09/1662718325-International-Emmy-Award-768x432.jpg",
+                "width": 768,
+                "height": 432
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/09/1662718325-International-Emmy-Award-1024x576.jpg",
+                "width": 1024,
+                "height": 576
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/09/1662718325-International-Emmy-Award-1536x864.jpg",
+                "width": 1536,
+                "height": 864
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/09/1662718325-International-Emmy-Award.jpg",
+                "width": 1920,
+                "height": 1080
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "\u017diri Me\u0111unarodne nagrade Emmy u Dubrovniku \u0107e ocjenjivati u sekciji 'Telenovela'",
+          "category_id": 187722,
+          "category_name": "Promo",
+          "category_slug": "promo",
+          "breaking_news": false,
+          "date_parsed": "09. sep 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 4033814
+        },
+        {
+          "id": 5282511,
+          "link": "https://ba.n1info.com/vijesti/pretplatnici-bh-telecoma-otkazuju-usluge-zbog-iskljucenja-signala-n1/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/09/01/1662058571-1661758421-Untitled-design29-1024x768.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/09/01/1662058571-1661758421-Untitled-design29-1024x768.jpg",
+            "aspectRatio": 1.33,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/01/1662058571-1661758421-Untitled-design29-1024x768-300x225.jpg",
+                "width": 300,
+                "height": 225
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/01/1662058571-1661758421-Untitled-design29-1024x768-768x576.jpg",
+                "width": 768,
+                "height": 576
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/09/01/1662058571-1661758421-Untitled-design29-1024x768.jpg",
+                "width": 1024,
+                "height": 768
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "Pretplatnici BH Telecoma otkazuju usluge zbog isklju\u010denja signala N1",
+          "category_id": 187522,
+          "category_name": "Vijesti",
+          "category_slug": "vijesti",
+          "breaking_news": false,
+          "date_parsed": "01. sep 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506245
+        }
+      ]
+    },
+    "widget_other_news": {
+      "title": "Ostale vijesti",
+      "items": [
+        {
+          "id": 5249774,
+          "link": "https://ba.n1info.com/kultura/uplovite-u-svijet-avatara-nova-verzija-u-bioskopima-uoci-premijere-nastavka/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/08/17/1660732345-1660723076-Avatar_Image_1340_rgb-750x422.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/08/17/1660732345-1660723076-Avatar_Image_1340_rgb-750x422.jpg",
+            "aspectRatio": 1.78,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/17/1660732345-1660723076-Avatar_Image_1340_rgb-750x422-300x169.jpg",
+                "width": 300,
+                "height": 169
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/17/1660732345-1660723076-Avatar_Image_1340_rgb-750x422.jpg",
+                "width": 750,
+                "height": 422
+              }
+            ]
+          },
+          "format": "video",
+          "title": "Uplovite u svijet \u201eAvatara\u201c: Nova verzija u bioskopima uo\u010di premijere nastavka",
+          "category_id": 187692,
+          "category_name": "Kultura",
+          "category_slug": "kultura",
+          "breaking_news": false,
+          "date_parsed": "17. avg 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506300
+        },
+        {
+          "id": 5137356,
+          "link": "https://ba.n1info.com/kultura/balasevicev-mural-meta-vandala-slovo-u-na-glavi-umjetnika/",
+          "number_of_comments": 1,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/06/24/1656079988-Mural-3-1024x576.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/06/24/1656079988-Mural-3-1024x576.jpg",
+            "aspectRatio": 1.78,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/06/24/1656079988-Mural-3-1024x576-300x169.jpg",
+                "width": 300,
+                "height": 169
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/06/24/1656079988-Mural-3-1024x576-768x432.jpg",
+                "width": 768,
+                "height": 432
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/06/24/1656079988-Mural-3-1024x576.jpg",
+                "width": 1024,
+                "height": 576
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "Bala\u0161evi\u0107ev mural meta vandala, slovo U na glavi umjetnika",
+          "category_id": 187692,
+          "category_name": "Kultura",
+          "category_slug": "kultura",
+          "breaking_news": false,
+          "date_parsed": "24. jun 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506300
+        },
+        {
+          "id": 5187516,
+          "link": "https://ba.n1info.com/kultura/balet-mostar-arabesque-osvojio-1-mjesto-na-plesnom-natjecanju-u-italiji/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/07/15/1657887793-l_45e8bc4b6fed70be897c795702761f7c.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/07/15/1657887793-l_45e8bc4b6fed70be897c795702761f7c.jpg",
+            "aspectRatio": 1.8,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/07/15/1657887793-l_45e8bc4b6fed70be897c795702761f7c-300x167.jpg",
+                "width": 300,
+                "height": 167
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/07/15/1657887793-l_45e8bc4b6fed70be897c795702761f7c-768x428.jpg",
+                "width": 768,
+                "height": 428
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/07/15/1657887793-l_45e8bc4b6fed70be897c795702761f7c.jpg",
+                "width": 1024,
+                "height": 570
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "Balet Mostar Arabesque osvojio 1. mjesto na plesnom natjecanju u Italiji",
+          "category_id": 187692,
+          "category_name": "Kultura",
+          "category_slug": "kultura",
+          "breaking_news": false,
+          "date_parsed": "15. jul 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506300
+        },
+        {
+          "id": 5193789,
+          "link": "https://ba.n1info.com/kultura/veceras-otvaranje-omladinskog-festivala-sarajevo-off/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/07/19/1658219311-off.png",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/07/19/1658219311-off.png",
+            "aspectRatio": 1.63,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/07/19/1658219311-off-300x185.png",
+                "width": 300,
+                "height": 185
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/07/19/1658219311-off-768x473.png",
+                "width": 768,
+                "height": 473
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/07/19/1658219311-off.png",
+                "width": 1024,
+                "height": 630
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "Ve\u010deras otvaranje Omladinskog Festivala Sarajevo - OFF",
+          "category_id": 187692,
+          "category_name": "Kultura",
+          "category_slug": "kultura",
+          "breaking_news": false,
+          "date_parsed": "19. jul 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506300
+        }
+      ]
+    },
+    "widget_video_of_the_day": [],
+    "widget_quote_of_the_day": [],
+    "widget_caricature_of_the_day": [],
+    "widget_next_video": {
+      "title": "Sljede\u0107i video",
+      "items": [
+        {
+          "id": 5273968,
+          "link": "https://ba.n1info.com/kultura/united-media-dovodi-internacionalnu-emmy-nagradu-u-dubrovnik/",
+          "number_of_comments": 0,
+          "thumbnail": "https://ba.n1info.com/wp-content/uploads/2022/08/29/1661760308-international-emmy-award_um_novatv.jpg",
+          "thumbnail_new": {
+            "originalImage": "https://ba.n1info.com/wp-content/uploads/2022/08/29/1661760308-international-emmy-award_um_novatv.jpg",
+            "aspectRatio": 1.78,
+            "renditions": [
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/29/1661760308-international-emmy-award_um_novatv-300x169.jpg",
+                "width": 300,
+                "height": 169
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/29/1661760308-international-emmy-award_um_novatv-768x432.jpg",
+                "width": 768,
+                "height": 432
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/29/1661760308-international-emmy-award_um_novatv-1024x576.jpg",
+                "width": 1024,
+                "height": 576
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/29/1661760308-international-emmy-award_um_novatv-1536x864.jpg",
+                "width": 1536,
+                "height": 864
+              },
+              {
+                "uri": "https://ba.n1info.com/wp-content/uploads/2022/08/29/1661760308-international-emmy-award_um_novatv.jpg",
+                "width": 1920,
+                "height": 1080
+              }
+            ]
+          },
+          "format": "standard",
+          "title": "United Media dovodi internacionalnu EMMY\u00ae nagradu u Dubrovnik",
+          "category_id": 187692,
+          "category_name": "Kultura",
+          "category_slug": "kultura",
+          "breaking_news": false,
+          "date_parsed": "29. avg 2022",
+          "comments_allowed": true,
+          "is_liveblog": "-1",
+          "cpi": 3506300
+        }
+      ]
+    },
+    "branded_params": { "is_branded": false, "style": {} },
+    "pre_roll_video": "https://pubads.g.doubleclick.net/gampad/ads?iu=/21876124292/N1BIH/N1BIHPREROLL&description_url=https%3A%2F%2Fba.n1info.com%2F&tfcd=0&npa=0&sz=400x300%7C640x480&gdfp_req=1&output=vast&unviewed_position_start=1&env=vp&impl=s&correlator=&cust_params=category%3Dkultura%26article_tags%3Ddanis-tanovic%2Cemmy%2Cunited-media%26article_id%3D5311612",
+    "is_liveblog": "-1",
+    "isBreakingNews": false,
+    "under_article_zone": [],
+    "acf": {
+      "single-post_short_title": "",
+      "button_group": { "": null, "notification_empty_title": false },
+      "notification_lead": "",
+      "lead_button_group": { "": null, "notification_empty_lead": false },
+      "single-post_featured-media_group": {
+        "": null,
+        "single-post_image_image": 5311632,
+        "single-post_video_oEmbed": "",
+        "single-post_video_viblast": "",
+        "single-post_video_viblast_media": false
+      },
+      "single-post_emphasized-text_text-area": "U Dubrovniku je odr\u017eano polufinalno ocjenjivanje u kategoriji Telenovela za 50. Me\u0111unarodnu nagradu Emmy. Doma\u0107ini ovog zna\u010dajnog procesa koji \u0107e odrediti nominirane za ovu presti\u017enu nagradu, United Media i Nova TV, okupili su na jednom mjestu vrhunske svjetske i regionalne profesionalce koji su svojom ekspertizom doprinijeli u odabiru najboljih u kategoriji Telenovela.",
+      "single-post_post-content_wysiwyg-editor": "<p>Me\u0111u \u010dlanovima \u017eirija na\u0161li su se tako poznati reditelji, scenaristi, urednici, televizijski profesionalci te ostali stru\u010dnjaci iz svijeta produkcije, televizije, filma i umjetnosti.</p>\n<p>Iz Bugarske je u Dubrovnik stigla jedna od najpoznatijih televizijskih profesionalki s velikim iskustvom u medijima i televizijskoj umjetnosti, \u010dlanica programskog tima Nova Broadcasting Groupe, \u010dlanica uprave Net Info-a, te jedna od \u010dlanica Me\u0111unarodne akademije za televizijsku umjetnost i nauku, Vyara Ankova. \u010clan \u017eirija 50. Me\u0111unarodne nagrade Emmy bio je i proslavljeni bosanskohercegova\u010dki redatelj, scenarist i producent, Danis Tanovi\u0107, dobitnik Oscara za najbolji strani film \u201dNi\u010dija zemlja\u201d.</p>\n<p>Svoj sud o projektima donosili su i scenaristica i vanredna profesorica dramaturgije na \u201dFakultetu dramskih umetnosti u Beogradu\u201d Danica Pajovi\u0107, poznata po naslovima \u201dSenke nad Balkanom\u201d, \u201d\u017digosani u reketu\u201d, \u201dPare ili \u017eivot\u201d te Ivan \u017divkovi\u0107, reditelj i scenarista koji potpisuje brojne epizode serije poput \u201dUbice mog oca\u201d, \u201dVere i zavere\u201d, \u201dKoreni\u201d, \u201dVreme zla\u201d, Dr\u017eavni slu\u017ebenik\u201d i \u201dSenke nad Balkanom\u201d.</p>\n<p>U \u017eiriju su se na\u0161li i poznati i cijenjeni hrvatski redatelji poput Branka Ivande, Darka Drinovca i Nevija Marasovi\u0107a. S kriterijima kvalitetnog dramskog sadr\u017eaja dobro su upoznate i Zrinka Jankov glavna urednica Nove TV te Nata\u0161a Buljan, voditeljica odjela razvoja scenarija na Novoj TV, autorica i scenaristica brojnih popularnih serija poput \u201dStelle\u201d, \u201d\u010ciste ljubavi\u201d, \u201dDar Mar\u201d, \u201dKumova\u201d. Me\u0111u imenima \u010dlanova \u017eirija 50. Me\u0111unarodne nagrade Emmy u kategoriji Telenovela na\u0161ao se i istaknuti direktor fotografije Stanko Herceg kao i filmski i televizijski producent, predsjednik Hrvatskog dru\u0161tva nezavisnih producenata Danijel Pek \u010diji je film \u201dMurina\u201d osvojio presti\u017enu nagradu Camera d\u2019Or na Filmskom festivalu u Cannesu.</p>\n<p>United Media i Nova TV zahvaljuju svim gostima i \u010dlanovima \u017eirija polufinalnog ocjenjivanja u kategoriji Telenovela. Odabir za \u201dMe\u0111unarodnu nagradu Emmy\u201d duga\u010dka je procedura s ocjenjiva\u010dkim povjerenstvima koja se sastaju na raznim lokacijama diljem svijeta, a kona\u010dni kandidati za ukupno 17 kategorija bit \u0107e objavljeni u septembru, dok \u0107e dobitnici biti otkriveni na 50. ceremoniji Me\u0111unarodne nagrade Emmy, 21. novembra u New Yorku.</p>\n<p><strong>\u010clanove \u017eirija \u010dine:</strong> Darko Drinovac, Stanko Herceg, Branko Ivanda, Zrinka Jankov, Nata\u0161a Buljan, Danijel Pek, Vyara Ankova, Danica Pajovi\u0107, Ivan \u017divkovi\u0107, Nevio Marasovi\u0107 i Danis Tanovi\u0107.</p>\n<p><strong>Program N1 televizije mo\u017eete pratiti U\u017dIVO na\u00a0<a href=\"https://ba.n1info.com/n1-tv-live-stream/\">ovom linku</a>\u00a0kao i putem aplikacija za\u00a0<a title=\"https://play.google.com/store/apps/details?id=com.n1info&hl=en Ctrl+Click or tap to follow the link\" href=\"https://play.google.com/store/apps/details?id=com.n1info&hl=en\" target=\"_blank\" rel=\"noopener\">An</a><a title=\"https://play.google.com/store/apps/details?id=com.n1info&hl=en Ctrl+Click or tap to follow the link\" href=\"https://play.google.com/store/apps/details?id=com.n1info&hl=en\" target=\"_blank\" rel=\"noopener\">droid</a>|<a href=\"https://itunes.apple.com/us/app/n1-info/id920779491?mt=8\" target=\"_blank\" rel=\"noopener\">iPhone/iPad</a></strong></p>\n",
+      "single-post_in-post-snippets_group": {
+        "": null,
+        "single-post_related-news-snippets_repeater": false,
+        "single-post_sliders_repeater": false,
+        "single-post_yt-video-embed_repeater": false,
+        "fb_live_video": "",
+        "single-post_sc-video-embed_repeater": false,
+        "social_embed_repeater": false,
+        "blockquote_repeater": false
+      },
+      "single_post_authors": ["660"],
+      "bottom_slider": {
+        "bottom_slider_title": "",
+        "slider_posts_repeater": false
+      },
+      "kajron": "Bh. oskarovac i reditelj Danis Tanovi\u0107 u \u017eiriju 50. Me\u0111unarodne nagrade Emmy",
+      "dynamic_banners_slider_news": true,
+      "breaking_news_status": false
+    },
+    "featured_video": null,
+    "_links": {
+      "self": [{ "href": "https://ba.n1info.com/wp-json/wp/v2/posts/5311612" }],
+      "collection": [{ "href": "https://ba.n1info.com/wp-json/wp/v2/posts" }],
+      "about": [{ "href": "https://ba.n1info.com/wp-json/wp/v2/types/post" }],
+      "author": [
+        {
+          "embeddable": true,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/users/284"
+        }
+      ],
+      "replies": [
+        {
+          "embeddable": true,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/comments?post=5311612"
+        }
+      ],
+      "version-history": [
+        {
+          "count": 1,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/posts/5311612/revisions"
+        }
+      ],
+      "predecessor-version": [
+        {
+          "id": 5311644,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/posts/5311612/revisions/5311644"
+        }
+      ],
+      "wp:attachment": [
+        { "href": "https://ba.n1info.com/wp-json/wp/v2/media?parent=5311612" }
+      ],
+      "wp:term": [
+        {
+          "taxonomy": "category",
+          "embeddable": true,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/categories?post=5311612"
+        },
+        {
+          "taxonomy": "post_tag",
+          "embeddable": true,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/tags?post=5311612"
+        },
+        {
+          "taxonomy": "featured_topics",
+          "embeddable": true,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/featured_topics?post=5311612"
+        },
+        {
+          "taxonomy": "topics",
+          "embeddable": true,
+          "href": "https://ba.n1info.com/wp-json/wp/v2/topics?post=5311612"
+        }
+      ],
+      "curies": [
+        { "name": "wp", "href": "https://api.w.org/{rel}", "templated": true }
+      ]
+    }
+  }
+]
+  

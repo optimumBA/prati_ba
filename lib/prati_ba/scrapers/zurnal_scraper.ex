@@ -1,60 +1,93 @@
 defmodule PratiBa.Scrapers.ZurnalScraper do
   @behaviour PratiBa.Scrapers.Scraper
 
-  @rss_url "https://zurnal.info/rss"
+  @url "https://zurnal.info/najnovije"
 
   alias PratiBa.Scrapers.ScrapingHelper
 
-  def articles(url \\ @rss_url) do
+  def articles(url \\ @url) do
     response = ScrapingHelper.get(url)
 
-    case response do
-      {:ok, %{status_code: 200, body: body}} ->
-        {:ok, rss} = FastRSS.parse(body)
+    with {:ok, %{status_code: 200, body: body}} <- response,
+         {:ok, html} <- Floki.parse_document(body) do
+      articles =
+        html
+        |> Floki.find(".left .articles a")
+        |> Stream.map(&parse_article/1)
 
-        articles =
-          rss["items"]
-          |> Stream.map(&parse_article/1)
-
-        {:ok, articles}
-
-      {_, response} ->
-        {:error, response}
+      {:ok, articles}
+    else
+      {_, response} -> {:error, response}
     end
   end
 
-  def article_details(article), do: {:ok, article}
-
   defp parse_article(article) do
-    %{
-      "description" => description,
-      "enclosure" => %{
-        "url" => image_url
-      },
-      "link" => url,
-      "pub_date" => date,
-      "title" => title
-    } = article
+    url =
+      article
+      |> Floki.attribute("href")
+      |> Enum.at(0)
 
     original_id =
       url
       |> String.split("/")
-      |> Enum.fetch!(4)
+      |> List.last()
 
-    published_at =
-      date
-      |> Timex.parse!("{RFC1123}")
-      |> DateTime.shift_zone!("Etc/UTC")
-      |> DateTime.to_naive()
+    title =
+      article
+      |> Floki.find(".title")
+      |> Floki.text()
+
+    description =
+      article
+      |> Floki.find(".description")
+      |> Enum.at(0)
+      |> Floki.text()
+      |> String.trim()
 
     %{
       original_id: original_id,
       title: title,
       description: description,
-      published_at: published_at,
+      published_at: nil,
       author: nil,
-      image: image_url,
-      url: URI.encode(url)
+      image: nil,
+      url: "https://zurnal.info" <> URI.encode(url)
     }
+  end
+
+  def article_details(%{url: url} = article) do
+    response = ScrapingHelper.get(url)
+
+    with {:ok, %{status_code: 200, body: body}} <- response,
+         {:ok, html} <- Floki.parse_document(body) do
+      article_content =
+        html
+        |> Floki.find(".container")
+
+      date =
+        article_content
+        |> Floki.find(".article-info, time")
+        |> Floki.attribute("datetime")
+        |> Enum.at(0)
+
+      published_at =
+        date
+        |> Timex.parse!("{YYYY}-{M}-{D} {h24}:{m}:{s}")
+        |> DateTime.from_naive!("Europe/Sarajevo")
+        |> DateTime.shift_zone!("Etc/UTC")
+        |> DateTime.to_naive()
+
+      article = Map.put(article, :published_at, published_at)
+
+      case ScrapingHelper.get_og_image(html) do
+        {:ok, image_url} ->
+          {:ok, Map.put(article, :image, image_url)}
+
+        {:error, _} ->
+          {:error, :image_not_available}
+      end
+    else
+      _ -> {:error, :article_not_available}
+    end
   end
 end

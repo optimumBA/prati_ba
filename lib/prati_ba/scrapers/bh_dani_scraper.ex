@@ -1,23 +1,26 @@
 defmodule PratiBa.Scrapers.BhDaniScraper do
   @behaviour PratiBa.Scrapers.Scraper
 
-  @url "https://bhdani.oslobodjenje.ba/bhdani/"
+  @rss_url "https://bhdani.oslobodjenje.ba/bhdani/feed"
 
   alias PratiBa.Scrapers.ScrapingHelper
 
-  def articles(url \\ @url) do
+  def articles(url \\ @rss_url) do
     response = ScrapingHelper.get(url)
 
-    with {:ok, %{status_code: 200, body: body}} <- response,
-         {:ok, html} <- Floki.parse_document(body) do
-      articles =
-        html
-        |> Floki.find(".row .col-md-7")
-        |> Stream.map(&parse_article/1)
+    case response do
+      {:ok, %{status_code: 200, body: body}} ->
+        {:ok, rss} =
+          body
+          |> HtmlEntities.decode()
+          |> FastRSS.parse()
 
-      {:ok, articles}
-    else
-      {_, response} -> {:error, response}
+        articles = Stream.map(rss["items"], &parse_article/1)
+
+        {:ok, articles}
+
+      {_, response} ->
+        {:error, response}
     end
   end
 
@@ -25,74 +28,50 @@ defmodule PratiBa.Scrapers.BhDaniScraper do
     response = ScrapingHelper.get(url)
 
     with {:ok, %{status_code: 200, body: body}} <- response,
-         {:ok, html} <- Floki.parse_document(body) do
-      article_container = Floki.find(html, ".container--item")
-
-      article =
-        case ScrapingHelper.get_og_description(html) do
-          {:ok, description} -> Map.put(article, :description, description)
-          _ -> article
-        end
-
-      date =
-        article_container
-        |> Floki.find(".card__category-time span")
-        |> Enum.at(0)
-        |> Floki.text()
-        |> String.trim()
-
-      published_at =
-        date
-        |> Timex.parse!("{D}/{M}/{YYYY} u {h24}:{m} h")
-        |> DateTime.from_naive!("Europe/Sarajevo")
-        |> DateTime.shift_zone!("Etc/UTC")
-        |> DateTime.to_naive()
-
-      Map.put(article, :published_at, published_at)
-
-      case ScrapingHelper.get_og_image(html) do
-        {:ok, image_url} ->
-          {:ok, Map.put(article, :image, image_url)}
-
-        {:error, _} ->
-          {:error, :image_not_available}
-      end
+         {:ok, html} <- Floki.parse_document(body),
+         {:ok, image_url} <- ScrapingHelper.get_og_image(html) do
+      {:ok, Map.put(article, :image, image_url)}
     else
       _ -> {:error, :article_not_available}
     end
   end
 
-  def parse_article(article) do
-    url =
-      article
-      |> Floki.find("a")
-      |> Floki.attribute("href")
-      |> Enum.at(0)
+  defp parse_article(article) do
+    %{
+      "guid" => %{
+        "value" => url
+      },
+      "pub_date" => date,
+      "title" => title,
+      "enclosure" => %{
+        "url" => image_url
+      }
+    } = article
 
     path =
       url
       |> String.split("/")
-      |> Enum.fetch!(2)
+      |> List.last()
 
     original_id =
       path
       |> String.split("-")
-      |> Enum.at(9)
+      |> List.last()
 
-    title =
-      article
-      |> Floki.find("a")
-      |> Floki.attribute("title")
-      |> Enum.at(0)
+    published_at =
+      date
+      |> Timex.parse!("{RFC1123}")
+      |> DateTime.shift_zone!("Etc/UTC")
+      |> DateTime.to_naive()
 
     %{
       original_id: original_id,
       title: title,
       description: nil,
-      published_at: nil,
+      published_at: published_at,
       author: nil,
-      image: nil,
-      url: URI.encode("https://bhdani.oslobodjenje.ba/" <> url)
+      image: image_url,
+      url: URI.encode(url)
     }
   end
 end

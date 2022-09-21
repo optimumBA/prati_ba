@@ -1,7 +1,7 @@
 defmodule PratiBa.Scrapers.KlixScraper do
   @behaviour PratiBa.Scrapers.Scraper
 
-  @rss_url "https://www.klix.ba/rss/svevijesti"
+  @rss_url "https://www.klix.ba/rss"
 
   alias PratiBa.Scrapers.ScrapingHelper
 
