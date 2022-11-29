@@ -36,8 +36,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
       <div class="article-info">
         <span class="article-source"><%= @article.source.name %></span>
-        |
-        <.published_date article={@article} />
+        | <.published_date article={@article} />
       </div>
     </div>
     """
@@ -55,8 +54,10 @@ defmodule PratiBaWeb.Components.ArticleComponent do
           nil
       end
 
+    assigns = assign(assigns, relative_string: relative_string, datetime: datetime)
+
     ~H"""
-    <time class="article-published" datetime={datetime}><%= relative_string %></time>
+    <time class="article-published" datetime={@datetime}><%= @relative_string %></time>
     """
   end
 end
