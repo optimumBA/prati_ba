@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="csrf-token" content={csrf_token_value()} />
     <.live_title suffix=" · Prati.ba">
-      <%= assigns[:page_title] || "Prati.ba Admin"%>
+      <%= assigns[:page_title] || "Prati.ba Admin" %>
     </.live_title>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/admin.css")} />
     <script
