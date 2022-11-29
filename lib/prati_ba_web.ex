@@ -17,6 +17,17 @@ defmodule PratiBaWeb do
   and import those modules here.
   """
 
+  def static_paths, do: ~w(assets fonts images favicon.ico robots.txt)
+
+  def verified_routes do
+    quote do
+      use Phoenix.VerifiedRoutes,
+        endpoint: PratiBaWeb.Endpoint,
+        router: PratiBaWeb.Router,
+        statics: PratiBaWeb.static_paths()
+    end
+  end
+
   def controller do
     quote do
       use Phoenix.Controller, namespace: PratiBaWeb
@@ -24,6 +35,8 @@ defmodule PratiBaWeb do
       import Plug.Conn
       import PratiBaWeb.Gettext
       alias PratiBaWeb.Router.Helpers, as: Routes
+
+      unquote(verified_routes())
     end
   end
 
@@ -97,6 +110,8 @@ defmodule PratiBaWeb do
       import PratiBaWeb.ErrorHelpers
       import PratiBaWeb.Gettext
       alias PratiBaWeb.Router.Helpers, as: Routes
+
+      unquote(verified_routes())
     end
   end
 

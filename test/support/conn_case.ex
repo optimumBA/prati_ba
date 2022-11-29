@@ -29,6 +29,7 @@ defmodule PratiBaWeb.ConnCase do
 
       # The default endpoint for testing
       @endpoint PratiBaWeb.Endpoint
+      use PratiBaWeb, :verified_routes
     end
   end
 

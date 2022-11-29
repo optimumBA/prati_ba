@@ -31,7 +31,7 @@ defmodule PratiBaWeb.Endpoint do
     at: "/",
     from: :prati_ba,
     gzip: false,
-    only: ~w(articles assets fonts images favicon.ico robots.txt)
+    only: PratiBaWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.
