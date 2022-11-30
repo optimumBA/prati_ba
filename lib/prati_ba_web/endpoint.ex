@@ -1,7 +1,7 @@
 defmodule PratiBaWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :prati_ba
 
-  if Application.get_env(:prati_ba, :env) == :prod do
+  if Application.compile_env(:prati_ba, :env) == :prod do
     plug RemoteIp, headers: ~w[fly-client-ip]
   end
 
