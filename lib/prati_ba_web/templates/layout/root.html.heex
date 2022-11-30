@@ -35,9 +35,9 @@
   <body>
     <nav role="navigation">
       <section class="container">
-        <%= link to: Routes.article_index_path(@conn, :index) do %>
+        <.link navigate={~p"/"}>
           <h4 class="title">Prati.ba</h4>
-        <% end %>
+        </.link>
       </section>
     </nav>
     <%= @inner_content %>
