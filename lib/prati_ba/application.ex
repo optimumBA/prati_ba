@@ -28,9 +28,10 @@ defmodule PratiBa.Application do
       # Start the Presence supervisor
       PratiBaWeb.Presence,
       # Start the Endpoint (http/https)
-      PratiBaWeb.Endpoint
+      PratiBaWeb.Endpoint,
       # Start a worker by calling: PratiBa.Worker.start_link(arg)
       # {PratiBa.Worker, arg}
+      {Finch, name: MyFinch}
     ]
 
     children =
