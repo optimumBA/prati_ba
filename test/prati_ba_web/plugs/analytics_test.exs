@@ -143,9 +143,9 @@ defmodule PratiBaWeb.Plugs.AnalyticsTest do
       )
       |> get("/")
 
-    assert length(Analytics.list_visitors()) == 1
-    assert length(Analytics.list_visits()) == 1
-    refute is_nil(get_session(conn, :visitor_id))
-    refute is_nil(get_session(conn, :visit_id))
+    assert length(Analytics.list_visitors()) == 0
+    assert length(Analytics.list_visits()) == 0
+    assert is_nil(get_session(conn, :visitor_id))
+    assert is_nil(get_session(conn, :visit_id))
   end
 end
