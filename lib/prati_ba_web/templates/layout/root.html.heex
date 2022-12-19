@@ -9,6 +9,12 @@
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
+    <script
+      defer
+      data-domain={PratiBaWeb.Endpoint.host()}
+      src="https://plausible.io/js/script.js"
+    >
+    </script>
     <%= if assigns[:analytics_token] do %>
       <script type="text/javascript">
         window.analyticsToken = "<%= assigns[:analytics_token] %>";
