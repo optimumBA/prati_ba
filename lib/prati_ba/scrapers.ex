@@ -62,11 +62,11 @@ defmodule PratiBa.Scrapers do
 
   @article_keys [:image, :original_id, :published_at, :title, :url]
 
-  def fetch_new_articles(scrapers \\ @scrapers) do
+  def list(scrapers \\ @scrapers) do
     Articles.list_sources()
     |> Stream.map(&get_scraper(&1, scrapers))
     |> Stream.reject(&is_nil/1)
-    |> Enum.map(&scrape_articles/1)
+    |> Enum.to_list()
   end
 
   defp get_scraper(source = %Source{name: source_name}, scrapers) do
@@ -78,6 +78,10 @@ defmodule PratiBa.Scrapers do
         {source, scraper}
     end
   end
+
+  # def articles_list() do
+
+  # end
 
   defp scrape_articles({source, scraper}) do
     case scraper.articles() do
