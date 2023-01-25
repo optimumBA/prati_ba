@@ -29,10 +29,10 @@ defmodule PratiBa.Articles do
       [%Article{}, ...]
 
   """
-  def list_articles do
+  def list_articles(page: page, limit: limit) do
     Article
     |> Article.from_enabled_sources()
-    |> Article.newest()
+    |> Article.newest(limit, page)
     |> Repo.all()
   end
 
