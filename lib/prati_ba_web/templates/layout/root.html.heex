@@ -1,34 +1,24 @@
 <!DOCTYPE html>
 <html lang="bs">
-  <head>
-    <meta charset="utf-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="csrf-token" content={csrf_token_value()}>
-    <%= live_title_tag assigns[:page_title] || "Prati.ba" %>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="csrf-token" content={csrf_token_value()}>
+  <%= live_title_tag assigns[:page_title] || "Prati.ba" %>
     <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
-    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
-    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
-    <script
-      defer
-      data-domain={PratiBaWeb.Endpoint.host()}
-      src="https://plausible.io/js/script.js"
-    >
+    <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css" )} />
+    <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js" )}></script>
+    <script defer data-domain={PratiBaWeb.Endpoint.host()} src="https://plausible.io/js/script.js">
     </script>
     <%= if assigns[:analytics_token] do %>
       <script type="text/javascript">
         window.analyticsToken = "<%= assigns[:analytics_token] %>";
       </script>
-    <% end %>
-  </head>
-  <body>
-    <nav role="navigation">
-      <section class="container">
-        <%= link to: Routes.article_index_path(@conn, :index) do %>
-          <h4 class="title">Prati.ba</h4>
-        <% end %>
-      </section>
-    </nav>
-    <%= @inner_content %>
-  </body>
+      <% end %>
+</head>
+<body class="relative">
+  <%= @inner_content %>
+</body>
 </html>

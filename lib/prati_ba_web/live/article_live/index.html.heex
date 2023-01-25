@@ -1,5 +1,11 @@
-<section class="articles row row-responsive">
-  <%= for article <- @articles do %>
-    <ArticleComponent.article article={article} socket={@socket} />
-  <% end %>
-</section>
+<div class="w-full h-full absolute">
+  <ArticleComponent.navbar socket={@socket} />
+
+  <section class="w-full flex justify-center items-center">
+    <div class="block">
+      <%= for article <- @articles do %>
+        <ArticleComponent.article article={article} socket={@socket} />
+        <% end %>
+    </div>
+  </section>
+</div>
