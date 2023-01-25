@@ -1,5 +1,7 @@
-<section class="articles row row-responsive">
+<section class="articles row row-responsive" id="article_head" phx-update="append">
   <%= for article <- @articles do %>
     <ArticleComponent.article article={article} socket={@socket} />
-  <% end %>
+    <% end %>
 </section>
+<div id="footer" phx-hook="InfiniteScroollHook">
+</div>
