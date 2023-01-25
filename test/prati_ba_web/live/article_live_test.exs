@@ -22,6 +22,16 @@ defmodule PratiBaWeb.ArticleLiveTest do
     %{source: insert(:source)}
   end
 
+  defp create_loading_articles do
+    for i <- 1..20 do
+      insert(:article, title: "Article#{i}", published_at: ~N[2020-04-23 19:12:00])
+    end
+  end
+
+  defp number_of_articles(html) do
+    html |> :binary.matches("Article") |> length()
+  end
+
   describe "Index" do
     setup [:create_article, :create_source]
 
@@ -37,12 +47,26 @@ defmodule PratiBaWeb.ArticleLiveTest do
     end
 
     test "gets updated with new articles", %{conn: conn, source: source} do
-      {:ok, index_live, _html} = live(conn, Routes.article_index_path(conn, :index))
-
       attrs = build(:article, image: "https://placekitten.com/350/150") |> Map.from_struct()
       {:ok, article} = Articles.create_article(source, attrs)
 
+      {:ok, index_live, _html} = live(conn, Routes.article_index_path(conn, :index))
+
       assert has_element?(index_live, "#article-#{article.id}", article.title)
+    end
+
+    test "renders more articles when user scrolls to bottom", %{conn: conn} do
+      create_loading_articles()
+
+      {:ok, view, _html} = live(conn, Routes.article_index_path(conn, :index))
+
+      assert render(view) |> number_of_articles() == 14
+
+      view
+      |> element("#footer")
+      |> render_hook("load-more", %{})
+
+      assert render(view) |> number_of_articles() == 20
     end
   end
 end
