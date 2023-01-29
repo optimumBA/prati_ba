@@ -8,24 +8,26 @@ defmodule PratiBaWeb.ArticleLive.Index do
   def mount(_params, _session, socket) do
     socket =
       socket
-      |> assign(page: 1, limit: 15)
+      |> assign(:page, 1)
+      |> assign(:limit, 15)
       |> load_articles()
 
     {:ok, socket, temporary_assigns: [articles: []]}
   end
 
   defp load_articles(socket) do
-    assign(socket,
-      articles:
-        Articles.list_articles(
-          page: socket.assigns.page,
-          limit: socket.assigns.limit
-        )
+    assign(
+      socket,
+      :articles,
+      Articles.list_articles(
+        page: socket.assigns.page,
+        limit: socket.assigns.limit
+      )
     )
   end
 
   @impl true
-  def handle_event("load-more", _, socket) do
+  def handle_event("load_more", _, socket) do
     socket =
       socket
       |> update(:page, &(&1 + 1))

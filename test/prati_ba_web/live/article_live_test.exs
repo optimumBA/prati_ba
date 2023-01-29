@@ -64,7 +64,7 @@ defmodule PratiBaWeb.ArticleLiveTest do
 
       view
       |> element("#footer")
-      |> render_hook("load-more", %{})
+      |> render_hook("load_more", %{})
 
       assert render(view) |> number_of_articles() == 20
     end

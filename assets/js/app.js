@@ -25,9 +25,9 @@ import 'phoenix_html'
 import { Socket } from 'phoenix'
 import { LiveSocket } from 'phoenix_live_view'
 import topbar from 'topbar'
-import InfiniteScroollHook from './hooks/infinite_scroll_hook'
+import InfiniteScrollHook from './hooks/infinite_scroll_hook'
 
-const Hooks = { InfiniteScroollHook }
+const Hooks = { InfiniteScrollHook }
 
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
