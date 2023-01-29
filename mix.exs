@@ -69,8 +69,6 @@ defmodule PratiBa.MixProject do
       {:geolix, "~> 2.0"},
       {:geolix_adapter_mmdb2, "~> 0.6"},
       {:ua_inspector, "~> 3.0"},
-      # -----------------#######-------------------#
-
       {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
     ]
   end
