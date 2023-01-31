@@ -7,7 +7,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
   def article(assigns) do
     ~H"""
     <article phx-hook="ReverseHook" class="lg:px-10 lg:mt-6 lg:w-[907px] lg:h-[219px] sm:mt-7 sm:ml-2 sm:h-[120px] border-b-[1px] border-b-[#D9D9D9] border-w-[833px] " id={"article-" <> @article.id}>
-      <%= link to: Routes.article_path(@socket, :show, @article), class: "articles relative flex",  target: "_blank", rel: "noopener" do %>
+      <%= link to: Routes.article_path(@socket, :show, @article), class: "flex articles relative",  target: "_blank", rel: "noopener" do %>
         <.article_image article={@article} />
         <.article_details article={@article} socket={@socket}/>
       <% end %>
@@ -31,25 +31,23 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
   defp article_details(%{} = assigns) do
     ~H"""
-    <div class="text w-2/3 text-left lg:pl-6 sm:relative flex flex-col justify-between">
-      <div class="lg:text-3xl sm:text-sm font-bold sm:overflow-hidden sm:pl-2 lg:h-[145px]"><h1><%= @article.title %></h1></div>
+    <div class="text w-2/3 text-left lg:pl-6 relative flex flex-col justify-between">
+      <div class="lg:text-large sm:text-sm font-bold sm:overflow-hidden sm:pl-2 lg:h-[145px]"><h1><%= @article.title %></h1></div>
 
-
-
-      <div class="details lg:pt-2 lg:pb-4 text-light_gray lg:text-base sm:text-xs sm:pl-2 flex items-center">
+      <div class="details lg:pt-2 lg:pb-4 text-gray-10 lg:text-base sm:text-xs sm:pl-2 flex items-center">
         <span class="flex items-center">
-        <img src={Routes.static_path(@socket,"/images/link-2.png")} class="lg:pr-2 sm:pr-1"/>
-        <span class="article-source border-b-[1px] border-b-light_gray "><%= @article.source.name %></span>
+          <img src={Routes.static_path(@socket, "/images/link-2.png")} class="pr-2 pr-1">
+          <span class="article-source border-b-[1px] border-b-gray-10 "><%= @article.source.name %></span>
         </span>
 
         <span class="flex items-center">
-         <img src={Routes.static_path(@socket,"/images/calendar.png")} class="lg:pr-2 lg:pl-2 sm:pr-1 sm:pl-1"/>
-        <.publish_date article={@article} />
+          <img src={Routes.static_path(@socket, "/images/calendar.png")} class="sm:pr-2 sm:pl-2 pr-1 pl-1">
+          <.publish_date article={@article} />
         </span>
 
         <span class="flex items-center">
-        <img src={Routes.static_path(@socket,"/images/clock.png")} class="lg:pr-2 lg:pl-2 sm:pr-1 sm:pl-1"/>
-        <.published article={@article} />
+          <img src={Routes.static_path(@socket, "/images/clock.png")} class="sm:pr-2 sm:pl-2 pr-1 pl-1">
+          <.published article={@article} />
         </span>
       </div>
     </div>
@@ -85,30 +83,30 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
   def navbar(assigns) do
     ~H"""
-     <div ckass="w-full">
-       <div class="w-full flex relative items-center justify-center border-b-2 border-b-light_gray">
-        <nav role="navigation" class="w-full">
-        <section class="w-full flex items-center justify-around">
-          <div class="cursor-pointer">
-            <img src={Routes.static_path(@socket,"/images/sun.png")}>
-          </div>
+     <div class="w-full">
+        <div class="w-full flex relative items-center justify-center border-b-2 border-b-gray-10">
+          <nav role="navigation" class="w-full">
+            <section class="w-full flex items-center justify-around">
+              <div class="cursor-pointer">
+                <img src={Routes.static_path(@socket, "/images/sun.png")}>
+              </div>
 
-          <%= link to: Routes.article_index_path(@socket, :index) do %>
-            <div>
-              <img class="lg:py-4 sm:py-2" src={Routes.static_path(@socket, "/images/logo.png")} />
-            </div>
-            <% end %>
+              <%= link to: Routes.article_index_path(@socket, :index) do %>
+                <div>
+              <img class="lg:py-4 sm:py-2" src={Routes.static_path(@socket, "/images/logo.png")}>
+                </div>
+              <% end %>
 
               <div class="cursor-pointer">
-                <img class="cursor-pointer" src={Routes.static_path(@socket,"/images/search.png")}>
+                <img class="cursor-pointer" src={Routes.static_path(@socket, "/images/search.png")}>
               </div>
-        </section>
-        </nav>
+            </section>
+          </nav>
        </div>
-       <div class="w-full flex items-center justify-center border-b-2 text-light_gray border-b-light_gray">
-        <.date />
-        <.sm_screen_date/>
-        <.time socket={@socket}/>
+       <div class="w-full flex items-center justify-center border-b-2 text-gray-10 border-b-gray-10">
+          <.date />
+          <.sm_screen_date />
+          <.time socket={@socket} />
         </div>
     </div>
     """
@@ -137,8 +135,8 @@ defmodule PratiBaWeb.Components.ArticleComponent do
     {:ok, time} = Timex.format(now_utc, "%H:%M", :strftime)
 
     ~H"""
-     <div class="lg:flex items-center pl-2 sm:hidden">
-        <img class="pr-2" src={Routes.static_path(@socket, "/images/clock.png")}/>
+     <div class="lg:flex sm:flex items-center pl-2 sm:hidden">
+        <img class="pr-2" src={Routes.static_path(@socket, "/images/clock.png")}>
         <h1>
           <%= time %>
         </h1>
