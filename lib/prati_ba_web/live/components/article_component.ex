@@ -6,7 +6,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
   def article(assigns) do
     ~H"""
-    <article phx-hook="ReverseHook" class="lg:px-10 lg:mt-6 lg:w-[907px] lg:h-[219px] sm:mt-7 sm:ml-2 sm:h-[120px] border-b-[1px] border-b-[#D9D9D9] border-w-[833px] " id={"article-" <> @article.id}>
+    <article phx-hook="ReverseHook" class="lg:px-10 lg:mt-6 lg:w-[907px] lg:h-[219px] sm:mt-7 sm:ml-2 sm:h-[120px] border-b-[1px] border-b-[#D9D9D9] border-w-[833px] dark:border-b-gray-30" id={"article-" <> @article.id}>
       <%= link to: Routes.article_path(@socket, :show, @article), class: "flex articles relative",  target: "_blank", rel: "noopener" do %>
         <.article_image article={@article} />
         <.article_details article={@article} socket={@socket}/>
@@ -32,11 +32,12 @@ defmodule PratiBaWeb.Components.ArticleComponent do
   defp article_details(%{} = assigns) do
     ~H"""
     <div class="text w-2/3 text-left lg:pl-6 relative flex flex-col justify-between">
-      <div class="lg:text-large sm:text-sm font-bold sm:overflow-hidden sm:pl-2 lg:h-[145px]"><h1><%= @article.title %></h1></div>
+      <div class="lg:text-large sm:text-sm font-bold sm:overflow-hidden sm:pl-2 lg:h-[145px] dark:text-[#D2D5DA] "><h1><%= @article.title %></h1></div>
 
-      <div class="details lg:pt-2 lg:pb-4 text-gray-10 lg:text-base sm:text-xs sm:pl-2 flex items-center">
+      <div class="details lg:pt-2 lg:pb-4 text-gray-10 dark:text-gray-20 lg:text-base sm:text-xs sm:pl-2 flex items-center">
         <span class="flex items-center">
-          <img src={Routes.static_path(@socket, "/images/link-2.png")} class="pr-2 pr-1">
+          <img class="pr-2 pr-1 block dark:hidden" src={Routes.static_path(@socket, "/images/link-2.png")}>
+          <img class="pr-2 pr-1 dark:block hidden" src={Routes.static_path(@socket, "/images/link_dark.png")}>
           <span class="article-source border-b-[1px] border-b-gray-10 "><%= @article.source.name %></span>
         </span>
 
@@ -84,26 +85,29 @@ defmodule PratiBaWeb.Components.ArticleComponent do
   def navbar(assigns) do
     ~H"""
      <div class="w-full">
-        <div class="w-full flex relative items-center justify-center border-b-2 border-b-gray-10">
+        <div class="w-full flex relative items-center justify-center border-b-2 border-b-gray-10 dark:border-b-gray-30">
           <nav role="navigation" class="w-full">
             <section class="w-full flex items-center justify-around">
-              <div class="cursor-pointer">
-                <img src={Routes.static_path(@socket, "/images/sun.png")}>
+              <div id="theme-toggle" phx-hook="ToggleBgHook" class="cursor-pointer">
+                <img src={Routes.static_path(@socket, "/images/sun.png")} class="dark:hidden block">
+                <img src={Routes.static_path(@socket, "/images/moon.png")} class="dark:block hidden">
               </div>
 
               <%= link to: Routes.article_index_path(@socket, :index) do %>
-                <div>
-              <img class="lg:py-4 sm:py-2" src={Routes.static_path(@socket, "/images/logo.png")}>
-                </div>
+              <div>
+              <img class="dark:hidden block lg:py-4 sm:py-2" src={Routes.static_path(@socket, "/images/logo.png")}>
+              <img class="dark:block hidden lg:py-4 sm:py-2" src={Routes.static_path(@socket, "/images/logo_dark.png")}>
+              </div>
               <% end %>
 
               <div class="cursor-pointer">
-                <img class="cursor-pointer" src={Routes.static_path(@socket, "/images/search.png")}>
+                <img class="dark:hidden block cursor-pointer" src={Routes.static_path(@socket, "/images/search.png")}>
+                <img class="dark:block hidden cursor-pointer" src={Routes.static_path(@socket, "/images/search _dark.png")}>
               </div>
             </section>
           </nav>
        </div>
-       <div class="w-full flex items-center justify-center border-b-2 text-gray-10 border-b-gray-10">
+       <div class="w-full flex items-center justify-center border-b-2 text-gray-10 dark:border-b-gray-30 dark:text-gray-20 border-b-gray-10">
           <.date />
           <.sm_screen_date />
           <.time socket={@socket} />

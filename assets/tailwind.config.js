@@ -4,6 +4,7 @@
 let plugin = require('tailwindcss/plugin')
 
 module.exports = {
+  darkMode: 'class',
   content: ['./js/**/*.js', '../lib/*_web.ex', '../lib/*_web/**/*.*ex'],
   theme: {
     screens: {
@@ -25,8 +26,10 @@ module.exports = {
       colors: {
         gray: {
           10: '#9B9B9B',
-        }
-      }
+          20: '#6C727F',
+          30: '#363A44',
+        },
+      },
     },
   },
   plugins: [
