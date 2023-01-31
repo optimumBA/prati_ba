@@ -15,10 +15,13 @@ module.exports = {
       lg: '1240px',
       // => @media (min-width: 1240px) { ... }
     },
-    colors: {
-      light_gray: '#9B9B9B',
+    extend: {
+      colors: {
+        gray: {
+          10: '#9B9B9B',
+        }
+      }
     },
-    extend: {},
   },
   plugins: [
     require('@tailwindcss/forms'),
