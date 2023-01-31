@@ -15,6 +15,12 @@ module.exports = {
       lg: '1240px',
       // => @media (min-width: 1240px) { ... }
     },
+    fontSize: {
+      xs: '11px',
+      sm: '14px',
+      base: '16px',
+      large: '31px',
+    },
     extend: {
       colors: {
         gray: {
