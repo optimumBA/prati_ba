@@ -16,11 +16,16 @@
       <script type="text/javascript">
         window.analyticsToken = "<%= assigns[:analytics_token] %>";
       </script>
-      <% end %>
+    <% end %>
+    <script>
+      if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark')
+      }
+    </script>
 </head>
-
-<body class="relative">
+<body class="relative dark:bg-[#212936]">
   <%= @inner_content %>
 </body>
-
 </html>

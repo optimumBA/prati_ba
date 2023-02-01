@@ -1,11 +1,11 @@
-<div id="page" class="absolute w-full">
+<div class="w-full h-full absolute">
   <ArticleComponent.navbar socket={@socket} />
 
   <section class="w-full flex justify-center items-center">
     <div class="block">
-      <%= for article <- @articles do %>
-        <ArticleComponent.article article={article} socket={@socket} />
-        <% end %>
+      <%= for {article, index} <- Enum.with_index(@articles) do %>
+        <ArticleComponent.article article={article} index={index} socket={@socket} />
+      <% end %>
     </div>
   </section>
 </div>
