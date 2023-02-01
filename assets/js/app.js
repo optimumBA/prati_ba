@@ -24,17 +24,11 @@ import 'phoenix_html'
 import { Socket } from 'phoenix'
 import { LiveSocket } from 'phoenix_live_view'
 import topbar from 'topbar'
-import ReverseHook from './hooks/reverse_hook'
-
-const Hooks = {
-  ReverseHook,
-}
 
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute('content')
 let liveSocket = new LiveSocket('/live', Socket, {
-  hooks: Hooks,
   params: { _csrf_token: csrfToken },
 })
 
