@@ -19,14 +19,14 @@ module.exports = {
       xs: '11px',
       sm: '14px',
       base: '16px',
-      large: '31px',
+      lg: '31px',
     },
     extend: {
       colors: {
         gray: {
           10: '#9B9B9B',
-        }
-      }
+        },
+      },
     },
   },
   plugins: [
