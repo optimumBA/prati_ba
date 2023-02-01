@@ -4,6 +4,7 @@
 let plugin = require('tailwindcss/plugin')
 
 module.exports = {
+  darkMode: 'class',
   content: ['./js/**/*.js', '../lib/*_web.ex', '../lib/*_web/**/*.*ex'],
   theme: {
     screens: {
@@ -15,16 +16,21 @@ module.exports = {
       lg: '1240px',
       // => @media (min-width: 1240px) { ... }
     },
-    colors: {
-      light_gray: '#9B9B9B',
-    },
     fontSize: {
       xs: '11px',
       sm: '14px',
       base: '16px',
-      large: '31px',
+      lg: '31px',
     },
-    extend: {},
+    extend: {
+      colors: {
+        gray: {
+          10: '#9B9B9B',
+          20: '#6C727F',
+          30: '#363A44',
+        },
+      },
+    },
   },
   plugins: [
     require('@tailwindcss/forms'),
