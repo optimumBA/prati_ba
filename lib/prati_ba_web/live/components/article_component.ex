@@ -6,12 +6,14 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
   def article(assigns) do
     ~H"""
-    <article phx-hook="ReverseHook" class="lg:px-10 lg:mt-6 lg:w-[907px] lg:h-[219px] sm:mt-7 sm:ml-2 sm:h-[120px] border-b-[1px] border-b-[#D9D9D9] border-w-[833px] " id={"article-" <> @article.id}>
-      <%= link to: Routes.article_path(@socket, :show, @article), class: "flex articles relative",  target: "_blank", rel: "noopener" do %>
-        <.article_image article={@article} />
-        <.article_details article={@article} socket={@socket}/>
-      <% end %>
-    </article>
+      <article class={"articles relative mt-7 lg:w-[907px] lg:h-[219px] sm:ml-2 sm:h-[120px] border-b-[1px] border-b-[#D9D9D9]"} id={"article-" <> @article.id}>
+        <%= link to: Routes.article_path(@socket, :show, @article), target: "_blank", rel: "noopener" do %>
+          <div class={"#{if rem(@index, 2)==1 do "lg:flex-row" else "lg:flex-row-reverse" end} flex"}>
+            <.article_image article={@article} />
+            <.article_details article={@article} index={@index} socket={@socket}/>
+          </div>
+        <% end %>
+      </article>
     """
   end
 
@@ -31,8 +33,8 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
   defp article_details(%{} = assigns) do
     ~H"""
-    <div class="text w-2/3 text-left lg:pl-6 relative flex flex-col justify-between">
-      <div class="lg:text-large sm:text-sm font-bold sm:overflow-hidden sm:pl-2 lg:h-[145px]"><h1><%= @article.title %></h1></div>
+    <div class={"#{if rem(@index, 2)==1 do "lg:pl-5" else "lg:pr-5" end} text w-2/3 text-left relative flex flex-col justify-between"}>
+      <div class="lg:text-lg sm:text-sm font-bold sm:overflow-hidden sm:pl-2 lg:h-[145px]"><h1><%= @article.title %></h1></div>
 
       <div class="details lg:pt-2 lg:pb-4 text-gray-10 lg:text-base sm:text-xs sm:pl-2 flex items-center">
         <span class="flex items-center">
