@@ -24,11 +24,9 @@ import 'phoenix_html'
 import { Socket } from 'phoenix'
 import { LiveSocket } from 'phoenix_live_view'
 import topbar from 'topbar'
-import ReverseHook from './hooks/reverse_hook'
 import ToggleBgHook from './hooks/toggle_bg_hook'
 
-const Hooks = {
-  ReverseHook,
+Hooks = {
   ToggleBgHook,
 }
 
