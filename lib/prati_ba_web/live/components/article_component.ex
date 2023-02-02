@@ -6,9 +6,9 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
   def article(assigns) do
     ~H"""
-      <article class="group mt-5 lg:w-[907px] lg:h-[230px] sm:ml-2 border-b-[1px] border-b-[#D9D9D9]" id={"article-" <> @article.id}>
+      <article class="group mt-5 sm:w-[907px] sm:h-[230px] ml-2 border-b-[1px] border-b-[#D9D9D9]" id={"article-" <> @article.id}>
         <%= link to: Routes.article_path(@socket, :show, @article), target: "_blank", rel: "noopener" do %>
-          <div class="flex flex-row lg:group-odd:flex-row-reverse my-3 lg:gap-5">
+          <div class="flex flex-row sm:group-odd:flex-row-reverse my-3 sm:gap-5">
             <.article_image article={@article} />
             <.article_details article={@article} socket={@socket} />
           </div>
@@ -25,28 +25,28 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
   defp article_image(assigns) do
     ~H"""
-      <%= img_tag(ArticleImage.url({@article.image, @article}), class: "lg:w-[302px] lg:h-[215px] sm:h-[96px] sm:w-[119px]") %>
+      <%= img_tag(ArticleImage.url({@article.image, @article}), class: "sm:w-[302px] sm:h-[215px] h-[96px] w-[119px]") %>
     """
   end
 
   defp article_details(%{} = assigns) do
     ~H"""
     <div class="text w-2/3 text-left relative flex flex-col justify-between">
-      <div class="lg:text-lg sm:text-sm font-bold sm:overflow-hidden sm:pl-2 lg:h-[145px]"><h1><%= @article.title %></h1></div>
+      <div class="sm:text-lg text-sm font-bold overflow-hidden pl-2 sm:h-[145px]"><h1><%= @article.title %></h1></div>
 
-      <div class="details lg:pt-2 text-gray-10 lg:text-base sm:text-xs sm:pl-2 flex items-center">
+      <div class="details sm:pt-2 text-gray-10 sm:text-base text-xs pl-2 flex items-center">
         <span class="flex items-center">
           <img src={Routes.static_path(@socket, "/images/link-2.png")} class="pr-2 pr-1">
           <span class="article-source border-b-[1px] border-b-gray-10 "><%= @article.source.name %></span>
         </span>
 
         <span class="flex items-center">
-          <img src={Routes.static_path(@socket, "/images/calendar.png")} class="sm:pr-2 sm:pl-2 pr-1 pl-1">
+          <img src={Routes.static_path(@socket, "/images/calendar.png")} class="pr-2 pl-2 pr-1 pl-1">
           <.publish_date article={@article} />
         </span>
 
         <span class="flex items-center">
-          <img src={Routes.static_path(@socket, "/images/clock.png")} class="sm:pr-2 sm:pl-2 pr-1 pl-1">
+          <img src={Routes.static_path(@socket, "/images/clock.png")} class="pr-2 pl-2 pr-1 pl-1">
           <.published article={@article} />
         </span>
       </div>
@@ -88,7 +88,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
           <nav role="navigation" class="w-full">
             <section class="w-full flex items-center justify-around">
               <%= link to: Routes.article_index_path(@socket, :index) do %>
-                  <img class="lg:py-4 sm:py-2" src={Routes.static_path(@socket, "/images/logo.png")}>
+                  <img class="sm:py-4 py-2" src={Routes.static_path(@socket, "/images/logo.png")}>
               <% end %>
             </section>
           </nav>
@@ -107,7 +107,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
     {:ok, today} = Timex.format(now_utc, "%A, %d.%m.%Y.", :strftime)
 
     ~H"""
-    <h1 class="py-3 lg:block sm:hidden"><%= today %></h1>
+    <h1 class="py-3 sm:block hidden"><%= today %></h1>
     """
   end
 
@@ -116,7 +116,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
     {:ok, today} = Timex.format(now_utc, "%A, %d/%m/%Y", :strftime)
 
     ~H"""
-    <h1 class="py-3 lg:hidden sm:block"><%= today %> </h1>
+    <h1 class="py-3 sm:hidden block"><%= today %> </h1>
     """
   end
 
@@ -125,7 +125,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
     {:ok, time} = Timex.format(now_utc, "%H:%M", :strftime)
 
     ~H"""
-    <div class="lg:flex sm:flex items-center pl-2 sm:hidden">
+    <div class="flex items-center pl-2 hidden sm:flex">
       <img class="pr-2" src={Routes.static_path(@socket, "/images/clock.png")}>
       <%= time %>
     </div>

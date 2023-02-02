@@ -6,15 +6,6 @@ let plugin = require('tailwindcss/plugin')
 module.exports = {
   content: ['./js/**/*.js', '../lib/*_web.ex', '../lib/*_web/**/*.*ex'],
   theme: {
-    screens: {
-      /* Responsive breakpoints */
-      sm: '375px',
-      // => @media (min-width: 375px) { ... }
-      md: '768px',
-      // => @media (min-width: 768px) { ... }
-      lg: '1240px',
-      // => @media (min-width: 1240px) { ... }
-    },
     fontSize: {
       xs: '11px',
       sm: '14px',
