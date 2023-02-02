@@ -3,8 +3,8 @@
 
   <section class="w-full flex justify-center items-center">
     <div class="block">
-      <%= for {article, index} <- Enum.with_index(@articles) do %>
-        <ArticleComponent.article article={article} index={index} socket={@socket} />
+      <%= for article <- @articles do %>
+        <ArticleComponent.article article={article} socket={@socket} />
       <% end %>
     </div>
   </section>
