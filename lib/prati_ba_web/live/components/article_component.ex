@@ -6,9 +6,9 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
   def article(assigns) do
     ~H"""
-      <article class="lg:px-10 mt-7 lg:w-[907px] lg:h-[219px] sm:ml-2 sm:h-[120px] border-b-[1px] border-b-[#D9D9D9]" id={"article-" <> @article.id}>
+      <article class="group lg:px-10 mt-7 lg:w-[907px] lg:h-[219px] sm:ml-2 sm:h-[120px] border-b-[1px] border-b-[#D9D9D9]" id={"article-" <> @article.id}>
         <%= link to: Routes.article_path(@socket, :show, @article), target: "_blank", rel: "noopener" do %>
-          <div class={"#{if rem(@index, 2)==1 do "lg:flex-row" else "lg:flex-row-reverse" end} flex"}>
+          <div class="flex flex-row lg:group-odd:flex-row-reverse">
             <.article_image article={@article} />
             <.article_details article={@article} index={@index} socket={@socket}/>
           </div>
