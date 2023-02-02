@@ -7,7 +7,7 @@ module.exports = {
   content: ['./js/**/*.js', '../lib/*_web.ex', '../lib/*_web/**/*.*ex'],
   theme: {
     fontSize: {
-      xs: '11px',
+      xs: '10px',
       sm: '14px',
       base: '16px',
       lg: '31px',
