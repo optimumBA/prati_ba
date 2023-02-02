@@ -1,13 +1,16 @@
 <div class="w-full h-full absolute">
   <ArticleComponent.navbar socket={@socket} />
 
-  <section class="w-full flex justify-center items-center" id="article_head" phx-update="append">
-    <div class="block">
+  <section class="w-full flex justify-center items-center">
+    <div class="block" id="article_head" phx-update="append">
       <%= for article <- @articles do %>
         <ArticleComponent.article article={article} socket={@socket} />
       <% end %>
     </div>
   </section>
-</div>
-<div id="footer" phx-hook="InfiniteScrollHook">
+  <div id="scroll" phx-hook="ScrollDownHook" class="w-full dark:bg-[#212936] bg-white sticky flex items-center justify-center sm:bottom-0 bottom-0 cursor-pointer">
+    <img src={Routes.static_path(@socket, "/images/down.png")}>
+  </div>
+  <div id="footer" phx-hook="InfiniteScrollHook" class="w-full">
+  </div>
 </div>
