@@ -1,6 +1,5 @@
 // We import the CSS which is extracted to its own file by esbuild.
 // Remove this line if you add a your own CSS build pipeline (e.g postcss).
-import '../css/app.scss'
 
 // If you want to use Phoenix channels, run `mix help phx.gen.channel`
 // to get started and then uncomment the line below.
@@ -25,9 +24,13 @@ import 'phoenix_html'
 import { Socket } from 'phoenix'
 import { LiveSocket } from 'phoenix_live_view'
 import topbar from 'topbar'
+import ToggleBgHook from './hooks/toggle_bg_hook'
 import InfiniteScrollHook from './hooks/infinite_scroll_hook'
 
-const Hooks = { InfiniteScrollHook }
+Hooks = {
+  ToggleBgHook,
+  InfiniteScrollHook,
+}
 
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
