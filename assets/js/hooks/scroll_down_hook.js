@@ -1,13 +1,12 @@
 export default {
   mounted() {
-    const scroll_down = () => {
-      window.scrollBy({
-        top: window.innerHeight,
-        left: 0,
+    const scrollDown = () => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
         behavior: 'smooth',
       })
     }
     const button = document.getElementById('scroll')
-    button.addEventListener('click', scroll_down)
+    button.addEventListener('click', scrollDown)
   },
 }
