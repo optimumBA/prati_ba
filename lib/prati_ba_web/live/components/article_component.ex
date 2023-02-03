@@ -47,14 +47,14 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
         <span class="flex items-center">
           <img src={Routes.static_path(@socket, "/images/clock.png")} class="sm:pr-2 sm:pl-2 pr-1 pl-1">
-          <.published article={@article} />
+          <.relative_publish_time article={@article} />
         </span>
       </div>
     </div>
     """
   end
 
-  defp published(%{article: %Article{published_at: published_at}} = assigns) do
+  defp relative_publish_time(%{article: %Article{published_at: published_at}} = assigns) do
     datetime = DateTime.from_naive!(published_at, "Etc/UTC")
 
     relative_string =
