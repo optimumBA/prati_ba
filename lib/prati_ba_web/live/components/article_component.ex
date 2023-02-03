@@ -97,7 +97,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
               <div class="w-2/3 sm:pl-3">
                 <%= link to: Routes.article_index_path(@socket, :index) do %>
                   <img src={Routes.static_path(@socket, "/images/logo.svg")} class="dark:hidden block sm:py-4 py-2">
-                  <img src={Routes.static_path(@socket, "/images/logo_dark.svg")} class="dark:block hidden sm:py-4 py-2 mb-[-14px]">
+                  <img src={Routes.static_path(@socket, "/images/dark_logo.png")} class="dark:block hidden sm:py-4 py-2">
                 <% end %>
               </div>
             </section>
