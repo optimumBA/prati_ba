@@ -141,4 +141,12 @@ defmodule PratiBaWeb.Components.ArticleComponent do
     </div>
     """
   end
+
+  def new_articles_indicator(assigns) do
+    ~H"""
+    <div class="w-full flex items-center justify-center mt-6">
+      <div id="indicator" phx-click="refresh_articles" class="sm:px-16 dark:text-white text-[#505050] bg-[#C0EB3C] rounded-xl px-24 py-1 cursor-pointer">Nove vijesti</div>
+    </div>
+    """
+  end
 end
