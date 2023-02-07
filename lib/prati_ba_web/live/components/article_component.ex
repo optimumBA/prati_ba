@@ -83,7 +83,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
   def navbar(assigns) do
     ~H"""
-     <div class="w-full">
+     <div class="w-full mt-2">
         <div class="w-full flex relative items-center justify-center border-b-2 border-b-gray-10">
           <nav role="navigation" class="w-full">
             <section class="w-full flex items-center justify-around">
