@@ -36,17 +36,17 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
       <div class="details sm:pt-2 text-gray-10 sm:text-base text-xs pl-2 flex items-center">
         <span class="flex items-center">
-          <img src={Routes.static_path(@socket, "/images/link-2.svg")} class="sm:pr-2 pr-1">
+          <img src={Routes.static_path(@socket, "/images/icons/link-2.svg")} class="sm:pr-2 pr-1">
           <span class="article-source border-b-[1px] border-b-gray-10 "><%= @article.source.name %></span>
         </span>
 
         <span class="flex items-center">
-          <img src={Routes.static_path(@socket, "/images/calendar.svg")} class="sm:pr-2 sm:pl-2 pr-1 pl-1">
+          <img src={Routes.static_path(@socket, "/images/icons/calendar.svg")} class="sm:pr-2 sm:pl-2 pr-1 pl-1">
           <.publish_date article={@article} />
         </span>
 
         <span class="flex items-center">
-          <img src={Routes.static_path(@socket, "/images/clock.svg")} class="sm:pr-2 sm:pl-2 pr-1 pl-1">
+          <img src={Routes.static_path(@socket, "/images/icons/clock.svg")} class="sm:pr-2 sm:pl-2 pr-1 pl-1">
           <.relative_publish_time article={@article} />
         </span>
       </div>
@@ -88,7 +88,8 @@ defmodule PratiBaWeb.Components.ArticleComponent do
           <nav role="navigation" class="w-full">
             <section class="w-full flex items-center justify-around">
               <%= link to: Routes.article_index_path(@socket, :index) do %>
-                  <img src={Routes.static_path(@socket, "/images/logo.svg")} class="sm:py-4 py-2">
+                <img srcset={Routes.static_path(@socket, "/images/logos/logo_md.png 2x, /images/logos/logo_bg.png 3x")}
+                  src={Routes.static_path(@socket, "/images/logos/logo_sm.png")}  width="148.95" height="64" class="sm:py-4 py-2">
               <% end %>
             </section>
           </nav>
@@ -126,7 +127,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
     ~H"""
     <div class="flex items-center pl-2 hidden sm:flex">
-      <img src={Routes.static_path(@socket, "/images/clock.svg")} class="pr-2">
+      <img src={Routes.static_path(@socket, "/images/icons/clock.svg")} width="28" class="pr-2">
       <%= time %>
     </div>
     """
