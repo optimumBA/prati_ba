@@ -20,11 +20,7 @@
       src={Routes.static_path(@conn, "/assets/app.js")}
     >
     </script>
-    <script
-      defer
-      data-domain={PratiBaWeb.Endpoint.host()}
-      src="https://plausible.io/js/script.js"
-    >
+    <script defer data-domain={PratiBaWeb.Endpoint.host()} src="https://plausible.io/js/script.js">
     </script>
     <%= if assigns[:analytics_token] do %>
       <script type="text/javascript">
