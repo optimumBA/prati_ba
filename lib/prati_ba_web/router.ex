@@ -7,7 +7,7 @@ defmodule PratiBaWeb.Router do
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_live_flash
-    plug :put_root_layout, {PratiBaWeb.LayoutView, :root}
+    plug :put_root_layout, html: {PratiBaWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
   end
@@ -17,7 +17,7 @@ defmodule PratiBaWeb.Router do
   end
 
   pipeline :admin do
-    plug :put_root_layout, {PratiBaWeb.LayoutView, :admin}
+    plug :put_root_layout, html: {PratiBaWeb.LayoutView, :admin}
     plug :admin_auth
   end
 
