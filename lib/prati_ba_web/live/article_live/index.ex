@@ -20,7 +20,7 @@ defmodule PratiBaWeb.ArticleLive.Index do
   end
 
   @impl true
-  def handle_event("refresh_articles", _, socket) do
+  def handle_event("refresh_articles", _params, socket) do
     socket =
       socket
       |> assign(:page, 1)
@@ -30,7 +30,7 @@ defmodule PratiBaWeb.ArticleLive.Index do
     {:noreply, socket}
   end
 
-  def handle_event("load_more", _, socket) do
+  def handle_event("load_more", _params, socket) do
     socket =
       socket
       |> assign(:update, "append")
@@ -41,7 +41,7 @@ defmodule PratiBaWeb.ArticleLive.Index do
   end
 
   @impl true
-  def handle_info({Articles, [:article | _], _}, socket) do
+  def handle_info({Articles, [:article | _status], _article}, socket) do
     socket =
       socket
       |> assign(:new_articles, true)
