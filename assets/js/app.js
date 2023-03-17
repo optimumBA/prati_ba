@@ -24,14 +24,16 @@ import 'phoenix_html'
 import { Socket } from 'phoenix'
 import { LiveSocket } from 'phoenix_live_view'
 import topbar from 'topbar'
+import DisplayTimeHook from './hooks/display_time_hook'
 import InfiniteScrollHook from './hooks/infinite_scroll_hook'
 import ScrollDownHook from './hooks/scroll_down_hook'
 import ToggleBgHook from './hooks/toggle_bg_hook'
 
 Hooks = {
-  ScrollDownHook,
+  DisplayTimeHook,
   InfiniteScrollHook,
-  ToggleBgHook,
+  ScrollDownHook,
+  ToggleBgHook
 }
 
 let csrfToken = document
