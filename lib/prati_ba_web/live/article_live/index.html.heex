@@ -4,15 +4,14 @@
     <ArticleComponent.new_articles_indicator />
   <% end %>
   <section class="w-full flex justify-center items-center">
-    <div class="block" id="article_head" phx-update={@update}>
+    <div id="article_list" class="w-fit md:w-10/12 xl:w-[910px] mx-auto block px-3 mt-5" phx-update={@update}>
       <%= for article <- @articles do %>
         <ArticleComponent.article article={article} socket={@socket} />
       <% end %>
     </div>
   </section>
-  <div id="scroll" phx-hook="ScrollDownHook" class="w-full dark:bg-[#212936] bg-white sticky flex items-center justify-center sm:bottom-0 bottom-0 cursor-pointer">
-    <img src={Routes.static_path(@socket, "/images/icons/down.svg")}>
+  <div id="scroll" phx-hook="ScrollDownHook" class="w-full dark:bg-[#212936] bg-white sticky flex items-center justify-center bottom-0 cursor-pointer">
+    <img src={Routes.static_path(@socket, "/images/icons/down.svg")} class="my-1 md:my-0 w-6 md:w-8">
   </div>
-  <div id="footer" phx-hook="InfiniteScrollHook" class="w-full">
-  </div>
+  <div id="footer" phx-hook="InfiniteScrollHook" class="w-full"></div>
 </div>
