@@ -1,7 +1,8 @@
 // See the Tailwind configuration guide for advanced usage
 // https://tailwindcss.com/docs/configuration
 
-let plugin = require('tailwindcss/plugin')
+const defaultTheme = require('tailwindcss/defaultTheme')
+const plugin = require('tailwindcss/plugin')
 
 module.exports = {
   darkMode: 'class',
@@ -13,7 +14,13 @@ module.exports = {
       base: '16px',
       lg: '31px',
     },
+    fontFamily: {
+      inter: ['Inter', ...defaultTheme.fontFamily.sans],
+    },
     extend: {
+      spacing: {
+        '1.5': '6px',
+      },
       colors: {
         gray: {
           10: '#9B9B9B',
