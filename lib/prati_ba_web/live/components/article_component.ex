@@ -130,7 +130,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
     {:ok, today} = Timex.format(now_utc, "%A, %d.%m.%Y.", :strftime)
 
     ~H"""
-    <h1 class="py-3 sm:block hidden"><%= today %></h1>
+    <h1 class="py-2 sm:py-3 sm:block hidden capitalize"><%= today %></h1>
     """
   end
 
@@ -139,26 +139,29 @@ defmodule PratiBaWeb.Components.ArticleComponent do
     {:ok, today} = Timex.format(now_utc, "%A, %d/%m/%Y", :strftime)
 
     ~H"""
-    <h1 class="py-3 sm:hidden block"><%= today %> </h1>
+    <h1 class="py-2 sm:py-3 sm:hidden block capitalize"><%= today %> </h1>
     """
   end
 
   defp time(assigns) do
-    {:ok, now_utc} = DateTime.now("Europe/Sarajevo")
-    {:ok, time} = Timex.format(now_utc, "%H:%M", :strftime)
-
     ~H"""
-    <div class="flex items-center pl-2 hidden sm:flex">
-      <img src={Routes.static_path(@socket, "/images/icons/clock.svg")} class="pr-2">
-      <%= time %>
+    <div id="time" class="flex items-center pl-2 hidden sm:flex" phx-hook="DisplayTimeHook">
+      <img src={Routes.static_path(@socket, "/images/icons/clock.svg")} class="mr-2">
+      <span id="current_time"></span>
     </div>
     """
   end
 
   def new_articles_indicator(assigns) do
     ~H"""
-    <div class="w-full flex items-center justify-center mt-6">
-      <div id="indicator" phx-click="refresh_articles" class="sm:px-16 dark:text-white text-[#505050] bg-[#C0EB3C] rounded-xl px-24 py-1 cursor-pointer">Nove vijesti</div>
+    <div class="mx-4 flex items-center justify-center mt-6">
+      <div
+        id="indicator"
+        class="w-full sm:w-max sm:px-16 dark:text-white text-gray-700 sm:text-white text-center text-sm sm:text-base bg-[#C0EB3C] bg-opacity-70 hover:bg-opacity-90 duration-200 sm:font-semibold rounded-full px-24 py-1.5 cursor-pointer"
+        phx-click="refresh_articles"
+        >
+        Nove vijesti
+      </div>
     </div>
     """
   end
