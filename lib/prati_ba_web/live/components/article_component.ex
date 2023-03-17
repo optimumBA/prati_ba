@@ -47,8 +47,9 @@ defmodule PratiBaWeb.Components.ArticleComponent do
         </span>
 
         <span class="flex items-center">
-          <img src={Routes.static_path(@socket, "/images/icons/calendar.svg")} class="sm:pr-2 sm:pl-2 pr-1 pl-1">
-          <.publish_date article={@article} />
+          <img src={Routes.static_path(@socket, "/images/icons/calendar.svg")} class="w-5 sm:w-8 px-1 sm:px-2">
+          <div class="block sm:hidden"><.publish_date article={@article} format={"%d/%m/%Y"}/></div>
+          <div class="hidden sm:block"><.publish_date article={@article} format={"%d.%m.%Y"} /></div>
         </span>
 
         <span class="flex items-center">
@@ -73,14 +74,20 @@ defmodule PratiBaWeb.Components.ArticleComponent do
       end
 
     ~H"""
-    <time class="article-published" datetime={datetime}><%= relative_string %></time>
+    <time class="block sm:hidden article-published truncate overflow-hidden" datetime={datetime}><%= trim_relative_publish_time(relative_string) %></time>
+    <time class="hidden sm:block article-published truncate overflow-hidden" datetime={datetime}><%= relative_string %></time>
     """
   end
 
-  defp publish_date(%{article: %Article{published_at: published_at}} = assigns) do
-    datetime = DateTime.from_naive!(published_at, "Etc/UTC")
+  defp trim_relative_publish_time(relative_string) do
+    relative_string
+    |> String.replace([" minute", " minuta", " minutu", " minutes"], "min")
+    |> String.replace([" sat", " sata", " sati", " hour"], "h")
+  end
 
-    {:ok, publish_date} = Timex.format(datetime, "%d.%m.%Y", :strftime)
+  defp publish_date(%{article: %Article{published_at: published_at}, format: format} = assigns) do
+    datetime = DateTime.from_naive!(published_at, "Etc/UTC")
+    {:ok, publish_date} = Timex.format(datetime, format, :strftime)
 
     ~H"""
       <span><%= publish_date%></span>
