@@ -25,12 +25,14 @@ import { Socket } from 'phoenix'
 import { LiveSocket } from 'phoenix_live_view'
 import topbar from 'topbar'
 import DisplayTimeHook from './hooks/display_time_hook'
+import HeaderHook from './hooks/header_hook'
 import InfiniteScrollHook from './hooks/infinite_scroll_hook'
 import ScrollDownHook from './hooks/scroll_down_hook'
 import ToggleBgHook from './hooks/toggle_bg_hook'
 
 Hooks = {
   DisplayTimeHook,
+  HeaderHook,
   InfiniteScrollHook,
   ScrollDownHook,
   ToggleBgHook
