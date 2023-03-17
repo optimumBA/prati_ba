@@ -3,6 +3,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
   alias PratiBa.Articles.Article
   alias PratiBa.Uploaders.ArticleImage
+  alias PratiBaWeb.Components.Icons
 
   def article(assigns) do
     ~H"""
@@ -34,15 +35,14 @@ defmodule PratiBaWeb.Components.ArticleComponent do
     """
   end
 
-  defp article_details(%{} = assigns) do
+  defp article_details(assigns) do
     ~H"""
     <div class="w-3/4 text-left relative flex flex-col justify-between">
       <div class="text-sm sm:text-[20px] lg:text-lg font-semibold lg:font-medium overflow-hidden leading-tight pl-2 lg:min-h-[145px] dark:text-gray-300"><h1><%= @article.title %></h1></div>
 
       <div class="flex items-center details pt-1 sm:pt-2 text-gray-10 dark:text-gray-20 text-xs sm:text-sm lg:text-base pl-2">
         <span class="flex items-center">
-          <img src={Routes.static_path(@socket, "/images/icons/link-2.svg")} class="sm:pr-2 pr-1 block dark:hidden">
-          <img src={Routes.static_path(@socket, "/images/icons/link_dark.svg")} class="sm:pr-2 pr-1 dark:block hidden">
+          <Icons.article_link />
           <span class="article-source border-b text-center border-b-gray-10"><%= @article.source.name %></span>
         </span>
 
@@ -101,9 +101,9 @@ defmodule PratiBaWeb.Components.ArticleComponent do
           <nav id="navbar" role="navigation" class="w-full flex items-center md:w-10/12 xl:w-[907px]">
               <section class="w-full">
                 <div id="theme-toggle" class="ml-6 cursor-pointer w-max text-gray-600 dark:text-gray-20" phx-hook="ToggleBgHook">
-                  <img src={Routes.static_path(@socket, "/images/icons/sun.svg")} class="dark:block hidden">
-                  <img src={Routes.static_path(@socket, "/images/icons/moon.svg")} class="dark:hidden block">
-                  </div>
+                  <div class="dark:block hidden"><Icons.sun /></div>
+                  <div class="dark:hidden block"><Icons.moon /></div>
+                </div>
               </section>
               <section class="w-max pt-2">
                 <%= link to: Routes.article_index_path(@socket, :index), class: "block w-max mx-auto" do %>
