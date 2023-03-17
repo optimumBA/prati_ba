@@ -6,13 +6,14 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
   def article(assigns) do
     ~H"""
-      <article class="group mt-5 sm:w-[907px] sm:h-[230px] ml-2 border-b-[1px] border-b-[#D9D9D9] dark:border-b-gray-30" id={"article-" <> @article.id}>
+      <article id={"article-" <> @article.id} class="group my-3 lg:h-[230px] duration-200">
         <%= link to: Routes.article_path(@socket, :show, @article), target: "_blank", rel: "noopener" do %>
-          <div class="flex flex-row sm:group-odd:flex-row-reverse my-3 sm:gap-5">
+          <div class="w-full flex flex-row sm:group-odd:flex-row-reverse sm:gap-5">
             <.article_image article={@article} />
             <.article_details article={@article} socket={@socket} />
           </div>
         <% end %>
+        <hr class="sm:w-11/12 sm:float-right my-3 border-gray-300 dark:border-gray-30" />
       </article>
     """
   end
@@ -25,20 +26,24 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
   defp article_image(assigns) do
     ~H"""
-      <%= img_tag(ArticleImage.url({@article.image, @article}), class: "sm:w-[302px] sm:h-[215px] h-[96px] w-[119px]") %>
+    <div class="w-1/4 h-20 sm:h-32 md:min-w-[220px] lg:min-w-[302px] lg:h-[215px]">
+      <%= img_tag(ArticleImage.url({@article.image, @article}),
+        class: "w-full h-full object-cover rounded-md")
+      %>
+    </div>
     """
   end
 
   defp article_details(%{} = assigns) do
     ~H"""
-    <div class="text w-2/3 text-left relative flex flex-col justify-between">
-      <div class="sm:text-lg text-sm font-bold overflow-hidden pl-2 sm:h-[145px] dark:text-[#D2D5DA]"><h1><%= @article.title %></h1></div>
+    <div class="w-3/4 text-left relative flex flex-col justify-between">
+      <div class="text-sm sm:text-[20px] lg:text-lg font-semibold lg:font-medium overflow-hidden leading-tight pl-2 lg:min-h-[145px] dark:text-gray-300"><h1><%= @article.title %></h1></div>
 
-      <div class="details sm:pt-2 text-gray-10 dark:text-gray-20 sm:text-base text-xs pl-2 flex items-center">
+      <div class="flex items-center details pt-1 sm:pt-2 text-gray-10 dark:text-gray-20 text-xs sm:text-sm lg:text-base pl-2">
         <span class="flex items-center">
           <img src={Routes.static_path(@socket, "/images/icons/link-2.svg")} class="sm:pr-2 pr-1 block dark:hidden">
           <img src={Routes.static_path(@socket, "/images/icons/link_dark.svg")} class="sm:pr-2 pr-1 dark:block hidden">
-          <span class="article-source border-b-[1px] border-b-gray-10 "><%= @article.source.name %></span>
+          <span class="article-source border-b text-center border-b-gray-10"><%= @article.source.name %></span>
         </span>
 
         <span class="flex items-center">
@@ -47,7 +52,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
         </span>
 
         <span class="flex items-center">
-          <img src={Routes.static_path(@socket, "/images/icons/clock.svg")} class="sm:pr-2 sm:pl-2 pr-1 pl-1">
+          <img src={Routes.static_path(@socket, "/images/icons/clock.svg")} class="w-3 sm:w-5 sm:mx-2 mx-1">
           <.relative_publish_time article={@article} />
         </span>
       </div>
@@ -85,27 +90,26 @@ defmodule PratiBaWeb.Components.ArticleComponent do
   def navbar(assigns) do
     ~H"""
      <div class="w-full mt-2">
-        <div class="w-full flex relative items-center justify-center border-b-2 border-b-gray-10 dark:border-b-gray-30">
-          <nav role="navigation" class="w-full">
-            <section class="w-full flex items-center justify-end">
-              <div class="sm:w-1/2 w-1/3 sm:pl-[10%] pl-6">
-                <div id="theme-toggle" phx-hook="ToggleBgHook"  class="cursor-pointer w-[10%]">
+        <div class="w-full fixed top-0 flex items-center justify-center bg-white dark:bg-[#212936] z-50 border-b border-gray-10 dark:border-gray-30">
+          <nav id="navbar" role="navigation" class="w-full flex items-center md:w-10/12 xl:w-[907px]">
+              <section class="w-full">
+                <div id="theme-toggle" class="ml-6 cursor-pointer w-max text-gray-600 dark:text-gray-20" phx-hook="ToggleBgHook">
                   <img src={Routes.static_path(@socket, "/images/icons/sun.svg")} class="dark:block hidden">
                   <img src={Routes.static_path(@socket, "/images/icons/moon.svg")} class="dark:hidden block">
-                </div>
-              </div>
-              <div class="w-2/3 sm:pl-3">
-                <%= link to: Routes.article_index_path(@socket, :index) do %>
-                  <img srcset={Routes.static_path(@socket, "/images/logos/logo_md.png 2x, /images/logos/logo_bg.png 3x")}
-                    src={Routes.static_path(@socket, "/images/logos/logo_sm.png")}  width="149" height="64" class="dark:hidden block sm:py-4 py-2">
-                  <img srcset={Routes.static_path(@socket, "/images/logos/logo_dark_md.png 2x, /images/logos/logo_dark_bg.png 3x")}
-                    src={Routes.static_path(@socket, "/images/logos/logo_dark_sm.png")} width="149" height="64" class="dark:block hidden sm:py-4 py-2">
+                  </div>
+              </section>
+              <section class="w-max pt-2">
+                <%= link to: Routes.article_index_path(@socket, :index), class: "block w-max mx-auto" do %>
+                  <img id="app-logo" srcset={Routes.static_path(@socket, "/images/logos/logo_md.png 2x, /images/logos/logo_bg.png 3x")}
+                    src={Routes.static_path(@socket, "/images/logos/logo_sm.png")} width="149" height="64" class="w-24 sm:w-36 dark:hidden block sm:py-4 py-2 duration-200">
+                  <img id="app-logo-dark" srcset={Routes.static_path(@socket, "/images/logos/logo_dark_md.png 2x, /images/logos/logo_dark_bg.png 3x")}
+                    src={Routes.static_path(@socket, "/images/logos/logo_dark_sm.png")} width="149" height="64" class="w-24 sm:w-36 dark:block hidden sm:py-4 py-2 duration-200">
                 <% end %>
-              </div>
-            </section>
+              </section>
+              <section class="w-full"></section>
           </nav>
        </div>
-       <div class="w-full flex items-center justify-center border-b-2 text-gray-10 border-b-gray-10 dark:border-b-gray-30 dark:text-gray-20">
+       <div class="w-full flex mt-[66px] sm:mt-[102px] font-thin sm:font-normal text-sm sm:text-base items-center justify-center border-b text-gray-600 sm:text-gray-10 border-gray-10 dark:border-gray-30 dark:text-gray-20">
           <.date />
           <.sm_screen_date />
           <.time socket={@socket} />
