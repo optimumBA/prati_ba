@@ -96,8 +96,10 @@ defmodule PratiBaWeb.Components.ArticleComponent do
 
   def navbar(assigns) do
     ~H"""
-     <div class="w-full mt-2">
-        <div class="w-full fixed top-0 flex items-center justify-center bg-white dark:bg-[#212936] z-50 border-b border-gray-10 dark:border-gray-30">
+     <div id="nav-ignore" class="w-full" phx-update="ignore">
+        <div id="nav-hook" class="w-full fixed top-0 flex items-center justify-center bg-white dark:bg-[#212936] z-50 border-b border-gray-10 dark:border-gray-30"
+          phx-hook="HeaderHook"
+        >
           <nav id="navbar" role="navigation" class="w-full flex items-center md:w-10/12 xl:w-[907px]">
               <section class="w-full">
                 <div id="theme-toggle" class="ml-6 cursor-pointer w-max text-gray-600 dark:text-gray-20" phx-hook="ToggleBgHook">
