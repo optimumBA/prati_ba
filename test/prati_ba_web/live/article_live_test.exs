@@ -42,6 +42,9 @@ defmodule PratiBaWeb.ArticleLiveTest do
     } do
       {:ok, index_live, _html} = live(conn, Routes.article_index_path(conn, :index))
 
+      {:ok, current_date} = Timex.format(NaiveDateTime.utc_now(), "%A, %d.%m.%Y", :strftime)
+
+      assert has_element?(index_live, "#current_date", current_date)
       assert has_element?(index_live, "#article-#{first_article.id}", "First article")
       assert has_element?(index_live, "#article-#{second_article.id}", "Second article")
     end
