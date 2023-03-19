@@ -69,20 +69,14 @@ defmodule PratiBaWeb.Components.ArticleComponent do
         {:ok, relative_string} ->
           relative_string
 
-        {:error, _} ->
+        {:error, _term} ->
           nil
       end
 
     ~H"""
-    <time class="block sm:hidden article-published truncate overflow-hidden" datetime={datetime}><%= trim_relative_publish_time(relative_string) %></time>
+    <time class="block sm:hidden article-published truncate overflow-hidden" datetime={datetime}><%= short_relative_publish_time(relative_string) %></time>
     <time class="hidden sm:block article-published truncate overflow-hidden" datetime={datetime}><%= relative_string %></time>
     """
-  end
-
-  defp trim_relative_publish_time(relative_string) do
-    relative_string
-    |> String.replace([" minute", " minuta", " minutu", " minutes"], "min")
-    |> String.replace([" sat", " sata", " sati", " hour"], "h")
   end
 
   defp publish_date(%{article: %Article{published_at: published_at}, format: format} = assigns) do
@@ -119,29 +113,20 @@ defmodule PratiBaWeb.Components.ArticleComponent do
           </nav>
        </div>
        <div class="w-full flex mt-[66px] sm:mt-[102px] font-thin sm:font-normal text-sm sm:text-base items-center justify-center border-b text-gray-600 sm:text-gray-10 border-gray-10 dark:border-gray-30 dark:text-gray-20">
-          <.date />
-          <.sm_screen_date />
+          <div class="sm:block hidden"><.current_date format={"%A, %d.%m.%Y"} /></div>
+          <div class="sm:hidden block"><.current_date format={"%A, %d/%m/%Y"} /></div>
           <.time socket={@socket} />
         </div>
     </div>
     """
   end
 
-  defp date(assigns) do
+  defp current_date(%{format: format} = assigns) do
     {:ok, now_utc} = DateTime.now("Europe/Sarajevo")
-    {:ok, today} = Timex.format(now_utc, "%A, %d.%m.%Y.", :strftime)
+    {:ok, today} = Timex.format(now_utc, format, :strftime)
 
     ~H"""
-    <h1 class="py-2 sm:py-3 sm:block hidden capitalize"><%= today %></h1>
-    """
-  end
-
-  defp sm_screen_date(assigns) do
-    {:ok, now_utc} = DateTime.now("Europe/Sarajevo")
-    {:ok, today} = Timex.format(now_utc, "%A, %d/%m/%Y", :strftime)
-
-    ~H"""
-    <h1 class="py-2 sm:py-3 sm:hidden block capitalize"><%= today %> </h1>
+    <h1 id="current_date" class="py-2 sm:py-3 capitalize"><%= today %></h1>
     """
   end
 
@@ -166,5 +151,12 @@ defmodule PratiBaWeb.Components.ArticleComponent do
       </div>
     </div>
     """
+  end
+
+  defp short_relative_publish_time(relative_string) do
+    relative_string
+    |> String.replace([" sekundi"], "sec")
+    |> String.replace([" minute", " minuta", " minutu", " minutes"], "m")
+    |> String.replace([" sat", " sata", " sati", " hour"], "h")
   end
 end
