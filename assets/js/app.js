@@ -68,10 +68,12 @@ if (userSocket) {
   analytics.track()
 }
 
+const isDarkMode = () =>
+  window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+
 if (
-  localStorage.getItem('color-theme') === 'dark' ||
-  (!('color-theme' in localStorage) &&
-    window.matchMedia('(prefers-color-scheme: dark)').matches)
+  (!('color-theme' in localStorage) && isDarkMode()) ||
+  localStorage.getItem('color-theme') === 'dark'
 ) {
   document.documentElement.classList.add('dark')
 } else {
