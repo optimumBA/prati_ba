@@ -26,7 +26,7 @@ config :prati_ba, PratiBaWeb.Endpoint,
   secret_key_base: "lf+ozMHBZ9R4h9y+Z28p2bNYNhuCEOYfdJ3S1jvhLN4EKnSzxC+iEc7XBP2pFDxV",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    node: ["build.js", "--watch", cd: Path.expand("../assets", __DIR__)],
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
     tailwind: {Tailwind, :install_and_run, [:default, ~w(--watch)]}
   ]
 
