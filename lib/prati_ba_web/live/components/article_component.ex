@@ -105,7 +105,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
                 <%= link to: Routes.article_index_path(@socket, :index), class: "block w-max mx-auto" do %>
                   <img id="app-logo" srcset={Routes.static_path(@socket, "/images/logos/logo_md.png 2x, /images/logos/logo_bg.png 3x")}
                     src={Routes.static_path(@socket, "/images/logos/logo_sm.png")} width="149" height="64" class="w-24 sm:w-36 dark:hidden block sm:py-4 py-2 duration-200">
-                  <img id="app-logo-dark" srcset={Routes.static_path(@socket, "/images/logos/logo_dark_md.png 2x, /images/logos/logo_dark_bg.png 3x")}
+                  <img id="app-logo-dark" srcset={Routes.static_path(@socket, "/images/logos/logo_dark_md.png 2x, /images/logos/logo_dark_lg.png 3x")}
                     src={Routes.static_path(@socket, "/images/logos/logo_dark_sm.png")} width="149" height="64" class="w-24 sm:w-36 dark:block hidden sm:py-4 py-2 duration-200">
                 <% end %>
               </section>
