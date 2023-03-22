@@ -50,6 +50,8 @@ defmodule PratiBaWeb.ArticleLiveTest do
     end
 
     test "gets updated with new articles", %{conn: conn, source: source} do
+      {:ok, index_live, _html} = live(conn, ~p"/")
+
       attrs = build(:article, image: "https://placekitten.com/350/150") |> Map.from_struct()
       {:ok, article} = Articles.create_article(source, attrs)
 

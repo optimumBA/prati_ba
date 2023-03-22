@@ -8,7 +8,7 @@ defmodule PratiBaWeb.AdminControllerTest do
       conn =
         conn
         |> put_req_header("authorization", authorization)
-        |> get(Routes.admin_path(conn, :index))
+        |> get(~p"/admin")
 
       assert redirected_to(conn) == "/admin/dashboard"
     end
