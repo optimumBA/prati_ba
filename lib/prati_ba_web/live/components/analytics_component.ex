@@ -68,8 +68,10 @@ defmodule PratiBaWeb.Components.AnalyticsComponent do
       |> abs()
       |> Integer.to_string()
 
+    assigns = assign(assigns, :percentage, percentage)
+
     ~H"""
-    <span class="analytics-indicator-percentage"><%= percentage <> "%" %></span>
+    <span class="analytics-indicator-percentage"><%= @percentage <> "%" %></span>
     """
   end
 end

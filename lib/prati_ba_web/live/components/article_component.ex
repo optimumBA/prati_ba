@@ -73,9 +73,11 @@ defmodule PratiBaWeb.Components.ArticleComponent do
           nil
       end
 
+    assigns = assign(assigns, datetime: datetime, relative_string: relative_string)
+
     ~H"""
-    <time class="block sm:hidden article-published truncate overflow-hidden" datetime={datetime}><%= short_relative_publish_time(relative_string) %></time>
-    <time class="hidden sm:block article-published truncate overflow-hidden" datetime={datetime}><%= relative_string %></time>
+    <time class="block sm:hidden article-published truncate overflow-hidden" datetime={@datetime}><%= short_relative_publish_time(@relative_string) %></time>
+    <time class="hidden sm:block article-published truncate overflow-hidden" datetime={@datetime}><%= @relative_string %></time>
     """
   end
 
@@ -83,8 +85,10 @@ defmodule PratiBaWeb.Components.ArticleComponent do
     datetime = DateTime.from_naive!(published_at, "Etc/UTC")
     {:ok, publish_date} = Timex.format(datetime, format, :strftime)
 
+    assigns = assign(assigns, :publish_date, publish_date)
+
     ~H"""
-      <span><%= publish_date%></span>
+      <span><%= @publish_date %></span>
     """
   end
 
@@ -125,8 +129,10 @@ defmodule PratiBaWeb.Components.ArticleComponent do
     {:ok, now_utc} = DateTime.now("Europe/Sarajevo")
     {:ok, today} = Timex.format(now_utc, format, :strftime)
 
+    assigns = assign(assigns, :today, today)
+
     ~H"""
-    <h1 id="current_date" class="py-2 sm:py-3 capitalize"><%= today %></h1>
+    <h1 id="current_date" class="py-2 sm:py-3 capitalize"><%= @today %></h1>
     """
   end
 
