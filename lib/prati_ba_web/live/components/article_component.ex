@@ -8,12 +8,12 @@ defmodule PratiBaWeb.Components.ArticleComponent do
   def article(assigns) do
     ~H"""
       <article id={"article-" <> @article.id} class="group my-3 lg:h-[230px] duration-200">
-        <%= link to: Routes.article_path(@socket, :show, @article), target: "_blank", rel: "noopener" do %>
+        <.link href={~p"/#{@article}"} class="article" target="_blank" rel="noopener">
           <div class="w-full flex flex-row sm:group-odd:flex-row-reverse sm:gap-5">
             <.article_image article={@article} />
             <.article_details article={@article} socket={@socket} />
           </div>
-        <% end %>
+        </.link>
         <hr class="sm:w-11/12 sm:float-right my-3 border-gray-300 dark:border-gray-30" />
       </article>
     """
