@@ -13,8 +13,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css" )} />
-  <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js" )}></script>
+  <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+  <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}></script>
   <script defer data-domain={PratiBaWeb.Endpoint.host()} src="https://plausible.io/js/script.js">
   </script>
   <%= if assigns[:analytics_token] do %>
