@@ -9,7 +9,7 @@ defmodule PratiBa.Scrapers.BhDaniScraper do
     response = ScrapingHelper.get(url)
 
     case response do
-      {:ok, %{status_code: 200, body: body}} ->
+      {:ok, %{status: 200, body: body}} ->
         {:ok, rss} =
           body
           |> HtmlEntities.decode()
@@ -27,7 +27,7 @@ defmodule PratiBa.Scrapers.BhDaniScraper do
   def article_details(%{url: url} = article) do
     response = ScrapingHelper.get(url)
 
-    with {:ok, %{status_code: 200, body: body}} <- response,
+    with {:ok, %{status: 200, body: body}} <- response,
          {:ok, html} <- Floki.parse_document(body),
          {:ok, image_url} <- ScrapingHelper.get_og_image(html) do
       {:ok, Map.put(article, :image, image_url)}

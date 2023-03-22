@@ -9,7 +9,7 @@ defmodule PratiBa.Scrapers.RadioSlobodnaEvropaScraper do
     response = ScrapingHelper.get(url)
 
     case response do
-      {:ok, %{status_code: 200, body: body}} ->
+      {:ok, %{status: 200, body: body}} ->
         {:ok, rss} = FastRSS.parse(body)
 
         articles =

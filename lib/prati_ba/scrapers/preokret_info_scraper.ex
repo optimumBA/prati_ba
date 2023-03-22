@@ -8,7 +8,7 @@ defmodule PratiBa.Scrapers.PreokretInfoScraper do
   def articles(url_base \\ @url) do
     response = ScrapingHelper.get(url_base <> "/wp-json/wp/v2/posts/")
 
-    with {:ok, %{status_code: 200, body: body}} <- response,
+    with {:ok, %{status: 200, body: body}} <- response,
          {:ok, articles} <- Jason.decode(body) do
       articles = Stream.map(articles, &parse_article(&1, url_base))
 
@@ -21,7 +21,7 @@ defmodule PratiBa.Scrapers.PreokretInfoScraper do
   def article_details(%{image: image_url} = article) when is_binary(image_url) do
     response = ScrapingHelper.get(image_url)
 
-    with {:ok, %{status_code: 200, body: body}} <- response,
+    with {:ok, %{status: 200, body: body}} <- response,
          {:ok, media} <- Jason.decode(body),
          %{"media_details" => %{"sizes" => %{"full" => %{"source_url" => image_url}}}} <- media do
       image_url = URI.encode(image_url)
