@@ -45,7 +45,7 @@ defmodule PratiBaWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {PratiBaWeb.LayoutView, "live.html"}
+        layout: {PratiBaWeb.LayoutView, :live}
 
       unquote(view_helpers())
     end
