@@ -31,7 +31,6 @@ defmodule PratiBaWeb.ConnCase do
       @endpoint PratiBaWeb.Endpoint
 
       use PratiBaWeb, :verified_routes
-
     end
   end
 

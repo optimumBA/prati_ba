@@ -29,6 +29,7 @@ defmodule PratiBaWeb.Components.AnalyticsComponent do
 
   defp change(%{value_before: 0} = assigns) do
     ~H"""
+
     """
   end
 
