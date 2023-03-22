@@ -48,7 +48,7 @@ defmodule PratiBa.MixProject do
       {:gettext, "~> 0.18"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
-      {:mojito, "~> 0.7.12"},
+      {:finch, "~> 0.15"},
       {:bypass, "~> 2.1", only: :test},
       {:fast_rss, github: "almirsarajcic/fast_rss", branch: "rustler-0.25"},
       {:timex, "~> 3.7"},
