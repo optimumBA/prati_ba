@@ -17,7 +17,7 @@ defmodule PratiBaWeb.Router do
   end
 
   pipeline :admin do
-    plug :put_root_layout, {PratiBaWeb.LayoutView, :admin}
+    plug :put_root_layout, html: {PratiBaWeb.LayoutView, :admin}
     plug :admin_auth
   end
 
