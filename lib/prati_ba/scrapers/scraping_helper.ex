@@ -1,5 +1,5 @@
 defmodule PratiBa.Scrapers.ScrapingHelper do
-  @user_agent Application.get_env(:prati_ba, :user_agent, "")
+  @user_agent Application.compile_env(:prati_ba, :user_agent, "")
 
   def get(url) do
     Finch.build(:get, url, [{"user-agent", @user_agent}]) |> Finch.request(MyFinch)
