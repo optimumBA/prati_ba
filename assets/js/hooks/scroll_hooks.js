@@ -23,7 +23,7 @@ ScrollHooks.InfiniteScrollHook = {
         this.pushEvent('load_more')
         setTimeout(() => {
           scrollToTopButton.classList.remove('hidden')
-        }, 100)
+        }, 500)
       }
     })
 
