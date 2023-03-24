@@ -40,7 +40,7 @@ defmodule PratiBaWeb do
         only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
 
       # Include shared imports and aliases for views
-      unquote(view_helpers())
+      unquote(html_helpers())
     end
   end
 
@@ -49,7 +49,7 @@ defmodule PratiBaWeb do
       use Phoenix.LiveView,
         layout: {PratiBaWeb.Layouts, :app}
 
-      unquote(view_helpers())
+      unquote(html_helpers())
     end
   end
 
@@ -57,7 +57,7 @@ defmodule PratiBaWeb do
     quote do
       use Phoenix.LiveComponent
 
-      unquote(view_helpers())
+      unquote(html_helpers())
     end
   end
 
@@ -65,7 +65,7 @@ defmodule PratiBaWeb do
     quote do
       use Phoenix.Component
 
-      unquote(view_helpers())
+      unquote(html_helpers())
     end
   end
 
@@ -86,7 +86,7 @@ defmodule PratiBaWeb do
     end
   end
 
-  defp view_helpers do
+  defp html_helpers do
     quote do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
