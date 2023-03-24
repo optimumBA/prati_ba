@@ -31,6 +31,20 @@ defmodule PratiBaWeb do
     end
   end
 
+  def html do
+    quote do
+      use Phoenix.Component
+
+      # Import convenience functions from controllers
+      import Phoenix.Controller,
+        only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
+
+      # Include shared imports and aliases for views
+      unquote(view_helpers())
+    end
+  end
+
+
   def view do
     quote do
       use Phoenix.View,
@@ -49,7 +63,7 @@ defmodule PratiBaWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {PratiBaWeb.LayoutView, :live}
+        layout: {PratiBaWeb.Layouts, :app}
 
       unquote(view_helpers())
     end
