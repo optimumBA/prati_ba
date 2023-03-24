@@ -15,18 +15,12 @@ ScrollHooks.ScrollDownHook = {
 
 ScrollHooks.InfiniteScrollHook = {
   mounted() {
-    let scrollToTopButton = document.getElementById('scroll-to-top')
-
     this.observer = new IntersectionObserver((entries) => {
       const entry = entries[0]
       if (entry.isIntersecting) {
         this.pushEvent('load_more')
-        setTimeout(() => {
-          scrollToTopButton.classList.remove('hidden')
-        }, 500)
       }
     })
-
     this.observer.observe(this.el)
   },
   beforeDestroy() {
@@ -40,9 +34,11 @@ ScrollHooks.ScrollToTopHook = {
 
     window.addEventListener('scroll', () => {
       if (window.scrollY > 400) {
-        scrollToTopButton.classList.remove('hidden')
+        scrollToTopButton.classList.replace('invisible', 'visible')
+        scrollToTopButton.classList.replace('opacity-0', 'opacity-1')
       } else {
-        scrollToTopButton.classList.add('hidden')
+        scrollToTopButton.classList.replace('visible', 'invisible')
+        scrollToTopButton.classList.replace('opacity-1', 'opacity-0')
       }
     })
 
