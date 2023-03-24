@@ -38,7 +38,6 @@ defmodule PratiBa.MixProject do
       {:postgrex, ">= 0.0.0"},
       {:phoenix_html, "~> 3.0"},
       {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_view, "~> 2.0"},
       {:phoenix_live_view, "~> 0.18.3"},
       {:floki, ">= 0.30.0"},
       {:phoenix_live_dashboard, "~> 0.7.2"},
