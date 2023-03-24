@@ -14,7 +14,10 @@ config :prati_ba,
 # Configures the endpoint
 config :prati_ba, PratiBaWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: PratiBaWeb.ErrorView, accepts: ~w(html json), layout: false],
+  render_errors: [
+    formats: [html: PratiBaWeb.ErrorHTML, json: PratiBaWeb.ErrorJSON],
+    layout: false
+  ],
   pubsub_server: PratiBa.PubSub,
   live_view: [signing_salt: "vVyiVYVh"]
 

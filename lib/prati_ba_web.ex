@@ -113,7 +113,6 @@ defmodule PratiBaWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import PratiBaWeb.ErrorHelpers
       import PratiBaWeb.Gettext
       alias PratiBaWeb.Router.Helpers, as: Routes
 
