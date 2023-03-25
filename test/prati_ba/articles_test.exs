@@ -20,7 +20,7 @@ defmodule PratiBa.ArticlesTest do
       article_id = article.id
       disabled_source = insert(:source, enabled: false)
       insert(:article, source: disabled_source)
-      assert [%Article{id: ^article_id}] = Articles.list_articles()
+      assert [%Article{id: ^article_id}] = Articles.list_articles(page: 1, limit: 15)
     end
 
     test "get_article!/1 returns the article with given ID" do

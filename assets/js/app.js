@@ -1,6 +1,5 @@
 // We import the CSS which is extracted to its own file by esbuild.
 // Remove this line if you add a your own CSS build pipeline (e.g postcss).
-import '../css/app.scss'
 
 // If you want to use Phoenix channels, run `mix help phx.gen.channel`
 // to get started and then uncomment the line below.
@@ -25,11 +24,23 @@ import 'phoenix_html'
 import { Socket } from 'phoenix'
 import { LiveSocket } from 'phoenix_live_view'
 import topbar from 'topbar'
+import DisplayTimeHook from './hooks/display_time_hook'
+import HeaderHook from './hooks/header_hook'
+import ScrollHooks from './hooks/scroll_hooks'
+import ToggleBgHook from './hooks/toggle_bg_hook'
+
+Hooks = {
+  DisplayTimeHook,
+  HeaderHook,
+  ...ScrollHooks,
+  ToggleBgHook,
+}
 
 let csrfToken = document
   .querySelector("meta[name='csrf-token']")
   .getAttribute('content')
 let liveSocket = new LiveSocket('/live', Socket, {
+  hooks: Hooks,
   params: { _csrf_token: csrfToken },
 })
 
@@ -53,4 +64,16 @@ import Analytics from './analytics'
 if (userSocket) {
   let analytics = new Analytics(userSocket)
   analytics.track()
+}
+
+const isDarkMode = () =>
+  window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches
+
+if (
+  (!('color-theme' in localStorage) && isDarkMode()) ||
+  localStorage.getItem('color-theme') === 'dark'
+) {
+  document.documentElement.classList.add('dark')
+} else {
+  document.documentElement.classList.remove('dark')
 }

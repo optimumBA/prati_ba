@@ -42,6 +42,7 @@ defmodule PratiBa.MixProject do
       {:phoenix_live_view, "~> 0.17.5"},
       {:floki, ">= 0.30.0"},
       {:phoenix_live_dashboard, "~> 0.6"},
+      {:esbuild, "~> 0.4", runtime: Mix.env() == :dev},
       {:swoosh, "~> 1.3"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
@@ -68,7 +69,8 @@ defmodule PratiBa.MixProject do
       {:timber_plug, "~> 1.1"},
       {:geolix, "~> 2.0"},
       {:geolix_adapter_mmdb2, "~> 0.6"},
-      {:ua_inspector, "~> 3.0"}
+      {:ua_inspector, "~> 3.0"},
+      {:tailwind, "~> 0.1", runtime: Mix.env() == :dev}
     ]
   end
 
@@ -84,7 +86,11 @@ defmodule PratiBa.MixProject do
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
-      "assets.deploy": ["cmd --cd assets node build.js --deploy", "phx.digest"],
+      "assets.deploy": [
+        "tailwind default --minify",
+        "esbuild default --minify",
+        "phx.digest"
+      ],
       prettier: ["cmd --cd assets npx prettier -w .."]
     ]
   end
