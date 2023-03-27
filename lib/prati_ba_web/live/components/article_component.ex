@@ -1,5 +1,5 @@
 defmodule PratiBaWeb.Components.ArticleComponent do
-  use PratiBaWeb, :component
+  use PratiBaWeb, :html
 
   alias PratiBa.Articles.Article
   alias PratiBa.Uploaders.ArticleImage
@@ -28,7 +28,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
   defp article_image(assigns) do
     ~H"""
     <div class="w-1/4 h-20 sm:h-32 md:min-w-[220px] lg:min-w-[302px] lg:h-[215px]">
-      <%= img_tag(ArticleImage.url({@article.image, @article}),
+      <%= Phoenix.HTML.Tag.img_tag(ArticleImage.url({@article.image, @article}),
         class: "w-full h-full object-cover rounded-md"
       ) %>
     </div>
@@ -123,7 +123,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
             <.link href={~p"/"} class="block w-max mx-auto">
               <img
                 id="app-logo"
-                srcset={~p"/images/logos/logo_md.png 2x, /images/logos/logo_bg.png 3x"}
+                srcset="/images/logos/logo_md.png 2x, /images/logos/logo_bg.png 3x"
                 src={~p"/images/logos/logo_sm.png"}
                 width="149"
                 height="64"
@@ -131,7 +131,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
               />
               <img
                 id="app-logo-dark"
-                srcset={~p"/images/logos/logo_dark_md.png 2x, /images/logos/logo_dark_lg.png 3x"}
+                srcset="/images/logos/logo_dark_md.png 2x, /images/logos/logo_dark_lg.png 3x"
                 src={~p"/images/logos/logo_dark_sm.png"}
                 width="149"
                 height="64"

@@ -1,5 +1,5 @@
 defmodule PratiBaWeb.Components.Icons do
-  use PratiBaWeb, :component
+  use Phoenix.Component
 
   def moon(assigns) do
     ~H"""

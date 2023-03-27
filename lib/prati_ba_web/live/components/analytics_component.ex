@@ -1,5 +1,5 @@
 defmodule PratiBaWeb.Components.AnalyticsComponent do
-  use PratiBaWeb, :component
+  use Phoenix.Component
 
   alias PratiBa.Formatters.HumanShort
   alias Timex.Duration
