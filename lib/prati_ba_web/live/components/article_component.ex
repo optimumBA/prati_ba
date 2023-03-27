@@ -47,13 +47,13 @@ defmodule PratiBaWeb.Components.ArticleComponent do
         </span>
 
         <span class="flex items-center">
-          <img src={Routes.static_path(@socket, "/images/icons/calendar.svg")} class="w-5 sm:w-8 px-1 sm:px-2">
+          <img src={~p"/images/icons/calendar.svg"} class="w-5 sm:w-8 px-1 sm:px-2">
           <div class="block sm:hidden"><.publish_date article={@article} format={"%d/%m/%Y"}/></div>
           <div class="hidden sm:block"><.publish_date article={@article} format={"%d.%m.%Y"} /></div>
         </span>
 
         <span class="flex items-center">
-          <img src={Routes.static_path(@socket, "/images/icons/clock.svg")} class="w-3 sm:w-5 sm:mx-2 mx-1">
+          <img src={~p"/images/icons/clock.svg"} class="w-3 sm:w-5 sm:mx-2 mx-1">
           <.relative_publish_time article={@article} />
         </span>
       </div>
@@ -106,11 +106,11 @@ defmodule PratiBaWeb.Components.ArticleComponent do
                 </div>
               </section>
               <section class="w-max pt-2">
-                <%= link to: Routes.article_index_path(@socket, :index), class: "block w-max mx-auto" do %>
-                  <img id="app-logo" srcset={Routes.static_path(@socket, "/images/logos/logo_md.png 2x, /images/logos/logo_bg.png 3x")}
-                    src={Routes.static_path(@socket, "/images/logos/logo_sm.png")} width="149" height="64" class="w-24 sm:w-36 dark:hidden block sm:py-4 py-2 duration-200">
-                  <img id="app-logo-dark" srcset={Routes.static_path(@socket, "/images/logos/logo_dark_md.png 2x, /images/logos/logo_dark_lg.png 3x")}
-                    src={Routes.static_path(@socket, "/images/logos/logo_dark_sm.png")} width="149" height="64" class="w-24 sm:w-36 dark:block hidden sm:py-4 py-2 duration-200">
+                <%= link to: ~p"/", class: "block w-max mx-auto" do %>
+                  <img id="app-logo" srcset={~p"/images/logos/logo_md.png 2x, /images/logos/logo_bg.png 3x"}
+                    src={~p"/images/logos/logo_sm.png"} width="149" height="64" class="w-24 sm:w-36 dark:hidden block sm:py-4 py-2 duration-200">
+                  <img id="app-logo-dark" srcset={~p"/images/logos/logo_dark_md.png 2x, /images/logos/logo_dark_lg.png 3x"}
+                    src={~p"/images/logos/logo_dark_sm.png"} width="149" height="64" class="w-24 sm:w-36 dark:block hidden sm:py-4 py-2 duration-200">
                 <% end %>
               </section>
               <section class="w-full"></section>
@@ -139,7 +139,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
   defp time(assigns) do
     ~H"""
     <div id="time" class="flex items-center pl-2 hidden sm:flex" phx-hook="DisplayTimeHook">
-      <img src={Routes.static_path(@socket, "/images/icons/clock.svg")} class="mr-2">
+      <img src={~p"/images/icons/clock.svg"} class="mr-2">
       <span id="current_time"></span>
     </div>
     """

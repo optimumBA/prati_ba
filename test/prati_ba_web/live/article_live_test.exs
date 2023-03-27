@@ -40,7 +40,7 @@ defmodule PratiBaWeb.ArticleLiveTest do
       first_article: first_article,
       second_article: second_article
     } do
-      {:ok, index_live, _html} = live(conn, Routes.article_index_path(conn, :index))
+      {:ok, index_live, _html} = live(conn, ~p"/")
 
       {:ok, current_date} = Timex.format(NaiveDateTime.utc_now(), "%A, %d.%m.%Y", :strftime)
 
@@ -55,7 +55,7 @@ defmodule PratiBaWeb.ArticleLiveTest do
       attrs = build(:article, image: "https://placekitten.com/350/150") |> Map.from_struct()
       {:ok, article} = Articles.create_article(source, attrs)
 
-      {:ok, index_live, _html} = live(conn, Routes.article_index_path(conn, :index))
+      {:ok, index_live, _html} = live(conn, ~p"/")
 
       assert has_element?(index_live, "#article-#{article.id}", article.title)
     end
@@ -63,7 +63,7 @@ defmodule PratiBaWeb.ArticleLiveTest do
     test "renders more articles when user scrolls to bottom", %{conn: conn} do
       create_loading_articles()
 
-      {:ok, view, _html} = live(conn, Routes.article_index_path(conn, :index))
+      {:ok, view, _html} = live(conn, ~p"/")
 
       assert render(view) |> number_of_articles() == 14
 
