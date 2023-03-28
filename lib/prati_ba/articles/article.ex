@@ -36,9 +36,10 @@ defmodule PratiBa.Articles.Article do
     from a in __MODULE__, where: a.source_id == ^source_id and a.original_id == ^original_id
   end
 
-  def newest(queryable \\ __MODULE__, limit \\ 15) do
+  def newest(queryable \\ __MODULE__, limit \\ 15, page \\ 1) do
     from a in queryable,
       order_by: [desc_nulls_last: :published_at, desc_nulls_last: :inserted_at],
+      offset: ^((page - 1) * limit),
       limit: ^limit,
       preload: :source
   end

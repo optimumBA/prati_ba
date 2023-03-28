@@ -8,7 +8,7 @@ defmodule PratiBa.Scrapers.BljesakScraper do
   def articles(url \\ @url) do
     response = ScrapingHelper.get(url)
 
-    with {:ok, %{status_code: 200, body: body}} <- response,
+    with {:ok, %{status: 200, body: body}} <- response,
          {:ok, html} <- Floki.parse_document(body) do
       articles =
         html
@@ -24,7 +24,7 @@ defmodule PratiBa.Scrapers.BljesakScraper do
   def article_details(%{url: url} = article) do
     response = ScrapingHelper.get(url)
 
-    with {:ok, %{status_code: 200, body: body}} <- response,
+    with {:ok, %{status: 200, body: body}} <- response,
          {:ok, html} <- Floki.parse_document(body) do
       article_container =
         html

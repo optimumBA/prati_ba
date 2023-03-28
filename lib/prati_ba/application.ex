@@ -31,6 +31,8 @@ defmodule PratiBa.Application do
       PratiBaWeb.Presence,
       # Start the Endpoint (http/https)
       PratiBaWeb.Endpoint,
+      # Start MyFinch
+      {Finch, name: MyFinch},
       # Start a worker by calling: PratiBa.Worker.start_link(arg)
       # {PratiBa.Worker, arg}
       ScrapingPipeline

@@ -41,11 +41,11 @@ defmodule PratiBa.ScrapersTest do
     |> expect(:article_details, fn article ->
       {:ok, Map.merge(article, %{title: "Fake title", image: "https://placekitten.com/350/150"})}
     end)
-    |> expect(:article_details, fn _ -> {:error, %Mojito.Error{}} end)
+    |> expect(:article_details, fn _ -> {:error, %Finch.Error{}} end)
 
     Scrapers.fetch_new_articles(%{source_name => ScraperMock})
 
-    assert [article] = Articles.list_articles()
+    assert [article] = Articles.list_articles(page: 1, limit: 15)
     refute is_nil(article.image)
     assert article.original_id == "1234"
     assert article.published_at == ~N[2020-03-11 18:49:00]
@@ -59,11 +59,11 @@ defmodule PratiBa.ScrapersTest do
     insert(:source, name: source_name)
 
     ScraperMock
-    |> expect(:articles, fn -> {:error, %Mojito.Error{}} end)
+    |> expect(:articles, fn -> {:error, %Finch.Error{}} end)
 
     Scrapers.fetch_new_articles(%{source_name => ScraperMock})
 
-    assert [] = Articles.list_articles()
+    assert [] = Articles.list_articles(page: 1, limit: 15)
   end
 
   test "fetch_new_articles/0 doesn't crash when the scraper module is not defined" do
@@ -72,6 +72,6 @@ defmodule PratiBa.ScrapersTest do
 
     Scrapers.fetch_new_articles(%{})
 
-    assert [] = Articles.list_articles()
+    assert [] = Articles.list_articles(page: 1, limit: 15)
   end
 end
