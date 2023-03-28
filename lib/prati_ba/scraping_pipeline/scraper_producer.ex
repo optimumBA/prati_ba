@@ -22,7 +22,7 @@ defmodule PratiBa.ScrapingPipeline.ScraperProducer do
   def handle_cast(:get_scrapers, state) do
     scrapers = Scrapers.list()
 
-    Logger.warn("ScraperProducer handle_cast #{inspect(state.demand)}")
+    Logger.info("ScraperProducer handle_cast #{inspect(state.demand)}")
 
     {scrapers, rest} = Enum.split(scrapers, state.demand)
 
@@ -36,7 +36,7 @@ defmodule PratiBa.ScrapingPipeline.ScraperProducer do
 
   @impl GenStage
   def handle_demand(demand, state) do
-    Logger.warn("ScraperProducer handle_demand #{inspect(demand)} #{inspect(state.demand)}")
+    Logger.info("ScraperProducer handle_demand #{inspect(demand)} #{inspect(state.demand)}")
 
     {scrapers, rest} = Enum.split(state.scrapers, state.demand + demand)
 
