@@ -29,7 +29,10 @@ defmodule PratiBa.Articles do
       [%Article{}, ...]
 
   """
-  def list_articles(page: page, limit: limit) do
+  def list_articles(opts \\ []) do
+    limit = Keyword.get(opts, :limit, 15)
+    page = Keyword.get(opts, :page, 1)
+
     Article
     |> Article.from_enabled_sources()
     |> Article.newest(limit, page)

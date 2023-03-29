@@ -6,6 +6,6 @@ defmodule Mix.Tasks.PratiBa.Scrapers.FetchNewArticles do
   def run(_) do
     Mix.Task.run("app.start")
 
-    PratiBa.Scrapers.fetch_new_articles()
+    PratiBa.ScrapingPipeline.start()
   end
 end

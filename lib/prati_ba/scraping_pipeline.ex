@@ -8,6 +8,10 @@ defmodule PratiBa.ScrapingPipeline do
     ScraperProducer
   }
 
+  def start do
+    ScraperProducer.get_scrapers()
+  end
+
   def start_link(_args) do
     Supervisor.start_link(__MODULE__, :ok)
   end

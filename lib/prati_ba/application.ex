@@ -40,7 +40,7 @@ defmodule PratiBa.Application do
 
     children =
       case Application.get_env(:prati_ba, :env) do
-        :dev ->
+        :prod ->
           children ++
             [
               PratiBa.Scheduler
