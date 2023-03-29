@@ -15,13 +15,13 @@ defmodule PratiBaWeb.ArticleControllerTest do
     test "redirects to article page", %{conn: conn, article: article} do
       conn =
         conn
-        |> get(Routes.article_path(conn, :show, article))
+        |> get(~p"/#{article}")
 
       assert redirected_to(conn) == "http://sour.ce/article"
     end
 
     test "tracks article view", %{conn: conn, article: article} do
-      get(conn, Routes.article_path(conn, :show, article))
+      get(conn, ~p"/#{article}")
 
       events = Analytics.list_events()
       assert length(events) == 2
@@ -50,7 +50,7 @@ defmodule PratiBaWeb.ArticleControllerTest do
 
       conn =
         conn
-        |> get(Routes.article_path(conn, :show, article))
+        |> get(~p"/#{article}")
 
       assert redirected_to(conn) == "http://sour.ce/article"
     end

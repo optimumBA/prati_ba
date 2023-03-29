@@ -1,7 +1,7 @@
 defmodule PratiBaWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :prati_ba
 
-  if Application.get_env(:prati_ba, :env) == :prod do
+  if Application.compile_env(:prati_ba, :env) == :prod do
     plug RemoteIp, headers: ~w[fly-client-ip]
   end
 
@@ -31,7 +31,7 @@ defmodule PratiBaWeb.Endpoint do
     at: "/",
     from: :prati_ba,
     gzip: false,
-    only: ~w(articles assets fonts images favicon.ico robots.txt)
+    only: PratiBaWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
   # :code_reloader configuration of your endpoint.

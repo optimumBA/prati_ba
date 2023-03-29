@@ -3,7 +3,7 @@ defmodule PratiBaWeb.HealthControllerTest do
 
   describe "index" do
     test "returns cluster info", %{conn: conn} do
-      conn = get(conn, Routes.health_path(conn, :index))
+      conn = get(conn, ~p"/health")
 
       assert %{
                "connected_to" => [],

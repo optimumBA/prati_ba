@@ -18,7 +18,7 @@ defmodule PratiBaWeb.AnalyticsLiveTest do
     setup [:authorize]
 
     test "shows number of visitors", %{conn: conn} do
-      {:ok, index_live, html} = live(conn, Routes.analytics_index_path(conn, :index))
+      {:ok, index_live, html} = live(conn, ~p"/admin/analytics")
 
       visitor = insert(:visitor)
       visit = insert(:visit, visitor: visitor)
