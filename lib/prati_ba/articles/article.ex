@@ -22,8 +22,24 @@ defmodule PratiBa.Articles.Article do
   def changeset(article, attrs) do
     article
     |> cast(attrs, [:original_id, :published_at, :title, :url])
-    |> validate_required([:original_id, :published_at, :title, :url])
+    |> validate_required([:original_id, :title, :url])
     |> unique_constraint([:original_id, :source_id])
+    |> maybe_remove_published_at()
+  end
+
+  defp maybe_remove_published_at(changeset) do
+    published_at = get_field(changeset, :published_at)
+
+    cond do
+      is_nil(published_at) ->
+        changeset
+
+      NaiveDateTime.compare(NaiveDateTime.utc_now(), published_at) == :lt ->
+        put_change(changeset, :published_at, nil)
+
+      true ->
+        changeset
+    end
   end
 
   def image_changeset(article, attrs) do

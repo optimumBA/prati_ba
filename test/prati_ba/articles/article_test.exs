@@ -34,4 +34,11 @@ defmodule PratiBa.Articles.ArticleTest do
     assert {:error, changeset} = Repo.insert(duplicate)
     assert %{original_id: ["has already been taken"]} = errors_on(changeset)
   end
+
+  test "removes published_at if it's in the future" do
+    future_date = NaiveDateTime.add(NaiveDateTime.utc_now(), 3600 + 20 * 60)
+    changeset = Article.changeset(%Article{}, %{title: nil, published_at: future_date})
+    refute Ecto.Changeset.get_field(changeset, :published_at)
+    refute Kernel.match?(%{published_at: []}, errors_on(changeset))
+  end
 end
