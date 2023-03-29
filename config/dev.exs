@@ -23,7 +23,7 @@ config :prati_ba, PratiBaWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: "lf+ozMHBZ9R4h9y+Z28p2bNYNhuCEOYfdJ3S1jvhLN4EKnSzxC+iEc7XBP2pFDxV",
+  secret_key_base: "v2ocxA8PAXFktlqB2VdHSZ6SzHbheB9svho3NniO9S4wR+x7Ni+UpV39qaMh0Hg9",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
@@ -60,10 +60,12 @@ config :prati_ba, PratiBaWeb.Endpoint,
     patterns: [
       ~r"priv/static/[^(articles)].*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/prati_ba_web/(live|views)/.*(ex)$",
-      ~r"lib/prati_ba_web/templates/.*(eex)$"
+      ~r"lib/prati_ba_web/(controllers|live|components)/.*(ex|heex)$"
     ]
   ]
+
+# Enable dev routes for dashboard and mailbox
+config :prati_ba, dev_routes: true
 
 # Do not include metadata nor timestamps in development logs
 config :logger, :console, format: "[$level] $message\n"
@@ -74,3 +76,6 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+# Disable swoosh api client as it is only required for production adapters.
+config :swoosh, :api_client, false

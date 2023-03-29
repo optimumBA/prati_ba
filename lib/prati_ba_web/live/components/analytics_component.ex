@@ -1,5 +1,5 @@
 defmodule PratiBaWeb.Components.AnalyticsComponent do
-  use PratiBaWeb, :component
+  use Phoenix.Component
 
   alias PratiBa.Formatters.HumanShort
   alias Timex.Duration
@@ -29,6 +29,7 @@ defmodule PratiBaWeb.Components.AnalyticsComponent do
 
   defp change(%{value_before: 0} = assigns) do
     ~H"""
+
     """
   end
 
@@ -68,8 +69,10 @@ defmodule PratiBaWeb.Components.AnalyticsComponent do
       |> abs()
       |> Integer.to_string()
 
+    assigns = assign(assigns, :percentage, percentage)
+
     ~H"""
-    <span class="analytics-indicator-percentage"><%= percentage <> "%" %></span>
+    <span class="analytics-indicator-percentage"><%= @percentage <> "%" %></span>
     """
   end
 end

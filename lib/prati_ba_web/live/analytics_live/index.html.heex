@@ -6,8 +6,19 @@
       </div>
 
       <div class="analytics-onlinevisitors">
-        <svg aria-hidden="true" focusable="false" class="analytics-icon-online" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" >
-          <path fill="currentColor" d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"></path>
+        <svg
+          aria-hidden="true"
+          focusable="false"
+          class="analytics-icon-online"
+          role="img"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 512 512"
+        >
+          <path
+            fill="currentColor"
+            d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8z"
+          >
+          </path>
         </svg>
 
         <%= ngettext("1 current visitor", "%{count} current visitors", @current_visitors_count) %>
@@ -17,10 +28,26 @@
 
   <main id="analytics-main" class="container analytics-main">
     <div class="row">
-      <AnalyticsComponent.analytics_indicator name="Unique visitors" value_now={@visitors_count} value_before={@visitors_count_before} />
-      <AnalyticsComponent.analytics_indicator name="Visits" value_now={@visits_count} value_before={@visits_count_before} />
-      <AnalyticsComponent.analytics_indicator name="Average visit duration" value_now={@visit_duration} value_before={@visit_duration_before} />
-      <AnalyticsComponent.analytics_indicator name="Article views" value_now={@article_views_count} value_before={@article_views_count_before} />
+      <AnalyticsComponent.analytics_indicator
+        name="Unique visitors"
+        value_now={@visitors_count}
+        value_before={@visitors_count_before}
+      />
+      <AnalyticsComponent.analytics_indicator
+        name="Visits"
+        value_now={@visits_count}
+        value_before={@visits_count_before}
+      />
+      <AnalyticsComponent.analytics_indicator
+        name="Average visit duration"
+        value_now={@visit_duration}
+        value_before={@visit_duration_before}
+      />
+      <AnalyticsComponent.analytics_indicator
+        name="Article views"
+        value_now={@article_views_count}
+        value_before={@article_views_count_before}
+      />
     </div>
 
     <div class="row">

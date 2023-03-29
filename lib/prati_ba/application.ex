@@ -19,18 +19,18 @@ defmodule PratiBa.Application do
     end
 
     children = [
-      # Start the Ecto repository
-      PratiBa.Repo,
       # Start the Telemetry supervisor
       PratiBaWeb.Telemetry,
+      # Start the Ecto repository
+      PratiBa.Repo,
       # Start the PubSub system
       {Phoenix.PubSub, name: PratiBa.PubSub},
       # Start the Presence supervisor
       PratiBaWeb.Presence,
+      # Start Finch
+      {Finch, name: PratiBa.Finch},
       # Start the Endpoint (http/https)
-      PratiBaWeb.Endpoint,
-      # Start MyFinch
-      {Finch, name: MyFinch}
+      PratiBaWeb.Endpoint
       # Start a worker by calling: PratiBa.Worker.start_link(arg)
       # {PratiBa.Worker, arg}
     ]

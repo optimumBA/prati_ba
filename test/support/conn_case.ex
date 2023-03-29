@@ -19,6 +19,11 @@ defmodule PratiBaWeb.ConnCase do
 
   using do
     quote do
+      # The default endpoint for testing
+      @endpoint PratiBaWeb.Endpoint
+
+      use PratiBaWeb, :verified_routes
+
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
@@ -26,9 +31,6 @@ defmodule PratiBaWeb.ConnCase do
       import PratiBa.Factory
 
       alias PratiBaWeb.Router.Helpers, as: Routes
-
-      # The default endpoint for testing
-      @endpoint PratiBaWeb.Endpoint
     end
   end
 
