@@ -6,7 +6,6 @@ defmodule PratiBa.Formatters.HumanShort do
 
   @microsecond 1_000_000
 
-  @spec format(Duration.t()) :: String.t() | {:error, term}
   def format(%Duration{} = duration), do: lformat(duration, Translator.current_locale())
   def format(_), do: {:error, :invalid_timestamp}
 

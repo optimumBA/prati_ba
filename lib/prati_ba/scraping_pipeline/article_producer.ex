@@ -17,8 +17,6 @@ defmodule PratiBa.ScrapingPipeline.ArticleProducer do
   end
 
   @impl GenStage
-  @spec handle_cast({:add_articles, any}, %{:demand => integer, optional(any) => any}) ::
-          {:noreply, list, %{:articles => list, :demand => integer, optional(any) => any}}
   def handle_cast({:add_articles, articles}, state) do
     Logger.info("ArticleProducer handle_cast #{inspect(state.demand)}")
 
