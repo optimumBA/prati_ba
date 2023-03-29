@@ -5,6 +5,8 @@ defmodule PratiBa.Application do
 
   use Application
 
+  alias PratiBa.ScrapingPipeline
+
   @impl true
   def start(_type, _args) do
     if Application.get_env(:prati_ba, :env) == :prod do
@@ -30,9 +32,10 @@ defmodule PratiBa.Application do
       # Start Finch
       {Finch, name: PratiBa.Finch},
       # Start the Endpoint (http/https)
-      PratiBaWeb.Endpoint
+      PratiBaWeb.Endpoint,
       # Start a worker by calling: PratiBa.Worker.start_link(arg)
       # {PratiBa.Worker, arg}
+      ScrapingPipeline
     ]
 
     children =

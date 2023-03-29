@@ -69,6 +69,7 @@ defmodule PratiBa.MixProject do
       {:timber_plug, "~> 1.1"},
       {:geolix, "~> 2.0"},
       {:geolix_adapter_mmdb2, "~> 0.6"},
+      {:gen_stage, "~> 1.1"},
       {:ua_inspector, "~> 3.0"}
     ]
   end

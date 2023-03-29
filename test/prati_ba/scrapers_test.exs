@@ -1,77 +1,23 @@
 defmodule PratiBa.ScrapersTest do
-  use PratiBa.DataCase
-
-  import Mox
+  use PratiBa.DataCase, async: false
 
   alias PratiBa.Articles
-  alias PratiBa.Articles.Source
   alias PratiBa.Scrapers
   alias PratiBa.Scrapers.ScraperMock
 
-  setup :set_mox_from_context
-  setup :verify_on_exit!
+  describe "list/0" do
+    setup do
+      %{source: insert(:source, name: "Fake source")}
+    end
 
-  test "fetch_new_articles/0 gets new articles and saves them to DB" do
-    source_name = "Fake source"
-    insert(:source, name: source_name)
+    test "gets scrapers from the DB", %{source: %Articles.Source{} = source} do
+      Application.put_env(:prati_ba, :scrapers, %{source.name => ScraperMock})
+      assert Scrapers.list() == [{source, ScraperMock}]
+    end
 
-    articles = [
-      %{
-        original_id: "1234",
-        title: nil,
-        description: "Description",
-        published_at: ~N[2020-03-11 18:49:00],
-        author: "Author",
-        image: nil,
-        url: "https://fakesour.ce/fake-title"
-      },
-      %{
-        original_id: "15",
-        title: nil,
-        description: "Description",
-        published_at: ~N[2020-04-21 14:37:00],
-        author: "Author",
-        image: nil,
-        url: "https://fakesour.ce/another-article"
-      }
-    ]
-
-    ScraperMock
-    |> expect(:articles, fn -> {:ok, Stream.map(articles, fn article -> article end)} end)
-    |> expect(:article_details, fn article ->
-      {:ok, Map.merge(article, %{title: "Fake title", image: "https://placekitten.com/350/150"})}
-    end)
-    |> expect(:article_details, fn _ -> {:error, %Finch.Error{}} end)
-
-    Scrapers.fetch_new_articles(%{source_name => ScraperMock})
-
-    assert [article] = Articles.list_articles(page: 1, limit: 15)
-    refute is_nil(article.image)
-    assert article.original_id == "1234"
-    assert article.published_at == ~N[2020-03-11 18:49:00]
-    assert article.title == "Fake title"
-    assert article.url == "https://fakesour.ce/fake-title"
-    assert %Source{name: "Fake source"} = article.source
-  end
-
-  test "fetch_new_articles/0 doesn't crash when there are network issues" do
-    source_name = "Fake source"
-    insert(:source, name: source_name)
-
-    ScraperMock
-    |> expect(:articles, fn -> {:error, %Finch.Error{}} end)
-
-    Scrapers.fetch_new_articles(%{source_name => ScraperMock})
-
-    assert [] = Articles.list_articles(page: 1, limit: 15)
-  end
-
-  test "fetch_new_articles/0 doesn't crash when the scraper module is not defined" do
-    source_name = "Fake source"
-    insert(:source, name: source_name)
-
-    Scrapers.fetch_new_articles(%{})
-
-    assert [] = Articles.list_articles(page: 1, limit: 15)
+    test "doesn't crash if the scraper module doesn't exist" do
+      Application.put_env(:prati_ba, :scrapers, %{})
+      assert Scrapers.list() == []
+    end
   end
 end

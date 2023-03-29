@@ -57,8 +57,7 @@ config :waffle,
 config :prati_ba, PratiBa.Scheduler,
   global: true,
   jobs: [
-    # Every 5 minutes
-    {"*/5 * * * *", {PratiBa.Scrapers, :fetch_new_articles, []}},
+    {"* * * * *", {PratiBa.ScrapingPipeline, :start, []}},
     {"45 16 * * 5", {Geolix, :reload_databases, []}}
   ]
 
@@ -68,6 +67,32 @@ config :prati_ba,
     username: "pratiba",
     password: "pratiba"
   ],
+  scrapers: %{
+    "BH Dani" => PratiBa.Scrapers.BhDaniScraper,
+    "Bljesak.info" => PratiBa.Scrapers.BljesakScraper,
+    "Capital.ba" => PratiBa.Scrapers.CapitalBaScraper,
+    "CIN" => PratiBa.Scrapers.CinScraper,
+    "Dnevni avaz" => PratiBa.Scrapers.DnevniAvazScraper,
+    "DW" => PratiBa.Scrapers.DwScraper,
+    "face.ba" => PratiBa.Scrapers.FaceScraper,
+    "Fokus.ba" => PratiBa.Scrapers.FokusScraper,
+    "Frontal.ba" => PratiBa.Scrapers.FrontalScraper,
+    "Klix.ba" => PratiBa.Scrapers.KlixScraper,
+    "N1" => PratiBa.Scrapers.N1Scraper,
+    "Nezavisne novine" => PratiBa.Scrapers.NezavisneNovineScraper,
+    "Oslobođenje" => PratiBa.Scrapers.OslobodjenjeScraper,
+    "Preokret.info" => PratiBa.Scrapers.PreokretInfoScraper,
+    "Prva smjena" => PratiBa.Scrapers.PrvaSmjenaScraper,
+    "Radio Sarajevo" => PratiBa.Scrapers.RadioSarajevoScraper,
+    "Radio Slobodna Evropa" => PratiBa.Scrapers.RadioSlobodnaEvropaScraper,
+    "Raport.ba" => PratiBa.Scrapers.RaportScraper,
+    "Raskrinkavanje.ba" => PratiBa.Scrapers.RaskrinkavanjeScraper,
+    "Slobodna Bosna" => PratiBa.Scrapers.SlobodnaBosnaScraper,
+    "source.ba" => PratiBa.Scrapers.SourceScraper,
+    "Start BiH" => PratiBa.Scrapers.StartBihScraper,
+    "The Bosnia Times" => PratiBa.Scrapers.TheBosniaTimesScraper,
+    "Žurnal" => PratiBa.Scrapers.ZurnalScraper
+  },
   socket_salt: "GXtpirSt",
   user_agent: user_agent
 
