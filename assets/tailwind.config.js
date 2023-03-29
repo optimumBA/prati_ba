@@ -2,84 +2,103 @@
 // https://tailwindcss.com/docs/configuration
 
 const defaultTheme = require('tailwindcss/defaultTheme')
-const plugin = require("tailwindcss/plugin")
-const fs = require("fs")
-const path = require("path")
+const plugin = require('tailwindcss/plugin')
+const fs = require('fs')
+const path = require('path')
 
 module.exports = {
   darkMode: 'class',
-  content: [
-    "./js/**/*.js",
-    "../lib/*_web.ex",
-    "../lib/*_web/**/*.*ex"
-  ],
+  content: ['./js/**/*.js', '../lib/*_web.ex', '../lib/*_web/**/*.*ex'],
   theme: {
     extend: {
       fontSize: {
-        xs: "10px",
-        sm: "14px",
-        base: "16px",
-        lg: "31px",
+        xs: '10px',
+        sm: '14px',
+        base: '16px',
+        lg: '31px',
       },
       fontFamily: {
-        inter: ["Inter", ...defaultTheme.fontFamily.sans],
+        inter: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       spacing: {
-        "1.5": "6px",
+        1.5: '6px',
       },
       colors: {
         gray: {
-          10: "#9B9B9B",
-          20: "#6C727F",
-          30: "#363A44",
+          10: '#9B9B9B',
+          20: '#6C727F',
+          30: '#363A44',
         },
-      }
+      },
     },
   },
   plugins: [
-    require("@tailwindcss/forms"),
+    require('@tailwindcss/forms'),
     // Allows prefixing tailwind classes with LiveView classes to add rules
     // only when LiveView classes are applied, for example:
     //
     //     <div class="phx-click-loading:animate-ping">
     //
-    plugin(({addVariant}) => addVariant("phx-no-feedback", [".phx-no-feedback&", ".phx-no-feedback &"])),
-    plugin(({addVariant}) => addVariant("phx-click-loading", [".phx-click-loading&", ".phx-click-loading &"])),
-    plugin(({addVariant}) => addVariant("phx-submit-loading", [".phx-submit-loading&", ".phx-submit-loading &"])),
-    plugin(({addVariant}) => addVariant("phx-change-loading", [".phx-change-loading&", ".phx-change-loading &"])),
+    plugin(({ addVariant }) =>
+      addVariant('phx-no-feedback', ['.phx-no-feedback&', '.phx-no-feedback &'])
+    ),
+    plugin(({ addVariant }) =>
+      addVariant('phx-click-loading', [
+        '.phx-click-loading&',
+        '.phx-click-loading &',
+      ])
+    ),
+    plugin(({ addVariant }) =>
+      addVariant('phx-submit-loading', [
+        '.phx-submit-loading&',
+        '.phx-submit-loading &',
+      ])
+    ),
+    plugin(({ addVariant }) =>
+      addVariant('phx-change-loading', [
+        '.phx-change-loading&',
+        '.phx-change-loading &',
+      ])
+    ),
 
     // Embeds Hero Icons (https://heroicons.com) into your app.css bundle
     // See your `CoreComponents.icon/1` for more information.
     //
-    plugin(function({matchComponents, theme}) {
-      let iconsDir = path.join(__dirname, "../priv/hero_icons/optimized")
+    plugin(function ({ matchComponents, theme }) {
+      let iconsDir = path.join(__dirname, '../priv/hero_icons/optimized')
       let values = {}
       let icons = [
-        ["", "/24/outline"],
-        ["-solid", "/24/solid"],
-        ["-mini", "/20/solid"]
+        ['', '/24/outline'],
+        ['-solid', '/24/solid'],
+        ['-mini', '/20/solid'],
       ]
       icons.forEach(([suffix, dir]) => {
-        fs.readdirSync(path.join(iconsDir, dir)).map(file => {
-          let name = path.basename(file, ".svg") + suffix
-          values[name] = {name, fullPath: path.join(iconsDir, dir, file)}
+        fs.readdirSync(path.join(iconsDir, dir)).map((file) => {
+          let name = path.basename(file, '.svg') + suffix
+          values[name] = { name, fullPath: path.join(iconsDir, dir, file) }
         })
       })
-      matchComponents({
-        "hero": ({name, fullPath}) => {
-          let content = fs.readFileSync(fullPath).toString().replace(/\r?\n|\r/g, "")
-          return {
-            [`--hero-${name}`]: `url('data:image/svg+xml;utf8,${content}')`,
-            "-webkit-mask": `var(--hero-${name})`,
-            "mask": `var(--hero-${name})`,
-            "background-color": "currentColor",
-            "vertical-align": "middle",
-            "display": "inline-block",
-            "width": theme("spacing.5"),
-            "height": theme("spacing.5")
-          }
-        }
-      }, {values})
-    })
-  ]
+      matchComponents(
+        {
+          hero: ({ name, fullPath }) => {
+            let content = fs
+              .readFileSync(fullPath)
+              .toString()
+              .replace(/\r?\n|\r/g, '')
+            return {
+              [`--hero-${name}`]: `url('data:image/svg+xml;utf8,${content}')`,
+              '-webkit-mask': `var(--hero-${name})`,
+              mask: `var(--hero-${name})`,
+              'background-color': 'currentColor',
+              'vertical-align': 'middle',
+              display: 'inline-block',
+              width: theme('spacing.5'),
+              height: theme('spacing.5'),
+            }
+          },
+        },
+        { values }
+      )
+    }),
+  ],
 }
