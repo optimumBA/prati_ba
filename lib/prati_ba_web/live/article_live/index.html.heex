@@ -1,5 +1,5 @@
 <div class="w-full h-full absolute">
-  <ArticleComponent.navbar socket={@socket} />
+  <ArticleComponent.navbar />
   <%= if @new_articles do %>
     <ArticleComponent.new_articles_indicator />
   <% end %>
@@ -10,7 +10,7 @@
       phx-update="stream"
     >
       <div :for={{article_id, article} <- @streams.articles} id={article_id}>
-        <ArticleComponent.article article={article} socket={@socket} />
+        <ArticleComponent.article article={article} />
       </div>
     </div>
   </section>
