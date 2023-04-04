@@ -5,13 +5,22 @@ defmodule PratiBaWeb.Components.ArticleComponent do
   alias PratiBa.Uploaders.ArticleImage
   alias PratiBaWeb.Components.Icons
 
+  @doc """
+  Renders article component with content.
+
+  ## Examples
+
+      <.article article={article} />
+  """
+  attr :article, :map, required: true
+
   def article(assigns) do
     ~H"""
     <article id={"article-" <> @article.id} class="group my-3 lg:h-[230px] duration-200">
       <.link href={~p"/#{@article}"} class="article" target="_blank" rel="noopener">
         <div class="w-full flex flex-row sm:group-odd:flex-row-reverse sm:gap-5">
           <.article_image article={@article} />
-          <.article_details article={@article} socket={@socket} />
+          <.article_details article={@article} />
         </div>
       </.link>
       <hr class="sm:w-11/12 sm:float-right my-3 border-gray-300 dark:border-gray-30" />
@@ -100,6 +109,9 @@ defmodule PratiBaWeb.Components.ArticleComponent do
     """
   end
 
+  @doc """
+  Renders navbar component.
+  """
   def navbar(assigns) do
     ~H"""
     <div id="nav-ignore" class="w-full" phx-update="ignore">
@@ -145,7 +157,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
       <div class="w-full flex mt-[66px] sm:mt-[102px] font-thin sm:font-normal text-sm sm:text-base items-center justify-center border-b text-gray-600 sm:text-gray-10 border-gray-10 dark:border-gray-30 dark:text-gray-20">
         <div class="sm:block hidden"><.current_date format="%A, %d.%m.%Y" /></div>
         <div class="sm:hidden block"><.current_date format="%A, %d/%m/%Y" /></div>
-        <.time socket={@socket} />
+        <.current_time />
       </div>
     </div>
     """
@@ -162,7 +174,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
     """
   end
 
-  defp time(assigns) do
+  defp current_time(assigns) do
     ~H"""
     <div id="time" class="flex items-center pl-2 hidden sm:flex" phx-hook="DisplayTimeHook">
       <img src={~p"/images/icons/clock.svg"} class="mr-2" />
@@ -171,6 +183,9 @@ defmodule PratiBaWeb.Components.ArticleComponent do
     """
   end
 
+  @doc """
+  Renders indicator button for new articles.
+  """
   def new_articles_indicator(assigns) do
     ~H"""
     <div class="mx-4 flex items-center justify-center mt-6">
@@ -185,6 +200,9 @@ defmodule PratiBaWeb.Components.ArticleComponent do
     """
   end
 
+  @doc """
+  Renders scroll to top icon.
+  """
   def scroll_to_top(assigns) do
     ~H"""
     <div id="scroll-to-top-component" phx-update="ignore">
