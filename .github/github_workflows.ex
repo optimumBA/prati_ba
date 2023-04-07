@@ -82,7 +82,8 @@ defmodule GitHubWorkflows do
             name: "pr-${{ github.event.number }}-${{ env.REPO_NAME }}",
             secrets:
               "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }}",
-            setup_cmd: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y"
+            setup_cmd:
+              "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && source '$HOME/.cargo/env'"
           ]
         ]
       ]
