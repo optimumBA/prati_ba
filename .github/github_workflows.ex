@@ -85,8 +85,12 @@ defmodule GitHubWorkflows do
           run: "MIX_ENV=test mix format --check-formatted"
         ],
         [
+          name: "Download UAInspector database",
+          run: "MIX_ENV=test mix ua_inspector.download --force --quiet"
+        ],
+        [
           name: "Run Tests",
-          run: ["MIX_ENV=test mix ua_inspector.download --force --quiet", "mix test"]
+          run: ["mix test"]
         ]
       ]
     ]
