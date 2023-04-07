@@ -1,0 +1,94 @@
+defmodule GitHubWorkflows do
+  @moduledoc """
+  Used by a custom tool to generate GitHub workflows.
+  Reduces repetition.
+  """
+
+  def get do
+    %{
+      "ci.yml" => ci_workflow()
+    }
+  end
+
+  defp ci_workflow do
+    [
+      [
+        name: "Elixir CI",
+        on: [
+          push: [
+            branches: ["master"]
+          ],
+          pull_request: [
+            branches: ["master"]
+          ]
+        ],
+        jobs: [
+          test: test_job()
+        ]
+      ]
+    ]
+  end
+
+  defp test_job do
+    [
+      name: "Test",
+      "runs-on": "ubuntu-latest",
+      services: [
+        db: [
+          image: "postgres:12",
+          ports: ["5432:5432"],
+          env: [POSTGRES_PASSWORD: "postgres"],
+          options:
+            "--health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5"
+        ]
+      ],
+      steps: [
+        [
+          uses: "actions/checkout@v2"
+        ],
+        [
+          name: "Setup elixir",
+          uses: "erlef/setup-beam@v1",
+          with: [
+            "elixir-version": "1.14.1",
+            "otp-version": "25.0.4"
+          ]
+        ],
+        [
+          name: "Install rustup",
+          uses: "actions-rs/toolchain@v1",
+          with: [
+            profile: "minimal",
+            toolchain: "stable",
+            override: true
+          ]
+        ],
+        [
+          uses: "actions/cache@v2",
+          with: [
+            path: "_build\ndeps",
+            key:
+              "${{ runner.os }}-mix-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}",
+            "restore-keys": "${{ runner.os }}-mix-"
+          ]
+        ],
+        [
+          name: "Install Dependencies",
+          run: "mix deps.get --only test"
+        ],
+        [
+          name: "Compile",
+          run: "MIX_ENV=test mix compile --force --warnings-as-errors"
+        ],
+        [
+          name: "Check formatting",
+          run: "MIX_ENV=test mix format --check-formatted"
+        ],
+        [
+          name: "Run Tests",
+          run: ["MIX_ENV=test mix ua_inspector.download --force --quiet", "mix test"]
+        ]
+      ]
+    ]
+  end
+end
