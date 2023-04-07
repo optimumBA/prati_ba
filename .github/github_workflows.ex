@@ -76,21 +76,13 @@ defmodule GitHubWorkflows do
           uses: "actions/checkout@v2"
         ],
         [
-          name: "Install rustup",
-          uses: "actions-rs/toolchain@v1",
-          with: [
-            profile: "minimal",
-            toolchain: "stable",
-            override: true
-          ]
-        ],
-        [
           name: "Deploy preview app",
-          uses: "amos-kibet/fly-pr-review-apps@67752435cc64a82a648f4c97169b8c8bb32a8ce0",
+          uses: "almirsarajcic/fly-pr-review-apps@setup",
           with: [
             name: "pr-${{ github.event.number }}-${{ env.REPO_NAME }}",
             secrets:
-              "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }}"
+              "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }}",
+            setup: "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh"
           ]
         ]
       ]
