@@ -90,7 +90,7 @@ defmodule GitHubWorkflows do
         ],
         [
           name: "Run Tests",
-          run: ["mix test"]
+          run: "mix test"
         ]
       ]
     ]

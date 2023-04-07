@@ -45,5 +45,4 @@ jobs:
       - name: Download UAInspector database
         run: MIX_ENV=test mix ua_inspector.download --force --quiet
       - name: Run Tests
-        run:
-          - mix test
+        run: mix test
