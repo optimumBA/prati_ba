@@ -69,7 +69,7 @@ defmodule GitHubWorkflows do
         REPO_NAME: "prati_ba"
       ],
       environment: [
-        name: "pr-${{ github.event.number }}",
+        name: "pr-${{ github.event.number }}-prati-ba",
         url: "https://${{ env.PHX_HOST }}"
       ],
       steps: [
@@ -82,7 +82,7 @@ defmodule GitHubWorkflows do
           with: [
             name: "pr-${{ github.event.number }}-prati-ba",
             secrets:
-              "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }} PHX_HOST=${{ env.PHX_HOST }}",
+              "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }} PHX_HOST=${{ env.PHX_HOST }} SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}",
           ]
         ]
       ]

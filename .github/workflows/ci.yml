@@ -42,7 +42,7 @@ jobs:
       PHX_HOST: pr-${{ github.event.number }}-prati-ba.fly.dev
       REPO_NAME: prati_ba
     environment:
-      name: pr-${{ github.event.number }}
+      name: pr-${{ github.event.number }}-prati-ba
       url: https://${{ env.PHX_HOST }}
     steps:
       - uses: actions/checkout@v2
@@ -50,7 +50,7 @@ jobs:
         uses: almirsarajcic/fly-pr-review-apps@setup
         with:
           name: pr-${{ github.event.number }}-prati-ba
-          secrets: ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }} PHX_HOST=${{ env.PHX_HOST }}
+          secrets: ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }} PHX_HOST=${{ env.PHX_HOST }} SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}
   test:
     name: Test
     runs-on: ubuntu-latest
