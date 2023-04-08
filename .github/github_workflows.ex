@@ -65,7 +65,7 @@ defmodule GitHubWorkflows do
         FLY_API_TOKEN: "${{ secrets.FLY_API_TOKEN }}",
         FLY_ORG: "optimum-bh",
         FLY_REGION: "fra",
-        PHX_HOST: "pr-${{ github.event.number }}-${{ env.REPO_NAME }}.fly.dev",
+        PHX_HOST: "pr-${{ github.event.number }}-prati-ba.fly.dev",
         REPO_NAME: "prati_ba"
       ],
       environment: [
@@ -80,7 +80,7 @@ defmodule GitHubWorkflows do
           name: "Deploy preview app",
           uses: "almirsarajcic/fly-pr-review-apps@setup",
           with: [
-            name: "pr-${{ github.event.number }}-${{ env.REPO_NAME }}",
+            name: "pr-${{ github.event.number }}-prati-ba",
             secrets:
               "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }} PHX_HOST=${{ env.PHX_HOST }}",
           ]
