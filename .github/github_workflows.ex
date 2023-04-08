@@ -65,11 +65,12 @@ defmodule GitHubWorkflows do
         FLY_API_TOKEN: "${{ secrets.FLY_API_TOKEN }}",
         FLY_ORG: "optimum-bh",
         FLY_REGION: "fra",
+        PHX_HOST: "pr-${{ github.event.number }}-${{ env.REPO_NAME }}.fly.dev",
         REPO_NAME: "prati_ba"
       ],
       environment: [
         name: "pr-${{ github.event.number }}",
-        url: "https://pr-${{ github.event.number }}-${{ env.REPO_NAME }}.fly.dev"
+        url: "https://${{ env.PHX_HOST }}"
       ],
       steps: [
         [
@@ -81,9 +82,7 @@ defmodule GitHubWorkflows do
           with: [
             name: "pr-${{ github.event.number }}-${{ env.REPO_NAME }}",
             secrets:
-              "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }}",
-            setup_cmd:
-              "curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y && export RUSTUP_HOME=/root/.rustup RUSTFLAGS=\"-C target-feature=-crt-static\" CARGO_HOME=/root/.cargo PATH=\"/root/.cargo/bin:$PATH\""
+              "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }} PHX_HOST=${{ env.PHX_HOST }}",
           ]
         ]
       ]
