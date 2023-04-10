@@ -66,7 +66,8 @@ defmodule GitHubWorkflows do
         FLY_ORG: "optimum-bh",
         FLY_REGION: "fra",
         PHX_HOST: "pr-${{ github.event.number }}-prati-ba.fly.dev",
-        REPO_NAME: "prati_ba"
+        REPO_NAME: "prati_ba",
+        VM_MEMORY: 1024
       ],
       environment: [
         name: "pr-${{ github.event.number }}-prati-ba",
