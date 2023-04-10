@@ -66,8 +66,7 @@ defmodule GitHubWorkflows do
         FLY_ORG: "optimum-bh",
         FLY_REGION: "fra",
         PHX_HOST: "pr-${{ github.event.number }}-prati-ba.fly.dev",
-        REPO_NAME: "prati_ba",
-        VM_MEMORY: 1024
+        REPO_NAME: "prati_ba"
       ],
       environment: [
         name: "pr-${{ github.event.number }}-prati-ba",
@@ -84,6 +83,7 @@ defmodule GitHubWorkflows do
             name: "pr-${{ github.event.number }}-prati-ba",
             secrets:
               "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }} PHX_HOST=${{ env.PHX_HOST }} SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}",
+            vm_memory: 1024
           ]
         ]
       ]
