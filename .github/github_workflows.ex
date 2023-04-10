@@ -45,7 +45,7 @@ defmodule GitHubWorkflows do
           uses: "strumwolf/delete-deployment-environment@v2.2.3",
           with: [
             token: "${{ secrets.GITHUB_TOKEN }}",
-            environment: "pr-${{ github.event.number }}",
+            environment: "pr-${{ github.event.number }}-prati-ba",
             ref: "${{ github.head_ref }}",
             onlyRemoveDeployments: true
           ]

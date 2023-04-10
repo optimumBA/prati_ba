@@ -23,7 +23,7 @@ jobs:
         uses: strumwolf/delete-deployment-environment@v2.2.3
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          environment: pr-${{ github.event.number }}
+          environment: pr-${{ github.event.number }}-prati-ba
           ref: ${{ github.head_ref }}
           onlyRemoveDeployments: true
   deploy_preview_app:
@@ -48,7 +48,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Deploy preview app
-        uses: almirsarajcic/fly-pr-review-apps@setup
+        uses: almirsarajcic/fly-pr-review-apps@vm-size
         with:
           name: pr-${{ github.event.number }}-prati-ba
           secrets: ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }} PHX_HOST=${{ env.PHX_HOST }} SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}
