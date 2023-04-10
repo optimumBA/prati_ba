@@ -79,7 +79,7 @@ defmodule GitHubWorkflows do
         ],
         [
           name: "Deploy preview app",
-          uses: "almirsarajcic/fly-pr-review-apps@setup",
+          uses: "almirsarajcic/fly-pr-review-apps@vm-size",
           with: [
             name: "pr-${{ github.event.number }}-prati-ba",
             secrets:
