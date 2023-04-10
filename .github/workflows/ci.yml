@@ -11,27 +11,12 @@ on:
       - reopened
       - synchronize
 jobs:
-  delete_previous_deployments:
-    name: Delete existing GitHub deployments
-    if: github.event_name == 'pull_request'
-    needs:
-      - test
-    permissions: write-all
-    runs-on: ubuntu-latest
-    steps:
-      - name: Delete previous deployments
-        uses: strumwolf/delete-deployment-environment@v2.2.3
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          environment: pr-${{ github.event.number }}-prati-ba
-          ref: ${{ github.head_ref }}
-          onlyRemoveDeployments: true
   deploy_preview_app:
     name: Deploy preview app
     if: github.event_name == 'pull_request'
     needs:
-      - delete_previous_deployments
       - test
+    permissions: write-all
     runs-on: ubuntu-latest
     concurrency:
       group: pr-${{ github.event.number }}
@@ -46,6 +31,13 @@ jobs:
       url: https://${{ env.PHX_HOST }}
     steps:
       - uses: actions/checkout@v2
+      - name: Delete previous deployments
+        uses: strumwolf/delete-deployment-environment@v2.2.3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: pr-${{ github.event.number }}-prati-ba
+          ref: ${{ github.head_ref }}
+          onlyRemoveDeployments: true
       - name: Deploy preview app
         uses: almirsarajcic/fly-pr-review-apps@vm-size
         with:

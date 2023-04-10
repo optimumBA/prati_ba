@@ -24,31 +24,8 @@ defmodule GitHubWorkflows do
           ]
         ],
         jobs: [
-          delete_previous_deployments: delete_previous_deployments_job(),
           deploy_preview_app: deploy_preview_app_job(),
           test: test_job()
-        ]
-      ]
-    ]
-  end
-
-  defp delete_previous_deployments_job do
-    [
-      name: "Delete existing GitHub deployments",
-      if: "github.event_name == 'pull_request'",
-      needs: ["test"],
-      permissions: "write-all",
-      "runs-on": "ubuntu-latest",
-      steps: [
-        [
-          name: "Delete previous deployments",
-          uses: "strumwolf/delete-deployment-environment@v2.2.3",
-          with: [
-            token: "${{ secrets.GITHUB_TOKEN }}",
-            environment: "pr-${{ github.event.number }}-prati-ba",
-            ref: "${{ github.head_ref }}",
-            onlyRemoveDeployments: true
-          ]
         ]
       ]
     ]
@@ -58,7 +35,8 @@ defmodule GitHubWorkflows do
     [
       name: "Deploy preview app",
       if: "github.event_name == 'pull_request'",
-      needs: ["delete_previous_deployments", "test"],
+      needs: ["test"],
+      permissions: "write-all",
       "runs-on": "ubuntu-latest",
       concurrency: [group: "pr-${{ github.event.number }}"],
       env: [
@@ -75,6 +53,16 @@ defmodule GitHubWorkflows do
       steps: [
         [
           uses: "actions/checkout@v2"
+        ],
+        [
+          name: "Delete previous deployments",
+          uses: "strumwolf/delete-deployment-environment@v2.2.3",
+          with: [
+            token: "${{ secrets.GITHUB_TOKEN }}",
+            environment: "pr-${{ github.event.number }}-prati-ba",
+            ref: "${{ github.head_ref }}",
+            onlyRemoveDeployments: true
+          ]
         ],
         [
           name: "Deploy preview app",
