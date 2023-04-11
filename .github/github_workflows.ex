@@ -66,7 +66,7 @@ defmodule GitHubWorkflows do
           name: "Delete GitHub environment",
           uses: "strumwolf/delete-deployment-environment@v2.2.3",
           with: [
-            token: "${{ ssteps.generate_token.outputs.token  }}",
+            token: "${{ steps.generate_token.outputs.token  }}",
             environment: "pr-${{ github.event.number }}-prati-ba",
             ref: "${{ github.head_ref }}"
           ]
