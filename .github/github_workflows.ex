@@ -11,6 +11,9 @@ defmodule GitHubWorkflows do
   end
 
   defp ci_workflow do
+    repo_name = "prati_ba"
+    app_name = "prati-ba"
+
     [
       [
         name: "Elixir CI",
@@ -24,15 +27,15 @@ defmodule GitHubWorkflows do
           ]
         ],
         jobs: [
-          delete_preview_app: delete_preview_app_job(),
-          deploy_preview_app: deploy_preview_app_job(),
+          delete_preview_app: delete_preview_app_job(repo_name, app_name),
+          deploy_preview_app: deploy_preview_app_job(repo_name, app_name),
           test: test_job()
         ]
       ]
     ]
   end
 
-  defp delete_preview_app_job do
+  defp delete_preview_app_job(repo_name, app_name) do
     [
       name: "Delete preview app",
       if: "github.event_name == 'pull_request' && github.event.type == 'closed'",
@@ -40,7 +43,7 @@ defmodule GitHubWorkflows do
       concurrency: [group: "pr-${{ github.event.number }}"],
       env: [
         FLY_API_TOKEN: "${{ secrets.FLY_API_TOKEN }}",
-        REPO_NAME: "prati_ba"
+        REPO_NAME: repo_name
       ],
       steps: [
         [
@@ -50,7 +53,7 @@ defmodule GitHubWorkflows do
           name: "Delete preview app",
           uses: "almirsarajcic/fly-pr-review-apps@vm-size",
           with: [
-            name: "pr-${{ github.event.number }}-prati-ba"
+            name: "pr-${{ github.event.number }}-#{app_name}"
           ]
         ],
         [
@@ -67,7 +70,7 @@ defmodule GitHubWorkflows do
           uses: "strumwolf/delete-deployment-environment@v2.2.3",
           with: [
             token: "${{ steps.generate_token.outputs.token  }}",
-            environment: "pr-${{ github.event.number }}-prati-ba",
+            environment: "pr-${{ github.event.number }}-#{app_name}",
             ref: "${{ github.head_ref }}"
           ]
         ]
@@ -75,7 +78,7 @@ defmodule GitHubWorkflows do
     ]
   end
 
-  defp deploy_preview_app_job do
+  defp deploy_preview_app_job(repo_name, app_name) do
     [
       name: "Deploy preview app",
       if: "github.event_name == 'pull_request' && github.event.type != 'closed'",
@@ -87,11 +90,11 @@ defmodule GitHubWorkflows do
         FLY_API_TOKEN: "${{ secrets.FLY_API_TOKEN }}",
         FLY_ORG: "optimum-bh",
         FLY_REGION: "fra",
-        PHX_HOST: "pr-${{ github.event.number }}-prati-ba.fly.dev",
-        REPO_NAME: "prati_ba"
+        PHX_HOST: "pr-${{ github.event.number }}-#{app_name}.fly.dev",
+        REPO_NAME: repo_name
       ],
       environment: [
-        name: "pr-${{ github.event.number }}-prati-ba",
+        name: "pr-${{ github.event.number }}-#{app_name}",
         url: "https://${{ env.PHX_HOST }}"
       ],
       steps: [
@@ -103,7 +106,7 @@ defmodule GitHubWorkflows do
           uses: "strumwolf/delete-deployment-environment@v2.2.3",
           with: [
             token: "${{ secrets.GITHUB_TOKEN }}",
-            environment: "pr-${{ github.event.number }}-prati-ba",
+            environment: "pr-${{ github.event.number }}-#{app_name}",
             ref: "${{ github.head_ref }}",
             onlyRemoveDeployments: true
           ]
@@ -112,7 +115,7 @@ defmodule GitHubWorkflows do
           name: "Deploy preview app",
           uses: "almirsarajcic/fly-pr-review-apps@vm-size",
           with: [
-            name: "pr-${{ github.event.number }}-prati-ba",
+            name: "pr-${{ github.event.number }}-#{app_name}",
             secrets:
               "ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }} PHX_HOST=${{ env.PHX_HOST }} SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}",
             vm_memory: 1024
