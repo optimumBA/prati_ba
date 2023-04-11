@@ -16,10 +16,10 @@ defmodule GitHubWorkflows do
         name: "Elixir CI",
         on: [
           push: [
-            branches: ["master"]
+            branches: ["main"]
           ],
           pull_request: [
-            branches: ["master"],
+            branches: ["main"],
             types: ["opened", "reopened", "synchronize"]
           ]
         ],
