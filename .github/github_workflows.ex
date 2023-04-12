@@ -5,31 +5,62 @@ defmodule GitHubWorkflows do
   """
 
   def get do
-    %{
-      "ci.yml" => ci_workflow()
-    }
-  end
-
-  defp ci_workflow do
     repo_name = "prati_ba"
     app_name = "prati-ba"
 
+    %{
+      "main.yml" => main_workflow(),
+      "pr.yml" => pr_workflow(repo_name, app_name),
+      "pr_closure.yml" => pr_closure_workflow(repo_name, app_name)
+    }
+  end
+
+  defp main_workflow do
     [
       [
-        name: "Elixir CI",
+        name: "Main",
         on: [
           push: [
             branches: ["main"]
-          ],
-          pull_request: [
-            branches: ["main"],
-            types: ["closed", "opened", "reopened", "synchronize"]
           ]
         ],
         jobs: [
-          delete_preview_app: delete_preview_app_job(repo_name, app_name),
+          test: test_job()
+        ]
+      ]
+    ]
+  end
+
+  defp pr_workflow(repo_name, app_name) do
+    [
+      [
+        name: "PR",
+        on: [
+          pull_request: [
+            branches: ["main"],
+            types: ["opened", "reopened", "synchronize"]
+          ]
+        ],
+        jobs: [
           deploy_preview_app: deploy_preview_app_job(repo_name, app_name),
           test: test_job()
+        ]
+      ]
+    ]
+  end
+
+  defp pr_closure_workflow(repo_name, app_name) do
+    [
+      [
+        name: "PR closure",
+        on: [
+          pull_request: [
+            branches: ["main"],
+            types: ["closed"]
+          ]
+        ],
+        jobs: [
+          delete_preview_app: delete_preview_app_job(repo_name, app_name)
         ]
       ]
     ]
@@ -38,7 +69,6 @@ defmodule GitHubWorkflows do
   defp delete_preview_app_job(repo_name, app_name) do
     [
       name: "Delete preview app",
-      if: "github.event_name == 'pull_request' && github.event.type == 'closed'",
       "runs-on": "ubuntu-latest",
       concurrency: [group: "pr-${{ github.event.number }}"],
       env: [
@@ -81,7 +111,6 @@ defmodule GitHubWorkflows do
   defp deploy_preview_app_job(repo_name, app_name) do
     [
       name: "Deploy preview app",
-      if: "github.event_name == 'pull_request' && github.event.type != 'closed'",
       needs: ["test"],
       permissions: "write-all",
       "runs-on": "ubuntu-latest",
@@ -128,7 +157,6 @@ defmodule GitHubWorkflows do
   defp test_job do
     [
       name: "Test",
-      if: "github.event.type != 'closed'",
       "runs-on": "ubuntu-latest",
       services: [
         db: [
