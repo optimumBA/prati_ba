@@ -1,0 +1,81 @@
+name: PR
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+jobs:
+  deploy_preview_app:
+    name: Deploy preview app
+    needs:
+      - test
+    permissions: write-all
+    runs-on: ubuntu-latest
+    concurrency:
+      group: pr-${{ github.event.number }}
+    env:
+      FLY_API_TOKEN: ${{ secrets.FLY_API_TOKEN }}
+      FLY_ORG: optimum-bh
+      FLY_REGION: fra
+      PHX_HOST: pr-${{ github.event.number }}-prati-ba.fly.dev
+      REPO_NAME: prati_ba
+    environment:
+      name: pr-${{ github.event.number }}-prati-ba
+      url: https://${{ env.PHX_HOST }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Delete previous deployments
+        uses: strumwolf/delete-deployment-environment@v2.2.3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          environment: pr-${{ github.event.number }}-prati-ba
+          ref: ${{ github.head_ref }}
+          onlyRemoveDeployments: true
+      - name: Deploy preview app
+        uses: optimumBA/fly-preview-apps@main
+        with:
+          name: pr-${{ github.event.number }}-prati-ba
+          secrets: ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }} PHX_HOST=${{ env.PHX_HOST }} SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}
+          vm_memory: 1024
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    services:
+      db:
+        image: postgres:12
+        ports:
+          - 5432:5432
+        env:
+          POSTGRES_PASSWORD: postgres
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup elixir
+        uses: erlef/setup-beam@v1
+        with:
+          elixir-version: 1.14.1
+          otp-version: 25.0.4
+      - name: Install rustup
+        uses: actions-rs/toolchain@v1
+        with:
+          profile: minimal
+          toolchain: stable
+          override: true
+      - uses: actions/cache@v2
+        with:
+          path: "_build\ndeps"
+          key: ${{ runner.os }}-mix-${{ hashFiles(format('{0}{1}', github.workspace, '/mix.lock')) }}
+          restore-keys: ${{ runner.os }}-mix-
+      - name: Install Dependencies
+        run: mix deps.get --only test
+      - name: Compile
+        run: MIX_ENV=test mix compile --force --warnings-as-errors
+      - name: Check formatting
+        run: MIX_ENV=test mix format --check-formatted
+      - name: Download UAInspector database
+        run: MIX_ENV=test mix ua_inspector.download --force --quiet
+      - name: Run Tests
+        run: mix test

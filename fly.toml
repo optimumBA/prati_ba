@@ -2,13 +2,13 @@
 app = "prati-ba"
 kill_signal = "SIGTERM"
 kill_timeout = 5
+primary_region = "fra"
 processes = []
 
 [deploy]
 release_command = "/app/bin/migrate"
 
 [env]
-PHX_HOST = "prati-ba.fly.dev"
 PORT = "8080"
 
 [experimental]
