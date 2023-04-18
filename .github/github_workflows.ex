@@ -81,7 +81,7 @@ defmodule GitHubWorkflows do
         ],
         [
           name: "Delete preview app",
-          uses: "almirsarajcic/fly-pr-review-apps@remote-builder",
+          uses: "optimumBA/fly-preview-apps@main",
           with: [
             name: "pr-${{ github.event.number }}-#{app_name}"
           ]
@@ -142,7 +142,7 @@ defmodule GitHubWorkflows do
         ],
         [
           name: "Deploy preview app",
-          uses: "almirsarajcic/fly-pr-review-apps@remote-builder",
+          uses: "optimumBA/fly-preview-apps@main",
           with: [
             name: "pr-${{ github.event.number }}-#{app_name}",
             secrets:
