@@ -13,19 +13,20 @@ defmodule PratiBaWeb.ArticleLive.Index do
       |> assign(:page, 1)
       |> assign(:limit, 15)
       |> assign(:new_articles, false)
-      |> assign(:update, "append")
-      |> load_articles()
+      |> stream(
+        :articles,
+        Articles.list_articles(page: 1, limit: 15)
+      )
 
-    {:ok, socket, temporary_assigns: [articles: []]}
+    {:ok, socket}
   end
 
   @impl true
   def handle_event("refresh_articles", _params, socket) do
     socket =
       socket
-      |> assign(:page, 1)
       |> assign(:new_articles, false)
-      |> load_articles()
+      |> prepend_more_articles()
 
     {:noreply, socket}
   end
@@ -33,7 +34,6 @@ defmodule PratiBaWeb.ArticleLive.Index do
   def handle_event("load_more", _params, socket) do
     socket =
       socket
-      |> assign(:update, "append")
       |> update(:page, &(&1 + 1))
       |> load_articles()
 
@@ -42,22 +42,32 @@ defmodule PratiBaWeb.ArticleLive.Index do
 
   @impl true
   def handle_info({Articles, [:article | _status], _article}, socket) do
-    socket =
-      socket
-      |> assign(:new_articles, true)
-      |> assign(:update, "prepend")
-
-    {:noreply, socket}
+    {:noreply, assign(socket, :new_articles, true)}
   end
 
-  def load_articles(socket) do
-    assign(
+  defp load_articles(socket) do
+    stream_insert_many(
       socket,
       :articles,
       Articles.list_articles(
         page: socket.assigns.page,
         limit: socket.assigns.limit
       )
+    )
+  end
+
+  defp prepend_more_articles(socket) do
+    articles_list =
+      Articles.list_articles(
+        page: 1,
+        limit: socket.assigns.limit
+      )
+
+    stream_insert_many(
+      socket,
+      :articles,
+      Enum.reverse(articles_list),
+      at: 0
     )
   end
 end

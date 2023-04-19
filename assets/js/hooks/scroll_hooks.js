@@ -20,7 +20,12 @@ ScrollHooks.InfiniteScrollHook = {
       if (entry.isIntersecting) {
         this.pushEvent('load_more')
       }
-    })
+    },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 1.0,
+      })
     this.observer.observe(this.el)
   },
   beforeDestroy() {
