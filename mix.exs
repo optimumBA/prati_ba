@@ -70,7 +70,8 @@ defmodule PratiBa.MixProject do
       {:geolix, "~> 2.0"},
       {:geolix_adapter_mmdb2, "~> 0.6"},
       {:gen_stage, "~> 1.1"},
-      {:ua_inspector, "~> 3.0"}
+      {:ua_inspector, "~> 3.0"},
+      {:github_workflows_generator, "~> 0.1", only: :dev, runtime: false}
     ]
   end
 
@@ -89,7 +90,20 @@ defmodule PratiBa.MixProject do
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
       "assets.build": ["tailwind default", "esbuild default"],
       "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"],
-      prettier: ["cmd --cd assets npx prettier -w .."]
+      ci: [
+        "deps.unlock --check-unused",
+        "deps.audit",
+        "hex.audit",
+        "sobelow --config .sobelow-conf",
+        "format --check-formatted",
+        "cmd npx prettier -c .",
+        "credo --strict",
+        "dialyzer",
+        "ecto.create --quiet",
+        "ecto.migrate --quiet",
+        "test --cover --warnings-as-errors"
+      ],
+      prettier: ["cmd npx prettier -w ."]
     ]
   end
 end
