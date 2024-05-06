@@ -1,4 +1,4 @@
-defmodule GitHubWorkflows do
+defmodule GithubWorkflows do
   @moduledoc """
   Used by a custom tool to generate GitHub workflows.
   Reduces repetition.
