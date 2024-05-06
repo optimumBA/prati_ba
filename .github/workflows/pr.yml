@@ -39,7 +39,6 @@ jobs:
         with:
           name: pr-${{ github.event.number }}-prati-ba
           secrets: ADMIN_PASSWORD=${{ secrets.ADMIN_PASSWORD }} MAXMIND_LICENSE_KEY=${{ secrets.MAXMIND_LICENSE_KEY }} PHX_HOST=${{ env.PHX_HOST }} SECRET_KEY_BASE=${{ secrets.SECRET_KEY_BASE }}
-          vm_memory: 1024
   test:
     name: Test
     runs-on: ubuntu-latest
