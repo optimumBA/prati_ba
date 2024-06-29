@@ -162,4 +162,4 @@
   } else {
     this.topbar = topbar
   }
-}.call(this, window, document))
+}).call(this, window, document)

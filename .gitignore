@@ -35,5 +35,11 @@ npm-debug.log
 # Downloaded article images
 /priv/static/articles
 
-# macOS temp files
+# Optimum development/test artifacts
+/node_modules/
+/priv/plts/
+/screenshots/
 .DS_Store
+.env
+package.json
+package-lock.json

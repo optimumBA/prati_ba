@@ -99,7 +99,7 @@ config :prati_ba,
 # Configure esbuild (the version is required)
 config :esbuild,
   version: "0.14.41",
-  default: [
+  prati_ba: [
     args:
       ~w(js/app.js --bundle --target=es2017 --outdir=../priv/static/assets --external:/fonts/* --external:/images/*),
     cd: Path.expand("../assets", __DIR__),
@@ -109,7 +109,7 @@ config :esbuild,
 # Configure tailwind (the version is required)
 config :tailwind,
   version: "3.2.4",
-  default: [
+  prati_ba: [
     args: ~w(
       --config=tailwind.config.js
       --input=css/app.css
@@ -125,6 +125,15 @@ config :logger, :console,
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
+
+# AppSignal
+config :appsignal, :config,
+  active: false,
+  ecto_repos: [PratiBa.Repo],
+  env: config_env(),
+  ignore_actions: ["PratiBaWeb.HealthController#index"],
+  name: "prati_ba",
+  otp_app: :prati_ba
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

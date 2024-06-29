@@ -1,7 +1,7 @@
 defmodule PratiBaWeb.HealthControllerTest do
   use PratiBaWeb.ConnCase, async: true
 
-  describe "index" do
+  describe "GET /health" do
     test "returns cluster info", %{conn: conn} do
       conn = get(conn, ~p"/health")
 
@@ -9,8 +9,7 @@ defmodule PratiBaWeb.HealthControllerTest do
                "connected_to" => [],
                "hostname" => _,
                "node" => "nonode@nohost",
-               "status" => "ok",
-               "timestamp" => _
+               "status" => "ok"
              } = json_response(conn, 200)
     end
   end

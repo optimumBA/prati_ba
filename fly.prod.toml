@@ -1,6 +1,6 @@
-app = "pratiba-staging"
+app = "prati-ba"
 kill_signal = "SIGTERM"
-primary_region = "fra"
+primary_region = "iad"
 
 [build]
 
@@ -9,9 +9,9 @@ release_command = "/app/bin/migrate"
 strategy = "rolling"
 
 [env]
-PHX_HOST = "pratiba-staging.fly.dev"
+PHX_HOST = "prati-ba.fly.dev"
 PORT = "8080"
-PRIMARY_REGION = "fra"
+PRIMARY_REGION = "iad"
 
 [http_service]
 auto_start_machines = true

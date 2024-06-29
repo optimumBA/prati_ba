@@ -15,7 +15,6 @@ defmodule PratiBa.Analytics.Parser do
 
   defp maybe_convert(:unknown), do: nil
   defp maybe_convert(%{} = struct), do: Map.from_struct(struct)
-  defp maybe_convert(_), do: nil
 
   defp parse_geo_data(nil), do: {nil, nil}
   defp parse_geo_data(map) when map_size(map) == 0, do: {nil, nil}

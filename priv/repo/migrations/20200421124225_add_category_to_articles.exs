@@ -7,6 +7,8 @@ defmodule PratiBa.Repo.Migrations.AddCategoryToArticles do
         null: false
     end
 
-    create index(:articles, [:category_id])
+    if direction() == :up do
+      create index(:articles, [:category_id])
+    end
   end
 end

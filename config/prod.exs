@@ -12,7 +12,9 @@ import Config
 config :prati_ba, PratiBaWeb.Endpoint, cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
-config :logger, level: :info, backends: [:console], utc_log: true
+config :logger,
+  backends: [:console, {Appsignal.Logger.Backend, [group: "phoenix"]}],
+  level: :info
 
 config :logger, :console,
   utc_log: true,
@@ -23,3 +25,6 @@ config :prati_ba, PratiBa.Repo, log: false
 
 # Runtime production configuration, including reading
 # of environment variables, is done on config/runtime.exs.
+
+# AppSignal
+config :appsignal, :config, active: true

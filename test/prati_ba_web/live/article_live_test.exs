@@ -51,11 +51,16 @@ defmodule PratiBaWeb.ArticleLiveTest do
 
     test "gets updated with new articles", %{conn: conn, source: source} do
       {:ok, index_live, _html} = live(conn, ~p"/")
+      refute has_element?(index_live, "#indicator")
 
-      attrs = build(:article, image: "https://placekitten.com/350/150") |> Map.from_struct()
+      attrs = build(:article, image: "https://placebacon.com/350/150") |> Map.from_struct()
       {:ok, article} = Articles.create_article(source, attrs)
 
-      {:ok, index_live, _html} = live(conn, ~p"/")
+      assert has_element?(index_live, "#indicator")
+
+      index_live
+      |> element("#indicator")
+      |> render_click()
 
       assert has_element?(index_live, "#article-#{article.id}", article.title)
     end

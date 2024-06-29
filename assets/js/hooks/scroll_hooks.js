@@ -15,17 +15,19 @@ ScrollHooks.ScrollDownHook = {
 
 ScrollHooks.InfiniteScrollHook = {
   mounted() {
-    this.observer = new IntersectionObserver((entries) => {
-      const entry = entries[0]
-      if (entry.isIntersecting) {
-        this.pushEvent('load_more')
-      }
-    },
+    this.observer = new IntersectionObserver(
+      (entries) => {
+        const entry = entries[0]
+        if (entry.isIntersecting) {
+          this.pushEvent('load_more')
+        }
+      },
       {
         root: null,
-        rootMargin: "0px",
+        rootMargin: '0px',
         threshold: 1.0,
-      })
+      }
+    )
     this.observer.observe(this.el)
   },
   beforeDestroy() {

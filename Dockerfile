@@ -73,6 +73,8 @@ RUN mix compile
 COPY config/runtime.exs config/
 
 COPY rel rel
+COPY .git .git
+RUN cat .git/HEAD | grep "ref: " && (cat .git/HEAD | awk '{print ".git/"$2}' | xargs cat >> priv/REVISION) || cat .git/HEAD >> priv/REVISION
 RUN mix release
 
 # start a new build stage so that the final image will only contain

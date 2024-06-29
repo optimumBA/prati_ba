@@ -1,0 +1,6 @@
+{
+  "coverage_options": {
+    "minimum_coverage": 72.3
+  },
+  "skip_files": ["lib/prati_ba/release.ex"]
+}
