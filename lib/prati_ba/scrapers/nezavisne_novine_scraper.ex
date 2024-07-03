@@ -1,10 +1,14 @@
 defmodule PratiBa.Scrapers.NezavisneNovineScraper do
+  @moduledoc false
+
+  alias PratiBa.Scrapers.Scraper
+  alias PratiBa.Scrapers.ScrapingHelper
+
   @behaviour PratiBa.Scrapers.Scraper
 
   @rss_url "http://feeds.feedburner.com/NezavisneNovine"
 
-  alias PratiBa.Scrapers.ScrapingHelper
-
+  @impl Scraper
   def articles(url \\ @rss_url) do
     response = ScrapingHelper.get(url)
 
@@ -16,7 +20,7 @@ defmodule PratiBa.Scrapers.NezavisneNovineScraper do
 
         {:ok, articles}
 
-      {_, response} ->
+      {_other, response} ->
         {:error, response}
     end
   end
@@ -40,7 +44,7 @@ defmodule PratiBa.Scrapers.NezavisneNovineScraper do
       |> String.split("/")
       |> List.last()
 
-    description =
+    description_2 =
       description
       |> HtmlSanitizeEx.strip_tags()
       |> String.trim()
@@ -55,7 +59,7 @@ defmodule PratiBa.Scrapers.NezavisneNovineScraper do
     %{
       original_id: original_id,
       title: title,
-      description: description,
+      description: description_2,
       published_at: published_at,
       author: author,
       image: image,
@@ -63,5 +67,6 @@ defmodule PratiBa.Scrapers.NezavisneNovineScraper do
     }
   end
 
+  @spec article_details(map()) :: {:ok, map()}
   def article_details(article), do: {:ok, article}
 end

@@ -6,7 +6,7 @@ defmodule PratiBaWeb.Plugs.AnalyticsTest do
 
   describe "call" do
     test "tracks new visitor", %{conn: conn} do
-      assert length(Analytics.list_visitors()) == 0
+      assert Enum.empty?(Analytics.list_visitors())
 
       conn =
         conn
@@ -80,19 +80,21 @@ defmodule PratiBaWeb.Plugs.AnalyticsTest do
           last_active_at: five_minutes_ago
         })
 
-      conn = Plug.Test.init_test_session(conn, visitor_id: visitor.id, visit_id: visit.id)
-      conn = get(conn, "/")
+      updated_conn =
+        conn
+        |> Plug.Test.init_test_session(visitor_id: visitor.id, visit_id: visit.id)
+        |> get("/")
 
-      assert get_session(conn, :visitor_id) == visitor.id
-      assert get_session(conn, :visit_id) == visit.id
-      assert conn.assigns[:visit].id == visit.id
+      assert get_session(updated_conn, :visitor_id) == visitor.id
+      assert get_session(updated_conn, :visit_id) == visit.id
+      assert updated_conn.assigns[:visit].id == visit.id
       assert length(Analytics.list_visitors()) == 1
       assert [returned_visit] = Analytics.list_visits()
       refute returned_visit.last_active_at == returned_visit.started_at
     end
 
     test "tracks page view", %{conn: conn} do
-      assert length(Analytics.list_events()) == 0
+      assert Enum.empty?(Analytics.list_events())
 
       conn = get(conn, "/")
 
@@ -132,7 +134,7 @@ defmodule PratiBaWeb.Plugs.AnalyticsTest do
   end
 
   test "avoids tracking bots", %{conn: conn} do
-    assert length(Analytics.list_visitors()) == 0
+    assert Enum.empty?(Analytics.list_visitors())
 
     conn =
       conn
@@ -143,8 +145,8 @@ defmodule PratiBaWeb.Plugs.AnalyticsTest do
       )
       |> get("/")
 
-    assert length(Analytics.list_visitors()) == 0
-    assert length(Analytics.list_visits()) == 0
+    assert Enum.empty?(Analytics.list_visitors())
+    assert Enum.empty?(Analytics.list_visits())
     assert is_nil(get_session(conn, :visitor_id))
     assert is_nil(get_session(conn, :visit_id))
   end

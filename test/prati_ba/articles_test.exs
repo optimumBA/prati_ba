@@ -4,7 +4,8 @@ defmodule PratiBa.ArticlesTest do
   alias PratiBa.Articles
 
   describe "articles" do
-    alias PratiBa.Articles.{Article, Source}
+    alias PratiBa.Articles.Article
+    alias PratiBa.Articles.Source
 
     @valid_attrs %{
       image: "https://placebacon.com/350/150",
@@ -32,9 +33,7 @@ defmodule PratiBa.ArticlesTest do
       source = insert(:source)
       insert(:article, original_id: "26132", source: source)
 
-      attrs =
-        %{original_id: "26132"}
-        |> Enum.into(@valid_attrs)
+      attrs = Enum.into(%{original_id: "26132"}, @valid_attrs)
 
       assert Articles.exists?(source.id, attrs) == true
     end
@@ -44,9 +43,7 @@ defmodule PratiBa.ArticlesTest do
 
       source = insert(:source)
 
-      attrs =
-        %{original_id: "84256"}
-        |> Enum.into(@valid_attrs)
+      attrs = Enum.into(%{original_id: "84256"}, @valid_attrs)
 
       assert Articles.exists?(source.id, attrs) == false
     end
@@ -56,9 +53,7 @@ defmodule PratiBa.ArticlesTest do
 
       source = insert(:source)
 
-      attrs =
-        %{original_id: "768"}
-        |> Enum.into(@valid_attrs)
+      attrs = Enum.into(%{original_id: "768"}, @valid_attrs)
 
       assert Articles.exists?(source.id, attrs) == false
     end

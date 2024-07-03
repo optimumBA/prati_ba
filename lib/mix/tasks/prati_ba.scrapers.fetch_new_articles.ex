@@ -1,9 +1,12 @@
 defmodule Mix.Tasks.PratiBa.Scrapers.FetchNewArticles do
-  use Mix.Task
-
   @shortdoc "Fetches new articles"
 
-  def run(_) do
+  @moduledoc false
+
+  use Mix.Task
+
+  @spec run(any()) :: :ok
+  def run(_args) do
     Mix.Task.run("app.start")
 
     PratiBa.ScrapingPipeline.start()

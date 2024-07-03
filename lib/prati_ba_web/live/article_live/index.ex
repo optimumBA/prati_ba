@@ -4,7 +4,7 @@ defmodule PratiBaWeb.ArticleLive.Index do
   alias PratiBa.Articles
   alias PratiBaWeb.Components.ArticleComponent
 
-  @impl true
+  @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
     Articles.subscribe()
 
@@ -21,7 +21,7 @@ defmodule PratiBaWeb.ArticleLive.Index do
     {:ok, socket}
   end
 
-  @impl true
+  @impl Phoenix.LiveView
   def handle_event("refresh_articles", _params, socket) do
     socket =
       socket
@@ -40,7 +40,7 @@ defmodule PratiBaWeb.ArticleLive.Index do
     {:noreply, socket}
   end
 
-  @impl true
+  @impl Phoenix.LiveView
   def handle_info({Articles, [:article | _status], _article}, socket) do
     {:noreply, assign(socket, :new_articles, true)}
   end

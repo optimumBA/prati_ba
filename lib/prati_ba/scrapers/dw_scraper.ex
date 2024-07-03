@@ -1,30 +1,34 @@
 defmodule PratiBa.Scrapers.DwScraper do
+  @moduledoc false
+
+  alias PratiBa.Scrapers.Scraper
+  alias PratiBa.Scrapers.ScrapingHelper
+
   @behaviour PratiBa.Scrapers.Scraper
 
   @rss_url "https://rss.dw.com/rdf/rss-bos-all"
 
-  alias PratiBa.Scrapers.ScrapingHelper
-
+  @impl Scraper
   def articles(url \\ @rss_url) do
     response = ScrapingHelper.get(url)
 
     case response do
       {:ok, %{status: 200, body: body}} ->
-        {:ok, rss} =
-          body
-          |> FastRSS.parse()
+        {:ok, rss} = FastRSS.parse(body)
 
         articles =
-          rss["items"]
+          rss
+          |> Map.get("items")
           |> Stream.map(&parse_article/1)
 
         {:ok, articles}
 
-      {_, response} ->
+      {_other, response} ->
         {:error, response}
     end
   end
 
+  @impl Scraper
   def article_details(%{url: url} = article) do
     response = ScrapingHelper.get(url)
 
@@ -33,7 +37,7 @@ defmodule PratiBa.Scrapers.DwScraper do
          {:ok, image_url} <- ScrapingHelper.get_og_image(html) do
       {:ok, Map.put(article, :image, image_url)}
     else
-      _ -> {:error, :article_not_available}
+      _other -> {:error, :article_not_available}
     end
   end
 

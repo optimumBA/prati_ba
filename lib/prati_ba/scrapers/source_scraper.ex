@@ -1,10 +1,14 @@
 defmodule PratiBa.Scrapers.SourceScraper do
+  @moduledoc false
+
+  alias PratiBa.Scrapers.Scraper
+  alias PratiBa.Scrapers.ScrapingHelper
+
   @behaviour PratiBa.Scrapers.Scraper
 
   @url "http://www.source.ba"
 
-  alias PratiBa.Scrapers.ScrapingHelper
-
+  @impl Scraper
   def articles(url \\ @url) do
     response = ScrapingHelper.get(url)
 
@@ -17,18 +21,17 @@ defmodule PratiBa.Scrapers.SourceScraper do
 
       {:ok, articles}
     else
-      {_, response} -> {:error, response}
+      {_other, response} -> {:error, response}
     end
   end
 
+  @impl Scraper
   def article_details(%{url: url} = article) do
     response = ScrapingHelper.get(url)
 
     with {:ok, %{status: 200, body: body}} <- response,
          {:ok, html} <- Floki.parse_document(body) do
-      article_container =
-        html
-        |> Floki.find(".okvirTekstualnogClanka")
+      article_container = Floki.find(html, ".okvirTekstualnogClanka")
 
       article =
         case Floki.find(article_container, ".uvodTekstualnogClanka") do
@@ -69,7 +72,7 @@ defmodule PratiBa.Scrapers.SourceScraper do
             |> DateTime.shift_zone!("Etc/UTC")
             |> DateTime.to_naive()
 
-          _ ->
+          _other ->
             nil
         end
 
@@ -86,7 +89,7 @@ defmodule PratiBa.Scrapers.SourceScraper do
           %{"author" => author} ->
             Map.put(article, :author, author)
 
-          _ ->
+          _other ->
             article
         end
 
@@ -94,11 +97,11 @@ defmodule PratiBa.Scrapers.SourceScraper do
         {:ok, image_url} ->
           {:ok, Map.put(article, :image, image_url)}
 
-        {:error, _} ->
+        {:error, _other} ->
           {:error, :image_not_available}
       end
     else
-      _ -> {:error, :article_not_available}
+      _other -> {:error, :article_not_available}
     end
   end
 

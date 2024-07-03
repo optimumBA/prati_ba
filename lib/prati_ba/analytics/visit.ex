@@ -1,10 +1,16 @@
 defmodule PratiBa.Analytics.Visit do
+  @moduledoc false
+
   use Ecto.Schema
 
   import Ecto.Changeset
   import Ecto.Query, only: [from: 2]
 
   alias PratiBa.Analytics.Visitor
+
+  @type query :: Ecto.Query.t()
+  @type queryable :: Ecto.Queryable.t()
+  @type t :: %__MODULE__{}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -25,6 +31,7 @@ defmodule PratiBa.Analytics.Visit do
   end
 
   @doc false
+  @spec changeset(t(), map()) :: Ecto.Changeset.t()
   def changeset(visit, attrs) do
     visit
     |> cast(attrs, [
@@ -45,11 +52,13 @@ defmodule PratiBa.Analytics.Visit do
     ])
   end
 
+  @spec active(queryable()) :: query()
   def active(queryable \\ __MODULE__) do
     from v in queryable,
       where: fragment("? > now() AT TIME ZONE 'UTC' - INTERVAL '10 minutes'", v.last_active_at)
   end
 
+  @spec last_week(queryable()) :: query()
   def last_week(queryable \\ __MODULE__) do
     from v in queryable,
       where:
@@ -59,6 +68,7 @@ defmodule PratiBa.Analytics.Visit do
         )
   end
 
+  @spec week_before_last(queryable()) :: query()
   def week_before_last(queryable \\ __MODULE__) do
     from v in queryable,
       where:
@@ -68,17 +78,20 @@ defmodule PratiBa.Analytics.Visit do
         )
   end
 
+  @spec unique(queryable()) :: query()
   def unique(queryable \\ __MODULE__) do
     from v in queryable, distinct: v.visitor_id
   end
 
+  @spec duration(queryable()) :: query()
   def duration(queryable \\ __MODULE__) do
     from v in queryable,
       select:
         fragment("COALESCE(AVG(? - ?), INTERVAL '0 seconds')", v.last_active_at, v.started_at)
   end
 
-  def per_day_query() do
+  @spec per_day_query() :: String.t()
+  def per_day_query do
     """
       SELECT dates.date, COUNT(DISTINCT visitor_id)
       FROM analytics_visits

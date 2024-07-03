@@ -1,11 +1,17 @@
 defmodule PratiBaWeb.Plugs.Analytics do
-  @behaviour Plug
+  @moduledoc false
 
   import Plug.Conn
 
   alias Plug.Conn
   alias PratiBa.Analytics
-  alias PratiBa.Analytics.{Event, EventType, Parser, Visit, Visitor}
+  alias PratiBa.Analytics.Event
+  alias PratiBa.Analytics.EventType
+  alias PratiBa.Analytics.Parser
+  alias PratiBa.Analytics.Visit
+  alias PratiBa.Analytics.Visitor
+
+  @behaviour Plug
 
   @ignored_remote_ips MapSet.new([
                         {0, 0, 0, 0, 0, 0, 0, 1}
@@ -14,11 +20,17 @@ defmodule PratiBaWeb.Plugs.Analytics do
   @ignored_user_agents MapSet.new([
                          "Amazon CloudFront"
                        ])
+  @type conn :: Plug.Conn.t()
 
+  @spec init(any()) :: nil
   def init(_opts), do: nil
 
+  @spec call(conn(), any()) :: conn()
   def call(%Conn{} = conn, _opts) do
-    user_agent = Plug.Conn.get_req_header(conn, "user-agent") |> List.first()
+    user_agent =
+      conn
+      |> Plug.Conn.get_req_header("user-agent")
+      |> List.first()
 
     if should_ignore?(conn.remote_ip, user_agent) do
       conn
@@ -38,13 +50,12 @@ defmodule PratiBaWeb.Plugs.Analytics do
   end
 
   defp get_or_create_visitor(%Conn{} = conn) do
-    with visitor_id = get_session(conn, :visitor_id),
-         false <- is_nil(visitor_id),
+    with visitor_id when is_binary(visitor_id) <- get_session(conn, :visitor_id),
          visitor = Analytics.get_visitor(visitor_id),
          false <- is_nil(visitor) do
       {conn, visitor}
     else
-      _ ->
+      _other ->
         case Analytics.create_visitor() do
           {:ok, %Visitor{} = visitor} ->
             conn = put_session(conn, :visitor_id, visitor.id)
@@ -61,8 +72,7 @@ defmodule PratiBaWeb.Plugs.Analytics do
   defp create_or_update_visit({%Conn{} = conn, %Visitor{} = visitor}) do
     now = NaiveDateTime.utc_now()
 
-    with visit_id = get_session(conn, :visit_id),
-         false <- is_nil(visit_id),
+    with visit_id when is_binary(visit_id) <- get_session(conn, :visit_id),
          visit = Analytics.get_active_visit(visitor, visit_id),
          false <- is_nil(visit) do
       Analytics.update_visit(visit, %{
@@ -71,7 +81,7 @@ defmodule PratiBaWeb.Plugs.Analytics do
 
       {assign(conn, :visit, visit), visit}
     else
-      _ ->
+      _other ->
         headers = Enum.into(conn.req_headers, %{})
         remote_ip = parse_remote_ip(conn)
 
@@ -95,7 +105,7 @@ defmodule PratiBaWeb.Plugs.Analytics do
 
             {conn, visit}
 
-          _ ->
+          _other ->
             {conn, nil}
         end
     end
@@ -138,7 +148,7 @@ defmodule PratiBaWeb.Plugs.Analytics do
             conn
         end
 
-      _ ->
+      _other ->
         conn
     end
   end
@@ -150,13 +160,9 @@ defmodule PratiBaWeb.Plugs.Analytics do
   end
 
   defp parse_visit_info(%Visit{} = visit, remote_ip, user_agent) do
-    {isp, location} =
-      remote_ip
-      |> Parser.parse_ip_address()
+    {isp, location} = Parser.parse_ip_address(remote_ip)
 
-    {browser, device, os} =
-      user_agent
-      |> Parser.parse_user_agent()
+    {browser, device, os} = Parser.parse_user_agent(user_agent)
 
     visit_attrs = %{
       browser: browser,

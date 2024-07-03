@@ -1,4 +1,6 @@
 defmodule PratiBaWeb.AnalyticsChannel do
+  @moduledoc false
+
   use PratiBaWeb, :channel
 
   alias PratiBa.Analytics
@@ -8,13 +10,13 @@ defmodule PratiBaWeb.AnalyticsChannel do
 
   intercept ["presence_diff"]
 
-  @impl true
+  @impl Phoenix.Channel
   def join(@topic, _params, socket) do
     send(self(), :after_join)
     {:ok, socket}
   end
 
-  @impl true
+  @impl Phoenix.Channel
   def handle_in("details", payload, socket) do
     %{
       "siteLanguage" => site_language,
@@ -42,20 +44,20 @@ defmodule PratiBaWeb.AnalyticsChannel do
     {:reply, :ok, socket}
   end
 
-  @impl true
-  def handle_in("ping", _, socket) do
+  @impl Phoenix.Channel
+  def handle_in("ping", _other, socket) do
     Analytics.update_visit(socket.assigns.visit, %{last_active_at: NaiveDateTime.utc_now()})
 
     {:reply, :ok, socket}
   end
 
-  @impl true
+  @impl Phoenix.Channel
   def handle_info(:after_join, socket) do
-    {:ok, _} = Presence.track(socket, socket.assigns.visit.id, %{})
+    {:ok, _other} = Presence.track(socket, socket.assigns.visit.id, %{})
 
     {:noreply, socket}
   end
 
-  @impl true
-  def handle_out("presence_diff", _, socket), do: {:noreply, socket}
+  @impl Phoenix.Channel
+  def handle_out("presence_diff", _other, socket), do: {:noreply, socket}
 end

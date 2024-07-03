@@ -1,10 +1,14 @@
 defmodule PratiBa.Scrapers.FaceScraper do
+  @moduledoc false
+
+  alias PratiBa.Scrapers.Scraper
+  alias PratiBa.Scrapers.ScrapingHelper
+
   @behaviour PratiBa.Scrapers.Scraper
 
   @url "https://www.face.ba/najnovije"
 
-  alias PratiBa.Scrapers.ScrapingHelper
-
+  @impl Scraper
   def articles(url \\ @url) do
     response = ScrapingHelper.get(url)
 
@@ -17,10 +21,11 @@ defmodule PratiBa.Scrapers.FaceScraper do
 
       {:ok, articles}
     else
-      {_, response} -> {:error, response}
+      {_other, response} -> {:error, response}
     end
   end
 
+  @impl Scraper
   def article_details(%{url: url} = article) do
     response = ScrapingHelper.get(url)
 
@@ -63,11 +68,11 @@ defmodule PratiBa.Scrapers.FaceScraper do
         {:ok, image_url} ->
           {:ok, Map.put(article, :image, image_url)}
 
-        {:error, _} ->
+        {:error, _other} ->
           {:error, :image_not_available}
       end
     else
-      _ -> {:error, :article_not_available}
+      _other -> {:error, :article_not_available}
     end
   end
 

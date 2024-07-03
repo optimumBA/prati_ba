@@ -1,10 +1,17 @@
 defmodule PratiBa.Analytics.Event do
+  @moduledoc false
+
   use Ecto.Schema
 
   import Ecto.Changeset
   import Ecto.Query, only: [from: 2]
 
-  alias PratiBa.Analytics.{EventType, Visit}
+  alias PratiBa.Analytics.EventType
+  alias PratiBa.Analytics.Visit
+
+  @type query :: Ecto.Query.t()
+  @type queryable :: Ecto.Queryable.t()
+  @type t :: %__MODULE__{}
 
   @primary_key {:id, :binary_id, autogenerate: true}
   @foreign_key_type :binary_id
@@ -20,18 +27,21 @@ defmodule PratiBa.Analytics.Event do
   end
 
   @doc false
+  @spec changeset(t(), map()) :: Ecto.Changeset.t()
   def changeset(event, attrs) do
     event
     |> cast(attrs, [:details, :finished_at, :requested_at, :started_at])
     |> validate_required([:requested_at])
   end
 
+  @spec article_views(queryable()) :: query()
   def article_views(queryable \\ __MODULE__) do
     from e in queryable,
       join: et in assoc(e, :event_type),
       where: et.name == "article_view"
   end
 
+  @spec last_week(queryable()) :: query()
   def last_week(queryable \\ __MODULE__) do
     from e in queryable,
       where:
@@ -41,6 +51,7 @@ defmodule PratiBa.Analytics.Event do
         )
   end
 
+  @spec week_before_last(queryable()) :: query()
   def week_before_last(queryable \\ __MODULE__) do
     from e in queryable,
       where:

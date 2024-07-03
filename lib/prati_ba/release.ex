@@ -3,32 +3,40 @@ defmodule PratiBa.Release do
   Used for executing DB release tasks when run in production without Mix
   installed.
   """
+  require Logger
+
   @app :prati_ba
 
+  @spec migrate() :: any()
   def migrate do
     load_app()
 
     for repo <- repos() do
-      {:ok, _, _} = Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :up, all: true))
+      {:ok, _fun_return, _apps} =
+        Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :up, all: true))
     end
   end
 
+  @spec rollback(Ecto.Repo.t(), integer()) :: any()
   def rollback(repo, version) do
     load_app()
-    {:ok, _, _} = Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :down, to: version))
+
+    {:ok, _fun_return, _apps} =
+      Ecto.Migrator.with_repo(repo, &Ecto.Migrator.run(&1, :down, to: version))
   end
 
+  @spec seed() :: any()
   def seed do
     load_app()
 
     for repo <- repos() do
-      {:ok, _, _} =
+      {:ok, _fun_return, _apps} =
         Ecto.Migrator.with_repo(repo, fn repo ->
           # Run the seed script if it exists
           seed_script = priv_path_for(repo, "seeds.exs")
 
           if File.exists?(seed_script) do
-            IO.puts("Running seed script..")
+            Logger.info("Running seed script..")
             Code.eval_file(seed_script)
           end
         end)

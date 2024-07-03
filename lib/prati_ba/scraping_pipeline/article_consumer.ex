@@ -1,10 +1,13 @@
 defmodule PratiBa.ScrapingPipeline.ArticleConsumer do
-  require Logger
+  @moduledoc false
 
   alias PratiBa.Articles
 
+  require Logger
+
   @article_keys [:image, :original_id, :published_at, :title, :url]
 
+  @spec start_link(any()) :: any()
   def start_link({source, scraper, article} = event) do
     Logger.debug("ArticleConsumer received #{inspect(event)}")
 

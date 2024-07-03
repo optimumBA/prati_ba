@@ -1,4 +1,6 @@
 defmodule PratiBa.Articles.Article do
+  @moduledoc false
+
   use PratiBa.Schema
   use Waffle.Ecto.Schema
   import Ecto.Changeset
@@ -6,6 +8,11 @@ defmodule PratiBa.Articles.Article do
 
   alias PratiBa.Articles.Source
   alias PratiBa.Uploaders.ArticleImage
+
+  @type changeset :: Ecto.Changeset.t()
+  @type query :: Ecto.Query.t()
+  @type queryable :: Ecto.Queryable.t()
+  @type t :: %__MODULE__{}
 
   schema "articles" do
     field :image, ArticleImage.Type
@@ -19,6 +26,7 @@ defmodule PratiBa.Articles.Article do
   end
 
   @doc false
+  @spec changeset(t(), map) :: changeset()
   def changeset(article, attrs) do
     article
     |> cast(attrs, [:original_id, :published_at, :title, :url])
@@ -42,16 +50,19 @@ defmodule PratiBa.Articles.Article do
     end
   end
 
+  @spec image_changeset(t(), map) :: changeset()
   def image_changeset(article, attrs) do
     article
     |> cast_attachments(attrs, [:image], allow_urls: true)
     |> validate_required([:image])
   end
 
+  @spec having_original_id(Ecto.UUID.t(), Ecto.UUID.t()) :: query()
   def having_original_id(source_id, original_id) do
     from a in __MODULE__, where: a.source_id == ^source_id and a.original_id == ^original_id
   end
 
+  @spec newest(queryable(), integer(), integer()) :: query()
   def newest(queryable \\ __MODULE__, limit \\ 15, page \\ 1) do
     from a in queryable,
       order_by: [desc_nulls_last: :published_at, desc_nulls_last: :inserted_at],
@@ -60,6 +71,7 @@ defmodule PratiBa.Articles.Article do
       preload: :source
   end
 
+  @spec from_enabled_sources(queryable()) :: query()
   def from_enabled_sources(queryable \\ __MODULE__) do
     from a in queryable, join: s in Source, on: [id: a.source_id], where: s.enabled == true
   end

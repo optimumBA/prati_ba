@@ -89,7 +89,7 @@
              if_called_more_often_than: 0,
              files: %{
                excluded: [
-                 "lib/story_deck_web/components/core_components.ex"
+                 "lib/prati_ba_web/components/core_components.ex"
                ]
              }
            ]},
@@ -179,7 +179,6 @@
           {Credo.Check.Consistency.UnusedVariableNames, []},
           {Credo.Check.Design.DuplicatedCode, []},
           {Credo.Check.Design.SkipTestWithoutComment, []},
-          {Credo.Check.Readability.AliasAs, []},
           {Credo.Check.Readability.BlockPipe, []},
           {Credo.Check.Readability.ImplTrue, []},
           {Credo.Check.Readability.MultiAlias, []},
@@ -225,6 +224,7 @@
           # Controversial and experimental checks (opt-in, just move the check to `:enabled`
           #   and be sure to use `mix credo --strict` to see low priority checks)
           #
+          {Credo.Check.Readability.AliasAs, []},
           {Credo.Check.Refactor.ModuleDependencies, []},
           {Credo.Check.Warning.LazyLogging, []}
 

@@ -1,11 +1,11 @@
 defmodule PratiBaWeb.ArticleLiveTest do
-  use PratiBaWeb.ConnCase
+  use PratiBaWeb.ConnCase, async: false
 
   import Phoenix.LiveViewTest
 
   alias PratiBa.Articles
 
-  defp create_article(_) do
+  defp create_article(_other) do
     first_article =
       insert(:article, title: "First article", published_at: ~N[2020-04-23 19:12:00])
 
@@ -18,7 +18,7 @@ defmodule PratiBaWeb.ArticleLiveTest do
     }
   end
 
-  defp create_source(_) do
+  defp create_source(_other) do
     %{source: insert(:source)}
   end
 
@@ -29,7 +29,9 @@ defmodule PratiBaWeb.ArticleLiveTest do
   end
 
   defp number_of_articles(html) do
-    html |> :binary.matches("Article") |> length()
+    html
+    |> :binary.matches("Article")
+    |> length()
   end
 
   describe "Index" do
@@ -53,7 +55,11 @@ defmodule PratiBaWeb.ArticleLiveTest do
       {:ok, index_live, _html} = live(conn, ~p"/")
       refute has_element?(index_live, "#indicator")
 
-      attrs = build(:article, image: "https://placebacon.com/350/150") |> Map.from_struct()
+      attrs =
+        :article
+        |> build(image: "https://placebacon.com/350/150")
+        |> Map.from_struct()
+
       {:ok, article} = Articles.create_article(source, attrs)
 
       assert has_element?(index_live, "#indicator")
@@ -70,13 +76,23 @@ defmodule PratiBaWeb.ArticleLiveTest do
 
       {:ok, view, _html} = live(conn, ~p"/")
 
-      assert render(view) |> number_of_articles() == 14
+      number_of_articles_1 =
+        view
+        |> render()
+        |> number_of_articles()
+
+      assert number_of_articles_1 == 14
 
       view
       |> element("#footer")
       |> render_hook("load_more", %{})
 
-      assert render(view) |> number_of_articles() == 20
+      number_of_articles_2 =
+        view
+        |> render()
+        |> number_of_articles()
+
+      assert number_of_articles_2 == 20
     end
   end
 end

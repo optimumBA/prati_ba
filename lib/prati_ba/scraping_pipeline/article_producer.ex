@@ -1,12 +1,16 @@
 defmodule PratiBa.ScrapingPipeline.ArticleProducer do
+  @moduledoc false
+
   use GenStage
 
   require Logger
 
+  @spec start_link([]) :: {:ok, pid} | :ignore | {:error, any}
   def start_link([]) do
     GenStage.start_link(__MODULE__, [], name: __MODULE__)
   end
 
+  @spec add_articles(list()) :: :ok
   def add_articles(articles) do
     GenStage.cast(__MODULE__, {:add_articles, articles})
   end

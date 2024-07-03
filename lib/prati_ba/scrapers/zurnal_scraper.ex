@@ -1,10 +1,14 @@
 defmodule PratiBa.Scrapers.ZurnalScraper do
+  @moduledoc false
+
+  alias PratiBa.Scrapers.Scraper
+  alias PratiBa.Scrapers.ScrapingHelper
+
   @behaviour PratiBa.Scrapers.Scraper
 
   @url "https://zurnal.info/najnovije"
 
-  alias PratiBa.Scrapers.ScrapingHelper
-
+  @impl Scraper
   def articles(url \\ @url) do
     response = ScrapingHelper.get(url)
 
@@ -17,7 +21,7 @@ defmodule PratiBa.Scrapers.ZurnalScraper do
 
       {:ok, articles}
     else
-      {_, response} -> {:error, response}
+      {_other, response} -> {:error, response}
     end
   end
 
@@ -55,14 +59,13 @@ defmodule PratiBa.Scrapers.ZurnalScraper do
     }
   end
 
+  @impl Scraper
   def article_details(%{url: url} = article) do
     response = ScrapingHelper.get(url)
 
     with {:ok, %{status: 200, body: body}} <- response,
          {:ok, html} <- Floki.parse_document(body) do
-      article_content =
-        html
-        |> Floki.find(".container")
+      article_content = Floki.find(html, ".container")
 
       date =
         article_content
@@ -83,11 +86,11 @@ defmodule PratiBa.Scrapers.ZurnalScraper do
         {:ok, image_url} ->
           {:ok, Map.put(article, :image, image_url)}
 
-        {:error, _} ->
+        {:error, _other} ->
           {:error, :image_not_available}
       end
     else
-      _ -> {:error, :article_not_available}
+      _other -> {:error, :article_not_available}
     end
   end
 end

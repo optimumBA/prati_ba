@@ -1,12 +1,16 @@
 defmodule PratiBa.Analytics.Parser do
+  @moduledoc false
+
+  @type result :: String.t() | nil
+
+  @spec parse_user_agent(String.t()) :: {result(), result(), result()}
   def parse_user_agent(user_agent) do
-    ua =
-      user_agent
-      |> UAInspector.parse_client()
+    ua = UAInspector.parse_client(user_agent)
 
     {maybe_convert(ua.client), maybe_convert(ua.device), maybe_convert(ua.os)}
   end
 
+  @spec parse_ip_address(String.t()) :: {result(), result()}
   def parse_ip_address(remote_ip) do
     remote_ip
     |> Geolix.lookup()

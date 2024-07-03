@@ -7,7 +7,7 @@ defmodule PratiBa.Application do
 
   alias PratiBa.ScrapingPipeline
 
-  @impl true
+  @impl Application
   def start(_type, _args) do
     if Application.get_env(:prati_ba, :env) == :prod do
       :ok =
@@ -20,35 +20,24 @@ defmodule PratiBa.Application do
         )
     end
 
-    children = [
-      # Start the Telemetry supervisor
-      PratiBaWeb.Telemetry,
-      # Start the Ecto repository
-      PratiBa.Repo,
-      # Start the PubSub system
-      {Phoenix.PubSub, name: PratiBa.PubSub},
-      # Start the Presence supervisor
-      PratiBaWeb.Presence,
-      # Start Finch
-      {Finch, name: PratiBa.Finch},
-      # Start the Endpoint (http/https)
-      PratiBaWeb.Endpoint,
-      # Start a worker by calling: PratiBa.Worker.start_link(arg)
-      # {PratiBa.Worker, arg}
-      ScrapingPipeline
-    ]
-
     children =
-      case Application.get_env(:prati_ba, :env) do
-        :prod ->
-          children ++
-            [
-              PratiBa.Scheduler
-            ]
-
-        _ ->
-          children
-      end
+      [
+        # Start the Telemetry supervisor
+        PratiBaWeb.Telemetry,
+        # Start the Ecto repository
+        PratiBa.Repo,
+        # Start the PubSub system
+        {Phoenix.PubSub, name: PratiBa.PubSub},
+        # Start the Presence supervisor
+        PratiBaWeb.Presence,
+        # Start Finch
+        {Finch, name: PratiBa.Finch},
+        # Start the Endpoint (http/https)
+        PratiBaWeb.Endpoint,
+        # Start a worker by calling: PratiBa.Worker.start_link(arg)
+        # {PratiBa.Worker, arg}
+        ScrapingPipeline
+      ] ++ more_children()
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
@@ -56,9 +45,13 @@ defmodule PratiBa.Application do
     Supervisor.start_link(children, opts)
   end
 
+  defp more_children(env \\ Application.get_env(:prati_ba, :env))
+  defp more_children(:prod), do: [PratiBa.Scheduler]
+  defp more_children(_env), do: []
+
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
-  @impl true
+  @impl Application
   def config_change(changed, _new, removed) do
     PratiBaWeb.Endpoint.config_change(changed, removed)
     :ok

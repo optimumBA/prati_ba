@@ -1,6 +1,12 @@
 defmodule PratiBaWeb.Components.Icons do
+  @moduledoc false
+
   use Phoenix.Component
 
+  @type assigns :: map()
+  @type rendered :: Phoenix.LiveView.Rendered.t()
+
+  @spec moon(assigns()) :: rendered()
   def moon(assigns) do
     ~H"""
     <svg
@@ -22,6 +28,7 @@ defmodule PratiBaWeb.Components.Icons do
     """
   end
 
+  @spec sun(assigns()) :: rendered()
   def sun(assigns) do
     ~H"""
     <svg
@@ -106,6 +113,7 @@ defmodule PratiBaWeb.Components.Icons do
     """
   end
 
+  @spec article_link(assigns()) :: rendered()
   def article_link(assigns) do
     ~H"""
     <svg

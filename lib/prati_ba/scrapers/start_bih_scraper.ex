@@ -1,10 +1,14 @@
 defmodule PratiBa.Scrapers.StartBihScraper do
+  @moduledoc false
+
+  alias PratiBa.Scrapers.Scraper
+  alias PratiBa.Scrapers.ScrapingHelper
+
   @behaviour PratiBa.Scrapers.Scraper
 
   @url "https://startbih.ba/"
 
-  alias PratiBa.Scrapers.ScrapingHelper
-
+  @impl Scraper
   def articles(url \\ @url) do
     response = ScrapingHelper.get(url)
 
@@ -17,10 +21,11 @@ defmodule PratiBa.Scrapers.StartBihScraper do
 
       {:ok, articles}
     else
-      {_, response} -> {:error, response}
+      {_other, response} -> {:error, response}
     end
   end
 
+  @impl Scraper
   def article_details(%{url: url} = article) do
     response = ScrapingHelper.get(url)
 
@@ -31,7 +36,7 @@ defmodule PratiBa.Scrapers.StartBihScraper do
       article =
         case ScrapingHelper.get_og_description(html) do
           {:ok, description} -> Map.put(article, :description, description)
-          _ -> article
+          _other -> article
         end
 
       date =
@@ -53,11 +58,11 @@ defmodule PratiBa.Scrapers.StartBihScraper do
         {:ok, image_url} ->
           {:ok, Map.put(article, :image, image_url)}
 
-        {:error, _} ->
+        {:error, _other} ->
           {:error, :image_not_available}
       end
     else
-      _ -> {:error, :article_not_available}
+      _other -> {:error, :article_not_available}
     end
   end
 

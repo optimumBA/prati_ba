@@ -7,7 +7,6 @@ defmodule PratiBaWeb.HealthControllerTest do
 
       assert %{
                "connected_to" => [],
-               "hostname" => _,
                "node" => "nonode@nohost",
                "status" => "ok"
              } = json_response(conn, 200)

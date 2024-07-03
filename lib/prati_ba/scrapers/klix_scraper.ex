@@ -1,10 +1,14 @@
 defmodule PratiBa.Scrapers.KlixScraper do
+  @moduledoc false
+
+  alias PratiBa.Scrapers.Scraper
+  alias PratiBa.Scrapers.ScrapingHelper
+
   @behaviour PratiBa.Scrapers.Scraper
 
   @rss_url "https://www.klix.ba/rss"
 
-  alias PratiBa.Scrapers.ScrapingHelper
-
+  @impl Scraper
   def articles(url \\ @rss_url) do
     response = ScrapingHelper.get(url)
 
@@ -13,16 +17,18 @@ defmodule PratiBa.Scrapers.KlixScraper do
         {:ok, rss} = FastRSS.parse(body)
 
         articles =
-          rss["items"]
+          rss
+          |> Map.get("items")
           |> Stream.map(&parse_article/1)
 
         {:ok, articles}
 
-      {_, response} ->
+      {_other, response} ->
         {:error, response}
     end
   end
 
+  @spec article_details(map()) :: {:ok, map()}
   def article_details(article), do: {:ok, article}
 
   defp parse_article(article) do
@@ -63,7 +69,7 @@ defmodule PratiBa.Scrapers.KlixScraper do
         } ->
           URI.encode(image_url)
 
-        _ ->
+        _other ->
           nil
       end
 

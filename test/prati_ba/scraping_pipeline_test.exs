@@ -3,7 +3,9 @@ defmodule PratiBa.ScrapingPipelineTest do
 
   import Mox
 
-  alias PratiBa.{Articles, Scrapers, ScrapingPipeline}
+  alias PratiBa.Articles
+  alias PratiBa.Scrapers
+  alias PratiBa.ScrapingPipeline
 
   setup :set_mox_from_context
   setup :verify_on_exit!
@@ -39,7 +41,7 @@ defmodule PratiBa.ScrapingPipelineTest do
     |> expect(:article_details, fn article ->
       {:ok, Map.merge(article, %{title: "Fake title", image: "https://placebacon.com/350/150"})}
     end)
-    |> expect(:article_details, fn _ -> {:error, %Finch.Error{}} end)
+    |> expect(:article_details, fn _params -> {:error, %Finch.Error{}} end)
 
     ScrapingPipeline.start()
     :timer.sleep(100)
@@ -59,8 +61,7 @@ defmodule PratiBa.ScrapingPipelineTest do
     insert(:source, name: source_name)
     Application.put_env(:prati_ba, :scrapers, %{source_name => Scrapers.ScraperMock})
 
-    Scrapers.ScraperMock
-    |> expect(:articles, fn -> {:error, %Finch.Error{}} end)
+    expect(Scrapers.ScraperMock, :articles, fn -> {:error, %Finch.Error{}} end)
 
     ScrapingPipeline.start()
     :timer.sleep(100)

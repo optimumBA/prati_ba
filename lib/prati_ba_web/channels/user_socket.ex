@@ -18,7 +18,7 @@ defmodule PratiBaWeb.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
-  @impl true
+  @impl Phoenix.Socket
   def connect(%{"token" => token}, socket, _connect_info) do
     salt = Application.get_env(:prati_ba, :socket_salt)
 
@@ -31,7 +31,7 @@ defmodule PratiBaWeb.UserSocket do
        |> assign(:visitor, visitor)
        |> assign(:visit, visit)}
     else
-      _ ->
+      _other ->
         :error
     end
   end
@@ -46,6 +46,6 @@ defmodule PratiBaWeb.UserSocket do
   #     PratiBaWeb.Endpoint.broadcast("user_socket:#{user.id}", "disconnect", %{})
   #
   # Returning `nil` makes this socket anonymous.
-  @impl true
+  @impl Phoenix.Socket
   def id(_socket), do: nil
 end

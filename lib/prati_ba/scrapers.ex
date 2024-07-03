@@ -5,6 +5,7 @@ defmodule PratiBa.Scrapers do
 
   alias PratiBa.Articles
 
+  @spec list() :: [any()]
   def list do
     scrapers = Application.get_env(:prati_ba, :scrapers)
 
@@ -14,7 +15,7 @@ defmodule PratiBa.Scrapers do
     |> Enum.to_list()
   end
 
-  defp get_scraper(source = %Articles.Source{name: source_name}, scrapers) do
+  defp get_scraper(%Articles.Source{name: source_name} = source, scrapers) do
     case Map.get(scrapers, source_name) do
       nil ->
         nil

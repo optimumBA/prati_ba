@@ -1,5 +1,5 @@
 defmodule PratiBaWeb.AnalyticsLiveTest do
-  use PratiBaWeb.ConnCase
+  use PratiBaWeb.ConnCase, async: false
 
   import Phoenix.LiveViewTest
   import Phoenix.ChannelTest
@@ -7,9 +7,7 @@ defmodule PratiBaWeb.AnalyticsLiveTest do
   defp authorize(%{conn: conn}) do
     authorization = "Basic " <> Base.encode64("pratiba:pratiba")
 
-    conn =
-      conn
-      |> put_req_header("authorization", authorization)
+    conn = put_req_header(conn, "authorization", authorization)
 
     %{conn: conn}
   end
@@ -25,7 +23,7 @@ defmodule PratiBaWeb.AnalyticsLiveTest do
 
       assert html =~ "0 current visitors"
 
-      {:ok, _, socket} =
+      {:ok, _other, socket} =
         PratiBaWeb.UserSocket
         |> socket(nil, %{visitor: visitor, visit: visit})
         |> subscribe_and_join(PratiBaWeb.AnalyticsChannel, "analytics")

@@ -21,9 +21,9 @@ defmodule PratiBa.Scrapers.CapitalBaScraperTest do
 
       {:ok, articles} = response
 
-      articles = Enum.to_list(articles)
+      articles_2 = Enum.to_list(articles)
 
-      assert length(articles) == 10
+      assert length(articles_2) == 10
 
       assert [
                %{

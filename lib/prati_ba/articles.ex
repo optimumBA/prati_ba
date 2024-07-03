@@ -3,7 +3,8 @@ defmodule PratiBa.Articles do
   The Articles context.
   """
 
-  alias PratiBa.Articles.{Article, Source}
+  alias PratiBa.Articles.Article
+  alias PratiBa.Articles.Source
   alias PratiBa.Repo
 
   @topic inspect(__MODULE__)
@@ -16,6 +17,7 @@ defmodule PratiBa.Articles do
     iex> subscribe
     :ok
   """
+  @spec subscribe() :: :ok
   def subscribe do
     Phoenix.PubSub.subscribe(PratiBa.PubSub, @topic)
   end
@@ -29,6 +31,7 @@ defmodule PratiBa.Articles do
       [%Article{}, ...]
 
   """
+  @spec list_articles(Keyword.t()) :: [Article.t()]
   def list_articles(opts \\ []) do
     limit = Keyword.get(opts, :limit, 15)
     page = Keyword.get(opts, :page, 1)
@@ -53,6 +56,7 @@ defmodule PratiBa.Articles do
       ** (Ecto.NoResultsError)
 
   """
+  @spec get_article!(Ecto.UUID.t()) :: Article.t()
   def get_article!(id) do
     Article
     |> Repo.get!(id)
@@ -71,8 +75,10 @@ defmodule PratiBa.Articles do
       false
 
   """
+  @spec exists?(Ecto.UUID.t(), map()) :: boolean()
   def exists?(source_id, %{original_id: original_id}) do
-    Article.having_original_id(source_id, original_id)
+    source_id
+    |> Article.having_original_id(original_id)
     |> Repo.exists?()
   end
 
@@ -88,6 +94,7 @@ defmodule PratiBa.Articles do
       {:error, %Ecto.Changeset{}}
 
   """
+  @spec create_article(Source.t(), map) :: {:ok, Article.t()} | {:error, Ecto.Changeset.t()}
   def create_article(%Source{} = source, attrs \\ %{}) do
     article_changeset =
       %Article{}
@@ -110,7 +117,7 @@ defmodule PratiBa.Articles do
 
         {:ok, result.article_with_image}
 
-      {:error, _, changeset, _} ->
+      {:error, _failed_operation, changeset, _changes_so_far} ->
         {:error, changeset}
     end
   end
@@ -124,6 +131,7 @@ defmodule PratiBa.Articles do
       [%Source{}, ...]
 
   """
+  @spec list_sources() :: [Source.t()]
   def list_sources do
     Source
     |> Source.enabled()

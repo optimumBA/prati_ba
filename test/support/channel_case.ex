@@ -17,6 +17,8 @@ defmodule PratiBaWeb.ChannelCase do
 
   use ExUnit.CaseTemplate
 
+  alias Ecto.Adapters.SQL.Sandbox, as: SQLSandbox
+
   using do
     quote do
       # Import conveniences for testing with channels
@@ -30,10 +32,10 @@ defmodule PratiBaWeb.ChannelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(PratiBa.Repo)
+    :ok = SQLSandbox.checkout(PratiBa.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(PratiBa.Repo, {:shared, self()})
+      SQLSandbox.mode(PratiBa.Repo, {:shared, self()})
     end
 
     :ok

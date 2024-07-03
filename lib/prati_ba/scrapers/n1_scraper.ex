@@ -1,10 +1,14 @@
 defmodule PratiBa.Scrapers.N1Scraper do
+  @moduledoc false
+
+  alias PratiBa.Scrapers.Scraper
+  alias PratiBa.Scrapers.ScrapingHelper
+
   @behaviour PratiBa.Scrapers.Scraper
 
   @url_base "https://ba.n1info.com"
 
-  alias PratiBa.Scrapers.ScrapingHelper
-
+  @impl Scraper
   def articles(url_base \\ @url_base) do
     response = ScrapingHelper.get(url_base <> "/wp-json/wp/v2/posts/")
 
@@ -17,10 +21,11 @@ defmodule PratiBa.Scrapers.N1Scraper do
 
       {:ok, articles}
     else
-      {_, response} -> {:error, response}
+      {_other, response} -> {:error, response}
     end
   end
 
+  @impl Scraper
   def article_details(%{image: image_url} = article) when is_binary(image_url) do
     response = ScrapingHelper.get(image_url)
 
@@ -30,14 +35,14 @@ defmodule PratiBa.Scrapers.N1Scraper do
       image_url = URI.encode(image_url)
       {:ok, Map.put(article, :image, image_url)}
     else
-      _ -> {:error, :article_not_available}
+      _other -> {:error, :article_not_available}
     end
   end
 
   def article_details(article), do: {:ok, article}
 
-  defp should_scrape(%{link: "https://ba.n1info.com/english/" <> _}), do: false
-  defp should_scrape(_), do: true
+  defp should_scrape(%{link: "https://ba.n1info.com/english/" <> _other}), do: false
+  defp should_scrape(_other), do: true
 
   defp parse_article(article, url_base) do
     %{
@@ -54,14 +59,14 @@ defmodule PratiBa.Scrapers.N1Scraper do
       }
     } = article
 
-    title =
+    title_2 =
       title
       |> HtmlSanitizeEx.strip_tags()
       |> String.trim()
 
     %{
       original_id: Integer.to_string(original_id),
-      title: HtmlSanitizeEx.strip_tags(title),
+      title: HtmlSanitizeEx.strip_tags(title_2),
       description: nil,
       published_at: Timex.parse!(published_at, "{RFC3339}"),
       author: nil,

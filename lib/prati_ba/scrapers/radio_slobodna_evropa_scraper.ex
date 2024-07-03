@@ -1,10 +1,14 @@
 defmodule PratiBa.Scrapers.RadioSlobodnaEvropaScraper do
+  @moduledoc false
+
+  alias PratiBa.Scrapers.Scraper
+  alias PratiBa.Scrapers.ScrapingHelper
+
   @behaviour PratiBa.Scrapers.Scraper
 
   @rss_url "https://www.slobodnaevropa.org/api/zqtovekoir"
 
-  alias PratiBa.Scrapers.ScrapingHelper
-
+  @impl Scraper
   def articles(url \\ @rss_url) do
     response = ScrapingHelper.get(url)
 
@@ -13,16 +17,18 @@ defmodule PratiBa.Scrapers.RadioSlobodnaEvropaScraper do
         {:ok, rss} = FastRSS.parse(body)
 
         articles =
-          rss["items"]
+          rss
+          |> Map.get("items")
           |> Stream.map(&parse_article/1)
 
         {:ok, articles}
 
-      {_, response} ->
+      {_other, response} ->
         {:error, response}
     end
   end
 
+  @spec article_details(map()) :: {:ok, map()}
   def article_details(article), do: {:ok, article}
 
   defp parse_article(article) do
@@ -35,12 +41,12 @@ defmodule PratiBa.Scrapers.RadioSlobodnaEvropaScraper do
       "title" => title
     } = article
 
-    author =
+    maybe_author =
       with false <- is_nil(author),
            %{"author" => author} <- Regex.named_captures(~r/\((?<author>[^\)]+)\)$/, author) do
         author
       else
-        _ -> nil
+        _other -> nil
       end
 
     original_id =
@@ -56,7 +62,7 @@ defmodule PratiBa.Scrapers.RadioSlobodnaEvropaScraper do
       |> DateTime.shift_zone!("Etc/UTC")
       |> DateTime.to_naive()
 
-    image_url =
+    maybe_image_url =
       case enclosure do
         nil ->
           nil
@@ -73,8 +79,8 @@ defmodule PratiBa.Scrapers.RadioSlobodnaEvropaScraper do
       title: title,
       description: description,
       published_at: published_at,
-      author: author,
-      image: image_url,
+      author: maybe_author,
+      image: maybe_image_url,
       url: url
     }
   end

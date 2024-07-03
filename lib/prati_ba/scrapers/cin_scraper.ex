@@ -1,10 +1,14 @@
 defmodule PratiBa.Scrapers.CinScraper do
+  @moduledoc false
+
+  alias PratiBa.Scrapers.Scraper
+  alias PratiBa.Scrapers.ScrapingHelper
+
   @behaviour PratiBa.Scrapers.Scraper
 
   @rss_url "https://www.cin.ba/feed/"
 
-  alias PratiBa.Scrapers.ScrapingHelper
-
+  @impl Scraper
   def articles(url \\ @rss_url) do
     response = ScrapingHelper.get(url)
 
@@ -16,7 +20,7 @@ defmodule PratiBa.Scrapers.CinScraper do
 
         {:ok, articles}
 
-      {_, response} ->
+      {_other, response} ->
         {:error, response}
     end
   end
@@ -32,7 +36,7 @@ defmodule PratiBa.Scrapers.CinScraper do
       "link" => url
     } = article
 
-    description = Floki.text(description)
+    description_2 = Floki.text(description)
 
     published_at =
       date
@@ -43,7 +47,7 @@ defmodule PratiBa.Scrapers.CinScraper do
     %{
       original_id: original_id,
       title: title,
-      description: description,
+      description: description_2,
       published_at: published_at,
       author: nil,
       image: nil,
@@ -51,6 +55,7 @@ defmodule PratiBa.Scrapers.CinScraper do
     }
   end
 
+  @impl Scraper
   def article_details(%{url: url} = article) do
     response = ScrapingHelper.get(url)
 
@@ -59,7 +64,7 @@ defmodule PratiBa.Scrapers.CinScraper do
          {:ok, image_url} <- ScrapingHelper.get_og_image(html) do
       {:ok, Map.put(article, :image, image_url)}
     else
-      _ -> {:error, :article_not_available}
+      _other -> {:error, :article_not_available}
     end
   end
 end

@@ -1,14 +1,17 @@
 defmodule PratiBaWeb.AnalyticsLive.Index do
+  @moduledoc false
+
   use PratiBaWeb, :live_view
 
-  alias PratiBa.Analytics.{Event, Visit}
+  alias PratiBa.Analytics.Event
+  alias PratiBa.Analytics.Visit
   alias PratiBa.Repo
   alias PratiBaWeb.Components.AnalyticsComponent
   alias PratiBaWeb.Presence
 
   @topic "analytics"
 
-  @impl true
+  @impl Phoenix.LiveView
   def mount(_params, _session, socket) do
     PratiBaWeb.Endpoint.subscribe(@topic)
 
@@ -29,19 +32,19 @@ defmodule PratiBaWeb.AnalyticsLive.Index do
     {:ok, socket}
   end
 
-  @impl true
+  @impl Phoenix.LiveView
   def handle_info(
         %{event: "presence_diff", payload: %{joins: joins, leaves: leaves}},
         %{assigns: %{current_visitors_count: count}} = socket
       ) do
     joins_count =
       joins
-      |> Enum.filter(&is_visitor?/1)
+      |> Enum.filter(&current_visitor?/1)
       |> length()
 
     leaves_count =
       leaves
-      |> Enum.filter(&is_visitor?/1)
+      |> Enum.filter(&current_visitor?/1)
       |> length()
 
     visitors_count = count + joins_count - leaves_count
@@ -61,14 +64,14 @@ defmodule PratiBaWeb.AnalyticsLive.Index do
     initial_count =
       @topic
       |> Presence.list()
-      |> Enum.filter(&is_visitor?/1)
+      |> Enum.filter(&current_visitor?/1)
       |> length()
 
     assign(socket, :current_visitors_count, initial_count)
   end
 
-  defp is_visitor?({"phx-" <> _, _}), do: false
-  defp is_visitor?(_), do: true
+  defp current_visitor?({"phx-" <> _value, _other}), do: false
+  defp current_visitor?(_other), do: true
 
   defp fetch_data(socket) do
     visitors_count =
@@ -137,7 +140,7 @@ defmodule PratiBaWeb.AnalyticsLive.Index do
     |> assign(:visitors_per_day, visitors_per_day)
   end
 
-  defp schedule_refresh() do
+  defp schedule_refresh do
     Process.send_after(self(), :refresh, 5000)
   end
 end

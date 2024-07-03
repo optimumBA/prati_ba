@@ -21,9 +21,9 @@ defmodule PratiBa.Scrapers.RaportScraperTest do
 
       {:ok, articles} = response
 
-      articles = Enum.to_list(articles)
+      articles_2 = Enum.to_list(articles)
 
-      assert length(articles) == 2
+      assert length(articles_2) == 2
 
       assert [
                %{
