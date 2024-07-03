@@ -3,7 +3,10 @@ defmodule PratiBa.Analytics do
   The Analytics context.
   """
 
-  alias PratiBa.Analytics.{Event, EventType, Visit, Visitor}
+  alias PratiBa.Analytics.Event
+  alias PratiBa.Analytics.EventType
+  alias PratiBa.Analytics.Visit
+  alias PratiBa.Analytics.Visitor
   alias PratiBa.Repo
 
   @doc """
@@ -15,9 +18,9 @@ defmodule PratiBa.Analytics do
       [%Visitor{}, ...]
 
   """
-  def list_visitors() do
-    Visitor
-    |> Repo.all()
+  @spec list_visitors() :: [Visitor.t()]
+  def list_visitors do
+    Repo.all(Visitor)
   end
 
   @doc """
@@ -34,9 +37,9 @@ defmodule PratiBa.Analytics do
       nil
 
   """
+  @spec get_visitor(Ecto.UUID.t()) :: Visitor.t() | nil
   def get_visitor(id) do
-    Visitor
-    |> Repo.get(id)
+    Repo.get(Visitor, id)
   end
 
   @doc """
@@ -51,9 +54,9 @@ defmodule PratiBa.Analytics do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_visitor() do
-    %Visitor{}
-    |> Repo.insert()
+  @spec create_visitor() :: {:ok, Visitor.t()} | {:error, Ecto.Changeset.t()}
+  def create_visitor do
+    Repo.insert(%Visitor{})
   end
 
   @doc """
@@ -65,7 +68,8 @@ defmodule PratiBa.Analytics do
       [%Visit{}, ...]
 
   """
-  def list_visits() do
+  @spec list_visits() :: [Visit.t()]
+  def list_visits do
     Visit
     |> Repo.all()
     |> Repo.preload(:visitor)
@@ -85,9 +89,10 @@ defmodule PratiBa.Analytics do
       nil
 
   """
+  @spec get_active_visit(Visitor.t(), Ecto.UUID.t()) :: Visit.t() | nil
   def get_active_visit(%Visitor{id: visitor_id}, id) do
-    Visit.active()
-    |> Repo.get_by(id: id, visitor_id: visitor_id)
+    active_visit = Visit.active()
+    Repo.get_by(active_visit, id: id, visitor_id: visitor_id)
   end
 
   @doc """
@@ -102,6 +107,7 @@ defmodule PratiBa.Analytics do
       {:error, %Ecto.Changeset{}}
 
   """
+  @spec create_visit(Visitor.t(), map) :: {:ok, Visit.t()} | {:error, Ecto.Changeset.t()}
   def create_visit(%Visitor{} = visitor, %{} = attrs) do
     %Visit{}
     |> Visit.changeset(attrs)
@@ -121,6 +127,7 @@ defmodule PratiBa.Analytics do
       {:error, %Ecto.Changeset{}}
 
   """
+  @spec update_visit(Visit.t(), map) :: {:ok, Visit.t()} | {:error, Ecto.Changeset.t()}
   def update_visit(%Visit{} = visit, attrs) do
     visit
     |> Visit.changeset(attrs)
@@ -136,7 +143,8 @@ defmodule PratiBa.Analytics do
       [%Event{}, ...]
 
   """
-  def list_events() do
+  @spec list_events() :: [Event.t()]
+  def list_events do
     Event
     |> Repo.all()
     |> Repo.preload(:event_type)
@@ -154,6 +162,8 @@ defmodule PratiBa.Analytics do
       {:error, %Ecto.Changeset{}}
 
   """
+  @spec create_event(Visit.t(), EventType.t(), map) ::
+          {:ok, Event.t()} | {:error, Ecto.Changeset.t()}
   def create_event(%Visit{} = visit, %EventType{} = event_type, %{} = attrs) do
     %Event{}
     |> Event.changeset(attrs)
@@ -176,8 +186,8 @@ defmodule PratiBa.Analytics do
       nil
 
   """
+  @spec get_event_type(String.t()) :: EventType.t() | nil
   def get_event_type(name) do
-    EventType
-    |> Repo.get_by(name: name)
+    Repo.get_by(EventType, name: name)
   end
 end

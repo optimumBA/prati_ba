@@ -7,7 +7,7 @@ defmodule PratiBaWeb.AnalyticsChannelTest do
     visitor = PratiBa.Factory.insert(:visitor)
     visit = insert(:visit, visitor: visitor)
 
-    {:ok, _, socket} =
+    {:ok, _other, socket} =
       PratiBaWeb.UserSocket
       |> socket(nil, %{visitor: visitor, visit: visit})
       |> subscribe_and_join(PratiBaWeb.AnalyticsChannel, "analytics")

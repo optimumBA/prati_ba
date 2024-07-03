@@ -2,9 +2,13 @@ defmodule PratiBa.AnalyticsTest do
   use PratiBa.DataCase, async: true
 
   alias PratiBa.Analytics
-  alias PratiBa.Analytics.{Event, EventType, Visit, Visitor}
+  alias PratiBa.Analytics.Event
+  alias PratiBa.Analytics.EventType
+  alias PratiBa.Analytics.Visit
+  alias PratiBa.Analytics.Visitor
 
-  def visitor_fixture() do
+  @spec visitor_fixture() :: Visitor.t()
+  def visitor_fixture do
     {:ok, %Visitor{} = visitor} = Analytics.create_visitor()
 
     visitor
@@ -35,6 +39,7 @@ defmodule PratiBa.AnalyticsTest do
     @valid_attrs %{started_at: NaiveDateTime.utc_now(), last_active_at: NaiveDateTime.utc_now()}
     @invalid_attrs %{started_at: nil, last_active_at: nil}
 
+    @spec visit_fixture(Visitor.t(), map) :: Visit.t()
     def visit_fixture(visitor, attrs \\ %{}) do
       attrs = Map.merge(@valid_attrs, attrs)
       {:ok, %Visit{} = visit} = Analytics.create_visit(visitor, attrs)
@@ -104,7 +109,11 @@ defmodule PratiBa.AnalyticsTest do
       visitor = visitor_fixture()
       visit = visit_fixture(visitor)
       assert {:error, %Ecto.Changeset{}} = Analytics.update_visit(visit, @invalid_attrs)
-      assert visit == Analytics.get_active_visit(visitor, visit.id) |> Repo.preload(:visitor)
+
+      assert visit ==
+               visitor
+               |> Analytics.get_active_visit(visit.id)
+               |> Repo.preload(:visitor)
     end
   end
 

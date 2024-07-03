@@ -1,10 +1,16 @@
 defmodule PratiBa.Scrapers.ScrapingHelper do
+  @moduledoc false
+
   @user_agent Application.compile_env(:prati_ba, :user_agent, "")
 
+  @spec get(String.t()) :: {:ok, map()} | {:error, any()}
   def get(url) do
-    Finch.build(:get, url, [{"user-agent", @user_agent}]) |> Finch.request(PratiBa.Finch)
+    :get
+    |> Finch.build(url, [{"user-agent", @user_agent}])
+    |> Finch.request(PratiBa.Finch)
   end
 
+  @spec get_og_image(Floki.html_tree()) :: {:ok, binary()} | {:error, any()}
   def get_og_image(html) do
     image_url =
       html
@@ -21,6 +27,7 @@ defmodule PratiBa.Scrapers.ScrapingHelper do
     end
   end
 
+  @spec get_og_description(Floki.html_tree()) :: {:ok, String.t()} | {:error, any()}
   def get_og_description(html) do
     description =
       html

@@ -1,9 +1,14 @@
 defmodule PratiBaWeb.Components.ArticleComponent do
+  @moduledoc false
+
   use PratiBaWeb, :html
 
   alias PratiBa.Articles.Article
   alias PratiBa.Uploaders.ArticleImage
   alias PratiBaWeb.Components.Icons
+
+  @type assigns :: map()
+  @type rendered :: Phoenix.LiveView.Rendered.t()
 
   @doc """
   Renders article component with content.
@@ -14,6 +19,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
   """
   attr :article, :map, required: true
 
+  @spec article(assigns()) :: rendered()
   def article(assigns) do
     ~H"""
     <article id={"article-" <> @article.id} class="group my-3 lg:h-[230px] duration-200">
@@ -112,6 +118,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
   @doc """
   Renders navbar component.
   """
+  @spec navbar(assigns()) :: rendered()
   def navbar(assigns) do
     ~H"""
     <div id="nav-ignore" class="w-full" phx-update="ignore">
@@ -186,6 +193,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
   @doc """
   Renders indicator button for new articles.
   """
+  @spec new_articles_indicator(assigns()) :: rendered()
   def new_articles_indicator(assigns) do
     ~H"""
     <div class="mx-4 flex items-center justify-center mt-6">
@@ -203,6 +211,7 @@ defmodule PratiBaWeb.Components.ArticleComponent do
   @doc """
   Renders scroll to top icon.
   """
+  @spec scroll_to_top(assigns()) :: rendered()
   def scroll_to_top(assigns) do
     ~H"""
     <div id="scroll-to-top-component" phx-update="ignore">

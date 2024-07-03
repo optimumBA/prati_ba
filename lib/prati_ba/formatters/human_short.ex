@@ -1,4 +1,6 @@
 defmodule PratiBa.Formatters.HumanShort do
+  @moduledoc false
+
   use Timex.Format.Duration.Formatter
   alias Timex.Translator
 
@@ -6,37 +8,41 @@ defmodule PratiBa.Formatters.HumanShort do
 
   @microsecond 1_000_000
 
+  @spec format(Duration.t()) :: String.t() | {:error, :invalid_timestamp}
   def format(%Duration{} = duration), do: lformat(duration, Translator.current_locale())
-  def format(_), do: {:error, :invalid_timestamp}
+  def format(_duration), do: {:error, :invalid_timestamp}
 
+  @spec lformat(Duration.t(), String.t()) :: String.t() | {:error, :invalid_duration}
   def lformat(%Duration{} = duration, _locale) do
     duration
-    |> deconstruct
-    |> do_format
+    |> deconstruct()
+    |> do_format()
   end
 
-  def lformat(_, _locale), do: {:error, :invalid_duration}
+  def lformat(_duration, _locale), do: {:error, :invalid_duration}
 
   defp do_format(components, str \\ "")
 
   defp do_format([], str), do: str
 
-  defp do_format([{unit, _} = component | rest], str) do
-    cond do
-      unit in [:hours, :minutes, :seconds] && String.contains?(str, "T") ->
-        do_format(rest, format_component(component, str))
-
-      true ->
-        do_format(rest, format_component(component, str))
+  defp do_format([{unit, _other} = component | rest], str) do
+    if unit in [:hours, :minutes, :seconds] && String.contains?(str, "T") do
+      do_format(rest, format_component(component, str))
+    else
+      do_format(rest, format_component(component, str))
     end
   end
 
-  defp format_component({_, 0}, str), do: str
+  defp format_component({_unit, 0}, str), do: str
   defp format_component({:minutes, m}, str), do: str <> " #{m}m"
   defp format_component({:seconds, s}, str), do: str <> " #{s}s"
 
   defp deconstruct(duration) do
-    micros = Duration.to_microseconds(duration) |> abs
+    micros =
+      duration
+      |> Duration.to_microseconds()
+      |> abs()
+
     deconstruct({div(micros, @microsecond), rem(micros, @microsecond)}, [])
   end
 
@@ -44,12 +50,10 @@ defmodule PratiBa.Formatters.HumanShort do
     do: Enum.reverse(components)
 
   defp deconstruct({seconds, us}, components) do
-    cond do
-      seconds >= @minute ->
-        deconstruct({rem(seconds, @minute), us}, [{:minutes, div(seconds, @minute)} | components])
-
-      true ->
-        get_fractional_seconds(seconds, us, components)
+    if seconds >= @minute do
+      deconstruct({rem(seconds, @minute), us}, [{:minutes, div(seconds, @minute)} | components])
+    else
+      get_fractional_seconds(seconds, us, components)
     end
   end
 
@@ -62,12 +66,10 @@ defmodule PratiBa.Formatters.HumanShort do
       |> Duration.from_microseconds()
       |> Duration.to_milliseconds()
 
-    cond do
-      millis >= 1.0 ->
-        deconstruct({0, 0}, [{:seconds, seconds + millis * :math.pow(10, -3)} | components])
-
-      true ->
-        deconstruct({0, 0}, [{:seconds, seconds + micro * :math.pow(10, -6)} | components])
+    if millis >= 1.0 do
+      deconstruct({0, 0}, [{:seconds, seconds + millis * :math.pow(10, -3)} | components])
+    else
+      deconstruct({0, 0}, [{:seconds, seconds + micro * :math.pow(10, -6)} | components])
     end
   end
 end

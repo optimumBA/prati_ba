@@ -1,9 +1,12 @@
 defmodule PratiBa.ScrapingPipeline.ArticlesListConsumer do
-  require Logger
+  @moduledoc false
 
   alias PratiBa.Articles
   alias PratiBa.ScrapingPipeline.ArticleProducer
 
+  require Logger
+
+  @spec start_link({any, any}) :: {:ok, pid}
   def start_link({source, scraper} = event) do
     Logger.debug("ArticlesListConsumer received #{inspect(event)}")
 
@@ -15,7 +18,7 @@ defmodule PratiBa.ScrapingPipeline.ArticlesListConsumer do
           |> Enum.map(fn article -> {source, scraper, article} end)
           |> ArticleProducer.add_articles()
 
-        {:error, _} ->
+        {:error, _other} ->
           nil
       end
     end)

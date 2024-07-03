@@ -1,9 +1,12 @@
 defmodule PratiBaWeb.Components.AnalyticsComponent do
+  @moduledoc false
+
   use Phoenix.Component
 
   alias PratiBa.Formatters.HumanShort
   alias Timex.Duration
 
+  @spec analytics_indicator(map()) :: Phoenix.LiveView.Rendered.t()
   def analytics_indicator(assigns) do
     ~H"""
     <div class="column column-25 analytics-indicator">
@@ -56,7 +59,7 @@ defmodule PratiBaWeb.Components.AnalyticsComponent do
   end
 
   defp percentage_change(%{value_before: value_before, value_now: value_now} = assigns) do
-    percentage =
+    change =
       if value_now > value_before do
         value_now / value_before - 1
       else
@@ -64,7 +67,7 @@ defmodule PratiBaWeb.Components.AnalyticsComponent do
       end
 
     percentage =
-      (percentage * 100)
+      (change * 100)
       |> round()
       |> abs()
       |> Integer.to_string()

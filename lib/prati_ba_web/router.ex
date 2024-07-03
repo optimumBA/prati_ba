@@ -58,7 +58,10 @@ defmodule PratiBaWeb.Router do
          true <- valid_username? and valid_password? do
       conn
     else
-      _ -> conn |> Plug.BasicAuth.request_basic_auth() |> halt()
+      _other ->
+        conn
+        |> Plug.BasicAuth.request_basic_auth()
+        |> halt()
     end
   end
 

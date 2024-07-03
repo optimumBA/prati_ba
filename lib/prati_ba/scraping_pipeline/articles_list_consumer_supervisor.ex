@@ -1,14 +1,19 @@
 defmodule PratiBa.ScrapingPipeline.ArticlesListConsumerSupervisor do
+  @moduledoc false
+
   use ConsumerSupervisor
+
+  alias PratiBa.ScrapingPipeline.ArticlesListConsumer
+  alias PratiBa.ScrapingPipeline.ScraperProducer
 
   require Logger
 
-  alias PratiBa.ScrapingPipeline.{ArticlesListConsumer, ScraperProducer}
-
+  @spec start_link(any) :: {:ok, pid} | :ignore | {:error, any}
   def start_link(_args) do
     ConsumerSupervisor.start_link(__MODULE__, :ok)
   end
 
+  @impl ConsumerSupervisor
   def init(:ok) do
     Logger.info("ArticlesListConsumerSupervisor init")
 

@@ -1,10 +1,14 @@
 defmodule PratiBa.Scrapers.RaskrinkavanjeScraper do
+  @moduledoc false
+
+  alias PratiBa.Scrapers.Scraper
+  alias PratiBa.Scrapers.ScrapingHelper
+
   @behaviour PratiBa.Scrapers.Scraper
 
   @url "https://raskrinkavanje.ba/analize"
 
-  alias PratiBa.Scrapers.ScrapingHelper
-
+  @impl Scraper
   def articles(url \\ @url) do
     response = ScrapingHelper.get(url)
 
@@ -17,16 +21,15 @@ defmodule PratiBa.Scrapers.RaskrinkavanjeScraper do
 
       {:ok, articles}
     else
-      {_, response} -> {:error, response}
+      {_other, response} -> {:error, response}
     end
   end
 
+  @spec article_details(map()) :: {:ok, map()}
   def article_details(article), do: {:ok, article}
 
   defp parse_article(article) do
-    link =
-      article
-      |> Floki.find(".card-body a")
+    link = Floki.find(article, ".card-body a")
 
     url =
       link
@@ -62,7 +65,7 @@ defmodule PratiBa.Scrapers.RaskrinkavanjeScraper do
         %{"url" => image_url} ->
           URI.encode(image_url)
 
-        _ ->
+        _other ->
           nil
       end
 

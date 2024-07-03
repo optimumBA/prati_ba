@@ -1,12 +1,16 @@
 defmodule Mix.Tasks.PratiBa.Analytics.ProcessOldData do
-  use Mix.Task
-
   @shortdoc "Processed old analytics data"
 
-  alias PratiBa.Analytics
-  alias PratiBa.Analytics.{Parser, Visit}
+  @moduledoc false
 
-  def run(_) do
+  use Mix.Task
+
+  alias PratiBa.Analytics
+  alias PratiBa.Analytics.Parser
+  alias PratiBa.Analytics.Visit
+
+  @spec run(any()) :: :ok
+  def run(_task) do
     Mix.Task.run("app.start")
 
     # Wait for Geolix to load DBs
@@ -16,13 +20,9 @@ defmodule Mix.Tasks.PratiBa.Analytics.ProcessOldData do
   end
 
   defp process_visit(%Visit{raw: %{"remote_ip" => remote_ip, "user_agent" => user_agent}} = visit) do
-    {browser, device, os} =
-      user_agent
-      |> Parser.parse_user_agent()
+    {browser, device, os} = Parser.parse_user_agent(user_agent)
 
-    {isp, location} =
-      remote_ip
-      |> Parser.parse_ip_address()
+    {isp, location} = Parser.parse_ip_address(remote_ip)
 
     Analytics.update_visit(visit, %{
       browser: browser,
@@ -33,5 +33,5 @@ defmodule Mix.Tasks.PratiBa.Analytics.ProcessOldData do
     })
   end
 
-  defp process_visit(_), do: nil
+  defp process_visit(_visit), do: nil
 end

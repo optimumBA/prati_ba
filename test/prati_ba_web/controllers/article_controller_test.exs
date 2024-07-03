@@ -2,7 +2,8 @@ defmodule PratiBaWeb.ArticleControllerTest do
   use PratiBaWeb.ConnCase, async: true
 
   alias PratiBa.Analytics
-  alias PratiBa.Analytics.{Event, EventType}
+  alias PratiBa.Analytics.Event
+  alias PratiBa.Analytics.EventType
 
   describe "show" do
     setup %{conn: conn} do
@@ -13,9 +14,7 @@ defmodule PratiBaWeb.ArticleControllerTest do
     end
 
     test "redirects to article page", %{conn: conn, article: article} do
-      conn =
-        conn
-        |> get(~p"/#{article}")
+      conn = get(conn, ~p"/#{article}")
 
       assert redirected_to(conn) == "http://sour.ce/article"
     end
@@ -40,19 +39,16 @@ defmodule PratiBaWeb.ArticleControllerTest do
     end
 
     test "doesn't crash when bot opens article", %{conn: conn, article: article} do
-      conn =
+      updated_conn =
         conn
         |> Plug.Test.init_test_session(visitor_id: nil, visit_id: nil)
         |> put_req_header(
           "user-agent",
           "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
         )
-
-      conn =
-        conn
         |> get(~p"/#{article}")
 
-      assert redirected_to(conn) == "http://sour.ce/article"
+      assert redirected_to(updated_conn) == "http://sour.ce/article"
     end
   end
 end
