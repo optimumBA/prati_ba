@@ -106,7 +106,7 @@ defmodule PratiBa.MixProject do
       {:fast_rss, github: "almirsarajcic/fast_rss", branch: "rustler-0.25"},
       {:timex, "~> 3.7"},
       {:feeder_ex, "~> 1.1"},
-      {:tzdata, "~> 1.1.1"},
+      {:tzdata, "~> 1.1.2"},
       {:ecto_fields, "~> 1.3.0"},
       {:waffle, "~> 1.1.6"},
       {:waffle_ecto, "~> 0.0.11"},
